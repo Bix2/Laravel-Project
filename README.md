@@ -1,9 +1,11 @@
-# Generate Homestead.yaml file to confige folder structure
+# Install dependencies
+$ composer install
 
-## Mac
+# Generate Homestead.yaml file to define folder structure
+### Mac
 $ php vendor/bin/homestead make
 
-## Windows
+### Windows
 $ vendor\\bin\\homestead make
 
 # Start vagrant
