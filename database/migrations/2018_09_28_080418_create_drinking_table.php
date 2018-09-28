@@ -15,6 +15,9 @@ class CreateDrinkingTable extends Migration
     {
         Schema::create('drinking', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->timestamp('time');
+            $table->double('amount', 5, 2);
             $table->timestamps();
         });
     }

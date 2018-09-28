@@ -15,6 +15,8 @@ class CreateBreaksExercisesTable extends Migration
     {
         Schema::create('breaks_exercises', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('type');
+            $table->string('video_url');
             $table->timestamps();
         });
     }

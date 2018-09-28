@@ -15,6 +15,9 @@ class CreateSleepingTable extends Migration
     {
         Schema::create('sleeping', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->timestamp('time');
+            $table->integer('type');
             $table->timestamps();
         });
     }

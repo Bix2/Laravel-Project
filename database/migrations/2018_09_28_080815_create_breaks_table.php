@@ -15,6 +15,9 @@ class CreateBreaksTable extends Migration
     {
         Schema::create('breaks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('exercise_id');
+            $table->timestamp('time');
             $table->timestamps();
         });
     }

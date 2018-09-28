@@ -15,6 +15,8 @@ class CreateBreathingTable extends Migration
     {
         Schema::create('breathing', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->timestamp('time');
             $table->timestamps();
         });
     }
