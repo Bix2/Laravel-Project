@@ -26,6 +26,7 @@ Route::get('/user', function() {
 Route::get('/dashboard', function() {
     return view('dashboard');
 });
+
 /*Route::get('/project/{slug}', function($slug) {
     return response()->json(\App\Project::where('slug', '=', $slug)->first());
 });*/
