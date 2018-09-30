@@ -35,5 +35,12 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
+    'fitbit' => [
+        'client_id' => env('FITBIT_KEY'),
+        'client_secret' => env('FITBIT_SECRET'),
+        'redirect' => env('FITBIT_REDIRECT_URI')
+    ],
+
 
 ];
