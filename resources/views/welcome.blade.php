@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="container container--welcome"> 
-            <a href="#" class="btn btn-outline-primary btn-lg">Login with FitBit</a>
+            <a href="login/fitbit/" class="btn btn-outline-primary btn-lg">Login with FitBit</a>
         </div>
     </body>
 </html>
