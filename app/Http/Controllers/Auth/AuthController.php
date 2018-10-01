@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\FitBitUser;
+use Auth;
 use Socialite;
 
 class AuthController extends Controller
@@ -20,7 +21,8 @@ class AuthController extends Controller
         $data = Socialite::driver('fitbit')->user();
         $user = $this->findOrCreateUser($data);
         //redirecting to home page
-        return view ( 'dashboard')->with('user', $user);
+        return view('dashboard')->with('user', $user);
+        //return redirect('/dashboard')->with(['user' => $user]);
     }
 
     public function findOrCreateUser($data) {
