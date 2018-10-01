@@ -22,7 +22,6 @@ class AuthController extends Controller
         $user = $this->findOrCreateUser($data);
         //redirecting to home page
         return view('dashboard')->with('user', $user);
-        //return redirect('/dashboard')->with(['user' => $user]);
     }
 
     public function findOrCreateUser($data) {
