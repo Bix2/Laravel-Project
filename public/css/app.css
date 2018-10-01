@@ -10471,14 +10471,57 @@ a.text-dark:focus {
   }
 }
 
+.welcome-page {
+  background: #171133;
+}
+
+.logo {
+  margin: 5rem auto;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.nav__avatar {
+  width: 60px;
+}
+
+.nav__avatar img {
+  border-radius: 50%;
+  width: 100%;
+}
+
 .container--welcome {
-  margin-top: 200px;
   text-align: center;
+}
+
+.footer {
+  background: #171133;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer__copyright {
+  padding: 1em 0;
+  color: #838AD3;
+  text-align: center;
+}
+
+.btn-outline-primary {
+  color: #838AD3;
+  background-color: transparent;
+  background-image: none;
+  border-color: #838AD3;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #838AD3;
+  border-color: #838AD3;
 }
 
