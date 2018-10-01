@@ -7,14 +7,18 @@ use Socialite;
 
 class AuthController extends Controller
 {
-    protected function newFitBit()
+    protected function redirectToFitbit()
     {
-        return Socialite::driver('fitbit')->redirect();
+        return Socialite::driver('fitbit')
+            ->setScopes(['activity', 'heartrate', 'location', 'nutrition', 'profile', 'settings', 'sleep', 'weight'])
+            ->redirect();
     }
 
-    protected function storeFitBit()
+    protected function handleUserInfo()
     {   
         $user = Socialite::driver('fitbit')->user();
-        dd($user);
+        $token = $user->token;
+        print_r($user);
+   
     }
 }

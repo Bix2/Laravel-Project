@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('token');
-            $table->double('length', 5, 2);
-            $table->double('weight', 5, 2);
+            $table->double('length', 5, 1);
+            $table->double('weight', 5, 1);
             $table->timestamps();
         });
     }
