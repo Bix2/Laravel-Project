@@ -2,14 +2,21 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
+// Abstracts
+@import 'abstracts/variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Pages
-@import 'pages/dashboard';
+// Layout
+@import 'layout/header';
+@import 'layout/navigation';
+
+
+// Used for dummy
+body {
+  background-color: #fff;
+}
 
 .welcome-page {
     background: $dark_bg;

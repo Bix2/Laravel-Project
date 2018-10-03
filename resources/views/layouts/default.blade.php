@@ -4,10 +4,14 @@
     @include('includes.head')
 </head>
 <body>
-<div class="container">
-    <header class="row">
+
+<header class="row mainHeader">
+    <div class="container">
         @include('includes.header')
-    </header>
+    </div>
+</header>
+
+<div class="container">
 
     <div id="main" class="row">
 
