@@ -23,6 +23,6 @@ Route::get('/dashboard', function() {
     return view('dashboard');
 });
 
-Route::get('login/fitbit', 'Auth\AuthController@redirectToFitbit');
-Route::get('login/fitbit/callback', 'Auth\AuthController@handleUserInfo');
-
+Route::get('login/fitbit', 'FitbitController@redirectToFitbit');
+Route::get('login/fitbit/callback', 'FitbitController@handleUserInfo');
+ 

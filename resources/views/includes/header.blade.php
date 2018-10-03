@@ -3,10 +3,10 @@
         <a id="logo" href=""></a>
         <nav class="nav">
             <div class="nav__avatar"> 
-                <img src= {{ $user->avatar }} >
+                <img src='' >
             </div>
             <div class="nav__username">
-               <p> {{ $user->name }} </p>
+               <p> </p>
             </div>
         </nav>
     </div>

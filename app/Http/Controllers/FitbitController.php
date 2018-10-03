@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
-use App\Http\Controllers\Controller;
-use App\FitBitUser;
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use Auth;
+use App\User;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Socialite;
 
-class AuthController extends Controller
+class FitbitController extends Controller
 {
     protected function redirectToFitbit()
     {
@@ -20,16 +21,18 @@ class AuthController extends Controller
     {   
         $data = Socialite::driver('fitbit')->user();
         $user = $this->findOrCreateUser($data);
+        
         //redirecting to home page
-        return view('dashboard')->with('user', $user);
+        return redirect()->intended('/dashboard');
+        dd($user);
     }
 
     public function findOrCreateUser($data) {
-        $user = FitBitUser::where('fitbit_id', $data->id)->first();
+        $user = User::where('fitbit_id', $data->id)->first();
         if ($user) {
             return $user;
         }
-        return FitBitUser::create([
+        return User::create([
             'token' => $data->token,
             'fitbit_id' => $data->id,
             'name'   => $data->name,
