@@ -15,14 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', function() {
-    return view('user');
-});
+Route::get('/user', 'UserController@index');
 
-Route::get('/dashboard', function() {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('login/fitbit', 'FitbitController@redirectToFitbit');
 Route::get('login/fitbit/callback', 'FitbitController@handleUserInfo');
- 
