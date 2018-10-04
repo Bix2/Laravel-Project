@@ -21,8 +21,10 @@ class FitbitController extends Controller
     {   
         $data = Socialite::driver('fitbit')->user();
         $user = $this->findOrCreateUser($data);
+
+        dd($user);
         //redirecting to home page
-        return redirect()->intended('/dashboard')->with(['user' => $user]);
+        //return redirect()->intended('/dashboard')->with(['user' => $user]);
     }
 
     public function findOrCreateUser($data) {
