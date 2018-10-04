@@ -24,6 +24,6 @@
         </div>
       </li>
     </ul>
-    <a class="btn btn-outline-danger">Logout</a>
+    <a class="btn btn-outline-danger" href="/logout">Logout</a>
   </div>
 </nav>

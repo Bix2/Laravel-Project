@@ -21,9 +21,10 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('login/fitbit', 'FitbitController@redirectToFitbit');
 Route::get('login/fitbit/callback', 'FitbitController@handleUserInfo');
-
+/*
 Route::get('/logout', function() {
     Auth::logout();
 });
-
+*/
+Route::get('/logout', 'Auth\LoginController@logout');
 

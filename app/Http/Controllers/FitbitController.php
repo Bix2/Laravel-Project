@@ -10,6 +10,11 @@ use Socialite;
 
 class FitbitController extends Controller
 {
+    /**
+     * Redirect the user to the Fitbit authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function redirectToFitbit()
     {
         return Socialite::driver('fitbit')
@@ -17,27 +22,37 @@ class FitbitController extends Controller
             ->redirect();
     }
 
+    /**
+     * Obtain the user information from Fitbit.
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function handleUserInfo()
     {   
         $data = Socialite::driver('fitbit')->user();
-        $user = $this->findOrCreateUser($data);
-
-        dd($user);
-        //redirecting to home page
-        //return redirect()->intended('/dashboard')->with(['user' => $user]);
+        if ($data) {
+            $user = $this->findOrCreateUser($data);
+            Auth::login($user, true);
+        };
+        //redirecting to dashboard page
+        return redirect()->intended('/dashboard')->with(['user' => $user]);
     }
 
-    public function findOrCreateUser($data) {
-        $user = User::where('fitbit_id', $data->id)->first();
-        if ($user) {
+    /**
+     * Return user if exists; create and return if doesn't
+     * 
+     * @param $data
+     * @return User
+     */
+    private function findOrCreateUser($data) {
+        if ($user = User::where('fitbit_id', $data->id)->first()) {
             return $user;
-        } else {
-            $user = User::create([
+        }
+        return User::create([
                 'token' => $data->token,
                 'fitbit_id' => $data->id,
                 'name'   => $data->name,
                 'avatar' => $data->avatar
             ]);
-        }
     }
 }
