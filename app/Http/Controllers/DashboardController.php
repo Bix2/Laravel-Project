@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index() {
-        // $data['user'] = \DB::table('artists')->get();
-        return view('dashboard');
+        $user = session()->get('user');
+        return view('dashboard')->with(['user' => $user]);
     }
 }

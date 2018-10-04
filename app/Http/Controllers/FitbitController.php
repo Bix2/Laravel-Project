@@ -21,22 +21,21 @@ class FitbitController extends Controller
     {   
         $data = Socialite::driver('fitbit')->user();
         $user = $this->findOrCreateUser($data);
-        
         //redirecting to home page
-        return redirect()->intended('/dashboard');
-        dd($user);
+        return redirect()->intended('/dashboard')->with(['user' => $user]);
     }
 
     public function findOrCreateUser($data) {
         $user = User::where('fitbit_id', $data->id)->first();
         if ($user) {
             return $user;
+        } else {
+            $user = User::create([
+                'token' => $data->token,
+                'fitbit_id' => $data->id,
+                'name'   => $data->name,
+                'avatar' => $data->avatar
+            ]);
         }
-        return User::create([
-            'token' => $data->token,
-            'fitbit_id' => $data->id,
-            'name'   => $data->name,
-            'avatar' => $data->avatar
-        ]);
     }
 }
