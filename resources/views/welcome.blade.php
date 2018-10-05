@@ -38,7 +38,7 @@
 
         </div>
         <div class="container container--welcome"> 
-            <a href="login/fitbit/" class="btn btn-outline-primary">Login with FitBit</a>
+            <a href="{{ url("login/fitbit") }}" class="btn btn-outline-primary">Login with FitBit</a>
         </div>
 
     </div>

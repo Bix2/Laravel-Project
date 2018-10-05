@@ -4,7 +4,7 @@
         <div class="row">
              <div class="col-8">
                 <img src= "">
-                <p>{{$user->name}}</p>
+                <p></p>
                 <h2> Dashboard </h2>
             </div>
         </div>

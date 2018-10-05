@@ -15,16 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', 'UserController@index');
-
-Route::get('/dashboard', 'DashboardController@index');
-
-Route::get('login/fitbit', 'FitbitController@redirectToFitbit');
-Route::get('login/fitbit/callback', 'FitbitController@handleUserInfo');
-/*
-Route::get('/logout', function() {
-    Auth::logout();
-});
-*/
+/* Fitbit Authentication */
+Route::get('login/fitbit', 'FitbitAuthController@redirectToFitbit');
+Route::get('login/fitbit/callback', 'FitbitAuthController@handleFitbitCallback');
 Route::get('/logout', 'Auth\LoginController@logout');
+
+/* API calls */
+//Route::get('/profile', 'FitbitAuthController@showProfile');
+Route::get('/dashboard', 'FitbitAuthController@showActivities');
+Route::get('/profile', 'FitbitApiController@index'); // om je te laten zien dat die brulath library dus ook werkt, en die hebben allemaakl api calls al
 
