@@ -48,7 +48,7 @@ class FitbitAuthController extends Controller {
             // update access token
             $user->update([
                 'token' => $data->token,
-                'fitbit_id' => Hash::make($data->id),
+                'fitbit_id' => $data->id,
                 'name'   => $data->name,
                 'avatar' => $data->avatar
             ]);
@@ -57,60 +57,10 @@ class FitbitAuthController extends Controller {
         // else store user in db
         return $user = User::create([
             'token' => $data->token,
-            'fitbit_id' => Hash::make($data->id),
+            'fitbit_id' => $data->id,
             'name'   => $data->name,
             'avatar' => $data->avatar
         ]);
-    }
-
-    /**
-     * HOORT HIER NIET THUIS, MOETEN EEN API CLASS MAKEN EN DAAR KUNNEN WE  brulath\fitbit\FitbitPHPOAuth2 VOOR GEBRUIKEN
-     * 
-     */
-
-    public function showActivities() {
-        // determine if a user is authenticated
-        if (Auth::check()) { 
-            // return the authenticated user
-            $me = Auth::user();
-    
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
-            ]);
-
-            $response = $client->get("user/-/activities/date/today.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $activities = json_decode($response->getBody(), true);
-            print_r($activities);
-            return view('dashboard');//->with(['steps' => $activities]);
-        }
-    }
-
-
-    public function showProfile() {
-        // determine if a user is authenticated
-        if (Auth::check()) { 
-            // return the authenticated user
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
-            ]);
-
-            $response = $client->get("user/-/profile.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $profile = json_decode($response->getBody(), true);
-            print_r($profile);
-            return view('profile')->with(['profile' => $profile]);
-        }
     }
 
 
