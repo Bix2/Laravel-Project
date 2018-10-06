@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', 'UserController@index');
+Route::get('/user', 'FitbitController@getSleepLogs');
 
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('login/fitbit', 'FitbitController@redirectToFitbit');
+
 Route::get('login/fitbit/callback', 'FitbitController@handleUserInfo');
 /*
 Route::get('/logout', function() {

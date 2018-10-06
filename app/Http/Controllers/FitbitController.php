@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Socialite;
+use GuzzleHttp\Client;
 
 class FitbitController extends Controller
 {
@@ -54,5 +55,17 @@ class FitbitController extends Controller
                 'name'   => $data->name,
                 'avatar' => $data->avatar
             ]);
+    }
+
+    public function getSleepLogs() {
+        $client = new Client([
+            'base_uri' => 'https://api.fitbit.com',
+        ]);
+        $request = $client->request('GET', '/1.2/user/-/sleep/date/' . date('Y-m-d') . '.json', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . auth()->user()->token,
+            ],
+        ]);
+        return $request->getBody()->getContents();
     }
 }
