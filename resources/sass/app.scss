@@ -8,64 +8,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Base
+@import 'base/reset';
+
 // Layout
+@import 'layout/container';
 @import 'layout/header';
-@import 'layout/navigation';
+@import 'layout/footer';
 
 
-// Used for dummy
-body {
-  background-color: #fff;
-}
 
-.welcome-page {
-    background: $dark_bg;
-}
-
-.logo {
-  margin: 5rem auto;
-}
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.nav__avatar {
-  width: 60px;
-}
-
-.nav__avatar img {
-  border-radius: 50%;
-  width:100%;
-}
-
-.container--welcome {
-  text-align: center;
-}
-
-.footer {
-  background: $dark_bg;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.footer__copyright {
-  padding: 1em 0;
-  color: $light_purple;
-  text-align: center;
-}
-
-.btn-outline-primary {
-    color: $light_purple;
-    background-color: transparent;
-    background-image: none;
-    border-color: $light_purple;
-    &:hover {
-      color: #fff;
-      background-color: $light_purple;
-      border-color: $light_purple;
-    }
-}

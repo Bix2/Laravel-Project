@@ -1,29 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/dashboard">CodeBreak</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url("/dashboard") }}">Dashboard <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url("/profile") }}">Profile</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Habits
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Sleep Tracker</a>
-          <a class="dropdown-item" href="#">Breathing</a>
-          <a class="dropdown-item" href="#">Break Exercises</a>
-          <a class="dropdown-item" href="#">Drink Break</a>
-        </div>
-      </li>
+<nav>
+    <div class="logo">
+        <img src="../../img/logo.svg" alt="logo of code break">
+    </div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="/dashboard"><span class="icon"><img src="../../img/dashboard.svg" alt="dashboard icon"></span>My dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/profile"><span class="icon"><img src="../../img/profile.svg" alt="dashboard icon"></span>Profile</a>
+        </li>
     </ul>
-    <a class="btn btn-outline-danger" href="{{ url("/logout") }}">Logout</a>
-  </div>
 </nav>

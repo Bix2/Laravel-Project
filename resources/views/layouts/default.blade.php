@@ -5,24 +5,23 @@
 </head>
 <body>
 
-<header class="row mainHeader">
-    <div class="container">
-        @include('includes.header')
-    </div>
-</header>
-
 <div class="container">
+    <div class="row">
+        <header class="col-2 mainHeader">
+            @include('includes.header')
+        </header>
 
-    <div id="main" class="row">
+        <div id="main" class="col-10">
 
-            @yield('content')
+                @yield('content')
 
+        </div>
     </div>
-
-    <footer class="footer">
-        @include('includes.footer')
-    </footer>
-
 </div>
+
+<footer class="footer">
+    @include('includes.footer')
+</footer>
+
 </body>
 </html>
