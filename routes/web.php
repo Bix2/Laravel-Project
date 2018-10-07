@@ -25,3 +25,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/dashboard', 'DashboardController@checkIfHabitsAreTracked');
 Route::get('/profile', 'FitbitApiController@index'); // om je te laten zien dat die brulath library dus ook werkt, en die hebben allemaakl api calls al
 
+/* Habits */
+Route::get('/dashboard/{habit}', 'HabitController@show');
+Route::post('/dashboard/{habit}', 'HabitController@trackHabit');
