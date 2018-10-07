@@ -24,23 +24,27 @@
             @if(!empty($activeHabits))
                 <div class="col-12">
                     <h3>Habits Tracked</h3>
-                    @foreach( $activeHabits as $habit )
-                        <div>
-                            <h4>{{ $habit['title'] }}</h4>
-                            <a href="#">See Progress</a>
-                        </div>
-                    @endforeach
+                    <div class="row">
+                        @foreach( $activeHabits as $habit )
+                            <div class="main__container--habit">
+                                <h4>{{ $habit['title'] }}</h4>
+                                <a href="/dashboard/{{ $habit['type'] }}">See Progress</a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             @endif
             @if(!empty($inactiveHabits))
                 <div class="col-12">
                     <h3>Habits To Track</h3>
-                    @foreach( $inactiveHabits as $habit )
-                        <div>
-                            <h4>{{ $habit['title'] }}</h4>
-                            <a href="#">Track this habit</a>
-                        </div>
-                    @endforeach
+                    <div class="row">
+                        @foreach( $inactiveHabits as $habit )
+                            <div class="main__container--habit">
+                                <h4>{{ $habit['title'] }}</h4>
+                                <a href="/dashboard/{{ $habit['title'] }}">Track this habit</a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             @endif
         </div>

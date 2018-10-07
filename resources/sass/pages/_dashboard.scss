@@ -1,0 +1,25 @@
+.main__content {
+    padding-bottom: 50px;
+
+    h3 {
+        margin: 50px 0 20px 20px;
+    }
+}
+
+.main__container--habit {
+    background-color: white;
+    padding: 0;
+    margin: 20px 2.5%;
+    width: 45%;
+    border-radius: 20px;
+    box-shadow: 1px 6px 20px 0px gainsboro;
+
+    h4 {
+        padding: 50px;
+    }
+
+    a {
+        margin: 50px 0 50px 50px;
+        display: block;
+    }
+}

@@ -1,5 +1,5 @@
 .mainHeader {
-    background-color: #fff;
+    background-color: white;
     height: 100vh;
 }
 
@@ -14,14 +14,14 @@ nav {
     .nav-item {
 
         a {
-            color: #c7c7c7;
+            color: $light_gray;
             font-size: 1.2em;    
             display: inline-block;
         }
     
         .active {
             font-weight: bold;
-            color: #555B62;
+            color: $dark_gray;
         }
 
         .icon {
@@ -39,12 +39,12 @@ nav {
     padding-bottom: 20px;
 
     h2 {
-        color: #555B62;
+        color: $dark_gray;
         font-weight: bold;
     }
 
     p {
-        color: #c7c7c7;
+        color: $light_gray;
     }
 }
 
@@ -60,7 +60,7 @@ nav {
     }
 
     p {
-        color: #555B62;
+        color: $dark_gray;
         margin: 12px 0;
     }
 }

@@ -4,6 +4,7 @@
 
 // Abstracts
 @import 'abstracts/variables';
+@import 'abstracts/typography';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -15,6 +16,10 @@
 @import 'layout/container';
 @import 'layout/header';
 @import 'layout/footer';
+
+// Pages
+@import 'pages/dashboard';
+@import 'pages/welcome';
 
 
 

@@ -1,0 +1,26 @@
+.container--login {
+    background-image: url('../../../public/img/bkg.svg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 50%;
+    height: 100vh;
+
+    #main {
+        position: relative;
+        top: 15%;
+
+        .logo {
+            width: 180px;
+            text-align: center;
+            margin: 200px auto 50px;
+    
+            svg {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.container--welcome {
+    text-align: center;
+}
