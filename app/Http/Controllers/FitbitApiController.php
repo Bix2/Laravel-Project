@@ -94,27 +94,7 @@ class FitbitApiController extends Controller {
             ]);
     }*/
 
-    public function showProfile() {
-        // determine if a user is authenticated
-        if (Auth::check()) { 
-            // return the authenticated user
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
-            ]);
 
-            $response = $client->get("user/-/profile.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $profile = json_decode($response->getBody(), true);
-            print_r($profile);
-            return view('profile')->with(['profile' => $profile]);
-        }
-    }
 
     public static function showSleep() {
         // current logged in user

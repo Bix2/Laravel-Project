@@ -21,9 +21,9 @@ Route::get('login/fitbit/callback', 'FitbitAuthController@handleFitbitCallback')
 Route::get('/logout', 'Auth\LoginController@logout');
 
 /* API calls */
-// Route::get('/profile', 'FitbitAuthController@showProfile');
+Route::get('/profile', 'FitbitAuthController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
-Route::get('/profile', 'FitbitApiController@index'); // om je te laten zien dat die brulath library dus ook werkt, en die hebben allemaakl api calls al
+//Route::get('/profile', 'FitbitApiController@index'); // om je te laten zien dat die brulath library dus ook werkt, en die hebben allemaakl api calls al
 
 /* Habits */
 Route::get('/dashboard/{habit}', 'HabitController@show');
