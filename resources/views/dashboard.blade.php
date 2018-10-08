@@ -27,8 +27,8 @@
                     <div class="row">
                         @foreach( $activeHabits as $habit )
                             <div class="main__container--habit">
-                                <h4>{{ $habit['title'] }}</h4>
-                                <a href="/dashboard/{{ $habit['type'] }}">See Progress</a>
+                                <h4>{{ $habit['info'][0]->short_description }}</h4>
+                                <a href="/dashboard/{{ $habit['info'][0]->type }}">See Progress</a>
                             </div>
                         @endforeach
                     </div>
@@ -40,8 +40,8 @@
                     <div class="row">
                         @foreach( $inactiveHabits as $habit )
                             <div class="main__container--habit">
-                                <h4>{{ $habit['title'] }}</h4>
-                                <a href="/dashboard/{{ $habit['title'] }}">Track this habit</a>
+                                <h4>{{ $habit['info'][0]->short_description }}</h4>
+                                <a href="/dashboard/{{ $habit['info'][0]->type }}">Track this habit</a>
                             </div>
                         @endforeach
                     </div>

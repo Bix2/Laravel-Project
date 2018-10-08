@@ -52,4 +52,5 @@ class HabitController extends Controller
         ])->first();
         return !empty($habit);
     }
+
 }

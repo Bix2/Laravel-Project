@@ -45,6 +45,9 @@ class FitbitApiController extends Controller {
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\ClientInterface;
 use brulath\fitbit\FitbitPHPOAuth2;
 use brulath\fitbit\FitbitUser;
 use brulath\fitbit\FitbitProvider;
@@ -113,23 +116,25 @@ class FitbitApiController extends Controller {
         }
     }
 
-    public function showSleep() {
+    public static function showSleep() {
         // current logged in user
         if (Auth::check()) { 
             $me = Auth::user();
     
             $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
+                "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
 
-            $response = $client->get("user/-/sleep/list.json", [
+            $response = $client->get("user/-/sleep/date/today.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}"
                 ]
             ]);
 
             $sleep = json_decode($response->getBody(), true);
-            dd($sleep);
+            $sleep['type'] = 'sleep';
+            $sleep['title'] = 'Sleep Tracking';
+            return $sleep;
         }
     }
 
@@ -139,7 +144,7 @@ class FitbitApiController extends Controller {
             $me = Auth::user();
     
             $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
+                "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
 
             $response = $client->get("user/-/foods/log/water/date/today.json", [
@@ -149,7 +154,9 @@ class FitbitApiController extends Controller {
             ]);
 
             $water = json_decode($response->getBody(), true);
-            dd($water);
+            $water['type'] = 'water';
+            $water['title'] = 'Water Tracking';
+            return $water;
         }
     }
 
