@@ -1,47 +1,5 @@
 <?php
 
-/*namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
-use brulath\fitbit\FitbitPHPOAuth2;
-use Illuminate\Http\Request;
-use App\User;
-use Auth;
-
-
-class FitbitApiController extends Controller {
-
-    public function __construct() {
-     
-    }
-
-    public function index() {
-        return $fitbit = new FitbitPHPOAuth2(
-            env('FITBIT_KEY'),
-            env('FITBIT_SECRET'),
-            env('FITBIT_REDIRECT_URI'),
-            ['activity', 'heartrate', 'location', 'nutrition', 'profile', 'settings', 'sleep', 'social', 'weight'], true
-         );
-
-         // A session is required to prevent CSRF
-         session_start();
-            
-         $user = $fitbit->getResourceOwner();
-         $token = $fitbit->getToken();
-         $refresh_token = $fitbit->getRefreshToken();
-         $access_token = $fitbit->getAccessToken();
-         $profile = $fitbit->getProfile();
-         print_r([$profile, $token]);
-         
-     
-         //storeAccessTokenAsJsonInMyDatabase($access_token);
-        // return redirect()->intended('/dashboard');
-    }
-
-    
-}
-*/
-
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -76,89 +34,92 @@ class FitbitApiController extends Controller {
 
            /* if ($user = User::where('fitbit_id', $encodedId)->first()) { 
                 return $user;
-            };*/
+            };
             //storeAccessTokenAsJsonInMyDatabase($access_token);
-           // return redirect()->intended('/dashboard');
-       
+           // return redirect()->intended('/dashboard');*/
     }
-/*
-    private function findOrCreateUser($user) {
-        if ($user = User::where('fitbit_id', $data->encodedId)->first()) {
-            return $user;
-        }
-        return User::create([
-                'token' => $access_token,
-                'fitbit_id' => $user_id,
-                'name'   => $data->name,
-                'avatar' => $data->avatar
-            ]);
-    }*/
 
+    public function showSteps() {
+        // current logged in user
+        if (Auth::check()) { 
+           $me = Auth::user();
+    
+           $client = new Client([
+               "base_uri" => "https://api.fitbit.com/1.2/",
+           ]);
+    
+           $response = $client->get("user/-/activities/steps/date/today/1w.json", [
+               "headers" => [
+                   "Authorization" => "Bearer {$me->token}"
+               ]
+           ]);
+    
+           $steps = json_decode($response->getBody(), true);
+           print_r( $steps);
+       }
+    }
 
+    public function showSleep() {
+        // current logged in user
+        if (Auth::check()) { 
+           $me = Auth::user();
+   
+           $client = new Client([
+               "base_uri" => "https://api.fitbit.com/1.2/",
+           ]);
 
-    public static function showSleep() {
+       //$response = $client->get("user/-/activities/steps/date/today/1m.json", [
+       //$response = $client->get("user/-/foods/log/water/date/today/1m.json", [
+         $response = $client->get("user/-/sleep/list.json?offset=7&limit=7&sort=desc&beforeDate=today", [
+               "headers" => [
+                   "Authorization" => "Bearer {$me->token}"
+               ]
+           ]);
+
+           $sleep = json_decode($response->getBody(), true);
+           print_r( $sleep);
+       }
+   }
+   
+   public function showWater() {
         // current logged in user
         if (Auth::check()) { 
             $me = Auth::user();
-    
+
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
 
-            $response = $client->get("user/-/sleep/date/today.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $sleep = json_decode($response->getBody(), true);
-            $sleep['type'] = 'sleep';
-            $sleep['title'] = 'Sleep Tracking';
-            return $sleep;
-        }
-    }
-
-    public function showWater() {
-        // current logged in user
-        if (Auth::check()) { 
-            $me = Auth::user();
-    
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/foods/log/water/date/today.json", [
+            $response = $client->get("user/-/foods/log/water/date/today/1w.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}"
                 ]
             ]);
 
             $water = json_decode($response->getBody(), true);
-            $water['type'] = 'water';
-            $water['title'] = 'Water Tracking';
-            return $water;
+            print_r( $water);
         }
     }
-
-    public function showActivities() {
+  
+    public function showProfile() {
         // determine if a user is authenticated
         if (Auth::check()) { 
             // return the authenticated user
             $me = Auth::user();
-    
+ 
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1/",
             ]);
 
-            $response = $client->get("user/-/activities/date/today.json", [
+            $response = $client->get("user/-/profile.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}"
                 ]
             ]);
 
-            $activities = json_decode($response->getBody(), true);
-            print_r($activities);
-            return view('dashboard');//->with(['steps' => $activities]);
+            $profile = json_decode($response->getBody(), true);
+            print_r($profile);
+        
         }
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHabitUserTable extends Migration
+class CreateSleeplogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateHabitUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('habit_user', function (Blueprint $table) {
+        Schema::create('sleeplogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('habit_id')->unsigned();
-            $table->foreign('habit_id')->references('id')->on('habits');
+            $table->date('date_of_sleep');
+            $table->integer('deep_minutes');
+            $table->integer('light_minutes');
+            $table->integer('rem_minutes');
+            $table->integer('wake_minutes');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            //$table->integer('goal');
             $table->timestamps();
         });
     }
@@ -31,7 +33,6 @@ class CreateHabitUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habit_user');
+        Schema::dropIfExists('sleeplogs');
     }
-    
 }

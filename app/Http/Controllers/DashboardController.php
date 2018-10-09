@@ -26,14 +26,15 @@ class DashboardController extends Controller
             $habits = \DB::table('habits')->get();
             // check if the user is tracking some habits
             $userHabits = $userHabitData->habits;
+            $api = new FitbitApiController();
             if(!($userHabits->isEmpty())) {
                 // push data with active habits
                 foreach ($userHabits as $userHabit) {
                     if ($userHabit->pivot->habit_id == 1) {
-                        $data['activeHabits'][$userHabit->type] = FitbitApiController::showSleep();
+                        $data['activeHabits'][$userHabit->type] = $api->showSleep();
                         $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
                     } elseif ($userHabit->pivot->habit_id == 2) {
-                        $data['activeHabits'][$userHabit->type] = FititApiController::showWater();
+                        $data['activeHabits'][$userHabit->type] = $api->showWater();
                         $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
                     } elseif ($userHabit->pivot->habit_id == 3) {
                         $data['activeHabits'][$userHabit->type] = [
@@ -42,10 +43,7 @@ class DashboardController extends Controller
                         ];
                         $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
                     } elseif ($userHabit->pivot->habit_id == 4) {
-                        $data['activeHabits'][$userHabit->type] = [
-                            'type' => "exercise",
-                            'title' => "Exercise track"
-                        ];
+                        $data['activeHabits'][$userHabit->type] = $api->showSteps();
                         $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
                     }
                 }

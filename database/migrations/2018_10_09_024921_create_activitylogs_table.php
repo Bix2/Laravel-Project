@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBreaksExercisesTable extends Migration
+class CreateActivitylogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateBreaksExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('breaks_exercises', function (Blueprint $table) {
+        Schema::create('activitylogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type');
-            $table->string('video_url');
+            $table->date('date');
+            $table->integer('steps');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateBreaksExercisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('breaks_exercises');
+        Schema::dropIfExists('activitylogs');
     }
 }
