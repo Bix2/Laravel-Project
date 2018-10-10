@@ -1,15 +1,16 @@
 .footer {
-    background: $dark_bg;
+    background: #fff;
     position: fixed;
     bottom: 0;
+    right: 0; 
     left: 0;
-    right: 0;
   }
   
   .footer__copyright {
-    padding: 1em 0;
+    padding: 0.5em 0;
     color: $light_purple;
     text-align: center;
+    font-size:0.9rem;
   }
   
   .btn-outline-primary {

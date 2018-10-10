@@ -16,31 +16,50 @@ use Auth;
 class FitbitApiController extends Controller {
 
     protected function index() {  
-            $fitbit = new FitbitPHPOAuth2(
-                '22D8C4',
-                '1af060bab766acb1396c7f43a2144c4c',
-                'http://homestead.test/login/fitbit/callback',
-                ['activity', 'heartrate', 'location', 'nutrition', 'profile', 'settings', 'sleep', 'social', 'weight'], true
-            );
-            
-            // A session is required to prevent CSRF
-            //session_start();
-            
-            $token = $fitbit->getToken();
-            $refresh_token = $fitbit->getRefreshToken();
-            $access_token = $fitbit->getAccessToken();
-            $profile = $fitbit->getProfile();
-            print_r([$profile, $token]);
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $habits = \DB::table('habits')->get();
+            $userhabit = Auth::user()->habits->first();
 
-           /* if ($user = User::where('fitbit_id', $encodedId)->first()) { 
-                return $user;
-            };
-            //storeAccessTokenAsJsonInMyDatabase($access_token);
-           // return redirect()->intended('/dashboard');*/
+            if ($userhabit) {
+                // BASE 
+                $client = new Client([
+                    "base_uri" => "https://api.fitbit.com/1.2/",
+                ]);
+
+                // steps
+                $habit['steps'] = $client->get("user/-/activities/steps/date/today/1w.json", [
+                    "headers" => [
+                        "Authorization" => "Bearer {$me->token}"
+                    ]
+                ]);
+                // sleep
+                $shabit['sleep'] = $client->get("user/-/sleep/list.json?offset=7&limit=7&sort=desc&beforeDate=today", [
+                    "headers" => [
+                        "Authorization" => "Bearer {$me->token}"
+                    ]
+                ]);
+                // water
+                $shabit['water'] = $client->get("user/-/foods/log/water/date/today/1w.json", [
+                    "headers" => [
+                        "Authorization" => "Bearer {$me->token}"
+                    ]
+                ]);
+
+                return json_decode($habit->getBody(), true);
+                print_r($habit);
+            }
+
+            $data['user'] = $me;
+            // get all habits
+            $data['habits'] = $habits;
+            // get habit tracked by user
+            $data['userhabit'] = $userhabit;
+            return view('dashboard', $data);
+        }
     }
 
     public function showSteps() {
-        // current logged in user
         if (Auth::check()) { 
            $me = Auth::user();
     
@@ -60,7 +79,6 @@ class FitbitApiController extends Controller {
     }
 
     public function showSleep() {
-        // current logged in user
         if (Auth::check()) { 
            $me = Auth::user();
    
@@ -68,8 +86,6 @@ class FitbitApiController extends Controller {
                "base_uri" => "https://api.fitbit.com/1.2/",
            ]);
 
-       //$response = $client->get("user/-/activities/steps/date/today/1m.json", [
-       //$response = $client->get("user/-/foods/log/water/date/today/1m.json", [
          $response = $client->get("user/-/sleep/list.json?offset=7&limit=7&sort=desc&beforeDate=today", [
                "headers" => [
                    "Authorization" => "Bearer {$me->token}"
@@ -82,7 +98,6 @@ class FitbitApiController extends Controller {
    }
    
    public function showWater() {
-        // current logged in user
         if (Auth::check()) { 
             $me = Auth::user();
 
@@ -102,9 +117,7 @@ class FitbitApiController extends Controller {
     }
   
     public function showProfile() {
-        // determine if a user is authenticated
         if (Auth::check()) { 
-            // return the authenticated user
             $me = Auth::user();
  
             $client = new Client([
@@ -118,8 +131,9 @@ class FitbitApiController extends Controller {
             ]);
 
             $profile = json_decode($response->getBody(), true);
-            print_r($profile);
-        
+            $data['profile']=$profile;
+            print_r($data);
+            return view('profile', $data);
         }
     }
 

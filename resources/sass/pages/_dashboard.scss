@@ -1,5 +1,4 @@
 .main__content {
-    padding-bottom: 50px;
 
     h3 {
         margin: 50px 0 20px 20px;
@@ -8,18 +7,1361 @@
 
 .main__container--habit {
     background-color: white;
-    padding: 0;
-    margin: 20px 2.5%;
-    width: 45%;
+    padding: 2%;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 90%;
     border-radius: 20px;
     box-shadow: 1px 6px 20px 0px gainsboro;
 
     h4 {
-        padding: 50px;
+        padding: 10px;
     }
 
     a {
-        margin: 50px 0 50px 50px;
+        margin: 0px 0 10px 10px;
         display: block;
     }
 }
+
+.top__content {
+    padding-top: 25px;
+}
+
+@media (max-width: 589px) {
+    .profile__name {
+        display: none;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .main__container--habit {
+        background-color: white;
+        padding: 0;
+        margin: 20px 2.5%;
+        width: 45%;
+        border-radius: 20px;
+        box-shadow: 1px 6px 20px 0px gainsboro;
+    }
+}
+
+.profile__picture--wrapper {
+
+}
+
+.profile__name {
+    display: none;
+}
+/*****************************************************************************
+ *
+ *	Site Header & Navigation
+ *	(introduced in SITE-15464)
+ *
+ *****************************************************************************/
+
+
+
+
+/*
+ *	"VARIABLES":
+ *	These used to be JSTL variables. However, since this file needs to be compatible with Stylus,
+ *	no JSTL can exist in this file. I still think it's useful to maintain this variable list
+ *	in a comment so developers can see at a glance what the important values are. For each place
+ * 	in the stylesheet where one of these values is used, an adjacent comment should indicate what
+ * 	the corresponding variable name is.
+ *	(No variable substitution is happening here. These comments are just for dev reference.)
+ *
+ *	$layoutWidth 						= 990px
+ *	$headerHeight 						= 80px
+ *
+ *	$headerBorderColor 					= #206276
+ *	$accountContainerWidth 				= 200px
+ *
+ *	$fontFamilyNormal					= "Proxima Nova Regular", helvetica, arial, sans-serif
+ *	$fontFamilyBold						= "Proxima Nova Bold", helvetica, arial, sans-serif
+ *
+ *	$app_colorHighlight					= #4abdbd
+ *	$app_colorHover						= #e1f7f7
+ *	$app_colorSelectedNavText			= #0095b2
+ *
+ *	$mktg_colorHighlight				= #f54786
+ *	$mktg_colorHover					= #f8e4e9
+ *	$mktg_colorSelectedNavText			= #f54786
+ *
+ *	$corp_colorHover					= #def4fa
+ */
+
+/******************************************************************************
+ *
+ *	Core Layout
+ *
+ ******************************************************************************/
+
+
+/******************************************************************************
+ *
+ *	Layout Modifiers
+ *
+ ******************************************************************************/
+
+.wrapper-header-inner.narrowContainer {
+	width: 790px; /* total = 990px ($layoutWidth) */
+}
+
+/******************************************************************************
+ *
+ *	Primary Navigation
+ *
+ ******************************************************************************/
+
+.wrapper-header .nav > li {
+	cursor: pointer;
+	float: left;
+	height: 80px; /* $headerHeight */
+	line-height: 80px; /* $headerHeight */
+	min-width: 55px;
+	padding: 0 15px;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.wrapper-header .nav > li > a {
+	color: #666;
+}
+body:not(.layout-1140) .wrapper-header .nav.item-counts-6 > li > a:lang(fr) {font-size: 13px;}
+
+.wrapper-header .nav > li.active > a,
+.wrapper-header .nav > li.current > a {
+	color: #fff;
+}
+
+.wrapper-header .nav > li.current,
+.wrapper-header .nav > li.current:hover {
+	background-color: transparent;
+}
+
+.wrapper-header .nav > li.current:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: outset outset solid;
+    border-color: transparent transparent #206276; /* $headerBorderColor */
+}
+
+.wrapper-header .nav > li.current > a {
+	font-family: "Proxima Nova Bold", helvetica, arial, sans-serif; /* $fontFamilyBold */
+}
+
+.wrapper-header .nav > li:hover > a {
+	color: #333;
+}
+.wrapper-header .nav .true a:after {
+    margin-left: -2px;
+    color: #ee3d6d !important;
+    font: 18px "Proxima Nova Regular", helvetica, arial, sans-serif;
+    content: '*';
+}
+
+/* App/Dashboard color scheme */
+
+.wrapper-header.nav-app .nav > li:hover,
+.wrapper-header.nav-app .nav > li.current.hasdropdown:hover {
+	background-color: #e1f7f7; /* $app_colorHover */
+}
+
+.wrapper-header.nav-app .nav > li.current.hasdropdown.communityNav:hover {
+    background-color: #4ABDBD;
+}
+.wrapper-header.nav-app .nav > li.current.hasdropdown.communityNav:hover a {
+    color: #FFF;
+}
+
+.wrapper-header.nav-app .nav > li.active {
+	background-color: #4abdbd; /* $app_colorHighlight */
+}
+
+.wrapper-header.nav-app .nav > li.current:hover {
+	background-color: transparent;
+}
+
+.wrapper-header.nav-app .nav > li.current > a,
+.wrapper-header.nav-app .nav > li.current:hover > a {
+	color: #0095b2; /* $app_colorSelectedNavText */
+}
+
+/* "Store" nav tab (same style across mktg and app) */
+
+.wrapper-header .nav > li.store {
+	background-color: transparent !important;
+	margin-left: 10px;
+	padding: 0;
+}
+
+.wrapper-header .nav > li.store > a {
+	background: #fff;
+	border: 2px solid #e5e5e5;
+	border-radius: 20px;
+	color: #f54786; /* $mktg_colorSelectedNavText */
+	display: inline-block;
+	font: normal 13px/1em "Proxima Nova Bold", helvetica, arial, sans-serif; /* $fontFamilyBold */
+	padding: 0.5em 1.4em;
+	text-transform: uppercase;
+}
+
+.wrapper-header .nav > li.store:hover > a {
+	background: #f54786; /* $mktg_colorHighlight */
+	border-color: #f54786; /* $mktg_colorHighlight */
+	color: #fff;
+}
+
+/* "Store" nav tab (same style across mktg and app) */
+
+.wrapper-header .nav > li.store {
+    background-color: transparent !important;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.wrapper-header .nav > li.holiday-banner {
+    background-color: transparent !important;
+    width: 200px;
+}
+
+
+/******************************************************************************
+ *
+ *	Navigation Submenus
+ *
+ ******************************************************************************/
+
+.module-dd.subnav {
+	z-index: 100000; /* ensure sub-navs are layered above the inexplicably high "#products_menu" element, which is at 99999 */
+}
+
+.module-dd.subnav,
+.ie7-8 .module-dd.subnav {
+	border-top: 10px solid #f54786; /* $mktg_colorHighlight */
+}
+
+.module-dd.subnav-app,
+.ie7-8 .module-dd.subnav-app {
+	border-top-color: #4abdbd; /* $app_colorHighlight */
+}
+
+.module-dd.subnav .subnav-content {
+	font: 14px "Proxima Nova Regular", helvetica, arial, sans-serif; /* $fontFamilyNormal */
+	min-width: 150px;
+	padding: 15px 0 10px;
+}
+
+.module-dd.subnav li {
+	cursor: pointer;
+}
+
+.module-dd.subnav li:hover {
+	background-color: #f8e4e9; /* $mktg_colorHover */
+}
+
+.module-dd.subnav li.corp:hover {
+    background-color: #def4fa; /* $corp_colorHover */
+}
+
+.module-dd.subnav-app li:hover {
+	background-color: #e1f7f7; /* $app_colorHover */
+}
+
+.module-dd.subnav li.headline {
+	background: transparent;
+	color: #666;
+	cursor: default;
+	height: 2em;
+	margin-top: 25px;
+	padding: 0 20px;
+	text-transform: uppercase;
+}
+
+.module-dd.subnav li.headline:first-child {
+	margin-top: 0;
+}
+
+.module-dd.subnav li.divider {
+	background: transparent;
+	border-top: 1px solid #ebebeb;
+	cursor: default;
+	padding-bottom: 5px;
+	margin-top: 5px;
+}
+
+.module-dd.subnav li > a {
+	color: #333;
+	display: block;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+.wrapper-header .subnav-content {
+	display: none;
+}
+
+/*
+ *  Rules for the "down arrow" icon in nav tabs with a subnav.
+ *  (Note: the order of the rules matters here.)
+ */
+
+.wrapper-header .icon-dd {
+	display: inline-block;
+	height: 8px;
+	margin: 0 -8px 0 1px;
+	overflow: hidden;
+	vertical-align: middle; /* ie7 */
+	width: 8px;
+}
+
+.wrapper-header .active .icon-dd,
+.wrapper-header.nav-app .active .icon-dd {
+	background-position: 0 -354px;
+}
+
+/******************************************************************************
+ *
+ *	Account section
+ *
+ ******************************************************************************/
+
+.wrapper-header .account,
+.wrapper-header .account-auth,
+.wrapper-header .link-app {
+	height: 80px; /* $headerHeight */
+	line-height: 80px; /* $headerHeight */
+    min-width: 200px; /* $accountContainerWidth */
+	position: absolute;
+	right: 0;
+	top: 0;
+	vertical-align: middle;
+	z-index: 2;
+}
+
+body.layout-1140 .wrapper-header .account {
+    right: 66px;
+}
+
+.wrapper-header .nav-item {
+	cursor: pointer;
+	float: right;
+    height: 80px; /* $headerHeight */
+    padding: 0 15px;
+    text-align: center;
+}
+
+.wrapper-header .nav-item:hover {
+    background-color: #e1f7f7; /* $app_colorHover */
+}
+
+/* Logged In while viewing an "app" page */
+
+.wrapper-header .account .current {
+	background-color: #4abdbd; /* $app_colorHighlight */
+}
+
+.wrapper-header .account .icon-dd {
+	margin-right: 0;
+	vertical-align: -1px;
+}
+
+.wrapper-header .account .photo {
+	vertical-align: middle;
+    border-radius: 50%;
+}
+
+/* Anonymous */
+
+.wrapper-header .account-auth {
+	text-align: right;
+}
+
+.wrapper-header .account-auth > .auth {
+	float: right;
+	font-size: 14px;
+	margin-left: 0.5em;
+}
+
+/* Logged In while viewing a "marketing" page */
+
+.wrapper-header .link-app {
+	text-align: right;
+}
+
+.wrapper-header .link-app > .go {
+	border: 2px solid #f2f2f2;
+	border-bottom: 0;
+	border-top: 0;
+	color: #666;
+	display: inline-block;
+	float: right;
+	height: 100%;
+	padding: 0 15px;
+	text-decoration: none;
+}
+
+.wrapper-header .link-app > .go:hover {
+	background-color: #e1f7f7; /* $app_colorHover */
+	border-color: #e1f7f7; /* $app_colorHover */
+	color: #333;
+}
+
+.wrapper-header .link-app > .go > .icon {
+	display: inline-block;
+	height: 23px;
+	margin-right: 5px;
+	vertical-align: middle;
+	width: 23px;
+}
+
+.wrapper-header .link-app > .go:hover > .icon {
+	background-position: 0 -632px;
+}
+
+.wrapper-header .nav-item > .icon {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    visibility: hidden;
+}
+
+.ie7 .wrapper-header .nav-item > .icon,
+.lt-ie8 .wrapper-header .nav-item > .icon {
+    margin-top: 30px;
+}
+
+.wrapper-header .account .nav-item {
+    position: relative;
+}
+
+.wrapper-header .account .nav-item-profile:after {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0,0,0,0.10);
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: '';
+    top: 26px;
+    left: 15px;
+}
+
+.wrapper-header .account .nav-item.active {
+    background-color: #4abdbd; /* $app_colorHighlight */
+}
+
+.wrapper-header .account .nav-item.active > .icon:after {
+    background-position: 0 -354px;
+}
+
+.wrapper-header .account .nav-item.hasdropdown > .icon:after {
+    bottom: 15px;
+    content: "";
+    display: none;
+    height: 6px;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    width: 8px;
+}
+
+.wrapper-header .account .nav-item.hasdropdown:hover > .icon:after {
+    display: block;
+}
+
+.wrapper-header .account .nav-item.hasdropdown.active > .icon:after {
+    display: block;
+    background-position: 0 -354px;
+}
+
+.wrapper-header .account-auth .nav-item:hover {
+    background-color: #f8e4e9; /* $mktg_colorHover */
+}
+
+/* Cart Icon */
+
+.wrapper-header .nav-item-cart > .icon {
+	background-position: 0 -679px;
+	height: 20px;
+	visibility: visible;
+    width: 26px;
+}
+
+/* Account Settings Icon */
+
+.wrapper-header .nav-item-settings > .icon {
+    background-position: 0 -1343px;
+    height: 22px;
+    margin-bottom: 4px;
+    visibility: visible;
+    width: 22px;
+}
+
+.wrapper-header .nav-item-settings.active > .icon {
+    background-position: 0 -1372px;
+}
+
+/******************************************************************************
+ *
+ *	Account Settings SubNav Content
+ *
+ ******************************************************************************/
+
+.module-dd.subnav-settings .device {
+	cursor: default;
+	position: relative;
+}
+
+.module-dd.subnav-settings .device > a {
+	padding: 15px 68px;
+}
+
+.module-dd.subnav-settings .device .battery {
+	height: 16px;
+	margin-top: -8px;
+	overflow: hidden;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	width: 25px;
+}
+
+.module-dd.subnav.subnav-settings .device .icon {
+	height: 40px;
+	left: 15px;
+	margin-top: -18px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	width: 40px;
+}
+
+.module-dd.subnav-settings .device .info {
+	line-height: 1.2em;
+}
+
+.module-dd.subnav-settings .device .deviceDetail {
+	color: #999;
+	display: inline-block;
+	font-size: 12px;
+}
+
+
+
+.module-dd.subnav-settings .device .type {
+	color: #333;
+}
+
+.module-dd.subnav-settings .device-classic:hover { /* no hover effect allowed for "Classic" trackers */
+	background-color: transparent;
+}
+
+.module-dd.subnav-settings .device-divider {
+	height: 1px;
+	overflow: hidden;
+	padding: 0 15px;
+}
+
+.module-dd.subnav-settings .device-divider:first-child {
+	display: none;
+}
+
+/******************************************************************************
+ *
+ *	Community Navigation
+ *
+ ******************************************************************************/
+
+.current.communityNav.hasdropdown.active a.selected {color: #FFF}
+.wrapper-header .nav > li.active.communityNav:hover {background-color: #4ABDBD}
+
+.module-dd.subnav .subnav-community {
+	border: 10px solid #f6f6f6;
+	border-left-width: 12px;
+	border-right-width: 12px;
+}
+.module-dd.subnav .subnav-community li a {
+	padding: 8px 40px 8px 15px;
+}
+
+.module-dd.subnav .subnav-community .help_forums .icon {background-position: 0 0; height: 24px;}
+.module-dd.subnav .subnav-community .discussions .icon {background-position: 0 -24px; height: 24px;}
+.module-dd.subnav .subnav-community .activity_groups .icon {background-position: 0 -48px; height: 24px;}
+
+.module-dd.subnav .subnav-community li a span + span {
+    font-weight: bold;
+    padding-right: 5px;
+}
+/* Battery States */
+
+.module-dd.subnav-settings .device .battery.empty {
+	background-position: 0 0;
+}
+
+.module-dd.subnav-settings .device .battery.full,
+.module-dd.subnav-settings .device .battery.high {
+	background-position: 0 -60px;
+}
+
+.module-dd.subnav-settings .device .battery.low {
+	background-position: 0 -20px;
+}
+
+.module-dd.subnav-settings .device .battery.medium {
+	background-position: 0 -40px;
+}
+
+.module-dd.subnav-settings .device:hover .battery.empty {
+	background-position: 0 -1218px;
+}
+
+.module-dd.subnav-settings .device:hover .battery.full,
+.module-dd.subnav-settings .device:hover .battery.high {
+	background-position: 0 -1278px;
+}
+
+.module-dd.subnav-settings .device:hover .battery.low {
+	background-position: 0 -1238px;
+}
+
+.module-dd.subnav-settings .device:hover .battery.medium {
+	background-position: 0 -1258px;
+}
+
+/* Device Types */
+
+.module-dd.subnav.subnav-settings .device-aria .icon {
+    background-position: 0 0;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-charge .icon {
+    background-position: 0 -90px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-chargehr .icon {
+    background-position: 0 -180px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-flex .icon {
+    background-position: 0 -270px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-force .icon {
+    background-position: 0 -360px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-one .icon {
+    background-position: 0 -450px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-surge .icon {
+    background-position: 0 -540px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-ultra .icon,
+.module-dd.subnav.subnav-settings .device-classic .icon{
+    background-position: 0 -630px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-zip .icon {
+    background-position: 0 -720px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-blaze .icon {
+    background-position: 0 -805px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-alta .icon {
+    background-position: 0 -890px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-charge2 .icon {
+    background-position: 0 -980px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-flex2 .icon {
+	/* Unfortunately, the sprite sheet isn't right, so we have this weird value to get the icon centered. */
+    background-position: 0 -1069px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-altahr .icon {
+    background-position: 0 -1160px;
+    width: 40px;
+    height: 40px;
+}
+
+.module-dd.subnav.subnav-settings .device-ionic .icon {
+	background-position: 0 -1252px;
+	width: 46px;
+	height: 46px;
+	top: 42%;
+}
+
+.module-dd.subnav.subnav-settings .device-versa .icon {
+	background-position: 0 -1357px;
+	width: 46px;
+	height: 46px;
+}
+
+.module-dd.subnav.subnav-settings .device-ace .icon {
+	background-position: 0 -1455px;
+	width: 46px;
+	height: 46px;
+}
+
+.module-dd.subnav.subnav-settings .device-charge3 .icon {
+	background-position: 0 -1551px;
+	width: 46px;
+	height: 46px;
+}
+/* Admin-only */
+
+.module-dd.subnav-settings li.admin,
+.module-dd.subnav-settings li.admin.divider,
+.module-dd.subnav-settings li.admin.divider:hover {
+	background: #f5f5f5;
+}
+
+.module-dd.subnav-settings li.admin:hover {
+	background-color: #e1f7f7; /* $app_colorHover */
+}
+
+.module-dd.subnav-settings li.admin:last-child {
+	margin-bottom: -10px;
+	padding-bottom: 5px;
+}
+
+.module-dd.subnav-settings .subnav-content {
+	min-width: 190px;
+	padding-top: 5px;
+}
+
+/******************************************************************************
+ *
+ *	Notifications (rule order matters here)
+ *
+ ******************************************************************************/
+
+.wrapper-header .cont-notify.active {
+    background-color: #4abdbd; /* $app_colorHighlight */
+}
+
+.wrapper-header .cont-notify .icon-notify {
+	background-position: 0 -447px;
+	height: 22px;
+	overflow: hidden;
+	vertical-align: middle;
+	visibility: visible;
+	width: 25px;
+}
+
+.wrapper-header .cont-notify .icon-notify.unread {
+	background-position: 0 -539px;
+}
+
+.wrapper-header .cont-notify.active .icon-notify {
+	background-position: 0 -493px;
+}
+
+/******************************************************************************
+ *
+ *	Products SubNav Content (a.k.a. "megadropdown")
+ *
+ ******************************************************************************/
+
+.module-dd.subnav .subnav-content .icon {
+	display: inline-block;
+	margin-right: 25px;
+	overflow: hidden;
+	vertical-align: middle;
+	width: 30px;
+}
+
+.module-dd.subnav .subnav-products {
+	border: 10px solid #f6f6f6;
+	border-left-width: 12px;
+	border-right-width: 12px;
+}
+
+.module-dd.subnav .subnav-products li > a {
+	font-size: 13px;
+}
+
+.module-dd.subnav .subnav-content .items li:hover {
+	background-color: #eee;
+}
+.module-dd.subnav .subnav-content .items .headline:hover {
+    background: none;
+}
+
+.module-dd.subnav .subnav-products li.headline {
+	background-color: #fff;
+	font-size: 14px;
+}
+
+.module-dd.subnav .subnav-products strong {
+	font-family: "Proxima Nova Bold", helvetica, arial, sans-serif; /* $fontFamilyBold */
+}
+
+/* Devices */
+
+.module-dd.subnav .subnav-products .devices {
+	float: left;
+	min-width: 305px;
+}
+
+.module-dd.subnav .subnav-products .devices a {
+	padding: 8px 40px 8px 15px;
+}
+
+.module-dd.subnav .subnav-products .devices .headline {
+	padding-left: 15px;
+	padding-right: 40px;
+}
+
+
+
+.module-dd.subnav .subnav-products .device-aria .icon {
+	background-position: 0 -100px;
+	height: 30px;
+}
+
+.module-dd.subnav .subnav-products .device-one .icon {
+	background-position: 8px -50px;
+	height: 40px;
+}
+
+.module-dd.subnav .subnav-products .device-flex .icon {
+	background-position: 0 -140px;
+	height: 40px;
+}
+
+.module-dd.subnav .subnav-products .device-zip .icon {
+	background-position: 3px 0;
+	height: 40px;
+}
+
+.module-dd.subnav .subnav-products .device-force .icon {
+	background-position: 0 -190px;
+	height: 40px;
+}
+
+
+.module-dd.subnav .subnav-social {
+	border: 10px solid #f6f6f6;
+	border-left-width: 12px;
+	border-right-width: 12px;
+}
+.module-dd.subnav .subnav-social li a {
+	padding: 8px 40px 8px 15px;
+}
+
+.module-dd.subnav .subnav-social .facebook .icon {
+    height: 19px;
+    background-position: 0 0;
+}
+.module-dd.subnav .subnav-social .twitter .icon {
+    height: 16px;
+    background-position: 0 -67px;
+}
+.module-dd.subnav .subnav-social .pinterest .icon {
+    height: 22px;
+    background-position: 0 -128px;
+}
+
+.module-dd.subnav .subnav-content .ftr {
+    clear: both;
+    margin: 10px 15px 0; padding: 10px 0 0;
+    border-top: 1px solid #eee;
+}
+.module-dd.subnav .subnav-content .ftr li {
+    padding: 12px 0;
+    background: none;
+    cursor: default;
+}
+.module-dd.subnav .subnav-content .ftr a {
+    display: inline;
+    padding: 0;
+    font-weight: bold;
+    color: #ee3d6e;
+}
+.module-dd.subnav .subnav-content .ftr a:hover {
+    text-decoration: underline;
+}
+
+.module-dd.subnav .subnav-content .ftr.blog-subheader {
+	border-top: medium none;
+	border-bottom: 1px solid #eeeeee;
+	margin: 0 15px 12px 20px;
+	padding-top: 0;
+}
+
+.module-dd.subnav .subnav-content .ftr.blog-subheader li {
+	padding: 8px 0 22px;
+}
+
+
+/* Tools & Miscellaneous */
+
+.module-dd.subnav .subnav-products .divider {
+	background: #eee;
+	float: left;
+	height: 230px;
+	margin-top: 20px;
+	overflow: hidden;
+	width: 1px;
+}
+
+.module-dd.subnav .subnav-products .other {
+	float: left;
+	min-width: 220px;
+}
+
+.module-dd.subnav .subnav-products .other li.headline {
+	height: auto;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.module-dd.subnav .subnav-products li.tools li {
+	padding: 0;
+}
+
+.module-dd.subnav .subnav-products li.tools > a {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.module-dd.subnav .subnav-products li.tools + li.misc {
+	margin-top: 68px;
+}
+
+.module-dd.subnav .subnav-products li.misc:hover {
+	background: transparent;
+}
+
+.module-dd.subnav .subnav-products li.misc a {
+	color: #f54786; /* $mktg_colorHighlight */
+	font-family: "Proxima Nova Bold", helvetica, arial, sans-serif; /* $fontFamilyBold */
+	padding-bottom: 10px;
+	padding-top: 0;
+}
+
+.module-dd.subnav .subnav-products li.misc a:hover {
+	text-decoration: underline;
+}
+
+.not-ie7-8 .module-dd.subnav .subnav-products li.misc a:after {
+	color: #f54786; /* $mktg_colorHighlight */
+	content: "\00A0\00A0\00A0\25B6";
+	font-size: 8px;
+}
+
+.ie9 .module-dd.subnav .subnav-products li.misc a:after {
+	font-size: inherit;
+	letter-spacing: -1px;
+}
+
+/******************************************************************************
+ *
+ *	"Reduced" versions of the sub-nav (Ultra removed)
+ *
+ ******************************************************************************/
+
+.module-dd.subnav .subnav-products.reduced-v1 .divider {
+	height: 190px;
+}
+
+.module-dd.subnav .subnav-products.reduced-v1 li.tools + li.misc {
+	margin-top: 13px;
+}
+
+/******************************************************************************
+ *
+ *	System Alerts
+ *
+ ******************************************************************************/
+
+.wrapper-system-alerts {
+	background-color: #206276; /* $headerBorderColor */
+	color: #000;
+	font: 14px "Proxima Nova Bold", helvetica, arial, sans-serif; /* $fontFamilyBold */
+	padding: 12px 0 2px;
+}
+
+.system-alerts { /* list of system alerts */
+	margin: 0 auto;
+	width: 990px; /* $layoutWidth */
+}
+
+.system-alert { /* individual system alert */
+	display: none;
+	text-align: center;
+}
+
+.system-alert:first-child {
+	display: block;
+}
+
+.system-alert a,
+.system-alert a:visited {
+	color: #4DBFBF;
+    font-family: 'Proxima Nova Regular', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.system-alert .message {
+    font-size: 16px; /* sub-heading1() */
+    font-family: 'Proxima Nova Bold', sans-serif;
+    color: #FFF;
+}
+
+/* Icons for System Alerts */
+
+
+
+.system-alert .message:before {
+	background-position: 0 -1011px; /* by default, show the "generic" alert icon */
+	content: "";
+	display: inline-block;
+	height: 25px;
+	margin-right: 12px;
+	vertical-align: -8px;
+	width: 26px;
+}
+
+.system-alert.device-lowbattery .message:before {
+	background: none;
+    margin-right: 0;
+}
+
+
+
+.system-alert.device-notpaired .message:before {
+	background-position: 0 -913px;
+}
+
+.system-alert.device-notsyncing .message:before {
+	background-position: 0 -864px;
+}
+
+.system-alert.amazon-review .message:before {
+	background-position: 0 -1060px;
+}
+
+.system-alert.corporate-invited .message:before,
+.system-alert.corporate-update .message:before,
+.system-alert.corporate-challenges .message:before {
+	background-position: 0 -1496px;
+}
+
+.system-alert.amazon-review a {
+	margin: 0;
+}
+
+.system-alert.newDashInvite .message:before {
+	background-position: 0 -962px;
+}
+
+/* Exit Icon for System Alerts */
+
+.system-alert .exit {
+    background-position: 0 -767px;
+	cursor: pointer;
+	height: 26px;
+    width: 26px;
+    margin-left: 8px;
+	vertical-align: -7px;
+	visibility: hidden;
+}
+
+.system-alert .exit:hover {
+    background-position: 0 -721px;
+}
+
+.system-alert:hover .exit {
+	visibility: visible;
+}
+
+/******************************************************************************
+ *
+ *	Legacy IE workarounds
+ *
+ ******************************************************************************/
+
+.ie7 .wrapper-header .account .icon-dd {
+	vertical-align: middle;
+}
+
+.ie7 .wrapper-header .account {
+	overflow: hidden;
+}
+
+.ie7 .wrapper-header .account,
+.ie7 .wrapper-header .account-auth,
+.ie7 .wrapper-header .link-app {
+	width: 200px; /* $accountContainerWidth */
+}
+
+.ie7 .system-alert .exit {
+	vertical-align: middle;
+}
+
+.waterConsumption .container {
+    float: left;
+    width: 45px;
+    height: 52px;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    background: no-repeat center;
+  }
+
+div.holidayShipping {
+    padding: 20px;
+}
+
+div.holidayShipping .shippingGuidelines {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+div.holidayShipping .timeFrame {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+div.holidayShipping .emphasis {
+    text-decoration:underline;
+}
+
+/*# sourceMappingURL=weightsite.site.web.css.app.common.header.css.bc6a27f1e3966eed41de71cfabfb5120.css.map*/
+
+.tile_container {
+    position: relative;
+    height: 100%;
+}
+
+
+.water-content {
+    padding: 10px 0 7px 0;
+    text-align: center;
+  }
+  .waterConsumption {
+    zoom: 1;
+    width: 220px;
+    margin: 10px auto auto auto;
+  }
+  .waterConsumption:before,
+  .waterConsumption:after {
+    content: "";
+    display: table;
+  }
+  .waterConsumption:after {
+    clear: both;
+  }
+  .waterConsumption .container {
+    float: left;
+    width: 45px;
+    height: 52px;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    background: no-repeat center;
+  }
+  .waterConsumption .container {
+    float: left;
+    width: 45px;
+    height: 52px;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    background: no-repeat center;
+  }
+
+  .waterConsumption .highGoalContainer {
+    position: relative;
+    width: 73px;
+    height: 149px;
+    margin: 0 auto 7px auto;
+    background: url(../../public/img/water-bottle-empty.png) no-repeat;
+  }
+  .waterConsumption .highGoalContainer .consumptionLevel {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: url(../../public/img/water-bottle-full.png) no-repeat bottom;
+  }
+  .waterConsumption .consumptionLevel {
+    position: absolute;
+    left: -9999px;
+    text-indent: -9999px;
+  }
+  .dialog .waterConsumption .container {
+    zoom: 1;
+    width: 63px;
+    height: 52px;
+    margin: 10px 0 0;
+  }
+  .dialog .waterConsumption .container:before,
+  .dialog .waterConsumption .container:after {
+    content: "";
+    display: table;
+  }
+  .dialog .waterConsumption .container:after {
+    clear: both;
+  }
+  .dialog .largeTile.water .statusIndicator {
+    min-width: 63px;
+    padding-top: 52px;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+
+  .tile.leaderboard .leaderboard-list .steps {
+    font-size: 26px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    color: #585858;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    line-height: 1em;
+    width: 150px;
+  }
+
+  #dash .tile.intradayActivities .tabs > li[data-series="steps"].active,
+#dash .tile.weeklyActivity .tabs > li[data-series="steps"].active {
+  background-position: 0 50%;
+}
+#dash .tile.intradayActivities .tabs > li[data-series="steps"],
+#dash .tile.weeklyActivity .tabs > li[data-series="steps"] {
+  background-position: -60px 50%;
+}
+
+.tile div.controls .control {
+    width: 100%;
+  }
+  .dialog.largeTileContainer .content .largeTile .controls .controlsList .more {
+    right: -54px;
+    width: 94px;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: #ff3f85;
+  }
+  .dialog.largeTileContainer .content .largeTile .controls .controlsList .more:hover {
+    background-color: #fd78a8;
+  }
+  .dialog.largeTileContainer .content .largeTile .controls .controlsList .close.rightSide {
+    width: 44px;
+    right: -94px;
+  }
+
+  #dash div.small .settings .content .savable .weeklyGoal .metric,
+#dash div.small .settings .content .savable .subtitle .metric {
+  font-weight: bold;
+}
+#dash div.small .settings .content .savable .weeklyGoal .metric .unit,
+#dash div.small .settings .content .savable .subtitle .metric .unit {
+  padding-left: 2px;
+}
+#dash div.small .settings .content .savable .weeklyGoal .metric .number,
+#dash div.small .settings .content .savable .subtitle .metric .number {
+  padding-left: 2px;
+}
+#dash div.small .settings .content .savable .weeklyGoal strong,
+#dash div.small .settings .content .savable .subtitle strong {
+  font-weight: bold;
+}
+#dash div.small .settings .content .metricTitle,
+#dash div.small .settings .content .goal_title {
+  font-size: 13px;
+  font-family: 'Proxima Nova SemiBold', sans-serif;
+  color: #585858;
+  margin: 7px 0;
+}
+#dash div.small .main:hover {
+  cursor: pointer;
+}
+#dash div.tall {
+  height: 560px;
+  margin: 0 10px 10px 0;
+  width: 275px;
+}
+#dash div.tall .main,
+#dash div.tall .settings {
+  background: #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  height: 560px;
+  position: absolute;
+  width: 275px;
+}
+#dash div.tall .main .content,
+#dash div.tall .settings .content {
+  padding: 20px;
+  height: 445px;
+}
+#dash div.tall .main {
+  z-index: 900;
+}
+#dash div.tall .settings {
+  z-index: 800;
+}
+#dash div.tall .settings .settingsHeader {
+  overflow: auto;
+}
+#dash div.tall .settings .settingsHeader .settingsTitle {
+  height: 50px;
+  width: 224px;
+  float: left;
+}
+#dash div.tall .settings .settingsHeader .settingsTitle h2 {
+  font-size: 18px;
+  font-family: 'Proxima Nova Light', sans-serif;
+  color: #3c3c3c;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  line-height: 50px;
+  height: 50px;
+  margin-left: 20px;
+}
+ul.controlsList {
+    list-style-type:none;
+}
+

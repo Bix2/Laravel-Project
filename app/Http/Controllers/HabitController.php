@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
+use App\Habit;
+
 
 class HabitController extends Controller
 {
@@ -11,84 +14,76 @@ class HabitController extends Controller
         if (Auth::check()) { 
             // save user data to variable $me
             $me = Auth::user();
-            $data['user'] = $me;
-            $data['habit'] = \DB::table('habits')->where('type', $habit)->first();
-            $isTracked = $this->isHabitTracked($data['habit']->id, $me->id);
-            if($isTracked) {
+            // get habit tracked by user
+            $thishabit = \DB::table('habits')->where('type', $habit)->first();
+            $tracked_habit = $this->isTracked($thishabit->id, $me->id);
+
+            if($tracked_habit) {
                 $data['button'] = ["text" => "Stop tracking this habit"];
-                 // get many to many relation between habits en users tables
-                $userHabitData = \App\User::where('id', $me->id)->with('habits')->first();
-                // get habits table
-                $habits = \DB::table('habits')->get();
-                // check if the user is tracking some habits
-                $userHabits = $userHabitData->habits;
-                $api = new FitbitApiController();
-                if(!($userHabits->isEmpty())) {
-                    // push data with active habits
-                    foreach ($userHabits as $userHabit) {
-                        if ($userHabit->pivot->habit_id == 1) {
-                            $data['activeHabits'][$userHabit->type] = $api->showSleep();
-                            $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
-                        } elseif ($userHabit->pivot->habit_id == 2) {
-                            $data['activeHabits'][$userHabit->type] = $api->showWater();
-                            $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
-                        } elseif ($userHabit->pivot->habit_id == 3) {
-                            $data['activeHabits'][$userHabit->type] = [
-                                'type' => "breathing",
-                                'title' => "Breathing track"
-                            ];
-                            $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
-                        } elseif ($userHabit->pivot->habit_id == 4) {
-                            $data['activeHabits'][$userHabit->type] = $api->showSteps();
-                            $data['activeHabits'][$userHabit->type]['info'] = \DB::table('habits')->where('type', $userHabit->type)->get();
-                        }
-                    }
-                    
-                    // push data with inactive habits
-                    foreach ($habits as $habit) {
-                        if(empty($data['activeHabits'][$habit->type])) {
-                            $data['inactiveHabits'][$habit->type]['info'] = \DB::table('habits')->where('type', $habit->type)->get();
-                        }
-                    }
-                }
             } else {
-                $data['inactiveHabits']['sleep']['info'] = \DB::table('habits')->where('type', 'sleep')->get();
-                $data['inactiveHabits']['water']['info'] = \DB::table('habits')->where('type', 'water')->get();
-                $data['inactiveHabits']['breathing']['info'] = \DB::table('habits')->where('type', 'breathing')->get();
-                $data['inactiveHabits']['exercise']['info'] = \DB::table('habits')->where('type', 'exercise')->get();
                 $data['button'] = ["text" => "Track this habit"];
             }
+
+            $data['user'] = $me;
+            $data['habit'] = $thishabit;
+            $data['tracked_habit'] = $tracked_habit;
             return view('habit', $data);
         }
+     
     }
 
-    public function trackHabit($habit) {
+    public function track($habit) {
         if (Auth::check()) { 
+            // save user data to variable $me
             $me = Auth::user();
-            $data['user'] = $me;
-            $data['habit'] = \DB::table('habits')->where('type', $habit)->first();
-            $isTracked = $this->isHabitTracked($data['habit']->id, $me->id);
-            if($isTracked) {
+            // get all habits
+            $habits = \DB::table('habits')->get();
+            // get habit tracked by user
+            $userhabits = Auth::user()->habits->first();
+
+            $thishabit = \DB::table('habits')->where('type', $habit)->first();
+            $tracked_habit = $this->isTracked($thishabit->id, $me->id);
+
+            if($tracked_habit) {
                 \DB::table('habit_user')->where([
-                    ['habit_id', '=', $data['habit']->id],
+                    ['habit_id', '=', $thishabit->id],
                     ['user_id', '=', $me->id]
                 ])->delete();
                 $data['button'] = ["text" => "Track this habit"];
             } else {
-                \DB::table('habit_user')->insert(
-                    ['habit_id' => $data['habit']->id, 'user_id' => $me->id]
-                );
+                \DB::table('habit_user')->insert([
+                    'habit_id' => $thishabit->id, 
+                    'user_id' => $me->id
+                ]);
                 $data['button'] = ["text" => "Stop tracking this habit"];
             }
+
+            $data['user'] = $me;
+            $data['habit'] = $thishabit;
+            $data['userhabits'] = $userhabits;
             return view('habit', $data);
         }
     }
 
-    public function isHabitTracked($habitId, $userId) {
-        $habit = \DB::table('habit_user')->where([
+    public function isTracked($habitId, $userId) {
+        $tracked_habit = \DB::table('habit_user')->where([
             ['habit_id', '=', $habitId],
             ['user_id', '=', $userId]
         ])->first();
-        return !empty($habit);
+        return !empty($tracked_habit);
     }
+
+    /*
+
+    public function show($habitType, Request $request){
+        $habits = Habit::with('habit_id')
+                ->whereHas('habit_id', function($query) use $habitType {
+                    $query->where('habit_type', $habitType); 
+                }->get(); 
+    
+        return $habits;
+    }
+
+    */
+
 }

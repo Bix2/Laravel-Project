@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="fixed-wrapper container">
     <div class="row">
         <header class="col-2 mainHeader">
             @include('includes.header')
