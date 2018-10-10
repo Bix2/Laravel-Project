@@ -51,9 +51,21 @@ class HabitController extends Controller
                 ])->delete();
                 $data['button'] = ["text" => "Track this habit"];
             } else {
+                // this can be done better but is ok like that for now
+                if($thishabit->id == 1) {
+                    $goal = FitbitApiController::getSleepGoal();
+                } elseif ($thishabit->id == 2) {
+                    $goal = FitbitApiController::getWaterGoal();
+                } elseif ($thishabit->id == 3) {
+                    // static data for now
+                    $goal = 3;
+                } elseif ($thishabit->id == 4) {
+                    $goal = FitbitApiController::getActivityGoal();
+                }
                 \DB::table('habit_user')->insert([
                     'habit_id' => $thishabit->id, 
-                    'user_id' => $me->id
+                    'user_id' => $me->id,
+                    'goal' => $goal
                 ]);
                 $data['button'] = ["text" => "Stop tracking this habit"];
             }

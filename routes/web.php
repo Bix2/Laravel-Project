@@ -23,6 +23,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 /* API calls */
 Route::get('/profile', 'FitbitApiController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
+// Route::get('/dashboard', 'FitbitApiController@getWaterGoal');
 
 /* Habits */
 Route::get('/dashboard/{habit}', 'HabitController@show');

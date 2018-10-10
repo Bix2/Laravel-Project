@@ -121,7 +121,7 @@ class FitbitApiController extends Controller {
             $me = Auth::user();
  
             $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/",
+                "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
 
             $response = $client->get("user/-/profile.json", [
@@ -134,6 +134,63 @@ class FitbitApiController extends Controller {
             $data['profile']=$profile;
             print_r($data);
             return view('profile', $data);
+        }
+    }
+
+    public static function getSleepGoal() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+ 
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+
+            $response = $client->get("user/-/sleep/goal.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}"
+                ]
+            ]);
+
+            $sleepGoal = json_decode($response->getBody(), true);
+            return $sleepGoal['goal']['minDuration'];
+        }
+    }
+
+    public static function getActivityGoal() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+ 
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+
+            $response = $client->get("user/-/activities/goals/daily.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}"
+                ]
+            ]);
+
+            $activityGoal = json_decode($response->getBody(), true);
+            return $activityGoal['goals']['steps'];
+        }
+    }
+
+    public static function getWaterGoal() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+ 
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+
+            $response = $client->get("user/-/foods/log/water/goal.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}"
+                ]
+            ]);
+
+            $waterGoal = json_decode($response->getBody(), true);
+            return $waterGoal['goal']['goal'];
         }
     }
 
