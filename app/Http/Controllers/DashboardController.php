@@ -23,6 +23,10 @@ class DashboardController extends Controller
             $habits = \DB::table('habits')->get();
             // get habit tracked by user
             $userhabits = Auth::user()->habits->first();
+            if ($userhabits) { 
+                $userhabits = $userhabits->pivot->pivotParent->habits;
+            }
+            
             // summon api controller
             $api = new FitbitApiController();
 /*
@@ -37,10 +41,38 @@ class DashboardController extends Controller
                     echo('hello');
                 }
             }
-*/
+
+
+
+
+*/ 
+
+    $trackedhabits = [];
+    $untrackedhabits = [];
+
+            foreach ($habits as $habit){
+                $habitCheck = -1;
+                if($userhabits){
+                    foreach($userhabits as $userhabit) {
+                        if ($userhabit->getOriginal('pivot_habit_id') == ($habit->id) ) {
+                            $habitCheck =  $habit->id;
+                        }
+                    }
+                }
+                if( $habitCheck > -1) {
+                    array_push($trackedhabits, $habit);
+                } else {
+                    array_push($untrackedhabits, $habit);
+                }
+            }
+
+
+
+            $data['trackedhabits'] = $trackedhabits;
+            $data['untrackedhabits'] = $untrackedhabits;
             $data['user'] = $me;
             $data['habits'] = $habits;
-            $data['userhabits'] = $userhabits;
+            // $data['userhabits'] = $userhabits;
             $data['api'] = $api;
             return view('dashboard', $data);
         }
