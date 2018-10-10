@@ -17,8 +17,9 @@
     </div>
     
 	<div class="col-12 main__content">
-        <div class="row">
-            @foreach ($habits as $habit)
+            <h3>Tracked habits:</h3>
+            <div class="row">  
+            @foreach ($trackedhabits as $habit)
                 <div class="main__container--habit">
                     <h4> {{ $habit->short_description }} </h4>
                     <a href="/dashboard/{{$habit->type}}">See progress</a>
@@ -33,7 +34,29 @@
                     @endif
                 </div>
             @endforeach
-        </div>
+            </div>
+            <h3>Untracked habits:</h3>
+            <div class="row">
+            @if ($untrackedhabits)
+            @foreach ($untrackedhabits as $habit)
+                <div class="main__container--habit">
+                    <h4> {{ $habit->short_description }} </h4>
+                    <a href="/dashboard/{{$habit->type}}">See progress</a>
+                    @if ($habit->type == "sssleep")
+                        {{ $api->showSleep() }};
+                    @elseif ($habit->type == "water")
+                        {{ $api->showWater() }};
+                    @elseif ($habit->type == "exercise")
+                        {{ $api->showSteps() }};
+                    @elseif ($habit->type == "breathing")
+                        <a href="">Start guided breathing session</a>
+                    @endif
+                </div>
+            @endforeach
+            @else
+                <h3>jfvufvn</h3>
+            @endif
+            </div>
     </div>
 </div>
 @endsection
