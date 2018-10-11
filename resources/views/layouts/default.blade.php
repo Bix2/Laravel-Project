@@ -1,27 +1,27 @@
 <!doctype html>
 <html>
-<head>
-    @include('includes.head')
-</head>
-<body>
+    <head>
+        @include('includes.head')
+    </head>
+    <body>
 
-<div class="fixed-wrapper container">
-    <div class="row">
-        <header class="col-2 mainHeader">
-            @include('includes.header')
-        </header>
+        <div class="fixed-wrapper container">
+            <div class="row">
+                <header class="col-2 mainHeader">
+                    @include('includes.header')
+                </header>
 
-        <div id="main" class="col-10">
+                <div id="main" class="col-10">
 
-                @yield('content')
+                        @yield('content')
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<footer class="footer">
-    @include('includes.footer')
-</footer>
+        <footer class="footer">
+            @include('includes.footer')
+        </footer>
 
-</body>
+    </body>
 </html>

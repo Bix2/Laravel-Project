@@ -23,13 +23,13 @@ Route::get('/logout', 'Auth\LoginController@logout');
 /* API calls */
 Route::get('/profile', 'FitbitApiController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
-// Route::get('/dashboard', 'FitbitApiController@getWaterGoal');
+Route::post('/dashboard', 'DashboardController@storeFeedback');
 
 /* Habits */
 Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
 
-/* Chrome Etention */
+/* Chrome Extension */
 // Route::get('/api/getstats', 'FitbitApiController@getstats');
 
 /* Admin page */

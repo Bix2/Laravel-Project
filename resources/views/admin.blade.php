@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="top__content col-8">
 				<h2>Admin</h2>
-				<p>Check de mood of the users</p>
+				<p>Check the mood of the users</p>
 			</div>
 			<div class="col-4 top__content profile__picture">
                 <div class="profile__picture--wrapper">

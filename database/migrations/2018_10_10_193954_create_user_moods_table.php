@@ -16,7 +16,7 @@ class CreateUserMoodsTable extends Migration
         Schema::create('user_moods', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->integer('mood');
+            $table->string('mood');
             $table->integer('habit_id')->unsigned();
             $table->foreign('habit_id')->references('id')->on('habits');
             $table->integer('user_id')->unsigned();

@@ -29,56 +29,32 @@ class DashboardController extends Controller
             
             // summon api controller
             $api = new FitbitApiController();
-/*
-            foreach($userhabits as $habit) {
-                if ($me->habits()->where('habit_id', '1')->get()) {
-                   $data['sleep'] = $api->showSleep();
-                if ($me->habits()->where('habit_id', '2')->get()) {
-                    $data['water'] = $api->showWater();
-                if ($me->habits()->where('habit_id', '4')->get()) {
-                    $data['steps'] = $api->showSteps());
-                } elseif ($me->habits()->where('habit_id', '3')->get()) {
-                    echo('hello');
+
+            // get current steps
+            $currentdate = date("Y-m-d");
+            $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
+            $totalsteps = 0;
+            foreach ($usersteps as $userstep) {
+                if($userstep->steps > $totalsteps){
+                    $totalsteps = $userstep->steps;
+                }
+                
+            }
+
+            // get goal
+            $stepsgoal = 0;
+
+            $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
+            foreach ($usergoals as $usergoal) {
+                if($usergoal->habit_id == 4) {
+                    $stepsgoal = $usergoal->goal;
                 }
             }
 
-
-
-
-*/ 
-$currentdate = date("Y-m-d");
-$usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
-$totalsteps = 0;
-foreach ($usersteps as $userstep) {
-    if($userstep->steps > $totalsteps){
-        $totalsteps = $userstep->steps;
-    }
-    
-}
-
-// dd($totalsteps);
-$stepsgoal = 0;
-
-$usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
-foreach ($usergoals as $usergoal) {
-    if($usergoal->habit_id == 4) {
-        $stepsgoal = $usergoal->goal;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-    $trackedhabits = [];
-    $untrackedhabits = [];
-    
-
+            // get tracked and untracked habits
+            $trackedhabits = [];
+            $untrackedhabits = [];
+            
             foreach ($habits as $habit){
                 $habitCheck = -1;
                 if($userhabits){
@@ -95,8 +71,11 @@ foreach ($usergoals as $usergoal) {
                 }
             }
 
-
-
+            // show form for feedback mood
+            if ($totalsteps >= $stepsgoal) {
+                
+            }
+    
             $data['trackedhabits'] = $trackedhabits;
             $data['untrackedhabits'] = $untrackedhabits;
             $data['user'] = $me;
@@ -106,6 +85,25 @@ foreach ($usergoals as $usergoal) {
             $data['stepsgoal'] = $stepsgoal;
             $data['api'] = $api;
             return view('dashboard', $data);
+        }
+    }
+
+    public function storeFeedback(Request $request) {
+        //dd($request->all());
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+            $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
+            foreach ($usergoals as $usergoal) {
+                if($usergoal->habit_id == 4) {
+                    \DB::table('user_moods')->insert([
+                        'date' => $currentdate,
+                        'mood' => $request->input('mood'),
+                        'habit_id' => $usergoal->habit_id,
+                        'user_id' => $me->id,
+                    ]); 
+                }
+            }
         }
     }
 
