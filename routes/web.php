@@ -31,3 +31,6 @@ Route::post('/dashboard/{habit}', 'HabitController@track');
 
 /* Chrome Etention */
 // Route::get('/api/getstats', 'FitbitApiController@getstats');
+
+/* Admin page */
+Route::get('/admin', 'AdminController@index');

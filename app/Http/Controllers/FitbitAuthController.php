@@ -50,7 +50,7 @@ class FitbitAuthController extends Controller {
                 'token' => $data->token,
                 'fitbit_id' => $data->id,
                 'name'   => $data->name,
-                'avatar' => $data->avatar
+                'avatar' => $data->avatar,
             ]);
             return $user;
         }
@@ -59,7 +59,8 @@ class FitbitAuthController extends Controller {
             'token' => $data->token,
             'fitbit_id' => $data->id,
             'name'   => $data->name,
-            'avatar' => $data->avatar
+            'avatar' => $data->avatar,
+            'admin' => 0
         ]);
     }
 
