@@ -7,6 +7,7 @@
 			<div class="top__content col-8">
 				<h2>Dashboard</h2>
 				<p>Welcome to CodeBreak dashboard</p>
+                <p class="suggestion">Maybe you can go for a walk?</p>
 			</div>
 			<div class="col-4 top__content profile__picture">
                 <div class="profile__picture--wrapper">
@@ -30,7 +31,8 @@
                     @elseif ($habit->type == "water")
                         {{ $api->showWater() }};
                     @elseif ($habit->type == "exercise")
-                        {{ $api->showSteps() }};
+                        {{ $api->showSteps() }}
+                        <p> {{$totalsteps}} out of {{$stepsgoal}}</p>
                     @elseif ($habit->type == "breathing")
                         <a href="">Start guided breathing session</a>
                     @endif
