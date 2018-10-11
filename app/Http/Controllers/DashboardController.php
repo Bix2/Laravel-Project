@@ -50,7 +50,10 @@ $currentdate = date("Y-m-d");
 $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
 $totalsteps = 0;
 foreach ($usersteps as $userstep) {
-    $totalsteps = $totalsteps + $userstep->steps;
+    if($userstep->steps > $totalsteps){
+        $totalsteps = $userstep->steps;
+    }
+    
 }
 
 // dd($totalsteps);
