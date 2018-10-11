@@ -47,8 +47,20 @@ class DashboardController extends Controller
 
 */ 
 
+
+$usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
+// dd($usergoals);
+
+
+
+
+
+
+
+
     $trackedhabits = [];
     $untrackedhabits = [];
+    
 
             foreach ($habits as $habit){
                 $habitCheck = -1;
@@ -72,7 +84,7 @@ class DashboardController extends Controller
             $data['untrackedhabits'] = $untrackedhabits;
             $data['user'] = $me;
             $data['habits'] = $habits;
-            // $data['userhabits'] = $userhabits;
+             $data['userhabits'] = $userhabits;
             $data['api'] = $api;
             return view('dashboard', $data);
         }

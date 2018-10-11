@@ -67,7 +67,7 @@ class FitbitApiController extends Controller {
                "base_uri" => "https://api.fitbit.com/1.2/",
            ]);
     
-           $response = $client->get("user/-/activities/steps/date/today/1w.json", [
+           $response = $client->get("user/-/activities/steps/date/today/1d.json", [
                "headers" => [
                    "Authorization" => "Bearer {$me->token}"
                ]
@@ -75,6 +75,11 @@ class FitbitApiController extends Controller {
     
            $steps = json_decode($response->getBody(), true);
            print_r( $steps);
+           $stepsvalue = $steps['activities-steps'][0]['value'];
+           $stepsdate = $steps['activities-steps'][0]['dateTime'];
+            \DB::table('activitylogs')->insert([
+                ['date' => $stepsdate, 'steps' => $stepsvalue,  'user_id' => $me->id]
+            ]);
        }
     }
 
