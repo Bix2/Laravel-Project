@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('fitbit_id');
             $table->text('token');
             $table->string('avatar');
+            $table->int('admin');
             $table->timestamps();
         });
     }

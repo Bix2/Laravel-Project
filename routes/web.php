@@ -28,3 +28,6 @@ Route::get('/dashboard', 'DashboardController@index');
 /* Habits */
 Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
+
+/* Chrome Etention */
+// Route::get('/api/getstats', 'FitbitApiController@getstats');

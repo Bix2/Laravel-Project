@@ -1,4 +1,6 @@
-@extends('layouts.default') @section('content')
+@extends('layouts.default') 
+
+@section('content')
 <div class="row">
 	<div class="col-12" id="dash">
 		<div class="row">
