@@ -29,7 +29,8 @@
                     @elseif ($habit->type == "water")
                         {{ $api->showWater() }};
                     @elseif ($habit->type == "exercise")
-                        {{ $api->showSteps() }};
+                        {{ $api->showSteps() }}
+                        <p> {{$totalsteps}} out of {{$stepsgoal}}</p>
                     @elseif ($habit->type == "breathing")
                         <a href="">Start guided breathing session</a>
                     @endif

@@ -74,7 +74,7 @@ class FitbitApiController extends Controller {
            ]);
     
            $steps = json_decode($response->getBody(), true);
-           print_r( $steps);
+        //    print_r( $steps);
            $stepsvalue = $steps['activities-steps'][0]['value'];
            $stepsdate = $steps['activities-steps'][0]['dateTime'];
             \DB::table('activitylogs')->insert([

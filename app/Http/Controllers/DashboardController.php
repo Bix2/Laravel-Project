@@ -46,10 +46,24 @@ class DashboardController extends Controller
 
 
 */ 
+$currentdate = date("Y-m-d");
+$usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
+$totalsteps = 0;
+foreach ($usersteps as $userstep) {
+    $totalsteps = $totalsteps + $userstep->steps;
+}
 
+// dd($totalsteps);
+$stepsgoal = 0;
 
 $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
-// dd($usergoals);
+foreach ($usergoals as $usergoal) {
+    if($usergoal->habit_id == 4) {
+        $stepsgoal = $usergoal->goal;
+    }
+}
+
+
 
 
 
@@ -84,7 +98,9 @@ $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
             $data['untrackedhabits'] = $untrackedhabits;
             $data['user'] = $me;
             $data['habits'] = $habits;
-             $data['userhabits'] = $userhabits;
+            $data['userhabits'] = $userhabits;
+            $data['totalsteps'] = $totalsteps;
+            $data['stepsgoal'] = $stepsgoal;
             $data['api'] = $api;
             return view('dashboard', $data);
         }
