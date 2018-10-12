@@ -9761,6 +9761,7 @@ body {
   left: 0;
   height: 2rem;
   width: 0%;
+  max-width: 100%;
   -webkit-transform-origin: left;
           transform-origin: left;
   -webkit-animation: progressSlide 4s ease-in-out .2s;
