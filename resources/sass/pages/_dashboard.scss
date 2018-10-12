@@ -46,6 +46,51 @@
     }
 }
 
+.goal_progress_bar {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    height: 2rem;
+    background-color: #13196b;
+    position: relative;
+}
+
+.goal_progress_bar_progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    width: 0%;
+    max-width: 100%;
+    transform-origin: left;
+    animation: progressSlide .5s ease-in-out;
+    overflow:hidden;
+}
+
+@keyframes progressSlide {
+    from{
+        max-width: 0;
+    }
+    to{
+        max-width: 100%;
+    }
+}
+
+.goal_progress__progress_text {
+    display: block;
+    position: absolute;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.goal_progress_text {
+    margin-left: 1rem;
+}
+
 .profile__picture--wrapper {
 
 }
@@ -1219,13 +1264,21 @@ div.holidayShipping .emphasis {
     width: 73px;
     height: 149px;
     margin: 0 auto 7px auto;
+<<<<<<< HEAD
     background: url(../../../public/images/water-bottle-empty.png) no-repeat;
+=======
+    // background: url(../../public/img/water-bottle-empty.png) no-repeat;
+>>>>>>> goal-progress
   }
   .waterConsumption .highGoalContainer .consumptionLevel {
     left: 0;
     bottom: 0;
     width: 100%;
+<<<<<<< HEAD
     background: url(../../../public/images/water-bottle-full.png) no-repeat bottom;
+=======
+    // background: url(../../public/img/water-bottle-full.png) no-repeat bottom;
+>>>>>>> goal-progress
   }
   .waterConsumption .consumptionLevel {
     position: absolute;
