@@ -96,11 +96,11 @@
                     <h4> {{ $habit->short_description }} </h4>
                     <a href="/dashboard/{{$habit->type}}">See progress</a>
                     @if ($habit->type == "sssleep")
-                        {{ $api->showSleep() }};
+                        <!-- {{ $api->showSleep() }}; -->
                     @elseif ($habit->type == "water")
-                        {{ $api->showWater() }};
+                        <!-- {{ $api->showWater() }}; -->
                     @elseif ($habit->type == "exercise")
-                        {{ $api->showSteps() }};
+                        <!-- {{ $api->showSteps() }} -->
                     @elseif ($habit->type == "breathing")
                         <a href="">Start guided breathing session</a>
                     @endif
