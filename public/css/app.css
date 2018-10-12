@@ -9551,7 +9551,7 @@ body {
 }
 
 .logo {
-  background-image: url(/images/logo-white.svg?b97e85a26499eb3639d9a1bcf846c3db);
+  background-image: url(../../../public/images/logo-white.svg);
   background-size: contain;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -9635,7 +9635,7 @@ body {
     margin-left: 25px;
   }
   .logo {
-    background-image: url(/images/full-logo-white.svg?19b9e8076302805529f8f1a48f6a78d6);
+    background-image: url(../../../public/images/full-logo-white.svg);
     min-width: 140px;
     height: 80px;
     width: 100%;
@@ -10951,14 +10951,14 @@ div.holidayShipping .emphasis {
   width: 73px;
   height: 149px;
   margin: 0 auto 7px auto;
-  background: url(/images/water-bottle-empty.png?1b4eac6cc4407848e67b3bea27faa7ac) no-repeat;
+  background: url(../../../public/images/water-bottle-empty.png) no-repeat;
 }
 
 .waterConsumption .highGoalContainer .consumptionLevel {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: url(/images/water-bottle-full.png?6b70f58bb8d1b857d7b6c18da6a35db2) no-repeat bottom;
+  background: url(../../../public/images/water-bottle-full.png) no-repeat bottom;
 }
 
 .waterConsumption .consumptionLevel {
@@ -11130,7 +11130,7 @@ body.welcome-page {
   width: 100%;
   height: 100vh;
   background-repeat: no-repeat;
-  background-image: url(/images/homeimg.svg?11caa8f23d9600331635418b198cbbda);
+  background-image: url(../../../public/images/homeimg.svg);
   background-position: right bottom;
   background-size: 70%;
 }
