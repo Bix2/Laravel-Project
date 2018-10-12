@@ -82,7 +82,6 @@
                             @else
                             <p class="goal_progress_text">🏁🏁🏁Woohoo! You've reached your goal!</p>
                         @endif
-                        <p> {{$totalsteps}} out of {{$stepsgoal}}</p>
                     @elseif ($habit->type == "breathing")
                         <a href="">Start guided breathing session</a>
                     @endif
