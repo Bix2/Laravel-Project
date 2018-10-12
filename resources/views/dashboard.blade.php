@@ -1,8 +1,6 @@
 @extends('layouts.default') 
 @section('content')
 
-<form-component></form-component> 
-
 <div class="row">
 	<div class="col-12" id="dash">
 		<div class="row">
@@ -20,25 +18,33 @@
 			</div>
 		</div>
     </div>
-    <form id="moodFeedback" method="post" action="/dashboard">
-        {{ csrf_field() }}
 
-        <h3>How are you feeling?</h3>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="good" name="mood" value="good">
-            <label class="form-check-label" for="mood">Good &#x1F917;</label>
+   
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">How are you feeling?</div>
+            <div class="card-body">
+                <form id="moodFeedback" method="post" action="/dashboard">
+                    {{ csrf_field() }}
+                    <h3>How are you feeling?</h3>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="bad" name="mood" value="bad">
+                        <label class="form-check-label" for="mood">Bad &#x1F614;</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="neutral" name="mood" value="neutral">
+                        <label class="form-check-label" for="mood">Neutral &#x1F610;</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="good" name="mood" value="good">
+                        <label class="form-check-label" for="mood">Good &#x1F917;</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="neutral" name="mood" value="neutral">
-            <label class="form-check-label" for="mood">Neutral &#x1F610;</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="bad" name="mood" value="bad">
-            <label class="form-check-label" for="mood">Bad &#x1F614;</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    
+    </div>  
+
 	<div class="col-12 main__content">
             <h3>Tracked habits:</h3>
             <div class="row">  
