@@ -59,8 +59,7 @@
                     @elseif ($habit->type == "exercise")
                         {{ $api->showSteps() }}
                         <div class="goal_progress_bar">
-                            <div class="goal_progress_bar_progress" style="width: {{$totalsteps/$stepsgoal*100}}%; background-color: 
-                            @if ( ($totalsteps/$stepsgoal*100) < 25 )
+                            <div class="goal_progress_bar_progress" style="width: {{$totalsteps/$stepsgoal*100}}%; background-color: @if ( ($totalsteps/$stepsgoal*100) < 25 )
                             #E51C23
                             @elseif ( ($totalsteps/$stepsgoal*100) < 50 )
                             #FF9800
@@ -69,7 +68,7 @@
                             @else
                             #259B24
                             @endif
-                             ">
+                            ">
                              </div>
                              <div class="goal_progress__progress_text"> {{$totalsteps}} out of {{$stepsgoal}}</div>
                             
