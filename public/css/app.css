@@ -9764,8 +9764,8 @@ body {
   max-width: 100%;
   -webkit-transform-origin: left;
           transform-origin: left;
-  -webkit-animation: progressSlide 4s ease-in-out .2s;
-          animation: progressSlide 4s ease-in-out .2s;
+  -webkit-animation: progressSlide .5s ease-in-out;
+          animation: progressSlide .5s ease-in-out;
   overflow: hidden;
 }
 

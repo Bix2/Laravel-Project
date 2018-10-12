@@ -46,8 +46,18 @@
                              ">
                              </div>
                              <div class="goal_progress__progress_text"> {{$totalsteps}} out of {{$stepsgoal}}</div>
+                            
                         </div>
-                        <p class="goal_progress_text"> {{$totalsteps}} out of {{$stepsgoal}}</p>
+                        @if ( ($totalsteps/$stepsgoal*100) < 25 )
+                            <p class="goal_progress_text">You could go for a walk...</p>
+                            @elseif ( ($totalsteps/$stepsgoal*100) < 75 )
+                            <p class="goal_progress_text">Come on, you can reach your goal</p>
+                            @elseif ( ($totalsteps/$stepsgoal*100) < 100 )
+                            <p class="goal_progress_text">Almost there...</p>
+                            @else
+                            <p class="goal_progress_text">🏁🏁🏁Woohoo! You've reached your goal!</p>
+                        @endif
+                        <!-- <p class="goal_progress_text"> {{$totalsteps}} out of {{$stepsgoal}}</p> -->
                     @elseif ($habit->type == "breathing")
                         <a href="">Start guided breathing session</a>
                     @endif
