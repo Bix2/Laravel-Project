@@ -7,7 +7,6 @@
 			<div class="top__content col-8">
 				<h2>Dashboard</h2>
 				<p>Welcome to CodeBreak dashboard</p>
-                <p class="suggestion">Maybe you can go for a walk?</p>
 			</div>
 			<div class="col-4 top__content profile__picture">
                 <div class="profile__picture--wrapper">
