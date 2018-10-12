@@ -1,6 +1,8 @@
 @extends('layouts.default') 
-
 @section('content')
+
+<form-component></form-component> 
+
 <div class="row">
 	<div class="col-12" id="dash">
 		<div class="row">
