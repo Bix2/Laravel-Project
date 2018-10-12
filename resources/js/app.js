@@ -14,13 +14,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('modal', require('./components/modal.vue'));
+Vue.component('modal-component', require('./components/form.vue'));
+Vue.component('form-component', require('./components/form.vue'));
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        showModal: false,
-        //feedback: feedback
+    el: '#main',
+    methods: {
+        showModal () {
+          this.$refs.feedbackModal.show();
+        },
+        hideModal () {
+          this.$refs.feedbackModal.hide();
+        }
     }
 });
 
