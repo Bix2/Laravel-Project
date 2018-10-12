@@ -9552,10 +9552,14 @@ body {
 
 .logo {
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-image: url(../../../public/images/logo-white.svg);
 =======
   background-image: url(../../public/img/logo-white.svg);
 >>>>>>> goal-progress
+=======
+  background-image: url(/images/logo-white.svg);
+>>>>>>> 1c91e0396cbe5333a8488d902d836e216650a74c
   background-size: contain;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -9640,10 +9644,14 @@ body {
   }
   .logo {
 <<<<<<< HEAD
+<<<<<<< HEAD
     background-image: url(../../../public/images/full-logo-white.svg);
 =======
     background-image: url(../../public/img/full-logo-white.svg);
 >>>>>>> goal-progress
+=======
+    background-image: url(/images/full-logo-white.svg);
+>>>>>>> 1c91e0396cbe5333a8488d902d836e216650a74c
     min-width: 140px;
     height: 80px;
     width: 100%;
@@ -11016,9 +11024,13 @@ div.holidayShipping .emphasis {
   height: 149px;
   margin: 0 auto 7px auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background: url(../../../public/images/water-bottle-empty.png) no-repeat;
 =======
 >>>>>>> goal-progress
+=======
+  background: url(/images/water-bottle-empty.png) no-repeat;
+>>>>>>> 1c91e0396cbe5333a8488d902d836e216650a74c
 }
 
 .waterConsumption .highGoalContainer .consumptionLevel {
@@ -11026,9 +11038,13 @@ div.holidayShipping .emphasis {
   bottom: 0;
   width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background: url(../../../public/images/water-bottle-full.png) no-repeat bottom;
 =======
 >>>>>>> goal-progress
+=======
+  background: url(/images/water-bottle-full.png) no-repeat bottom;
+>>>>>>> 1c91e0396cbe5333a8488d902d836e216650a74c
 }
 
 .waterConsumption .consumptionLevel {
@@ -11201,10 +11217,14 @@ body.welcome-page {
   height: 100vh;
   background-repeat: no-repeat;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-image: url(../../../public/images/homeimg.svg);
 =======
   background-image: url(../../public/img/homeimg.svg);
 >>>>>>> goal-progress
+=======
+  background-image: url("/images/homeimg.svg");
+>>>>>>> 1c91e0396cbe5333a8488d902d836e216650a74c
   background-position: right bottom;
   background-size: 70%;
 }
