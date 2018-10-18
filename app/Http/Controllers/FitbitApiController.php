@@ -199,4 +199,36 @@ class FitbitApiController extends Controller {
         }
     }
 
+    public function getstats() {
+        // get current steps
+        $currentdate = date("Y-m-d");
+        $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
+        $totalsteps = 0;
+        foreach ($usersteps as $userstep) {
+            if($userstep->steps > $totalsteps){
+                $totalsteps = $userstep->steps;
+            }
+            
+        }
+
+        // get goal
+        $stepsgoal = 0;
+        $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
+        foreach ($usergoals as $usergoal) {
+            if($usergoal->habit_id == 4) {
+                $stepsgoal = $usergoal->goal;
+            }
+        }
+
+        // $response = [
+        //     "status"            =>      "success",
+        //     "likeStatus"        =>      $likeStatus,
+        //     "postId"            =>      $postId
+        // ];
+
+        $response = "Hello";
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
 }

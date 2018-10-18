@@ -30,6 +30,9 @@ class FitbitAuthController extends Controller {
     public function handleFitbitCallback() {   
         $data = Socialite::driver('fitbit')->user();
         if ($data) {
+
+// $user = User::findOrCreateUser($data)
+
             $user = $this->findOrCreateUser($data);
             // manually loggging in a user
             Auth::login($user);    

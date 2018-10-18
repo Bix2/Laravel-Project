@@ -30,8 +30,7 @@ Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
 
 /* Chrome Extension */
-// Route::get('/api/getstats', 'FitbitApiController@getstats');
+Route::get('/api/getstats', 'FitbitApiController@getstats');
 
 /* Admin page */
-// Route::get('/admin', 'AdminController@index');
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');
