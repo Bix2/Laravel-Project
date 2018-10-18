@@ -20,13 +20,31 @@
             </div>
         </div>
 
-        {{@print_r($habit)}}
+        <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                        @for ($d = -6; $d <= 0; $d++)
+                            <th>{{date('D', strtotime($d.' days'))}}</th>
+                        @endfor
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        @foreach ($stepsweek as $stepsday)
+                            <td>{{$stepsday}}</td>
+                        @endforeach
+                        </tr>
+                    </tbody>
+                </table>
+
+        <!-- {{@print_r($habit)}} -->
+
 
         <div class="row main__content">
             <div class="col-12">
                 <form method="post" action="/dashboard/{{$habit->type}}">
                     {{csrf_field()}}
-                    <button type="submit">{{ $button['text'] }}</button>
+                    <button class="btn" type="submit">{{ $button['text'] }}</button>
                 </form>
             </div>
         </div>

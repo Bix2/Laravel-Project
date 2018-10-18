@@ -24,9 +24,26 @@ class HabitController extends Controller
                 $data['button'] = ["text" => "Track this habit"];
             }
 
+            $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->get();
+            
+            $stepsweek = [];
+
+            for ($d = -6; $d <= 0; $d++) {
+                $date = date('Y-m-d', strtotime($d.' days'));
+                $steps = 0;
+                foreach ($usersteps as $userstep) {
+                    if($userstep->date == $date && $userstep->steps > $steps){
+                        $steps = $userstep->steps;
+                    }
+                }
+                array_push($stepsweek, $steps);
+            } 
+            
+
             $data['user'] = $me;
             $data['habit'] = $thishabit;
             $data['tracked_habit'] = $tracked_habit;
+            $data['stepsweek'] = $stepsweek;
             return view('habit', $data);
         }
      
