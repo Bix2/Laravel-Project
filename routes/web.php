@@ -34,3 +34,5 @@ Route::get('/api/getstats', 'FitbitApiController@getstats');
 
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');
+
+//hello
