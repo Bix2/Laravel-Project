@@ -77,9 +77,16 @@ class FitbitApiController extends Controller {
         //    print_r( $steps);
            $stepsvalue = $steps['activities-steps'][0]['value'];
            $stepsdate = $steps['activities-steps'][0]['dateTime'];
+           $dateCheck = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->first();
+           if( $dateCheck ) {
+            \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->update(['steps' => $stepsvalue]);
+           } else {
             \DB::table('activitylogs')->insert([
                 ['date' => $stepsdate, 'steps' => $stepsvalue,  'user_id' => $me->id]
             ]);
+           }
+           
+            
        }
     }
 
