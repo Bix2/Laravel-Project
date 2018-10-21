@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\DoSomething;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -11,6 +12,7 @@ use SocialiteProviders\Manager\SocialiteWasCalled;
 use App\User;
 use Socialite;
 use Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -116,5 +118,12 @@ class DashboardController extends Controller
     //     ]);
     //     $data['button'] = ["text" => "Stop tracking this habit"];
     // }
+
+    public function doSomething()
+    {
+        DoSomething::dispatch()
+                ->delay(now()->addSeconds(10));
+    }
+
     
 }

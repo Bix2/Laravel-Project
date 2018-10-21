@@ -59,7 +59,7 @@ class FitbitApiController extends Controller {
         }
     }
 
-    public function showSteps() {
+    public static function showSteps() {
         if (Auth::check()) { 
            $me = Auth::user();
     
@@ -77,14 +77,14 @@ class FitbitApiController extends Controller {
         //    print_r( $steps);
            $stepsvalue = $steps['activities-steps'][0]['value'];
            $stepsdate = $steps['activities-steps'][0]['dateTime'];
-           $dateCheck = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->first();
-           if( $dateCheck ) {
-            \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->update(['steps' => $stepsvalue]);
-           } else {
+        //    $dateCheck = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->first();
+        //    if( $dateCheck ) {
+        //     \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->update(['steps' => $stepsvalue]);
+        //    } else {
             \DB::table('activitylogs')->insert([
                 ['date' => $stepsdate, 'steps' => $stepsvalue,  'user_id' => $me->id]
             ]);
-           }
+        //    }
            
             
        }
@@ -208,6 +208,7 @@ class FitbitApiController extends Controller {
 
     public function getstats() {
         // get current steps
+        $me = Auth::user();
         $currentdate = date("Y-m-d");
         $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
         $totalsteps = 0;
@@ -227,13 +228,14 @@ class FitbitApiController extends Controller {
             }
         }
 
-        // $response = [
-        //     "status"            =>      "success",
-        //     "likeStatus"        =>      $likeStatus,
-        //     "postId"            =>      $postId
-        // ];
+        $response = [
+            "userName"          =>      $me->name,
+            "userAvatar"        =>      $me->avatar,
+            "currentDate"       =>      $currentdate,
+            "totalSteps"        =>      $totalsteps,
+            "stepsGoal"         =>      $stepsgoal
+        ];
 
-        $response = "Hello";
         header('Content-Type: application/json');
         echo json_encode($response);
     }
