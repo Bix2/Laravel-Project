@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>CodeBreak | Chrome Extention</title>
+  </head>
+  <body>
+    <div class="profile__container">
+      <img id="useravatar" src="" alt="">
+      <h2 id="username"></h2>
+    </div>
+    <div class="profile__data">
+      <!-- Habit -->
+      <div class="data__activity">
+        <div class="data__activity--info">
+          <img src="images/activity.svg" alt="activity icon">
+          <p id="data__activity--details"></p>
+        </div>
+        <div class="data__activity--progress">
+          <div id="data__activity--steps"></div>
+          <div id="data__activity--goal"></div>
+        </div>
+      </div>
+    </div>
+    <div id="timer__container">
+    <div id="inputArea">
+      <h1 id="time">30:00</h1>
+    </div>
+    <button class="start" type="button">Start</button>
+
+  <script src="timer.js"></script>
+  </body>
+</html>

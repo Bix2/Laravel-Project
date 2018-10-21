@@ -1,0 +1,51 @@
+.profile__container {
+    text-align: center;
+}
+
+.profile__container > #useravatar {
+    border-radius: 100%;
+    width: 80px;
+}
+
+.profile__container > #username {
+    width: 200px;
+}
+
+.data__activity--progress {
+    position: relative;
+}
+
+#data__activity--goal {
+    width: 100%;
+    height: 20px;
+    background-color: lightgray;
+}
+
+#data__activity--steps {
+    height: 20px;
+    background-color: #90F1DB;    
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.data__activity--info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data__activity--info img {
+    width: 30px;
+    align-self: center;
+    justify-self: start;
+}
+
+.data__activity--info p {
+    align-self: center;
+    justify-self: end;
+}
+
+#timer__container {
+    text-align: center;
+}
