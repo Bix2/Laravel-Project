@@ -21,21 +21,21 @@
         </div>
 
         <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                        @for ($d = -6; $d <= 0; $d++)
-                            <th>{{date('D', strtotime($d.' days'))}}</th>
-                        @endfor
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        @foreach ($stepsweek as $stepsday)
-                            <td>{{$stepsday}}</td>
-                        @endforeach
-                        </tr>
-                    </tbody>
-                </table>
+            <thead class="thead-dark">
+                <tr>
+                @for ($d = -6; $d <= 0; $d++)
+                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                @endfor
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                @foreach ($stepsweek as $stepsday)
+                    <td>{{$stepsday}}</td>
+                @endforeach
+                </tr>
+            </tbody>
+        </table>
 
         <!-- {{@print_r($habit)}} -->
 

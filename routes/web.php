@@ -1,5 +1,9 @@
 <?php
 
+
+use Carbon\Carbon;
+use App\Jobs\ProcessPodcast;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +20,8 @@ Route::get('/', function () {
 });
 
 /* Fitbit Authentication */
-Route::get('login/fitbit', 'FitbitAuthController@redirectToFitbit');
-Route::get('login/fitbit/callback', 'FitbitAuthController@handleFitbitCallback');
+Route::get('login/fitbit', 'UserController@redirectToFitbit');
+Route::get('login/fitbit/callback', 'UserController@handleFitbitCallback');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 /* API calls */
@@ -34,3 +38,5 @@ Route::get('/api/getstats', 'FitbitApiController@getstats');
 
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');
+
+Route::get('dosomething', 'DashboardController@doSomething');

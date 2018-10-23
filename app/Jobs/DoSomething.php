@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class ProcessApiCalls implements ShouldQueue
+class DoSomething implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -30,6 +30,10 @@ class ProcessApiCalls implements ShouldQueue
      */
     public function handle()
     {
-        var_dump("hello");
+        DB::table('habits')->insert([
+            'type' => 'Uite timpul Roby',
+            'short_description' => 'Breathing exercise',
+            'long_description' => 'Turns out all you need is a pair of healthy lungs'
+        ]);
     }
 }

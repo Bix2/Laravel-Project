@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\CodeBreak\FitBit;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
@@ -59,155 +60,41 @@ class FitbitApiController extends Controller {
         }
     }
 
-    public function showSteps() {
-        if (Auth::check()) { 
-           $me = Auth::user();
-    
-           $client = new Client([
-               "base_uri" => "https://api.fitbit.com/1.2/",
-           ]);
-    
-           $response = $client->get("user/-/activities/steps/date/today/1d.json", [
-               "headers" => [
-                   "Authorization" => "Bearer {$me->token}"
-               ]
-           ]);
-    
-           $steps = json_decode($response->getBody(), true);
-        //    print_r( $steps);
-           $stepsvalue = $steps['activities-steps'][0]['value'];
-           $stepsdate = $steps['activities-steps'][0]['dateTime'];
-           $dateCheck = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->first();
-           if( $dateCheck ) {
-            \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $stepsdate]])->update(['steps' => $stepsvalue]);
-           } else {
-            \DB::table('activitylogs')->insert([
-                ['date' => $stepsdate, 'steps' => $stepsvalue,  'user_id' => $me->id]
-            ]);
-           }
-           
-            
-       }
+    public static function showSteps() {
+        $data = FitBit::getActivitySteps();
+        // insert to database just for testing
+        FitBit::insertStepsToDB($data);
     }
 
-    public function showSleep() {
-        if (Auth::check()) { 
-           $me = Auth::user();
+    public static function showSleep() {
+        return FitBit::getSleepPattern();
+    }
    
-           $client = new Client([
-               "base_uri" => "https://api.fitbit.com/1.2/",
-           ]);
-
-         $response = $client->get("user/-/sleep/list.json?offset=7&limit=7&sort=desc&beforeDate=today", [
-               "headers" => [
-                   "Authorization" => "Bearer {$me->token}"
-               ]
-           ]);
-
-           $sleep = json_decode($response->getBody(), true);
-           print_r( $sleep);
-       }
-   }
-   
-   public function showWater() {
-        if (Auth::check()) { 
-            $me = Auth::user();
-
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/foods/log/water/date/today/1w.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $water = json_decode($response->getBody(), true);
-            print_r( $water);
-        }
+    public static function showWater() {
+        return FitBit::getWaterLog();
     }
   
-    public function showProfile() {
-        if (Auth::check()) { 
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/profile.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $profile = json_decode($response->getBody(), true);
-            $data['profile']=$profile;
-            print_r($data);
-            return view('profile', $data);
-        }
+    public static function showProfile() {
+        $data = FitBit::getProfileInfo();
+        return view('profile', $data);
     }
 
     public static function getSleepGoal() {
-        if (Auth::check()) { 
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/sleep/goal.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $sleepGoal = json_decode($response->getBody(), true);
-            return $sleepGoal['goal']['minDuration'];
-        }
+        // return sleep goal in minutes
+        return FitBit::getSleepPatternGoal();
     }
 
     public static function getActivityGoal() {
-        if (Auth::check()) { 
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/activities/goals/daily.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $activityGoal = json_decode($response->getBody(), true);
-            return $activityGoal['goals']['steps'];
-        }
+        return FitBit::getActivityStepsGoal();
     }
 
     public static function getWaterGoal() {
-        if (Auth::check()) { 
-            $me = Auth::user();
- 
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1.2/",
-            ]);
-
-            $response = $client->get("user/-/foods/log/water/goal.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}"
-                ]
-            ]);
-
-            $waterGoal = json_decode($response->getBody(), true);
-            return $waterGoal['goal']['goal'];
-        }
+        return FitBit::getWaterLogGoal();
     }
 
     public function getstats() {
         // get current steps
+        $me = Auth::user();
         $currentdate = date("Y-m-d");
         $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
         $totalsteps = 0;
@@ -227,13 +114,14 @@ class FitbitApiController extends Controller {
             }
         }
 
-        // $response = [
-        //     "status"            =>      "success",
-        //     "likeStatus"        =>      $likeStatus,
-        //     "postId"            =>      $postId
-        // ];
+        $response = [
+            "userName"          =>      $me->name,
+            "userAvatar"        =>      $me->avatar,
+            "currentDate"       =>      $currentdate,
+            "totalSteps"        =>      $totalsteps,
+            "stepsGoal"         =>      $stepsgoal
+        ];
 
-        $response = "Hello";
         header('Content-Type: application/json');
         echo json_encode($response);
     }
