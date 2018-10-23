@@ -17,8 +17,6 @@
 			</div>
 		</div>
     </div>
-
-    @if ( $totalsteps >= $stepsgoal )
     <div class="col-8">
         <div class="card">
             <div class="card-header">How are you feeling?</div>
@@ -43,73 +41,77 @@
             </div>
         </div>
     </div>
-    @endif
 
 	<div class="col-12 main__content">
+            @if ($trackedHabitsArray)
             <h3>Tracked habits:</h3>
             <div class="row">  
-            @foreach ($trackedhabits as $habit)
-                <div class="main__container--habit">
-                    <h4> {{ $habit->short_description }} </h4>
-                    <a href="/dashboard/{{$habit->type}}">See progress</a>
-                    @if ($habit->type == "sssleep")
-                        {{ $api->showSleep() }};
-                    @elseif ($habit->type == "water")
-                        {{ $api->showWater() }};
-                    @elseif ($habit->type == "exercise")
-                        {{ $api->showSteps() }}
-                        <div class="goal_progress_bar">
-                            <div class="goal_progress_bar_progress" style="width: {{$totalsteps/$stepsgoal*100}}%; background-color: @if ( ($totalsteps/$stepsgoal*100) < 25 )
-                            #E51C23
-                            @elseif ( ($totalsteps/$stepsgoal*100) < 50 )
-                            #FF9800
-                            @elseif ( ($totalsteps/$stepsgoal*100) < 75 )
-                            #FFEB3B
-                            @else
-                            #259B24
-                            @endif
-                            ">
-                             </div>
-                             <div class="goal_progress__progress_text"> {{$totalsteps}} out of {{$stepsgoal}}</div>
-                            
-                        </div>
-                        @if ( ($totalsteps/$stepsgoal*100) < 25 )
-                            <p class="goal_progress_text">You could go for a walk...</p>
-                            @elseif ( ($totalsteps/$stepsgoal*100) < 75 )
-                            <p class="goal_progress_text">Come on, you can reach your goal</p>
-                            @elseif ( ($totalsteps/$stepsgoal*100) < 100 )
-                            <p class="goal_progress_text">Almost there...</p>
-                            @else
-                            <p class="goal_progress_text">🏁🏁🏁Woohoo! You've reached your goal!</p>
+                @foreach ($trackedHabitsArray as $habit)
+                    <div class="main__container--habit">
+                        <h4> {{ $habit->short_description }} </h4>
+                        <a href="/dashboard/{{$habit->type}}">See progress</a>
+                        @if ($habit->type == "sleep")
+                            <p>sleep</p>
+                        @elseif ($habit->type == "water")
+                            <div class="goal_progress_bar">
+                                <div class="goal_progress_bar_progress" style="width: {{$trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100}}%; background-color: @if ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 25 )
+                                #E51C23
+                                @elseif ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 50 )
+                                #FF9800
+                                @elseif ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 75 )
+                                #FFEB3B
+                                @else
+                                #259B24
+                                @endif
+                                ">
+                                </div>
+                                <div class="goal_progress__progress_text"> {{$trackedHabitsInfo['userwater']}} out of {{$trackedHabitsInfo['watergoal']}}</div>
+                                
+                            </div>
+                        @elseif ($habit->type == "exercise")
+                            <div class="goal_progress_bar">
+                                <div class="goal_progress_bar_progress" style="width: {{$trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100}}%; background-color: @if ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 25 )
+                                #E51C23
+                                @elseif ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 50 )
+                                #FF9800
+                                @elseif ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 75 )
+                                #FFEB3B
+                                @else
+                                #259B24
+                                @endif
+                                ">
+                                </div>
+                                <div class="goal_progress__progress_text"> {{$trackedHabitsInfo['usersteps']}} out of {{$trackedHabitsInfo['stepsgoal']}}</div>
+                                
+                            </div>
+                        @elseif ($habit->type == "breathing")
+                            <a href="">Start guided breathing session</a>
                         @endif
-                    @elseif ($habit->type == "breathing")
-                        <a href="">Start guided breathing session</a>
-                    @endif
-                </div>
-            @endforeach
+                    </div>
+                @endforeach
             </div>
-            <h3>Untracked habits:</h3>
-            <div class="row">
-            @if ($untrackedhabits)
-            @foreach ($untrackedhabits as $habit)
-                <div class="main__container--habit">
-                    <h4> {{ $habit->short_description }} </h4>
-                    <a href="/dashboard/{{$habit->type}}">See progress</a>
-                    @if ($habit->type == "sssleep")
-                        <!-- {{ $api->showSleep() }}; -->
-                    @elseif ($habit->type == "water")
-                        <!-- {{ $api->showWater() }}; -->
-                    @elseif ($habit->type == "exercise")
-                        <!-- {{ $api->showSteps() }} -->
-                    @elseif ($habit->type == "breathing")
-                        <a href="">Start guided breathing session</a>
-                    @endif
-                </div>
-            @endforeach
-            @else
-                <h3>jfvufvn</h3>
             @endif
-            </div>
+
+            @if ($untrackedHabitsArray)
+                <h3>Untracked habits:</h3>
+                <div class="row">
+                    @foreach ($untrackedHabitsArray as $habit)
+                        <div class="main__container--habit">
+                            <h4> {{ $habit->short_description }} </h4>
+                            <a href="/dashboard/{{$habit->type}}">See progress</a>
+                            @if ($habit->type == "sleep")
+                                <p>sleep</p>
+                            @elseif ($habit->type == "water")
+                                <p>water</p>
+                            @elseif ($habit->type == "exercise")
+                                <p>exercise</p>
+                            @elseif ($habit->type == "breathing")
+                                <a href="">Start guided breathing session</a>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
     </div>
 </div>
 @endsection
