@@ -62,6 +62,28 @@ class Habit extends Model
         }
     }
 
+    public static function getTrackedWaterLogsData() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $waterlogs = \DB::table('waterlogs')->where('user_id', $me->id)->get();
+                
+            $waterweek = [];
+
+            for ($d = -6; $d <= 0; $d++) {
+                $date = date('Y-m-d', strtotime($d.' days'));
+                $amount = 0;
+                foreach ($waterlogs as $waterlog) {
+                    if($waterlog->date == $date && $waterlog->amount > $amount){
+                        $amount = $waterlog->amount;
+                    }
+                }
+                array_push($waterweek, $amount);
+            } 
+
+            return $waterweek;
+        }
+    }
+
     public static function trackHabit($habit) {
         if (Auth::check()) { 
             // save user data to variable $me

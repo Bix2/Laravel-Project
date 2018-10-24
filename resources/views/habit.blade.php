@@ -23,6 +23,24 @@
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
+
+                @if ( ($habit->id) == 2 )
+                
+                @for ($d = -6; $d <= 0; $d++)
+                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                @endfor
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                @foreach ($waterweek as $waterday)
+                    <td>{{$waterday}}</td>
+                @endforeach
+                @endif
+
+
+                @if ( ($habit->id) == 4 )
+                
                 @for ($d = -6; $d <= 0; $d++)
                     <th>{{date('D', strtotime($d.' days'))}}</th>
                 @endfor
@@ -33,6 +51,7 @@
                 @foreach ($stepsweek as $stepsday)
                     <td>{{$stepsday}}</td>
                 @endforeach
+                @endif
                 </tr>
             </tbody>
         </table>

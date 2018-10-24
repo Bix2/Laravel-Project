@@ -10,21 +10,39 @@ use App\Habit;
 
 class HabitController extends Controller
 {
+    // public function show($habit) {
+    //     $data = Habit::getTrackedHabitInfo($habit);
+    //     // TESTING: add data from steps activity (it should add the data from the actual habit instead)
+    //     $data['stepsweek'] = Habit::getTrackedActivityStepsData();
+
+    //     return view('habit', $data);
+    // }
+
     public function show($habit) {
         $data = Habit::getTrackedHabitInfo($habit);
+        $habitId = $data["habit"]->id;
+        if($habitId == 2) {
+            $data['waterweek'] = Habit::getTrackedWaterLogsData();
+        } else if($habitId == 4) {
+            $data['stepsweek'] = Habit::getTrackedActivityStepsData();
+        }
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
-        $data['stepsweek'] = Habit::getTrackedActivityStepsData();
-
+        
+        
         return view('habit', $data);
     }
 
     public function track($habit) {
         $data = Habit::trackHabit($habit);
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
-        $data['stepsweek'] = Habit::getTrackedActivityStepsData();
-
+        if($habitId == 2) {
+            $data['waterweek'] = Habit::getTrackedWaterLogsData();
+        } else if($habitId == 4) {
+            $data['stepsweek'] = Habit::getTrackedActivityStepsData();
+        }
         return view('habit', $data);
     }
+    
 
     /*
 
