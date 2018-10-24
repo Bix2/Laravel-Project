@@ -24,6 +24,42 @@
             <thead class="thead-dark">
                 <tr>
 
+
+
+                @if ( ($habit->id) == 1 )
+                    <th>Type</th>
+                @for ($d = -6; $d <= 0; $d++)
+                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                @endfor
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Deep sleep</td>
+                @foreach ($sleepweek["deep_minutes"] as $sleepday)
+                    <td>{{$sleepday}}</td>
+                @endforeach
+                </tr>
+                <tr>
+                    <td>Light sleep</td>
+                @foreach ($sleepweek["light_minutes"] as $sleepday)
+                    <td>{{$sleepday}}</td>
+                @endforeach
+                </tr>
+                <tr>
+                    <td>REM sleep</td>
+                @foreach ($sleepweek["rem_minutes"] as $sleepday)
+                    <td>{{$sleepday}}</td>
+                @endforeach
+                </tr>
+                <tr>
+                    <td>Awake</td>
+                @foreach ($sleepweek["wake_minutes"] as $sleepday)
+                    <td>{{$sleepday}}</td>
+                @endforeach
+                @endif
+
+
                 @if ( ($habit->id) == 2 )
                 
                 @for ($d = -6; $d <= 0; $d++)

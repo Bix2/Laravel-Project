@@ -84,6 +84,44 @@ class Habit extends Model
         }
     }
 
+
+    public static function getTrackedSleepLogsData() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $sleeplogs = \DB::table('sleeplogs')->where('user_id', $me->id)->get();
+                
+            $sleepweek = [];
+            $sleepweek["deep_minutes"] = [];
+            $sleepweek["light_minutes"] = [];
+            $sleepweek["rem_minutes"] = [];
+            $sleepweek["wake_minutes"] = [];
+
+            for ($d = -6; $d <= 0; $d++) {
+                $date = date('Y-m-d', strtotime($d.' days'));
+                $deep_minutes = 0;
+                $light_minutes = 0;
+                $rem_minutes = 0;
+                $wake_minutes = 0;
+                foreach ($sleeplogs as $sleeplog) {
+                    if($sleeplog->date_of_sleep == $date && $sleeplog->deep_minutes >= $deep_minutes && $sleeplog->light_minutes >= $light_minutes && $sleeplog->rem_minutes >= $rem_minutes && $sleeplog->wake_minutes >= $wake_minutes){
+                        $deep_minutes = $sleeplog->deep_minutes;
+                        $light_minutes = $sleeplog->light_minutes;
+                        $rem_minutes = $sleeplog->rem_minutes;
+                        $wake_minutes = $sleeplog->wake_minutes;
+                    }
+                }
+                array_push($sleepweek["deep_minutes"], $deep_minutes);
+                array_push($sleepweek["light_minutes"], $light_minutes);
+                array_push($sleepweek["rem_minutes"], $rem_minutes);
+                array_push($sleepweek["wake_minutes"], $wake_minutes);
+            } 
+        
+
+            return $sleepweek;
+        }
+    }
+
+
     public static function trackHabit($habit) {
         if (Auth::check()) { 
             // save user data to variable $me

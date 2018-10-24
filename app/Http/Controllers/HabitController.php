@@ -21,7 +21,9 @@ class HabitController extends Controller
     public function show($habit) {
         $data = Habit::getTrackedHabitInfo($habit);
         $habitId = $data["habit"]->id;
-        if($habitId == 2) {
+        if($habitId == 1) {
+            $data['sleepweek'] = Habit::getTrackedSleepLogsData();
+        } else if($habitId == 2) {
             $data['waterweek'] = Habit::getTrackedWaterLogsData();
         } else if($habitId == 4) {
             $data['stepsweek'] = Habit::getTrackedActivityStepsData();
