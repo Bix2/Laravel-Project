@@ -25,7 +25,7 @@ Route::get('login/fitbit/callback', 'UserController@handleFitbitCallback');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 /* API calls */
-Route::get('/profile', 'FitbitApiController@showProfile');
+Route::get('/profile', 'UserController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
 
@@ -34,7 +34,7 @@ Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
 
 /* Chrome Extension */
-Route::get('/api/getstats', 'FitbitApiController@getstats');
+Route::get('/api/getstats', 'UserController@getStats');
 
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');

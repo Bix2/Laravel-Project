@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\CodeBreak\FitBit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -61,5 +62,15 @@ class UserController extends Controller
             'admin' => 0
         ]);
     }
+
+    public static function showProfile() {
+        $data = FitBit::getProfileInfo();
+        return view('profile', $data);
+    }
+
+    public function getStats() {
+        User::getStatsForChromeExtention();
+    }
+    
 
 }

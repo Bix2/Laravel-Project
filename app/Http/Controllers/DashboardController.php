@@ -51,16 +51,7 @@ class DashboardController extends Controller
         }
     }
 
-    // public function checkDailyGoals($userId, $date) {
-    //     dd(date('d-m-Y'));
-    //     \DB::table('habit_user')->insert([
-    //         'habit_id' => $thishabit->id, 
-    //         'user_id' => $me->id,
-    //         'goal' => $goal
-    //     ]);
-    //     $data['button'] = ["text" => "Stop tracking this habit"];
-    // }
-
+    // Jobs Testing
     public function doSomething()
     {
         DoSomething::dispatch()

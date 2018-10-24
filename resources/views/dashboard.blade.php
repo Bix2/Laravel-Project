@@ -100,12 +100,13 @@
                             <h4> {{ $habit->short_description }} </h4>
                             <a href="/dashboard/{{$habit->type}}">See progress</a>
                             @if ($habit->type == "sleep")
-                                <p>sleep</p>
+                                <!-- Something -->
                             @elseif ($habit->type == "water")
-                                <p>water</p>
+                                <!-- Something -->
                             @elseif ($habit->type == "exercise")
-                                <p>exercise</p>
+                                <!-- Something -->
                             @elseif ($habit->type == "breathing")
+                                <!-- Something -->
                                 <a href="">Start guided breathing session</a>
                             @endif
                         </div>

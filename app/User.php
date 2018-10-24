@@ -113,6 +113,41 @@ class User extends Authenticatable
             return $data;
         }
     }
+
+    // TESTING: Google Chrome Extention
+    public static function getStatsForChromeExtention() {
+        // get current steps
+        $me = Auth::user();
+        $currentdate = date("Y-m-d");
+        $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
+        $totalsteps = 0;
+        foreach ($usersteps as $userstep) {
+            if($userstep->steps > $totalsteps){
+                $totalsteps = $userstep->steps;
+            }
+            
+        }
+
+        // get goal
+        $stepsgoal = 0;
+        $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
+        foreach ($usergoals as $usergoal) {
+            if($usergoal->habit_id == 4) {
+                $stepsgoal = $usergoal->goal;
+            }
+        }
+
+        $response = [
+            "userName"          =>      $me->name,
+            "userAvatar"        =>      $me->avatar,
+            "currentDate"       =>      $currentdate,
+            "totalSteps"        =>      $totalsteps,
+            "stepsGoal"         =>      $stepsgoal
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
     
 
     public function isAdmin() {
