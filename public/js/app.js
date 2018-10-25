@@ -13879,11 +13879,11 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(40)
+var normalizeComponent = __webpack_require__(41)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(42)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(43)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -13926,7 +13926,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(43);
+module.exports = __webpack_require__(44);
 
 
 /***/ }),
@@ -13942,6 +13942,7 @@ module.exports = __webpack_require__(43);
 
 __webpack_require__(14);
 window.Vue = __webpack_require__(37);
+__webpack_require__(40);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13967,6 +13968,7 @@ var app = new Vue({
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
+
 
 window._ = __webpack_require__(15);
 window.Popper = __webpack_require__(3).default;
@@ -47238,6 +47240,39 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* 40 */
 /***/ (function(module, exports) {
 
+$(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#breath_session__buttton').on('click', function (event) {
+        var amount = 1;
+        event.preventDefault();
+        $('.breath__animation').addClass('session');
+        setTimeout(function () {
+            $('.breath__animation').removeClass('session');
+            console.log('starting...');
+            $.ajax({
+                /* the route pointing to the post function */
+                url: '/dashboard/breathing/session',
+                type: 'POST',
+                /* send the csrf-token and the input to the controller */
+                data: { amount: amount },
+                dataType: 'JSON',
+                /* remind that 'data' is the response of the AjaxController */
+                success: function success(data) {
+                    console.log('done');
+                }
+            });
+        }, 3000);
+    });
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -47344,7 +47379,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47416,7 +47451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47567,7 +47602,7 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

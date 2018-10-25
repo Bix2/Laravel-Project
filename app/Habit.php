@@ -84,6 +84,27 @@ class Habit extends Model
         }
     }
 
+    public static function getTrackedBreathingData() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $breathinglogs = \DB::table('breathing')->where('user_id', $me->id)->get();
+                
+            $breathingweek = [];
+
+            for ($d = -6; $d <= 0; $d++) {
+                $date = date('Y-m-d', strtotime($d.' days'));
+                $amount = 0;
+                foreach ($breathinglogs as $breathinglog) {
+                    if( strpos($breathinglog->time, $date) === 0){
+                        $amount = $breathinglog->amount + $amount;
+                    }
+                }
+                array_push($breathingweek, $amount);
+            } 
+            return $breathingweek;
+        }
+    }
+
 
     public static function getTrackedSleepLogsData() {
         if (Auth::check()) { 
@@ -167,6 +188,17 @@ class Habit extends Model
             return $data;
         }
     }
+    public static function saveBreathTracked(Request $request) {
+        $amount = $request->input('amount');
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            \DB::table('breathing')->insert([
+                'user_id' => $userId,
+                'amount' => $amount
+            ]);
+        }
+    }
+    
 
     public function users() {
         return $this->belongsToMany('\App\User');
