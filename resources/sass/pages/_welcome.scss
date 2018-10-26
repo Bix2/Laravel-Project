@@ -75,3 +75,20 @@ h1.logo_text {
         padding-left: 100px;
     }
 }
+
+.dailystats {
+    margin-top: 1rem;
+    .dailytotal {
+        color: #fff;
+        font-weight: 200;
+    }
+    
+    .dailyamount {
+        font-weight: 400;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+}

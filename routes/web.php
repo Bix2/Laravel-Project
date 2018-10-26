@@ -15,9 +15,7 @@ use App\Jobs\ProcessPodcast;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HabitController@getDaily');
 
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');

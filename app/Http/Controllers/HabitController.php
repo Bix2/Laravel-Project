@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Habit;
+use App\Http\CodeBreak\Stats;
 
 
 class HabitController extends Controller
@@ -62,6 +63,11 @@ class HabitController extends Controller
         Habit::saveBreathTracked($request);
     }
     
+
+    public function getDaily() {
+        $data = Stats::getDailyTracked();
+        return view('welcome', $data);
+    }
 
     /*
 
