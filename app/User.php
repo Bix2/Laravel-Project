@@ -116,7 +116,9 @@ class User extends Authenticatable
 
     // TESTING: Google Chrome Extention
     public static function getStatsForChromeExtention() {
+
         // get current steps
+        // $me = User::where(token = token);
         $me = Auth::user();
         $currentdate = date("Y-m-d");
         $usersteps = \DB::table('activitylogs')->where('user_id', $me->id)->where('date', $currentdate)->get();
