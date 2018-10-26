@@ -42,8 +42,8 @@ class HabitController extends Controller
         return redirect('/dashboard/'.$habit);
     }
 
-    // public function showbreath($habit) {
-    //     $data = Habit::getTrackedHabitInfo($habit);
+    public function showbreath($habit) {
+        $data = Habit::getTrackedHabitInfo($habit);
     //     $habitId = $data["habit"]->id;
     //     if($habitId == 1) {
     //         $data['sleepweek'] = Habit::getTrackedSleepLogsData();
@@ -55,8 +55,8 @@ class HabitController extends Controller
     //     // TESTING: add data from steps activity (it should add the data from the actual habit instead)
         
         
-    //     return view('breathsession', $data);
-    // }
+        return view('breathsession', $data);
+    }
 
     public function trackbreath(Request $request) {
         Habit::saveBreathTracked($request);
