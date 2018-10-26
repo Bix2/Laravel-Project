@@ -20,5 +20,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'fitbit_id' =>  str_random(10),
         'token' => $faker->sha1,
         'avatar' => $faker->imageUrl(400,300),
+        'admin' => '0',
     ];
 });
