@@ -47,6 +47,7 @@ class UserController extends Controller
             // update access token
             $user->update([
                 'token' => $data->token,
+                'remember_token' => $data->refreshToken,
                 'fitbit_id' => $data->id,
                 'name'   => $data->name,
                 'avatar' => $data->avatar,
@@ -56,6 +57,7 @@ class UserController extends Controller
         // else store user in db
         return $user = User::create([
             'token' => $data->token,
+            'remember_token' => $data->refreshToken,
             'fitbit_id' => $data->id,
             'name'   => $data->name,
             'avatar' => $data->avatar,
