@@ -85,7 +85,7 @@
                                 
                             </div>
                         @elseif ($habit->type == "breathing")
-                            <a href="">Start guided breathing session</a>
+                            <a href="/dashboard/breathing/session">Start guided breathing session</a>
                         @endif
                     </div>
                 @endforeach
@@ -107,7 +107,7 @@
                                 <!-- Something -->
                             @elseif ($habit->type == "breathing")
                                 <!-- Something -->
-                                <a href="">Start guided breathing session</a>
+                                <a href="/dashboard/breathing/session">Start guided breathing session</a>
                             @endif
                         </div>
                     @endforeach

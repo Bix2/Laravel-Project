@@ -75,6 +75,22 @@
                 @endif
 
 
+                
+                @if ( ($habit->id) == 3 )
+                
+                @for ($d = -6; $d <= 0; $d++)
+                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                @endfor
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                @foreach ($breathingweek as $breathingday)
+                    <td>{{$breathingday}}</td>
+                @endforeach
+                @endif
+                
+
                 @if ( ($habit->id) == 4 )
                 
                 @for ($d = -6; $d <= 0; $d++)

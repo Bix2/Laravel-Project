@@ -30,6 +30,8 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
 
 /* Habits */
+Route::get('/dashboard/{habit}/session', 'HabitController@showbreath');
+Route::post('/dashboard/{habit}/session', 'HabitController@trackbreath');
 Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
 

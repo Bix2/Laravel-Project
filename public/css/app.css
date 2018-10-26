@@ -11003,6 +11003,57 @@ div.holidayShipping .emphasis {
   background: no-repeat center;
 }
 
+.breath__container, .breath__animation {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+.breath__container {
+  background-color: #b2b6e8;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.breath__animation {
+  background-color: #5e64b5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.breath__animation.session {
+  -webkit-animation: breathing cubic-bezier(0.57, 0.13, 0.41, 1) 3s infinite;
+          animation: breathing cubic-bezier(0.57, 0.13, 0.41, 1) 3s infinite;
+}
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 body.welcome-page {
   background: #0c1153;
 }

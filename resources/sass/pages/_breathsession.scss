@@ -1,0 +1,36 @@
+.breath__container, .breath__animation {
+    width: 200px; 
+    height: 200px; 
+    border-radius: 100%; 
+}
+
+.breath__container {
+    background-color: #b2b6e8;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.breath__animation {
+    background-color: #5e64b5; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    margin: auto;
+    transform: scale(0);
+}
+
+.breath__animation.session {
+    animation: breathing cubic-bezier(.57,.13,.41,1) 3s infinite;
+}
+
+@keyframes breathing {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
