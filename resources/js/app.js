@@ -30,7 +30,9 @@ require('./breathingsession');
 //     }
 // });
 
-Vue.component('apexcharts', require('./components/chart.vue'));
+Vue.component('weeksleepchart', require('./components/WeekSleepChartComponent.vue'));
+Vue.component('daysleepchart', require('./components/DaySleepChartComponent.vue'));
+
 var app = new Vue({
   el: '#app'
 })

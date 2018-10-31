@@ -17,7 +17,7 @@
 			</div>
 		</div>
     </div>
-    <div class="col-8">
+    <div class="col-12">
         <div class="card">
             <div class="card-header">How are you feeling?</div>
             <div class="card-body">
@@ -44,15 +44,19 @@
 
 	<div class="col-12 main__content">
             @if ($trackedHabitsArray)
-            <h3>Tracked habits:</h3>
             <div class="row">  
                 @foreach ($trackedHabitsArray as $habit)
-                    <div class="main__container--habit">
+                    <div class="col-12">
                         <h4> {{ $habit->short_description }} </h4>
-                        <a href="/dashboard/{{$habit->type}}">See progress</a>
+                        <!-- <a href="/dashboard/{{$habit->type}}">See progress</a> -->
                         @if ($habit->type == "sleep")
-                            <div id="app">
-                                <apexcharts></apexcharts>
+                            <div id="app" class="row">
+                                <div class="col-8">
+                                    <weeksleepchart></weeksleepchart>
+                                </div>
+                                <div class="col-4">
+                                    <daysleepchart></daysleepchart>
+                                </div>
                             </div>
                         @elseif ($habit->type == "water")
                             <div class="goal_progress_bar">

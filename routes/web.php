@@ -36,6 +36,7 @@ Route::post('/dashboard/{habit}', 'HabitController@track');
 /* Chrome Extension */
 Route::get('/api/getstats', 'UserController@getStats');
 Route::get('/api/getweeksleep', 'UserController@getWeekSleepStats');
+Route::get('/api/getdaysleep', 'UserController@getDaySleepStats');
 
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');

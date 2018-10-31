@@ -13,7 +13,7 @@ class HabitsSeeder extends Seeder
     {
         DB::table('habits')->insert([
             'type' => 'sleep',
-            'short_description' => 'Understand your sleep patterns',
+            'short_description' => 'Sleep Pattern',
             'long_description' => 'CodeBreak helps you better understand your sleep patterns and quality through a range of sleep tools'
         ]);
 

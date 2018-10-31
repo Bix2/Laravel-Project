@@ -115,22 +115,33 @@ class User extends Authenticatable
     }
 
     public static function getStatsSleepWeekly() {
-        $me = Auth::user();
-        $currentdate = date("Y-m-d");
-        $oneDayAgo = date("Y-m-d", strtotime('-1 days'));
-        $twoDaysAgo = date("Y-m-d", strtotime('-2 days'));
-        $theeDaysAgo = date("Y-m-d", strtotime('-3 days'));
-        $fourDaysAgo = date("Y-m-d", strtotime('-4 days'));
-        $fiveDaysAgo = date("Y-m-d", strtotime('-5 days'));
-        $sixDaysAgo = date("Y-m-d", strtotime('-6 days'));
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $sixDaysAgo = date("Y-m-d", strtotime('-6 days'));
 
-        $currentDateSleep = \DB::table('sleeplogs')
-            ->where('date_of_sleep','>=',$sixDaysAgo)
-            ->where('user_id', $me->id)
-            ->get();
+            $currentDateSleep = \DB::table('sleeplogs')
+                ->where('date_of_sleep','>=',$sixDaysAgo)
+                ->where('user_id', $me->id)
+                ->get();
 
-        header('Content-Type: application/json');
-        echo json_encode($currentDateSleep);
+            header('Content-Type: application/json');
+            echo json_encode($currentDateSleep);
+        }
+    }
+
+    public static function getStatsSleepDaily() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+
+            $currentDateSleep = \DB::table('sleeplogs')
+                ->where('date_of_sleep', $currentdate)
+                ->where('user_id', $me->id)
+                ->first();
+
+            header('Content-Type: application/json');
+            echo json_encode($currentDateSleep);
+        }
     }
 
     // TESTING: Google Chrome Extention
