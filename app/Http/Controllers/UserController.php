@@ -73,6 +73,10 @@ class UserController extends Controller
     public function getStats() {
         User::getStatsForChromeExtention();
     }
+
+    public function getWeekSleepStats() {
+        User::getStatsSleepWeekly();
+    }
     
 
 }

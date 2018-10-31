@@ -11,6 +11,6 @@ class SleeplogsSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Sleeplogs::class, 100)->create();
+        factory(\App\Sleeplogs::class, 40)->create();
     }
 }

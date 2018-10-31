@@ -47406,7 +47406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'BarExample',
+    name: 'apexcharts',
     components: {
         apexcharts: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
     },
@@ -47436,7 +47436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     width: 2
                 },
                 xaxis: {
-                    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    categories: []
 
                 },
                 yaxis: {
@@ -47451,7 +47451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     shared: false,
                     y: {
                         formatter: function formatter(val) {
-                            return val + "K";
+                            return val + " min";
                         }
                     }
                 },
@@ -47469,23 +47469,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             series: [{
                 name: 'Light',
-                data: [44, 55, 41, 37, 22, 43, 21]
+                data: []
             }, {
                 name: 'REM',
-                data: [53, 32, 33, 52, 13, 43, 32]
+                data: []
             }, {
                 name: 'Deep',
-                data: [12, 17, 11, 9, 15, 11, 20]
+                data: []
             }, {
                 name: 'Awake',
-                data: [9, 7, 5, 8, 6, 9, 4]
+                data: []
             }]
         };
     },
     created: function created() {
         var self = this;
-        axios.get('https://homestead.test/api//api/getstats').then(function (response) {
-            console.log(response.data.data);
+        var last7Days = [];
+        var daysNotActive = [];
+        var daysActive = [];
+        for (var i = 0; i < 7; i++) {
+            var days = i; // Days you want to subtract
+            var date = new Date();
+            var last = new Date(date.getTime() - days * 24 * 60 * 60 * 1000);
+            var day = last.getDate();
+            var month = last.getMonth() + 1;
+            var year = last.getFullYear();
+            var createdDate = year + "-" + month + "-" + day;
+            last7Days.push(createdDate);
+        }
+        self.chartOptions.xaxis.categories = [last7Days[0], last7Days[1], last7Days[2], last7Days[3], last7Days[4], last7Days[5], last7Days[6]];
+        axios.get('http://homestead.test/api/getweeksleep').then(function (response) {
+            for (var n = 0; n < last7Days.length; n++) {
+                for (var n2 = 0; n2 < response.data.length; n2++) {
+                    if (last7Days[n] == response.data[n2].date_of_sleep) {
+                        var data = {
+                            date: last7Days[n],
+                            lightSleep: response.data[n2].light_minutes,
+                            remSleep: response.data[n2].rem_minutes,
+                            wakeSleep: response.data[n2].wake_minutes,
+                            deepSleep: response.data[n2].deep_minutes
+                        };
+                        daysActive.push(data);
+                    }
+                }
+            }
+            var counter = 0;
+            for (var _i = 0; _i < last7Days.length; _i++) {
+                console.log(daysActive[counter]);
+                if (daysActive[counter] != undefined) {
+                    if (last7Days[_i] == daysActive[counter].date) {
+                        self.series[0].data.push(daysActive[counter].lightSleep);
+                        self.series[1].data.push(daysActive[counter].remSleep);
+                        self.series[2].data.push(daysActive[counter].deepSleep);
+                        self.series[3].data.push(daysActive[counter].wakeSleep);
+                        counter++;
+                    } else {
+                        self.series[0].data.push(0);
+                        self.series[1].data.push(0);
+                        self.series[2].data.push(0);
+                        self.series[3].data.push(0);
+                    }
+                } else {
+                    self.series[0].data.push(0);
+                    self.series[1].data.push(0);
+                    self.series[2].data.push(0);
+                    self.series[3].data.push(0);
+                }
+            }
         });
     }
 });
