@@ -15,19 +15,29 @@ require('./breathingsession');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('modal-component', require('./components/form.vue'));
-Vue.component('form-component', require('./components/form.vue'));
+// Vue.component('modal-component', require('./components/form.vue'));
+// Vue.component('form-component', require('./components/form.vue'));
 
-const app = new Vue({
-    el: '#main',
-    methods: {
-        showModal () {
-          this.$refs.feedbackModal.show();
-        },
-        hideModal () {
-          this.$refs.feedbackModal.hide();
-        }
-    }
-});
+// const app = new Vue({
+//     el: '#main',
+//     methods: {
+//         showModal () {
+//           this.$refs.feedbackModal.show();
+//         },
+//         hideModal () {
+//           this.$refs.feedbackModal.hide();
+//         }
+//     }
+// });
+
+Vue.component('apexcharts', require('./components/chart.vue'));
+var app = new Vue({
+  el: '#app'
+})
 
 
+// $.ajaxSetup({
+//   headers: {
+//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//   }
+// });

@@ -12,9 +12,7 @@
                 </header>
 
                 <div id="main" class="col-10">
-
-                        @yield('content')
-
+                    @yield('content')
                 </div>
             </div>
         </div>

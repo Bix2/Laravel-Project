@@ -51,7 +51,9 @@
                         <h4> {{ $habit->short_description }} </h4>
                         <a href="/dashboard/{{$habit->type}}">See progress</a>
                         @if ($habit->type == "sleep")
-                            <p>sleep</p>
+                            <div id="app">
+                                <apexcharts></apexcharts>
+                            </div>
                         @elseif ($habit->type == "water")
                             <div class="goal_progress_bar">
                                 <div class="goal_progress_bar_progress" style="width: {{$trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100}}%; background-color: @if ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 25 )

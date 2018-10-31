@@ -23,7 +23,9 @@
     "dependencies": {
         "ajv": "^6.5.4",
         "ajv-keywords": "^3.2.0",
+        "apexcharts": "^2.1.8",
         "imagemin": "^5.3.1",
-        "node-sass": "^4.9.3"
+        "node-sass": "^4.9.3",
+        "vue-apexcharts": "^1.2.2"
     }
 }
