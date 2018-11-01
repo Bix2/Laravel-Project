@@ -71,11 +71,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .chart {
-    padding: 20px 20px 0;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-</style>

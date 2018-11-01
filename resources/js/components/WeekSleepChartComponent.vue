@@ -146,7 +146,7 @@ export default {
 
 <style>
   .chart {
-    padding: 20px 20px 0;
+    padding: 20px;
     background-color: #fff;
     border-radius: 10px;
   }

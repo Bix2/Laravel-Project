@@ -33,6 +33,7 @@ Route::get('/api/getdaysleep', 'UserController@getDaySleepStats');
 Route::get('/api/getweekactivity', 'UserController@getWeekActivityStats');
 Route::get('/api/getdayactivity', 'UserController@getDayActivityStats');
 Route::get('/api/getdaybreathing', 'UserController@getDayBreathingStats');
+Route::get('/api/getdaywater', 'UserController@getDayWaterStats');
 
 /* Habits */
 Route::get('/dashboard/{habit}/session', 'HabitController@showbreath');

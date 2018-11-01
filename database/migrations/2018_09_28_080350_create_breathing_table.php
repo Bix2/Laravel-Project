@@ -17,7 +17,7 @@ class CreateBreathingTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('amount');
-            $table->timestamp('time');
+            $table->date('date');
             $table->timestamps();
         });
     }

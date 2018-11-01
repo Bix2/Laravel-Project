@@ -95,7 +95,7 @@ class Habit extends Model
                 $date = date('Y-m-d', strtotime($d.' days'));
                 $amount = 0;
                 foreach ($breathinglogs as $breathinglog) {
-                    if( strpos($breathinglog->time, $date) === 0){
+                    if( strpos($breathinglog->date, $date) === 0){
                         $amount = $breathinglog->amount + $amount;
                     }
                 }

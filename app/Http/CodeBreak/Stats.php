@@ -14,7 +14,7 @@ class Stats {
 
         $dailywater = \DB::table('waterlogs')->where('date', $date)->sum('amount');
 
-        $dailybreathing = \DB::table('breathing')->where('time', 'like', $date.'%')->sum('amount');
+        $dailybreathing = \DB::table('breathing')->where('date', 'like', $date.'%')->sum('amount');
 
         $dailysteps = \DB::table('activitylogs')->where('date', $date)->sum('steps');
 

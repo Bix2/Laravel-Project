@@ -89,6 +89,14 @@ class UserController extends Controller
     public function getDayActivityStats() {
         User::getStatsActivityDaily();
     }
+
+    public function getDayBreathingStats() {
+        User::getStatsBreathingDaily();
+    }
+
+    public function getDayWaterStats() {
+        User::getStatsWaterDaily();
+    }
     
 
 }

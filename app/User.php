@@ -88,8 +88,8 @@ class User extends Authenticatable
                         $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
                         $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
                         foreach ($userbreathing as $breathing) {
-                            if($breathing->time > $totalbreathing){
-                                $totalbreathing = $breathing->time;
+                            if($breathing->date > $totalbreathing){
+                                $totalbreathing = $breathing->date;
                             }
                         }
                         $data['trackedHabitsInfo']['totalbreathing'] = $totalbreathing;
@@ -183,6 +183,43 @@ class User extends Authenticatable
             $response[] = [
                 'goal'          => $goal->goal,
                 'activitylogs'   => $currentDateActivity
+            ];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public static function getStatsBreathingDaily() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+            $currentDateBreathing = \DB::table('breathing')
+                ->where('date', $currentdate)
+                ->where('user_id', $me->id)
+                ->get();
+
+            header('Content-Type: application/json');
+            echo json_encode($currentDateBreathing);
+        }
+    }
+
+    public static function getStatsWaterDaily() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+            $currentDateWater = \DB::table('waterlogs')
+                ->where('date', $currentdate)
+                ->where('user_id', $me->id)
+                ->first();
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 2)
+                ->where('user_id', $me->id)
+                ->first();
+
+            $response[] = [
+                'goal'        => $goal->goal,
+                'waterlogs'   => $currentDateWater
             ];
 
             header('Content-Type: application/json');

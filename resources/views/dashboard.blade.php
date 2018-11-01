@@ -58,21 +58,12 @@
                                     <daysleepchart></daysleepchart>
                                 </div>
                             </div>
-                        @elseif ($habit->type == "water")
-                            <div class="goal_progress_bar">
-                                <div class="goal_progress_bar_progress" style="width: {{$trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100}}%; background-color: @if ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 25 )
-                                #E51C23
-                                @elseif ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 50 )
-                                #FF9800
-                                @elseif ( ($trackedHabitsInfo['userwater']/$trackedHabitsInfo['watergoal']*100) < 75 )
-                                #FFEB3B
-                                @else
-                                #259B24
-                                @endif
-                                ">
+                        @elseif ($habit->type == "breathing")
+                            <div class="row">
+                                <div class="col-12">
+                                    <daybreathingchart></daybreathingchart>
                                 </div>
-                                <div class="goal_progress__progress_text"> {{$trackedHabitsInfo['userwater']}} out of {{$trackedHabitsInfo['watergoal']}}</div>
-                                
+                                <a href="/dashboard/breathing/session">Start guided breathing session</a>
                             </div>
                         @elseif ($habit->type == "exercise")
                             <div class="row">
@@ -82,12 +73,13 @@
                                 <div class="col-8">
                                     <weekactivitychart></weekactivitychart>
                                 </div>
-                                <div class="col-8">
-                                    <daybreathingchart></daybreathingchart>
+                            </div>
+                        @elseif ($habit->type == "water")
+                            <div class="row">
+                                <div class="col-12">
+                                    <daywaterchart></daywaterchart>
                                 </div>
                             </div>
-                        @elseif ($habit->type == "breathing")
-                            <a href="/dashboard/breathing/session">Start guided breathing session</a>
                         @endif
                     </div>
                 @endforeach

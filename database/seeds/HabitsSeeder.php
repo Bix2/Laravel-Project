@@ -18,12 +18,6 @@ class HabitsSeeder extends Seeder
         ]);
 
         DB::table('habits')->insert([
-            'type' => 'water',
-            'short_description' => 'Keep you hydrated',
-            'long_description' => 'CodeBreak helps you drink liquids more often'
-        ]);
-
-        DB::table('habits')->insert([
             'type' => 'breathing',
             'short_description' => 'Your Daily Breathing Session',
             'long_description' => 'Turns out all you need is a pair of healthy lungs'
@@ -33,6 +27,12 @@ class HabitsSeeder extends Seeder
             'type' => 'exercise',
             'short_description' => 'Your Activity',
             'long_description' => 'CodeBreak helps you relax after some coding hours'
+        ]);
+
+        DB::table('habits')->insert([
+            'type' => 'water',
+            'short_description' => 'Your Daily Hydration',
+            'long_description' => 'CodeBreak helps you drink liquids more often'
         ]);
     }
 }
