@@ -129,6 +129,29 @@ class User extends Authenticatable
         }
     }
 
+    public static function getStatsActivityWeekly() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $sixDaysAgo = date("Y-m-d", strtotime('-6 days'));
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 4)
+                ->where('user_id', $me->id)
+                ->first();
+            $lastActivities = \DB::table('activitylogs')
+                ->where('date','>=',$sixDaysAgo)
+                ->where('user_id', $me->id)
+                ->get();
+
+            $response[] = [
+                'goal'          => $goal->goal,
+                'activitylogs'   => $lastActivities
+            ];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
     public static function getStatsSleepDaily() {
         if (Auth::check()) { 
             $me = Auth::user();
@@ -141,6 +164,29 @@ class User extends Authenticatable
 
             header('Content-Type: application/json');
             echo json_encode($currentDateSleep);
+        }
+    }
+
+    public static function getStatsActivityDaily() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+            $currentDateActivity = \DB::table('activitylogs')
+                ->where('date', $currentdate)
+                ->where('user_id', $me->id)
+                ->first();
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 4)
+                ->where('user_id', $me->id)
+                ->first();
+
+            $response[] = [
+                'goal'          => $goal->goal,
+                'activitylogs'   => $currentDateActivity
+            ];
+
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     }
 

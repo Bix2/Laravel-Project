@@ -89,9 +89,9 @@ export default {
         var days = i; // Days you want to subtract
         var date = new Date();
         var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
-        var day =last.getDate();
-        var month=last.getMonth()+1;
-        var year=last.getFullYear();
+        var day = ("0" + last.getDate()).slice(-2);
+        var month = last.getMonth()+1;
+        var year = last.getFullYear();
         var createdDate = year + "-" + month + "-" + day;
         last7Days.push(createdDate);
     }

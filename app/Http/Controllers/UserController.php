@@ -78,8 +78,16 @@ class UserController extends Controller
         User::getStatsSleepWeekly();
     }
 
+    public function getWeekActivityStats() {
+        User::getStatsActivityWeekly();
+    }
+
     public function getDaySleepStats() {
         User::getStatsSleepDaily();
+    }
+
+    public function getDayActivityStats() {
+        User::getStatsActivityDaily();
     }
     
 

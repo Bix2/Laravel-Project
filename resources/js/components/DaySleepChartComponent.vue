@@ -80,10 +80,17 @@ export default {
         var self = this;
             axios.get('http://homestead.test/api/getdaysleep')
                 .then(function(response) {
-                    self.series[0].data = [response.data.light_minutes];
-                    self.series[1].data = [response.data.rem_minutes];
-                    self.series[2].data = [response.data.deep_minutes];
-                    self.series[3].data = [response.data.wake_minutes];
+                    if(response.data) {
+                        self.series[0].data = [response.data.light_minutes];
+                        self.series[1].data = [response.data.rem_minutes];
+                        self.series[2].data = [response.data.deep_minutes];
+                        self.series[3].data = [response.data.wake_minutes];
+                    } else {
+                        self.series[0].data = [0];
+                        self.series[1].data = [0];
+                        self.series[2].data = [0];
+                        self.series[3].data = [0];
+                    }
             });
     }
 }

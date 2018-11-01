@@ -13,7 +13,7 @@ class HabitsSeeder extends Seeder
     {
         DB::table('habits')->insert([
             'type' => 'sleep',
-            'short_description' => 'Sleep Pattern',
+            'short_description' => 'Your Sleep Pattern',
             'long_description' => 'CodeBreak helps you better understand your sleep patterns and quality through a range of sleep tools'
         ]);
 
@@ -25,13 +25,13 @@ class HabitsSeeder extends Seeder
 
         DB::table('habits')->insert([
             'type' => 'breathing',
-            'short_description' => 'Breathing exercise',
+            'short_description' => 'Your Daily Breathing Session',
             'long_description' => 'Turns out all you need is a pair of healthy lungs'
         ]);
 
         DB::table('habits')->insert([
             'type' => 'exercise',
-            'short_description' => 'Stretching after coding',
+            'short_description' => 'Your Activity',
             'long_description' => 'CodeBreak helps you relax after some coding hours'
         ]);
     }

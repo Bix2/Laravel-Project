@@ -27,16 +27,18 @@ Route::get('/profile', 'UserController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
 
+Route::get('/api/getstats', 'UserController@getStats');
+Route::get('/api/getweeksleep', 'UserController@getWeekSleepStats');
+Route::get('/api/getdaysleep', 'UserController@getDaySleepStats');
+Route::get('/api/getweekactivity', 'UserController@getWeekActivityStats');
+Route::get('/api/getdayactivity', 'UserController@getDayActivityStats');
+Route::get('/api/getdaybreathing', 'UserController@getDayBreathingStats');
+
 /* Habits */
 Route::get('/dashboard/{habit}/session', 'HabitController@showbreath');
 Route::post('/dashboard/{habit}/session', 'HabitController@trackbreath');
 Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
-
-/* Chrome Extension */
-Route::get('/api/getstats', 'UserController@getStats');
-Route::get('/api/getweeksleep', 'UserController@getWeekSleepStats');
-Route::get('/api/getdaysleep', 'UserController@getDaySleepStats');
 
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');

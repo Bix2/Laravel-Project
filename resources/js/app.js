@@ -32,11 +32,13 @@ require('./breathingsession');
 
 Vue.component('weeksleepchart', require('./components/WeekSleepChartComponent.vue'));
 Vue.component('daysleepchart', require('./components/DaySleepChartComponent.vue'));
+Vue.component('weekactivitychart', require('./components/WeekActivityChartComponent.vue'));
+Vue.component('apexcharts', require('./components/DayActivityChartComponent.vue'));
+Vue.component('daybreathingchart', require('./components/DayBreathingChartComponent.vue'));
 
 var app = new Vue({
   el: '#app'
 })
-
 
 // $.ajaxSetup({
 //   headers: {

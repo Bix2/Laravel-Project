@@ -44,13 +44,13 @@
 
 	<div class="col-12 main__content">
             @if ($trackedHabitsArray)
-            <div class="row">  
+            <div id="app" class="row">  
                 @foreach ($trackedHabitsArray as $habit)
                     <div class="col-12">
                         <h4> {{ $habit->short_description }} </h4>
                         <!-- <a href="/dashboard/{{$habit->type}}">See progress</a> -->
                         @if ($habit->type == "sleep")
-                            <div id="app" class="row">
+                            <div class="row">
                                 <div class="col-8">
                                     <weeksleepchart></weeksleepchart>
                                 </div>
@@ -75,20 +75,16 @@
                                 
                             </div>
                         @elseif ($habit->type == "exercise")
-                            <div class="goal_progress_bar">
-                                <div class="goal_progress_bar_progress" style="width: {{$trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100}}%; background-color: @if ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 25 )
-                                #E51C23
-                                @elseif ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 50 )
-                                #FF9800
-                                @elseif ( ($trackedHabitsInfo['usersteps']/$trackedHabitsInfo['stepsgoal']*100) < 75 )
-                                #FFEB3B
-                                @else
-                                #259B24
-                                @endif
-                                ">
+                            <div class="row">
+                                <div class="col-4">
+                                    <apexcharts></apexcharts>
                                 </div>
-                                <div class="goal_progress__progress_text"> {{$trackedHabitsInfo['usersteps']}} out of {{$trackedHabitsInfo['stepsgoal']}}</div>
-                                
+                                <div class="col-8">
+                                    <weekactivitychart></weekactivitychart>
+                                </div>
+                                <div class="col-8">
+                                    <daybreathingchart></daybreathingchart>
+                                </div>
                             </div>
                         @elseif ($habit->type == "breathing")
                             <a href="/dashboard/breathing/session">Start guided breathing session</a>
