@@ -1,11 +1,11 @@
 <template>
     <div class="chart">
         <div class="chart__breathing">
-            <div :class="breathing.data[0].type" :breathing="breathing"><p>{{ breathing.data[0].title }}</p></div>
-            <div :class="breathing.data[1].type" :breathing="breathing"><p>{{ breathing.data[1].title }}</p></div>
-            <div :class="breathing.data[2].type" :breathing="breathing"><p>{{ breathing.data[2].title }}</p></div>
-            <div :class="breathing.data[3].type" :breathing="breathing"><p>{{ breathing.data[3].title }}</p></div>
-            <div :class="breathing.data[4].type" :breathing="breathing"><p>{{ breathing.data[4].title }}</p></div>
+            <div :class="breathing.data[0].type" :breathing="breathing"><a href="/dashboard/breathing/session">{{ breathing.data[0].title }}</a></div>
+            <div :class="breathing.data[1].type" :breathing="breathing"><a href="/dashboard/breathing/session">{{ breathing.data[1].title }}</a></div>
+            <div :class="breathing.data[2].type" :breathing="breathing"><a href="/dashboard/breathing/session">{{ breathing.data[2].title }}</a></div>
+            <div :class="breathing.data[3].type" :breathing="breathing"><a href="/dashboard/breathing/session">{{ breathing.data[3].title }}</a></div>
+            <div :class="breathing.data[4].type" :breathing="breathing"><a href="/dashboard/breathing/session">{{ breathing.data[4].title }}</a></div>
         </div>
     </div>
 </template>
@@ -68,34 +68,3 @@ export default {
     }
 }
 </script>
-
-<style>
-  .chart__breathing {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 1em;
-  }
-
-  .chart__breathing div {
-    display: grid;
-  }
-
-  .chart__breathing div p {
-    justify-self: center;
-    align-self: center;
-    margin: 0;
-    padding: 20px;
-  }
-
-  .nothing {
-    background-color: #EAEAEA;
-  }
-
-  .success {
-    background-color: #58CFD7;
-  }
-
-  .unsuccess {
-    background-color: #F9DA69;
-  }
-</style>

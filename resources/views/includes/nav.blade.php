@@ -5,7 +5,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="/dashboard">
-            <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+            <span class="icon"><img src="../../images/dashboard.svg" alt="dashboard icon"></span>
             <span class="link-text">Dashboard</span>
         </a>
     </li>
@@ -31,29 +31,29 @@
         @foreach ($trackedHabits[0] as $habit)
             @if ($habit->type == "sleep")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/sleep">
+                    <span class="icon"><img src="../../images/sleep.svg" alt="dashboard icon"></span>
                     <span class="link-text">Sleep</span>
                 </a>
             </li>
             @elseif ($habit->type == "breathing")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/breathing">
+                    <span class="icon"><img src="../../images/breathing.svg" alt="dashboard icon"></span>
                     <span class="link-text">Breathing</span>
                 </a>
             </li>
             @elseif ($habit->type == "exercise")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/exercise">
+                    <span class="icon"><img src="../../images/steps.svg" alt="dashboard icon"></span>
                     <span class="link-text">Activity</span>
                 </a>
             </li>
             @elseif ($habit->type == "water")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/water">
+                    <span class="icon"><img src="../../images/water.svg" alt="dashboard icon"></span>
                     <span class="link-text">Hydrate</span>
                 </a>
             </li>
@@ -68,29 +68,29 @@
         @foreach ($trackedHabits[1] as $habit)
             @if ($habit->type == "sleep")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/sleep">
+                    <span class="icon"><img src="../../images/sleep.svg" alt="dashboard icon"></span>
                     <span class="link-text">Sleep</span>
                 </a>
             </li>
             @elseif ($habit->type == "breathing")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/breathing">
+                    <span class="icon"><img src="../../images/breathing.svg" alt="dashboard icon"></span>
                     <span class="link-text">Breathing</span>
                 </a>
             </li>
             @elseif ($habit->type == "exercise")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/exercise">
+                    <span class="icon"><img src="../../images/steps.svg" alt="dashboard icon"></span>
                     <span class="link-text">Activity</span>
                 </a>
             </li>
             @elseif ($habit->type == "water")
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                    <span class="icon"><img src="../../images/dash.svg" alt="dashboard icon"></span>
+                <a class="nav-link active" href="/dashboard/water">
+                    <span class="icon"><img src="../../images/water.svg" alt="dashboard icon"></span>
                     <span class="link-text">Hydrate</span>
                 </a>
             </li>

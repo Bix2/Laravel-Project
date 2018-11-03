@@ -45,6 +45,7 @@ class HabitController extends Controller
 
     public function showbreath($habit) {
         $data = Habit::getTrackedHabitInfo($habit);
+        $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
     //     $habitId = $data["habit"]->id;
     //     if($habitId == 1) {
     //         $data['sleepweek'] = Habit::getTrackedSleepLogsData();

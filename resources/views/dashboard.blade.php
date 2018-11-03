@@ -50,7 +50,6 @@
                                 <div class="col-12">
                                     <daybreathingchart></daybreathingchart>
                                 </div>
-                                <a href="/dashboard/breathing/session">Start guided breathing session</a>
                             </div>
                         @elseif ($habit->type == "exercise")
                             <div class="row">
@@ -73,26 +72,12 @@
             </div>
             @endif
 
-            @if ($trackedHabits[1])
-                <h3>Untracked habits:</h3>
-                <div class="row">
-                    @foreach ($trackedHabits[1] as $habit)
-                        <div class="main__container--habit">
-                            <h4> {{ $habit->short_description }} </h4>
-                            <a href="/dashboard/{{$habit->type}}">See progress</a>
-                            @if ($habit->type == "sleep")
-                                <!-- Something -->
-                            @elseif ($habit->type == "water")
-                                <!-- Something -->
-                            @elseif ($habit->type == "exercise")
-                                <!-- Something -->
-                            @elseif ($habit->type == "breathing")
-                                <!-- Something -->
-                                <a href="/dashboard/breathing/session">Start guided breathing session</a>
-                            @endif
-                        </div>
-                    @endforeach
+            @if (empty($trackedHabits[0]))
+            <div class="row">
+                <div class="col-12">
+                    <h4>Start track some habits</h4>
                 </div>
+            </div>
             @endif
     </div>
 </div>

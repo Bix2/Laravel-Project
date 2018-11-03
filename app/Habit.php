@@ -165,12 +165,12 @@ class Habit extends Model
                 // this can be done better but is ok like that for now
                 if($thishabit->id == 1) {
                     $goal = FitBit::getSleepPatternGoal();
-                } elseif ($thishabit->id == 2) {
+                } elseif ($thishabit->id == 4) {
                     $goal = FitBit::getWaterLogGoal();
-                } elseif ($thishabit->id == 3) {
+                } elseif ($thishabit->id == 2) {
                     // static data for now
                     $goal = 3;
-                } elseif ($thishabit->id == 4) {
+                } elseif ($thishabit->id == 3) {
                     $goal = FitBit::getActivityStepsGoal();
                 }
                 \DB::table('habit_user')->insert([

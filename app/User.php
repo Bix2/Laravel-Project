@@ -79,14 +79,14 @@ class User extends Authenticatable
                     }
                     if($habit->type == "water") {
                         $userwater = \DB::table('waterlogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
-                        $watergoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
+                        $watergoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 4]])->first();
                         $data['trackedHabitsInfo']['userwater'] = $userwater->amount;
                         $data['trackedHabitsInfo']['watergoal'] = $watergoal->goal;
                     }
                     if($habit->type == "breathing") {
                         $totalbreathing = 0;
                         $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
-                        $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
+                        $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
                         foreach ($userbreathing as $breathing) {
                             if($breathing->date > $totalbreathing){
                                 $totalbreathing = $breathing->date;
@@ -97,7 +97,7 @@ class User extends Authenticatable
                     }
                     if($habit->type == "exercise") {
                         $usersteps = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
-                        $stepsgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 4]])->first();
+                        $stepsgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
                         $data['trackedHabitsInfo']['usersteps'] = $usersteps->steps;
                         $data['trackedHabitsInfo']['stepsgoal'] = $stepsgoal->goal;
                     }
@@ -171,7 +171,7 @@ class User extends Authenticatable
             $me = Auth::user();
             $sixDaysAgo = date("Y-m-d", strtotime('-6 days'));
             $goal = \DB::table('habit_user')
-                ->where('habit_id', 4)
+                ->where('habit_id', 3)
                 ->where('user_id', $me->id)
                 ->first();
             $lastActivities = \DB::table('activitylogs')
@@ -213,7 +213,7 @@ class User extends Authenticatable
                 ->where('user_id', $me->id)
                 ->first();
             $goal = \DB::table('habit_user')
-                ->where('habit_id', 4)
+                ->where('habit_id', 3)
                 ->where('user_id', $me->id)
                 ->first();
 
@@ -250,7 +250,7 @@ class User extends Authenticatable
                 ->where('user_id', $me->id)
                 ->first();
             $goal = \DB::table('habit_user')
-                ->where('habit_id', 2)
+                ->where('habit_id', 4)
                 ->where('user_id', $me->id)
                 ->first();
 

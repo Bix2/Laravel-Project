@@ -97,21 +97,3 @@ export default {
 
 </script>
 
-<style>
-
-  .chart__sleep .apexcharts-legend rect:nth-child(2){
-    fill: #E14DA5;
-  }
-
-  .chart__sleep .apexcharts-legend rect:nth-child(4) {
-    fill: #F9DA69;
-  }
-
-   .chart__sleep .apexcharts-legend rect:nth-child(6) {
-    fill: #AB64E1;
-  }
-
-    .chart__sleep .apexcharts-legend rect:nth-child(8) {
-    fill: #58CFD7;
-  }
-</style>

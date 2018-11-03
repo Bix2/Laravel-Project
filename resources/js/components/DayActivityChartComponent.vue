@@ -59,7 +59,7 @@ export default {
             },
         }
       },
-      series: [4567, 10000],
+      series: [0, 10000],
     }
   },
   created: function() {
@@ -72,12 +72,3 @@ export default {
 }
 </script>
 
-<style>
-    .chart__activity .apexcharts-legend rect:nth-child(1){
-    fill: #E14DA5;
-  }
-
-  .chart__activity .apexcharts-legend rect:nth-child(10) {
-    fill: #EAEAEA;
-  }
-</style>

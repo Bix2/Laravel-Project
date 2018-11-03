@@ -145,11 +145,3 @@ export default {
 
 </script>
 
-<style>
-  .chart {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-
-</style>

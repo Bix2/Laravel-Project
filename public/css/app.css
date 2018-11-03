@@ -9519,6 +9519,109 @@ body {
   background-color: #ececec;
 }
 
+.chart {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.chart__water {
+  width: 100%;
+  position: relative;
+}
+
+.chart__water .amount {
+  background-color: #58CFD7;
+  position: absolute;
+  z-index: 2;
+}
+
+.chart__water .goal {
+  background-color: #EAEAEA;
+  position: relative;
+  width: 100%;
+}
+
+.chart__water .chart__water--title {
+  padding: 0;
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.chart__water .chart__water--title p {
+  margin: 0;
+}
+
+.chart__water--title p {
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+}
+
+.chart__water div {
+  padding: 30px;
+}
+
+.chart__sleep .apexcharts-legend rect:nth-child(2) {
+  fill: #E14DA5;
+}
+
+.chart__sleep .apexcharts-legend rect:nth-child(4) {
+  fill: #F9DA69;
+}
+
+.chart__sleep .apexcharts-legend rect:nth-child(6) {
+  fill: #AB64E1;
+}
+
+.chart__sleep .apexcharts-legend rect:nth-child(8) {
+  fill: #58CFD7;
+}
+
+.chart__breathing {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 1em;
+}
+
+.chart__breathing div {
+  display: grid;
+}
+
+.chart__breathing div a {
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin: 0;
+  padding: 20px;
+  color: #212529;
+  text-decoration: none;
+}
+
+.nothing {
+  background-color: #EAEAEA;
+}
+
+.success {
+  background-color: #58CFD7;
+}
+
+.unsuccess {
+  background-color: #F9DA69;
+}
+
+.chart__activity .apexcharts-legend rect:nth-child(1) {
+  fill: #E14DA5;
+}
+
+.chart__activity .apexcharts-legend rect:nth-child(10) {
+  fill: #EAEAEA;
+}
+
 #nav {
   background-color: #201F3F;
   width: 200px;
@@ -9527,7 +9630,11 @@ body {
 .nav {
   text-align: left;
   margin-top: 50px;
-  margin-left: 40px;
+  margin-left: 30px;
+}
+
+.nav-link {
+  padding: 0 0 0 10px;
 }
 
 .nav-link .icon img {
@@ -9540,6 +9647,7 @@ body {
 
 .nav-item--title p {
   color: #EEEEEE;
+  margin-top: 10px;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -9652,11 +9760,6 @@ body {
 }
 
 @media (min-width: 968px) {
-  .nav {
-    text-align: left;
-    margin-top: 50px;
-    margin-left: 40px;
-  }
   .logo {
     background-image: url(/images/full-logo-white.svg);
     min-width: 140px;
