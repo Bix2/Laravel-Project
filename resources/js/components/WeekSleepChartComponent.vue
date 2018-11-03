@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="chart chart__sleep">
     <weeksleepchart width="100%" height="350" type="bar" :options="chartOptions" :series="series"></weeksleepchart>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
             text: 'Weekly Plan'
         },
         tooltip: {
+            colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],
             shared: false,
             y: {
                 formatter: function(val) {
@@ -150,4 +151,5 @@ export default {
     background-color: #fff;
     border-radius: 10px;
   }
+
 </style>

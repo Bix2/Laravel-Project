@@ -114,6 +114,43 @@ class User extends Authenticatable
         }
     }
 
+    public static function getTrackedAndUntrackedHabits() {
+        // get all habits
+        $habits = \DB::table('habits')->get();
+        // get habit tracked by user
+        $trackedHabitsDetails = Auth::user()->habits->first();
+        if ($trackedHabitsDetails) { 
+            $trackedHabitsDetails = $trackedHabitsDetails->pivot->pivotParent->habits;
+        }
+
+        // get tracked and untracked habits
+        $trackedHabitsArray = [];
+        $untrackedHabitsArray = [];
+        
+        foreach ($habits as $habit){
+            $habitCheck = -1;
+            if($trackedHabitsDetails){
+                foreach($trackedHabitsDetails as $trackedhabitDetails) {
+                    if ($trackedhabitDetails->getOriginal('pivot_habit_id') == ($habit->id) ) {
+                        $habitCheck =  $habit->id;
+                    }
+                }
+            }
+            if( $habitCheck > -1) {
+                array_push($trackedHabitsArray, $habit);
+            } else {
+                array_push($untrackedHabitsArray, $habit);
+            }
+        }
+
+        $habitsArray = [
+            $trackedHabitsArray,
+            $untrackedHabitsArray
+        ];
+
+        return $habitsArray;
+    }
+
     public static function getStatsSleepWeekly() {
         if (Auth::check()) { 
             $me = Auth::user();

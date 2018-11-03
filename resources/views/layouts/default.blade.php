@@ -5,13 +5,13 @@
     </head>
     <body>
 
-        <div class="fixed-wrapper container">
-            <div class="row">
-                <header class="col-2 mainHeader">
-                    @include('includes.header')
-                </header>
-
-                <div id="main" class="col-10">
+        <div class="container">
+            @include('includes.header')
+            <div class="wrapper">
+                <div id="nav">
+                    @include('includes.nav')
+                </div>
+                <div id="main">
                     @yield('content')
                 </div>
             </div>

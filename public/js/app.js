@@ -511,236 +511,6 @@ module.exports = g;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-(function (global, factory) {
-   true ? module.exports = factory(__webpack_require__(49)) :
-  typeof define === 'function' && define.amd ? define(['apexcharts'], factory) :
-  (global.VueApexCharts = factory(global.ApexCharts));
-}(this, (function (ApexCharts) { 'use strict';
-
-  ApexCharts = ApexCharts && ApexCharts.hasOwnProperty('default') ? ApexCharts['default'] : ApexCharts;
-
-  var ApexChartsComponent = {
-    props: {
-      options: {
-        type: Object
-      },
-      type: {
-        type: String,
-        required: true,
-        default: 'line'
-      },
-      series: {
-        type: Array,
-        required: true,
-        default: []
-      },
-      width: {
-        default: '100%'
-      },
-      height: {
-        default: 'auto'
-      }
-    },
-    data: function data() {
-      return {
-        chart: null
-      };
-    },
-    mounted: function mounted() {
-      this.init();
-    },
-    created: function created() {
-      var _this = this;
-
-      this.$watch('options', function (options) {
-        if (!_this.chart && options) {
-          _this.init();
-        } else {
-          _this.chart.updateOptions(_this.options, true);
-        }
-      });
-      this.$watch('series', function (series) {
-        if (!_this.chart && series) {
-          _this.init();
-        } else {
-          _this.chart.updateSeries(_this.series, true);
-        }
-      }, {
-        deep: true
-      });
-      var watched = ['type', 'width', 'height'];
-      watched.forEach(function (prop) {
-        _this.$watch(prop, function () {
-          _this.refresh();
-        });
-      });
-    },
-    beforeDestroy: function beforeDestroy() {
-      if (!this.chart) {
-        return;
-      }
-
-      this.destroy();
-    },
-    render: function render(createElement) {
-      return createElement('div');
-    },
-    methods: {
-      init: function init() {
-        var newOptions = {
-          chart: {
-            type: this.type,
-            height: this.height,
-            width: this.width
-          },
-          series: this.series
-        };
-        var config = ApexCharts.merge(this.options, newOptions);
-        this.chart = new ApexCharts(this.$el, config);
-        this.chart.render();
-      },
-      refresh: function refresh() {
-        this.destroy();
-        this.init();
-      },
-      destroy: function destroy() {
-        this.chart.destroy();
-      },
-      updateSeries: function updateSeries() {
-        this.$emit('updateSeries');
-      },
-      updateOptions: function updateOptions() {
-        this.$emit('updateOptions');
-      }
-    }
-  };
-
-  var VueApexCharts = ApexChartsComponent;
-
-  VueApexCharts.install = function (Vue) {
-    //adding a global method or property
-    Vue.ApexCharts = ApexCharts; // add the instance method
-
-    Object.defineProperty(Vue.prototype, '$apexcharts', {
-      get: function get() {
-        return ApexCharts;
-      }
-    });
-  };
-
-  return VueApexCharts;
-
-})));
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(25);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(11);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -822,7 +592,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1048,6 +818,236 @@ function applyToTag (styleElement, obj) {
   }
 }
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? module.exports = factory(__webpack_require__(49)) :
+  typeof define === 'function' && define.amd ? define(['apexcharts'], factory) :
+  (global.VueApexCharts = factory(global.ApexCharts));
+}(this, (function (ApexCharts) { 'use strict';
+
+  ApexCharts = ApexCharts && ApexCharts.hasOwnProperty('default') ? ApexCharts['default'] : ApexCharts;
+
+  var ApexChartsComponent = {
+    props: {
+      options: {
+        type: Object
+      },
+      type: {
+        type: String,
+        required: true,
+        default: 'line'
+      },
+      series: {
+        type: Array,
+        required: true,
+        default: []
+      },
+      width: {
+        default: '100%'
+      },
+      height: {
+        default: 'auto'
+      }
+    },
+    data: function data() {
+      return {
+        chart: null
+      };
+    },
+    mounted: function mounted() {
+      this.init();
+    },
+    created: function created() {
+      var _this = this;
+
+      this.$watch('options', function (options) {
+        if (!_this.chart && options) {
+          _this.init();
+        } else {
+          _this.chart.updateOptions(_this.options, true);
+        }
+      });
+      this.$watch('series', function (series) {
+        if (!_this.chart && series) {
+          _this.init();
+        } else {
+          _this.chart.updateSeries(_this.series, true);
+        }
+      }, {
+        deep: true
+      });
+      var watched = ['type', 'width', 'height'];
+      watched.forEach(function (prop) {
+        _this.$watch(prop, function () {
+          _this.refresh();
+        });
+      });
+    },
+    beforeDestroy: function beforeDestroy() {
+      if (!this.chart) {
+        return;
+      }
+
+      this.destroy();
+    },
+    render: function render(createElement) {
+      return createElement('div');
+    },
+    methods: {
+      init: function init() {
+        var newOptions = {
+          chart: {
+            type: this.type,
+            height: this.height,
+            width: this.width
+          },
+          series: this.series
+        };
+        var config = ApexCharts.merge(this.options, newOptions);
+        this.chart = new ApexCharts(this.$el, config);
+        this.chart.render();
+      },
+      refresh: function refresh() {
+        this.destroy();
+        this.init();
+      },
+      destroy: function destroy() {
+        this.chart.destroy();
+      },
+      updateSeries: function updateSeries() {
+        this.$emit('updateSeries');
+      },
+      updateOptions: function updateOptions() {
+        this.$emit('updateOptions');
+      }
+    }
+  };
+
+  var VueApexCharts = ApexChartsComponent;
+
+  VueApexCharts.install = function (Vue) {
+    //adding a global method or property
+    Vue.ApexCharts = ApexCharts; // add the instance method
+
+    Object.defineProperty(Vue.prototype, '$apexcharts', {
+      get: function get() {
+        return ApexCharts;
+      }
+    });
+  };
+
+  return VueApexCharts;
+
+})));
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(25);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(11);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(11);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }),
 /* 7 */
@@ -14424,7 +14424,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(70);
+module.exports = __webpack_require__(74);
 
 
 /***/ }),
@@ -14465,10 +14465,10 @@ __webpack_require__(43);
 
 Vue.component('weeksleepchart', __webpack_require__(44));
 Vue.component('daysleepchart', __webpack_require__(51));
-Vue.component('weekactivitychart', __webpack_require__(54));
-Vue.component('apexcharts', __webpack_require__(57));
-Vue.component('daybreathingchart', __webpack_require__(60));
-Vue.component('daywaterchart', __webpack_require__(65));
+Vue.component('weekactivitychart', __webpack_require__(56));
+Vue.component('apexcharts', __webpack_require__(59));
+Vue.component('daybreathingchart', __webpack_require__(64));
+Vue.component('daywaterchart', __webpack_require__(69));
 
 var app = new Vue({
   el: '#app'
@@ -35650,7 +35650,7 @@ module.exports = __webpack_require__(22);
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(9);
 var Axios = __webpack_require__(24);
-var defaults = __webpack_require__(4);
+var defaults = __webpack_require__(6);
 
 /**
  * Create an instance of Axios
@@ -35733,7 +35733,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(4);
+var defaults = __webpack_require__(6);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(33);
 var dispatchRequest = __webpack_require__(34);
@@ -36272,7 +36272,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(35);
 var isCancel = __webpack_require__(13);
-var defaults = __webpack_require__(4);
+var defaults = __webpack_require__(6);
 var isAbsoluteURL = __webpack_require__(36);
 var combineURLs = __webpack_require__(37);
 
@@ -47846,7 +47846,7 @@ var content = __webpack_require__(46);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("419f4b05", content, false, {});
+var update = __webpack_require__(4)("419f4b05", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -47865,12 +47865,12 @@ if(false) {
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.chart {\n  padding: 20px;\n  background-color: #fff;\n  border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.chart {\n  padding: 20px;\n  background-color: #fff;\n  border-radius: 10px;\n}\n\n", ""]);
 
 // exports
 
@@ -47914,7 +47914,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -47958,6 +47958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     text: 'Weekly Plan'
                 },
                 tooltip: {
+                    colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],
                     shared: false,
                     y: {
                         formatter: function formatter(val) {
@@ -48070,7 +48071,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "chart" },
+    { staticClass: "chart chart__sleep" },
     [
       _c("weeksleepchart", {
         attrs: {
@@ -48100,15 +48101,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(52)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(52)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -48144,11 +48149,51 @@ module.exports = Component.exports
 
 /***/ }),
 /* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(53);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("469804db", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c42d136\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DaySleepChartComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2c42d136\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DaySleepChartComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.chart__sleep .apexcharts-legend rect:nth-child(2){\n  fill: #E14DA5;\n}\n.chart__sleep .apexcharts-legend rect:nth-child(4) {\n  fill: #F9DA69;\n}\n.chart__sleep .apexcharts-legend rect:nth-child(6) {\n  fill: #AB64E1;\n}\n.chart__sleep .apexcharts-legend rect:nth-child(8) {\n  fill: #58CFD7;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -48247,7 +48292,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48256,7 +48301,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "chart" },
+    { staticClass: "chart chart__sleep" },
     [
       _c("daysleepchart", {
         attrs: {
@@ -48282,15 +48327,15 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(56)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48329,12 +48374,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -48460,7 +48505,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48469,7 +48514,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "chart" },
+    { staticClass: "chart chart__activity" },
     [
       _c("weekactivitychart", {
         attrs: {
@@ -48495,19 +48540,23 @@ if (false) {
 }
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(58)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(63)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -48542,12 +48591,52 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 58 */
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("4a49ddbe", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-325c158f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DayActivityChartComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-325c158f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DayActivityChartComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.chart__activity .apexcharts-legend rect:nth-child(1){\n  fill: #E14DA5;\n}\n.chart__activity .apexcharts-legend rect:nth-child(10) {\n  fill: #EAEAEA;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -48622,7 +48711,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 59 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48631,7 +48720,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "chart" },
+    { staticClass: "chart chart__activity" },
     [
       _c("apexcharts", {
         attrs: {
@@ -48657,19 +48746,19 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(61)
+  __webpack_require__(65)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48708,17 +48797,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(66);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("74553bea", content, false, {});
+var update = __webpack_require__(4)("74553bea", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -48734,10 +48823,10 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -48748,7 +48837,7 @@ exports.push([module.i, "\n.chart__breathing {\n  display: grid;\n  grid-templat
 
 
 /***/ }),
-/* 63 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48819,7 +48908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48886,19 +48975,19 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(66)
+  __webpack_require__(70)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(68)
+var __vue_script__ = __webpack_require__(72)
 /* template */
-var __vue_template__ = __webpack_require__(69)
+var __vue_template__ = __webpack_require__(73)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48937,17 +49026,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 66 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(67);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("e2ab363a", content, false, {});
+var update = __webpack_require__(4)("e2ab363a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -48963,10 +49052,10 @@ if(false) {
 }
 
 /***/ }),
-/* 67 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -48977,7 +49066,7 @@ exports.push([module.i, "\n.chart__water {\n    width: 100%;\n    position: rela
 
 
 /***/ }),
-/* 68 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49030,7 +49119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 69 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49065,7 +49154,7 @@ if (false) {
 }
 
 /***/ }),
-/* 70 */
+/* 74 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

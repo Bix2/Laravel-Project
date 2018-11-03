@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="chart chart__activity">
     <weekactivitychart width="100%" height="350" type="bar" :options="chartOptions" :series="series"></weekactivitychart>
   </div>
 </template>

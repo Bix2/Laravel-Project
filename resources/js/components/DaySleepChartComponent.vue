@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="chart chart__sleep">
     <daysleepchart width="100%" height="350" type="bar" :options="chartOptions" :series="series"></daysleepchart>
   </div>
 </template>
@@ -96,3 +96,22 @@ export default {
 }
 
 </script>
+
+<style>
+
+  .chart__sleep .apexcharts-legend rect:nth-child(2){
+    fill: #E14DA5;
+  }
+
+  .chart__sleep .apexcharts-legend rect:nth-child(4) {
+    fill: #F9DA69;
+  }
+
+   .chart__sleep .apexcharts-legend rect:nth-child(6) {
+    fill: #AB64E1;
+  }
+
+    .chart__sleep .apexcharts-legend rect:nth-child(8) {
+    fill: #58CFD7;
+  }
+</style>

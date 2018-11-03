@@ -1,16 +1,14 @@
 .footer {
     background: #fff;
-    position: fixed;
-    bottom: 0;
-    right: 0; 
-    left: 0;
+    height: 60px;
+    color: #212529;
   }
   
   .footer__copyright {
-    padding: 0.5em 0;
-    color: $light_purple;
+    padding: 20px;
+    color: #212529;
     text-align: center;
-    font-size:0.9rem;
+    font-size: 0.9rem;
   }
   
   .btn-outline-primary {

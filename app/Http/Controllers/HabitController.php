@@ -32,7 +32,7 @@ class HabitController extends Controller
             $data['stepsweek'] = Habit::getTrackedActivityStepsData();
         }
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
-        
+        $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
         
         return view('habit', $data);
     }

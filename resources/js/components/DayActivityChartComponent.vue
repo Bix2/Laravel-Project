@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="chart chart__activity">
     <apexcharts width="100%" height="350" type="donut" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
@@ -71,3 +71,13 @@ export default {
   }
 }
 </script>
+
+<style>
+    .chart__activity .apexcharts-legend rect:nth-child(1){
+    fill: #E14DA5;
+  }
+
+  .chart__activity .apexcharts-legend rect:nth-child(10) {
+    fill: #EAEAEA;
+  }
+</style>

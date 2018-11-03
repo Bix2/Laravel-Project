@@ -3,19 +3,7 @@
 
 <div class="row">
 	<div class="col-12" id="dash">
-		<div class="row">
-			<div class="top__content col-8">
-				<h2>Dashboard</h2>
-				<p>Welcome to CodeBreak dashboard</p>
-			</div>
-			<div class="col-4 top__content profile__picture">
-                <div class="profile__picture--wrapper">
-                    <img alt="profile picture of {{ $user->name }}" class="" src="{{$user->avatar}}"></div>
-                <div class="profile__name">
-                    <p>{{ $user->name }}</p>
-                </div>
-			</div>
-		</div>
+        <h2>Dashboard</h2>
     </div>
     <div class="col-12">
         <div class="card">
@@ -41,11 +29,10 @@
             </div>
         </div>
     </div>
-
 	<div class="col-12 main__content">
-            @if ($trackedHabitsArray)
+            @if ($trackedHabits[0])
             <div id="app" class="row">  
-                @foreach ($trackedHabitsArray as $habit)
+                @foreach ($trackedHabits[0] as $habit)
                     <div class="col-12">
                         <h4> {{ $habit->short_description }} </h4>
                         <!-- <a href="/dashboard/{{$habit->type}}">See progress</a> -->
@@ -86,10 +73,10 @@
             </div>
             @endif
 
-            @if ($untrackedHabitsArray)
+            @if ($trackedHabits[1])
                 <h3>Untracked habits:</h3>
                 <div class="row">
-                    @foreach ($untrackedHabitsArray as $habit)
+                    @foreach ($trackedHabits[1] as $habit)
                         <div class="main__container--habit">
                             <h4> {{ $habit->short_description }} </h4>
                             <a href="/dashboard/{{$habit->type}}">See progress</a>

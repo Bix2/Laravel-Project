@@ -67,6 +67,7 @@ class UserController extends Controller
 
     public static function showProfile() {
         $data = FitBit::getProfileInfo();
+        $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
         return view('profile', $data);
     }
 

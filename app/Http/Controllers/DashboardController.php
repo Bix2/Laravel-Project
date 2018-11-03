@@ -29,6 +29,7 @@ class DashboardController extends Controller
         FitBit::insertWaterLogToDB($data);
         
         $data = User::getAllUserData();
+        $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
         return view('dashboard', $data);
     }
 
