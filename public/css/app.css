@@ -11194,7 +11194,7 @@ body.welcome-page {
   background-size: 70%;
 }
 
-.header_wrapper {
+.welcome_wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11205,16 +11205,60 @@ body.welcome-page {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   height: 100%;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.header_info {
-  margin: 50px auto 0 auto;
-  max-width: 500px;
-  padding: 0 15px;
+.welcome_wrapper .main__header {
+  overflow: hidden;
+}
+
+.welcome__content {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.welcome_login {
+  padding: 2rem;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  background: #ECECEC;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.login__info {
+  margin-top: 0.5rem;
+}
+
+.welcome_image {
+  width: 100%;
+  background-image: url("/images/homeimg.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 160px;
 }
 
 .header_logo {
@@ -11223,50 +11267,51 @@ body.welcome-page {
 
 h1.logo_text {
   margin-top: 10px;
-  color: #ffffff;
+  color: #000;
 }
 
 .header_tagline {
   margin: 40px 0;
-  color: #ffffff;
-  font-weight: 200;
+  color: #000;
+  font-weight: 500;
 }
 
 .login-button a {
   border-radius: 50px;
 }
 
-@media (min-width: 620px) {
-  .welcome_header {
-    background-size: 50%;
+@media (min-width: 1025px) {
+  .welcome__content {
+    height: calc(100vh - 60px);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
-  .header_wrapper {
-    margin: 0 auto;
-    padding-right: 50%;
-    padding-left: 50px;
+  .welcome__content .welcome_login {
+    width: 66.667%;
   }
-  .header_logo {
-    margin-top: 80px;
-    width: 200px;
+  .welcome__content .welcome_image {
+    width: 600px;
+    height: 100%;
   }
-}
-
-@media (min-width: 1024px) {
-  .welcome_header {
-    background-size: 40%;
-  }
-  .header_wrapper {
-    padding-right: 500px;
-    padding-left: 100px;
+  .welcome__content .welcome_slant {
+    width: 0;
+    height: 0;
+    border-bottom: calc(100vh - 60px) solid #ECECEC;
+    border-left: 80px solid transparent;
   }
 }
 
 .dailystats {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .dailystats .dailytotal {
-  color: #fff;
+  color: #000;
   font-weight: 200;
 }
 
