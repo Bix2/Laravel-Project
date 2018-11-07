@@ -22,8 +22,9 @@
                     <h2 class="header_tagline">Mindfulness for developers, boost your concentration through habit tracking.</h2>
                     <div class="login-button">
                         <a class="btn btn-primary" href="{{ url("login/fitbit") }}">Login with Fitbit</a>
+                        <div class="login__info">All you need is a Fitbit account</div> 
                     </div>
-                    <div class="login__info">All you need is a Fitbit account</div> 
+                    
                     <div class="dailystats">
                         <h3>What users have done today</h3>
                         <h4 class="dailytotal"><span class="dailyamount">{{$total_sleep}}</span> minutes slept today</h4>
