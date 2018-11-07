@@ -86,6 +86,13 @@ h1.logo_text {
             width: 600px;
             height: 100%;
         }
+
+        .welcome_slant {
+            width: 0;
+            height: 0;
+            border-bottom: calc(100vh - 60px) solid #ECECEC;
+            border-left: 80px solid transparent;
+        }
     }
 }
 

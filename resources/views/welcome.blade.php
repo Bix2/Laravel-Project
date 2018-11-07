@@ -17,6 +17,7 @@
             </header>
             <div class="welcome__content">
                 <div class="welcome_image"></div>
+                <div class="welcome_slant"></div>
                 <div class="welcome_login">
                     <h2 class="header_tagline">Mindfulness for developers, boost your concentration through habit tracking.</h2>
                     <div class="login-button">
