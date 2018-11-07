@@ -24,6 +24,10 @@ class DashboardController extends Controller
         // insert steps to database just for testing
         FitBit::insertStepsToDB($data);
 
+        $data = FitBit::getSleepPattern();
+        // insert steps to database just for testing
+        FitBit::insertSleepToDB($data);
+
         $data = FitBit::getWaterLog();
         // insert water to database just for testing
         FitBit::insertWaterLogToDB($data);

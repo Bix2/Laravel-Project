@@ -64,8 +64,8 @@ class FitBit {
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
- 
-          $response = $client->get("user/-/sleep/list.json?offset=7&limit=7&sort=desc&beforeDate=today", [
+                // https://api.fitbit.com/1.2/user/-/sleep/date/2017-04-02.json
+          $response = $client->get("user/-/sleep/date/today.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}"
                 ]
@@ -169,6 +169,40 @@ class FitBit {
             } else {
                 \DB::table('activitylogs')->insert([
                     ['date' => $date, 'steps' => $value,  'user_id' => $me->id]
+                ]);
+           }
+        }
+    }
+
+    public static function insertSleepToDB($sleep) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+
+            $deep = $sleep['summary']['stages']['deep'];
+            $light = $sleep['summary']['stages']['light'];
+            $rem = $sleep['summary']['stages']['rem'];
+            $wake = $sleep['summary']['stages']['wake'];
+
+            $date = $sleep['sleep'][0]['dateOfSleep'];
+
+            // check if user was already an record in the database on this date
+            $dateCheck = \DB::table('sleeplogs')->where([['user_id', $me->id], ['date_of_sleep', $date]])->first();
+            if( $dateCheck ) {
+                \DB::table('sleeplogs')->where([['user_id', $me->id], ['date_of_sleep', $date]])
+                    ->update([
+                        'deep_minutes'  =>  $deep,
+                        'light_minutes' =>  $light,
+                        'rem_minutes'   =>  $rem,
+                        'wake_minutes'  =>  $wake
+                    ]);
+            } else {
+                \DB::table('sleeplogs')->insert([
+                    [   'date_of_sleep' => $date, 
+                        'deep_minutes'  =>  $deep,
+                        'light_minutes' =>  $light,
+                        'rem_minutes'   =>  $rem,
+                        'wake_minutes'  =>  $wake,
+                        'user_id' => $me->id]
                 ]);
            }
         }
