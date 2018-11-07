@@ -27,18 +27,23 @@
                     
                     <div class="dailystats">
                         <h3>What users have done today</h3>
-                        <h4 class="dailytotal"><span class="dailyamount">{{$total_sleep}}</span> minutes slept today</h4>
+                        <h4 class="dailytotal"><span class="dailyamount" data-count="{{$total_sleep}}">0</span> minutes slept today</h4>
                         <ul>
-                            <li class="dailytotal"><span class="dailyamount">{{$rem_minutes}}</span> minutes rem sleep</li>
-                            <li class="dailytotal"><span class="dailyamount">{{$deep_minutes}}</span> minutes deep sleep</li>
-                            <li class="dailytotal"><span class="dailyamount">{{$light_minutes}}</span> minutes light sleep</li>
+                            <li class="dailytotal"><span class="dailyamount" data-count="{{$rem_minutes}}">0</span> minutes rem sleep</li>
+                            <li class="dailytotal"><span class="dailyamount" data-count="{{$deep_minutes}}">0</span> minutes deep sleep</li>
+                            <li class="dailytotal"><span class="dailyamount" data-count="{{$light_minutes}}">0</span> minutes light sleep</li>
                         </ul>
-                        <h4 class="dailytotal"><span class="dailyamount">{{$dailywater}}</span> liters of water drunk today</h4>
-                        <h4 class="dailytotal"><span class="dailyamount">{{$dailybreathing}}</span> breathing sessions done today</h4>
-                        <h4 class="dailytotal"><span class="dailyamount">{{$dailysteps}}</span> steps taken today</h4>
+                        <h4 class="dailytotal"><span class="dailyamount" data-count="{{$dailywater}}">0</span> liters of water drunk today</h4>
+                        <h4 class="dailytotal"><span class="dailyamount" data-count="{{$dailybreathing}}">0</span> breathing sessions done today</h4>
+                        <h4 class="dailytotal"><span class="dailyamount" data-count="{{$dailysteps}}">0</span> steps taken today</h4>
                     </div>
                 </div>
             </div>
         </div>
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script src="/js/welcome.js" ></script>
 </body>
 </html>
