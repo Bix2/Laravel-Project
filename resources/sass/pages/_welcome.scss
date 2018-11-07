@@ -15,18 +15,43 @@ body.welcome-page {
     background-size: 70%;
 }
 
-.header_wrapper {
+
+
+.welcome_wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
     height: 100%;
+    position: relative;
+    flex-wrap: wrap;
+    .main__header {
+        overflow: hidden;
+    }
 }
 
-.header_info {
-    margin: 50px auto 0 auto;
-    max-width: 500px;
-    padding: 0 15px;
+.welcome__content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.welcome_login {
+    padding: 0 2rem;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    background: #ECECEC;
+    color: #000;
+}
+
+.welcome_image {
+    width: 100%;
+    background-image: url('/images/homeimg.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    height: 160px;
 }
 
 .header_logo {
@@ -35,51 +60,39 @@ body.welcome-page {
 
 h1.logo_text {
     margin-top: 10px;
-    color: #ffffff;
+    color: #000;
 }
 
 .header_tagline {
     margin: 40px 0;
-    color: #ffffff;
-    font-weight: 200;
+    color: #000;
+    font-weight: 500;
 }
 
 .login-button a {
     border-radius: 50px;
 }
 
-@media (min-width: 620px) {
-    .welcome_header {
-        background-size: 50%;
-    }
 
-    .header_wrapper {
-        margin: 0 auto;
-        padding-right: 50%;
-        padding-left:50px;
-    }
-
-    .header_logo {
-        margin-top: 80px;
-        width: 200px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .welcome_header {
-        background-size: 40%;
-    }
-
-    .header_wrapper {
-        padding-right: 500px;
-        padding-left: 100px;
+@media (min-width: 1025px) {
+    .welcome__content {
+        height: calc(100vh - 60px);
+        flex-direction: row;
+        justify-content: flex-start;
+        .welcome_login {
+            width: 66.667%;
+        }
+        .welcome_image {
+            width: 600px;
+            height: 100%;
+        }
     }
 }
 
 .dailystats {
-    margin-top: 1rem;
+    margin-top: 3rem;
     .dailytotal {
-        color: #fff;
+        color: #000;
         font-weight: 200;
     }
     
