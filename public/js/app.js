@@ -47473,7 +47473,7 @@ $(document).ready(function () {
 			});
 				$('#breath_session__buttton').html('Again?');
                 $('#breathingdone').addClass('done');
-        }, 1000);
+        }, 60000);
     });
 });
 
