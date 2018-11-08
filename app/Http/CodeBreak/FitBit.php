@@ -178,12 +178,19 @@ class FitBit {
         if (Auth::check()) { 
             $me = Auth::user();
 
-            $deep = $sleep['summary']['stages']['deep'];
-            $light = $sleep['summary']['stages']['light'];
-            $rem = $sleep['summary']['stages']['rem'];
-            $wake = $sleep['summary']['stages']['wake'];
-
-            $date = $sleep['sleep'][0]['dateOfSleep'];
+            if(empty($sleep['sleep'])) {
+                $deep = 0;
+                $light = 0;
+                $rem = 0;
+                $wake = 0;
+                $date = date('Y-m-d');
+            } else {
+                $deep = $sleep['summary']['stages']['deep'];
+                $light = $sleep['summary']['stages']['light'];
+                $rem = $sleep['summary']['stages']['rem'];
+                $wake = $sleep['summary']['stages']['wake'];
+                $date = $sleep['sleep'][0]['dateOfSleep'];
+            }
 
             // check if user was already an record in the database on this date
             $dateCheck = \DB::table('sleeplogs')->where([['user_id', $me->id], ['date_of_sleep', $date]])->first();
