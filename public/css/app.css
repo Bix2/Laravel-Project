@@ -11126,10 +11126,36 @@ div.holidayShipping .emphasis {
   background: no-repeat center;
 }
 
+.breathing__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.breathing__wrapper h3, .breathing__wrapper p, .breathing__wrapper #breath_session {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .breath__container, .breath__animation {
-  width: 200px;
-  height: 200px;
+  width: calc(100vw - 232px);
+  height: calc(100vw - 232px);
   border-radius: 100%;
+}
+
+@media (min-width: 700px) {
+  .breath__container, .breath__animation {
+    width: 400px;
+    height: 400px;
+  }
 }
 
 .breath__container {
@@ -11174,6 +11200,55 @@ div.holidayShipping .emphasis {
   50% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+
+#breathingdone {
+  display: none;
+}
+
+#breathingdone p {
+  margin-top: 0.5rem;
+  opacity: 0;
+}
+
+#breathingdone a {
+  opacity: 0;
+}
+
+#breathingdone.done {
+  display: block;
+}
+
+#breathingdone.done p {
+  -webkit-animation: fadeIn 0.3s;
+          animation: fadeIn 0.3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+#breathingdone.done a {
+  -webkit-animation: fadeIn 0.3s ease-in 0.1s forwards;
+          animation: fadeIn 0.3s ease-in 0.1s forwards;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

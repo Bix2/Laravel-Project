@@ -1,7 +1,25 @@
+.breathing__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    h3, p, #breath_session {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .breath__container, .breath__animation {
-    width: 200px; 
-    height: 200px; 
+    width: calc(100vw - 232px); 
+    height: calc(100vw - 232px);  
     border-radius: 100%; 
+}
+
+@media (min-width: 700px) {
+    .breath__container, .breath__animation {
+        width: 400px; 
+        height: 400px;  
+    }
 }
 
 .breath__container {
@@ -21,6 +39,9 @@
     transform: scale(0);
 }
 
+
+
+
 .breath__animation.session {
     animation: breathing cubic-bezier(.57,.13,.41,1) 3s infinite;
 }
@@ -32,5 +53,38 @@
 
     50% {
         transform: scale(1);
+    }
+}
+
+#breathingdone {
+    display: none;
+    p {
+        margin-top: 0.5rem;
+        opacity: 0;
+    }
+    a {
+        opacity: 0;
+    }
+}
+
+#breathingdone.done {
+    display: block;
+    p {
+        animation: fadeIn 0.3s;
+        animation-fill-mode: forwards;
+    }
+    a {
+        animation: fadeIn 0.3s ease-in 0.1s forwards;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

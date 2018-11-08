@@ -47452,6 +47452,7 @@ $(document).ready(function () {
         }
     });
     $('#breath_session__buttton').on('click', function (event) {
+		$('#breathingdone').removeClass('done');
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
@@ -47470,8 +47471,9 @@ $(document).ready(function () {
 					
                 }
 			});
-                $('#breathingdone').html('Session complete!');
-        }, 60000);
+				$('#breath_session__buttton').html('Again?');
+                $('#breathingdone').addClass('done');
+        }, 1000);
     });
 });
 

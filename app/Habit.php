@@ -194,7 +194,8 @@ class Habit extends Model
             $userId = Auth::user()->id;
             \DB::table('breathing')->insert([
                 'user_id' => $userId,
-                'amount' => $amount
+                'amount' => $amount,
+                'date' => date('Y-m-d'),
             ]);
         }
     }
