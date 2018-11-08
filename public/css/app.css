@@ -11177,8 +11177,8 @@ div.holidayShipping .emphasis {
 }
 
 .breath__animation.session {
-  -webkit-animation: breathing cubic-bezier(0.57, 0.13, 0.41, 1) 3s infinite;
-          animation: breathing cubic-bezier(0.57, 0.13, 0.41, 1) 3s infinite;
+  -webkit-animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
+          animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
 }
 
 @-webkit-keyframes breathing {
