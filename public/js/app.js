@@ -47467,10 +47467,11 @@ $(document).ready(function () {
                 dataType: 'JSON',
                 /* remind that 'data' is the response of the AjaxController */
                 success: function success(data) {
-                    console.log('done');
+					
                 }
-            });
-        }, 3000);
+			});
+                $('#breathingdone').html('Session complete!');
+        }, 60000);
     });
 });
 

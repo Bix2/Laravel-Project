@@ -30,6 +30,7 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <button class="btn" id="breath_session__buttton">Start a breathing session</button>
             </form>
+            <div id="breathingdone"></div>
         </div>
         
     </div>
