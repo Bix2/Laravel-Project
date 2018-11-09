@@ -41,7 +41,7 @@ export default {
     created: function() {
         var self = this;
         var breathingData = [];
-        axios.get('http://homestead.test/api/getdaybreathing')
+        axios.get('/api/getdaybreathing')
         .then(function(response) {
             for (let i = 0; i < 5; i++) {
                 if(response.data[i]) {

@@ -64,7 +64,7 @@ export default {
   },
   created: function() {
     var self = this;
-    axios.get('http://homestead.test/api/getdayactivity')
+    axios.get('/api/getdayactivity')
       .then(function(response) {
         self.series = [response.data[0].activitylogs.steps, response.data[0].goal - response.data[0].activitylogs.steps];
     });

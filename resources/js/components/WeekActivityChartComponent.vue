@@ -89,7 +89,7 @@ export default {
             last7Days.push(createdDate);
         }
         self.chartOptions.xaxis.categories = [last7Days[0], last7Days[1], last7Days[2], last7Days[3], last7Days[4], last7Days[5], last7Days[6]];
-        axios.get('http://homestead.test/api/getweekactivity')
+        axios.get('/api/getweekactivity')
             .then(function(response) {
                 for (let n = 0; n < last7Days.length; n++) {
                     for (let n2 = 0; n2 < response.data[0].activitylogs.length; n2++) {
