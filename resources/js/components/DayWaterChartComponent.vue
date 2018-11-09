@@ -26,7 +26,7 @@ export default {
     created: function() {
         var self = this;
         var waterData = [];
-        axios.get('http://homestead.test/api/getdaywater')
+        axios.get('/api/getdaywater')
         .then(function(response) {
             if(!(response.data[0].waterlogs.amount >= response.data[0].goal)) {
                 waterData = [{

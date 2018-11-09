@@ -47623,7 +47623,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             last7Days.push(createdDate);
         }
         self.chartOptions.xaxis.categories = [last7Days[0], last7Days[1], last7Days[2], last7Days[3], last7Days[4], last7Days[5], last7Days[6]];
-        axios.get('http://homestead.test/api/getweeksleep').then(function (response) {
+        axios.get('/api/getweeksleep').then(function (response) {
             for (var n = 0; n < last7Days.length; n++) {
                 for (var n2 = 0; n2 < response.data.length; n2++) {
                     if (last7Days[n] == response.data[n2].date_of_sleep) {
@@ -47844,7 +47844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var self = this;
-        axios.get('http://homestead.test/api/getdaysleep').then(function (response) {
+        axios.get('/api/getdaysleep').then(function (response) {
             if (response.data) {
                 self.series[0].data = [response.data.light_minutes];
                 self.series[1].data = [response.data.rem_minutes];
@@ -48038,7 +48038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             last7Days.push(createdDate);
         }
         self.chartOptions.xaxis.categories = [last7Days[0], last7Days[1], last7Days[2], last7Days[3], last7Days[4], last7Days[5], last7Days[6]];
-        axios.get('http://homestead.test/api/getweekactivity').then(function (response) {
+        axios.get('/api/getweekactivity').then(function (response) {
             for (var n = 0; n < last7Days.length; n++) {
                 for (var n2 = 0; n2 < response.data[0].activitylogs.length; n2++) {
                     if (last7Days[n] == response.data[0].activitylogs[n2].date) {
@@ -48229,7 +48229,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var self = this;
-        axios.get('http://homestead.test/api/getdayactivity').then(function (response) {
+        axios.get('/api/getdayactivity').then(function (response) {
             self.series = [response.data[0].activitylogs.steps, response.data[0].goal - response.data[0].activitylogs.steps];
         });
     }
@@ -48362,7 +48362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var self = this;
         var breathingData = [];
-        axios.get('http://homestead.test/api/getdaybreathing').then(function (response) {
+        axios.get('/api/getdaybreathing').then(function (response) {
             for (var i = 0; i < 5; i++) {
                 if (response.data[i]) {
                     if (response.data[i].amount == 1) {
@@ -48556,7 +48556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var self = this;
         var waterData = [];
-        axios.get('http://homestead.test/api/getdaywater').then(function (response) {
+        axios.get('/api/getdaywater').then(function (response) {
             if (!(response.data[0].waterlogs.amount >= response.data[0].goal)) {
                 waterData = [{
                     title: response.data[0].waterlogs.amount + "/" + response.data[0].goal + " - " + (response.data[0].goal - response.data[0].waterlogs.amount) + ' ml still to drink',

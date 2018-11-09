@@ -78,7 +78,7 @@ export default {
     },
     created: function() {
         var self = this;
-            axios.get('http://homestead.test/api/getdaysleep')
+            axios.get('/api/getdaysleep')
                 .then(function(response) {
                     if(response.data) {
                         self.series[0].data = [response.data.light_minutes];
