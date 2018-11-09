@@ -47452,7 +47452,6 @@ $(document).ready(function () {
         }
     });
     $('#breath_session__buttton').on('click', function (event) {
-		$('#breathingdone').removeClass('done');
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
@@ -47468,12 +47467,10 @@ $(document).ready(function () {
                 dataType: 'JSON',
                 /* remind that 'data' is the response of the AjaxController */
                 success: function success(data) {
-					
+                    console.log('done');
                 }
-			});
-				$('#breath_session__buttton').html('Again?');
-                $('#breathingdone').addClass('done');
-        }, 60000);
+            });
+        }, 3000);
     });
 });
 
@@ -48368,7 +48365,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('http://homestead.test/api/getdaybreathing').then(function (response) {
             for (var i = 0; i < 5; i++) {
                 if (response.data[i]) {
-                    if (response.data[i].amount == 3) {
+                    if (response.data[i].amount == 1) {
                         breathingData.push({
                             title: 'Perfect',
                             type: 'success'

@@ -70,7 +70,7 @@ class FitBit {
                     "Authorization" => "Bearer {$me->token}"
                 ]
             ]);
- 
+            
             $sleep = json_decode($response->getBody(), true);
             return $sleep;
         }
@@ -178,17 +178,17 @@ class FitBit {
         if (Auth::check()) { 
             $me = Auth::user();
 
-            if(empty($sleep['sleep'])) {
+            if(!(array_key_exists("deep",$sleep['sleep'][0]['levels']['summary']))) {
                 $deep = 0;
                 $light = 0;
                 $rem = 0;
                 $wake = 0;
                 $date = date('Y-m-d');
             } else {
-                $deep = $sleep['summary']['stages']['deep'];
-                $light = $sleep['summary']['stages']['light'];
-                $rem = $sleep['summary']['stages']['rem'];
-                $wake = $sleep['summary']['stages']['wake'];
+                $deep = $sleep['sleep'][0]['levels']['summary']['deep']['minutes'];
+                $light = $sleep['sleep'][0]['levels']['summary']['light']['minutes'];
+                $rem = $sleep['sleep'][0]['levels']['summary']['rem']['minutes'];
+                $wake = $sleep['sleep'][0]['levels']['summary']['wake']['minutes'];
                 $date = $sleep['sleep'][0]['dateOfSleep'];
             }
 

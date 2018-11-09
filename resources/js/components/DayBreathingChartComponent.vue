@@ -45,7 +45,7 @@ export default {
         .then(function(response) {
             for (let i = 0; i < 5; i++) {
                 if(response.data[i]) {
-                    if(response.data[i].amount == 3) {
+                    if(response.data[i].amount == 1) {
                         breathingData.push({
                             title: 'Perfect',
                             type: 'success'
