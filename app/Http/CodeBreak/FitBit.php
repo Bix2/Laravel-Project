@@ -177,13 +177,15 @@ class FitBit {
     public static function insertSleepToDB($sleep) {
         if (Auth::check()) { 
             $me = Auth::user();
+            $deep = 0;
+            $light = 0;
+            $rem = 0;
+            $wake = 0;
+            $date = date('Y-m-d');
+            if(empty($sleep['sleep'])){
 
-            if(!(array_key_exists("deep",$sleep['sleep'][0]['levels']['summary']))) {
-                $deep = 0;
-                $light = 0;
-                $rem = 0;
-                $wake = 0;
-                $date = date('Y-m-d');
+            } else if(!(array_key_exists("deep",$sleep['sleep'][0]['levels']['summary']))) {
+                
             } else {
                 $deep = $sleep['sleep'][0]['levels']['summary']['deep']['minutes'];
                 $light = $sleep['sleep'][0]['levels']['summary']['light']['minutes'];
