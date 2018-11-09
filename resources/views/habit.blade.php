@@ -61,7 +61,7 @@
                 @endif
 
 
-                @if ( ($habit->id) == 2 )
+                @if ( ($habit->id) == 4 )
                 
                 @for ($d = -6; $d <= 0; $d++)
                     <th>{{date('D', strtotime($d.' days'))}}</th>
@@ -77,7 +77,7 @@
 
 
                 
-                @if ( ($habit->id) == 3 )
+                @if ( ($habit->id) == 2 )
                 
                 @for ($d = -6; $d <= 0; $d++)
                     <th>{{date('D', strtotime($d.' days'))}}</th>
@@ -92,7 +92,7 @@
                 @endif
                 
 
-                @if ( ($habit->id) == 4 )
+                @if ( ($habit->id) == 3 )
                 
                 @for ($d = -6; $d <= 0; $d++)
                     <th>{{date('D', strtotime($d.' days'))}}</th>
