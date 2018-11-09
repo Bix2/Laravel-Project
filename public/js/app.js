@@ -47466,11 +47466,11 @@ $(document).ready(function () {
                 data: { amount: amount },
                 dataType: 'JSON',
                 /* remind that 'data' is the response of the AjaxController */
-                success: function success(data) {
-                    console.log('done');
-                }
+                success: function success(data) {}
             });
-        }, 3000);
+            $('#breath_session__buttton').html('Again?');
+            $('#breathingdone').addClass('done');
+        }, 60000);
     });
 });
 

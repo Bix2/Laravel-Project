@@ -1,14 +1,14 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#breath_session__buttton').on('click', function(event){
+    $('#breath_session__buttton').on('click', function (event) {
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
-        setTimeout(function(){
+        setTimeout(function () {
             $('.breath__animation').removeClass('session');
             console.log('starting...');
             $.ajax({
@@ -16,13 +16,14 @@ $( document ).ready(function() {
                 url: '/dashboard/breathing/session',
                 type: 'POST',
                 /* send the csrf-token and the input to the controller */
-                data: {amount},
+                data: { amount: amount },
                 dataType: 'JSON',
                 /* remind that 'data' is the response of the AjaxController */
-                success: function (data) { 
-                    console.log('done');
+                success: function success(data) {
                 }
             });
-          }, 3000);
+			$('#breath_session__buttton').html('Again?');
+			$('#breathingdone').addClass('done');
+	}, 60000);
     });
 });
