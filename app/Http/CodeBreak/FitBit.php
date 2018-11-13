@@ -390,4 +390,112 @@ class FitBit {
         return array_reverse($dateArray);
     }
 
+    // Steps habit automatization
+    public static function AutomateSteps() {
+        $users = \DB::table('users')->get();
+        foreach ($users as $user) {
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+            $response = $client->get("user/".$user->fitbit_id."/activities/steps/date/today/1d.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$user->token}"
+                ]
+            ]);
+            $steps = json_decode($response->getBody(), true);
+            $value = $steps['activities-steps'][0]['value'];
+            $date = $steps['activities-steps'][0]['dateTime'];
+            // check if user was already an record in the database on this date
+            $dateCheck = \DB::table('activitylogs')->where([['user_id', $user->id], ['date', $date]])->first();
+            if( $dateCheck ) {
+                \DB::table('activitylogs')->where([['user_id', $user->id], ['date', $date]])->update(['steps' => $value]);
+            } else {
+                \DB::table('activitylogs')->insert([
+                    ['date' => $date, 'steps' => $value,  'user_id' => $user->id]
+                ]);
+            }
+        }
+    }
+
+    // Sleep habit automatization
+    public static function AutomateSleep() {
+        $users = \DB::table('users')->get();
+        foreach ($users as $user) {
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+            $response = $client->get("user/".$user->fitbit_id."/sleep/date/today.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$user->token}"
+                ]
+            ]);
+            $sleep = json_decode($response->getBody(), true);
+
+            $deep = 0;
+            $light = 0;
+            $rem = 0;
+            $wake = 0;
+            $date = date('Y-m-d');
+            if(empty($sleep['sleep'])){
+
+            } else if(!(array_key_exists("deep",$sleep['sleep'][0]['levels']['summary']))) {
+                
+            } else {
+                $deep = $sleep['sleep'][0]['levels']['summary']['deep']['minutes'];
+                $light = $sleep['sleep'][0]['levels']['summary']['light']['minutes'];
+                $rem = $sleep['sleep'][0]['levels']['summary']['rem']['minutes'];
+                $wake = $sleep['sleep'][0]['levels']['summary']['wake']['minutes'];
+                $date = $sleep['sleep'][0]['dateOfSleep'];
+            }
+
+            // check if user was already an record in the database on this date
+            $dateCheck = \DB::table('sleeplogs')->where([['user_id', $user->id], ['date_of_sleep', $date]])->first();
+            if( $dateCheck ) {
+                \DB::table('sleeplogs')->where([['user_id', $user->id], ['date_of_sleep', $date]])
+                    ->update([
+                        'deep_minutes'  =>  $deep,
+                        'light_minutes' =>  $light,
+                        'rem_minutes'   =>  $rem,
+                        'wake_minutes'  =>  $wake
+                    ]);
+            } else {
+                \DB::table('sleeplogs')->insert([
+                    [   'date_of_sleep' => $date, 
+                        'deep_minutes'  =>  $deep,
+                        'light_minutes' =>  $light,
+                        'rem_minutes'   =>  $rem,
+                        'wake_minutes'  =>  $wake,
+                        'user_id' => $user->id]
+                ]);
+            }
+        }
+    }
+
+    // Steps habit automatization
+    public static function AutomateWater() {
+        $users = \DB::table('users')->get();
+        foreach ($users as $user) {
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1.2/",
+            ]);
+            $response = $client->get("user/".$user->fitbit_id."/foods/log/water/date/today/1d.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$user->token}"
+                ]
+            ]);
+            $water = json_decode($response->getBody(), true);
+            $value = $water['foods-log-water'][0]['value'];
+            $date = $water['foods-log-water'][0]['dateTime'];
+            // check if user was already an record in the database on this date
+            $dateCheck = \DB::table('waterlogs')->where([['user_id', $user->id], ['date', $date]])->first();
+            if( $dateCheck ) {
+                \DB::table('waterlogs')->where([['user_id', $user->id], ['date', $date]])->update(['amount' => $value]);
+            } else {
+                \DB::table('waterlogs')->insert([
+                    ['date' => $date, 'amount' => $value,  'user_id' => $user->id]
+                ]);
+            }
+        }
+    }
+
 }
