@@ -19,9 +19,15 @@ class Habit extends Model
             $tracked_habit = Habit::isTracked($thishabit->id, $me->id);
 
             if($tracked_habit) {
-                $data['button'] = ["text" => "Stop tracking this habit"];
+                $data['button'] = [
+                    "text"      =>  "Remove this habit from the dashboard",
+                    "status"    =>  "danger"
+                ];
             } else {
-                $data['button'] = ["text" => "Track this habit"];
+                $data['button'] = [
+                    "text"      =>  "Add this habit to your dashboard",
+                    "status"    =>  "success"
+                ];
             }
 
             $data['user'] = $me;
@@ -160,7 +166,10 @@ class Habit extends Model
                     ['habit_id', '=', $thishabit->id],
                     ['user_id', '=', $me->id]
                 ])->delete();
-                $data['button'] = ["text" => "Track this habit"];
+                $data['button'] = [
+                    "text"      =>  "Add this habit to your dashboard",
+                    "status"    =>  "success"
+                ];
             } else {
                 // this can be done better but is ok like that for now
                 if($thishabit->id == 1) {
@@ -169,7 +178,7 @@ class Habit extends Model
                     $goal = FitBit::getWaterLogGoal();
                 } elseif ($thishabit->id == 2) {
                     // static data for now
-                    $goal = 3;
+                    $goal = 5;
                 } elseif ($thishabit->id == 3) {
                     $goal = FitBit::getActivityStepsGoal();
                 }
@@ -178,7 +187,10 @@ class Habit extends Model
                     'user_id' => $me->id,
                     'goal' => $goal
                 ]);
-                $data['button'] = ["text" => "Stop tracking this habit"];
+                $data['button'] = [
+                    "text"      =>  "Remove this habit from the dashboard",
+                    "status"    =>  "danger"
+                ];
             }
 
             $data['user'] = $me;
@@ -199,7 +211,6 @@ class Habit extends Model
             ]);
         }
     }
-    
 
     public function users() {
         return $this->belongsToMany('\App\User');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Habit;
 
 use App\Http\CodeBreak\FitBit;
+use App\Http\CodeBreak\Stats;
 use App\Jobs\DoSomething;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,21 +21,26 @@ use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index() {
-        $data = FitBit::getActivitySteps();
-        // insert steps to database just for testing
-        FitBit::insertStepsToDB($data);
+        if (Auth::check()) { 
+            // $me = Auth::user();
+            // $data = FitBit::getActivitySteps();
+            // // insert steps to database just for testing
+            // FitBit::insertStepsToDB($data);
 
-        $data = FitBit::getSleepPattern();
-        // insert steps to database just for testing
-        FitBit::insertSleepToDB($data);
+            // $data = FitBit::getSleepPattern();
+            // // insert steps to database just for testing
+            // FitBit::insertSleepToDB($data);
 
-        $data = FitBit::getWaterLog();
-        // insert water to database just for testing
-        FitBit::insertWaterLogToDB($data);
-        
-        $data = User::getAllUserData();
-        $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
-        return view('dashboard', $data);
+            // $data = FitBit::getWaterLog();
+            // // insert water to database just for testing
+            // FitBit::insertWaterLogToDB($data);
+            
+            $data = User::getAllUserData();
+            $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
+            return view('dashboard', $data);
+        }
+        $data = Stats::getDailyTracked();
+        return view('welcome', $data);
     }
 
     public function storeFeedback(Request $request) {

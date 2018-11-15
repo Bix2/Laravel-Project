@@ -41,6 +41,13 @@ var app = new Vue({
   el: '#app'
 })
 
+$('.alert__close').on('click', function(e) {
+  e.preventDefault();
+  $(this).parent('.alert').hide('slow');
+});
+
+$('.tooltip-items').tooltip();
+
 // $.ajaxSetup({
 //   headers: {
 //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

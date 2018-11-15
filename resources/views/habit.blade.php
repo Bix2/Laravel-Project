@@ -8,17 +8,6 @@
                 <h2>{{ $habit->short_description }}</h2>
                 <p>{{ $habit->long_description}}</p>
             </div>
-
-            <div class="col-4 top__content profile__picture">
-                <div class="row">
-                    <div class="col-4 profile__picture--wrapper">
-                        <img class="" src="{{ $user->avatar }}" alt="profile picture of {{ $user->name }}">
-                    </div>
-                    <div class="col-8">
-                        <p>{{ $user->name }}</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <table class="table table-striped">
@@ -110,13 +99,42 @@
         </table>
 
         <!-- {{@print_r($habit)}} -->
-
-
+        <div class="row">
+            <div class="col-lg-12 mt-3">
+                <h4> You can log data to this habit by using one of the following: </h4>
+                <div class="card">
+                    <div class="row">
+                        @if($habit->watch == true)
+                        <div class="col card__items">
+                            <img src="../images/fitbit-watch.svg" alt="watch">
+                            <p>Fitbit Watch</p>
+                        </div>
+                        @endif
+                        @if($habit->fitbit_app == true) 
+                        <div class="col card__items">
+                            <img src="../images/smartphone.svg" alt="fitbit app">
+                            <p><a href="https://www.fitbit.com/">Fitbit App</a></p>
+                        </div>
+                        @endif
+                        @if($habit->codebreak == true) 
+                        <div class="col card__items">
+                            <img src="../images/website.svg" alt="codebreak app">
+                            <p>Codebreak</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row main__content">
-            <div class="col-12">
+            <div class="col-12 mt-3">
                 <form method="post" action="/dashboard/{{$habit->type}}">
                     {{csrf_field()}}
-                    <button class="btn" type="submit">{{ $button['text'] }}</button>
+                    @if ($button['status'] == 'success')
+                        <button class="btn btn-success" type="submit">{{ $button['text'] }}</button>
+                    @else
+                        <button class="btn btn-danger" type="submit">{{ $button['text'] }}</button>
+                    @endif
                 </form>
             </div>
         </div>
