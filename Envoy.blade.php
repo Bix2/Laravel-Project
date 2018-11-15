@@ -10,7 +10,7 @@ cd /home/{{ $account }}/Laravel-Project
 
 php artisan down 
 
-git pull origin master
+git pull origin master --force
 
 composer install
 
@@ -21,3 +21,4 @@ php artisan migrate
 php artisan up
 
 @endtask
+
