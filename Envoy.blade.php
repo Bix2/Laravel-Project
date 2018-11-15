@@ -6,10 +6,18 @@ $account = 'deploybot';
 
 @task('deploy-production', ['on' => 'web'])
 
-cd /home/deploybot/Laravel-Project
+cd /home/{{ $account }}/Laravel-Project
 
-git pull origin master
+php artisan down
+
+git status
+
+composer install
+
+npm install
 
 php artisan migrate
+
+php artisan up
 
 @endtask
