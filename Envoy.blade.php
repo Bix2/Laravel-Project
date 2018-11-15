@@ -1,17 +1,12 @@
-@servers(['localhost' => '127.0.0.1])
+@servers(['codebreak' => 'deploybot@212.111.41.86'])
+@setup
+    $account = 'deploybot';
+@endsetup
 
-@task('deploy:production', ['on' => 'localhost'])
+@task('deploy', ['on' => '212.111.41.86'])
 
-php artisan down
-
-git pull origin master --force
-
-php -dallow_url_fopen=1 composer.phar self-update
-
-php -dallow_url_fopen=1 composer.phar install --prefer-dist --no-dev
+cd /home/deploybot/Laravel-Project
 
 php artisan migrate
-
-php artisan up
 
 @endtask
