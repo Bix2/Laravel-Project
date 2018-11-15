@@ -1,11 +1,14 @@
-@servers(['codebreak' => 'deploybot@212.111.41.86'])
+@servers(['web' => ['deploybot@212.111.41.86']])
+
 @setup
-    $account = 'deploybot';
+$account = 'deploybot';
 @endsetup
 
-@task('deploy', ['on' => '212.111.41.86'])
+@task('deploy-production', ['on' => 'web'])
 
 cd /home/deploybot/Laravel-Project
+
+git pull origin master
 
 php artisan migrate
 
