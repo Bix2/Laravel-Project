@@ -11,6 +11,9 @@
                 <div class="breath__container" style="">
                     <div class="breath__animation" style=""></div>
                 </div>
+                <div class="total-line">
+                    <div class="progress-line"></div>
+                </div>
                 <form>
                         <meta name="csrf-token" content="{{ csrf_token() }}">
                         <button class="btn" id="breath_session__buttton">Start a breathing session</button>

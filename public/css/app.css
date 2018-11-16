@@ -11205,8 +11205,8 @@ div.holidayShipping .emphasis {
 }
 
 .breath__animation.session {
-  -webkit-animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
-          animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
+  -webkit-animation: breathing ease-in-out 12s infinite;
+          animation: breathing ease-in-out 12s infinite;
 }
 
 @-webkit-keyframes breathing {
@@ -11214,7 +11214,11 @@ div.holidayShipping .emphasis {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-  50% {
+  21.052631578% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  57.894736842% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -11225,7 +11229,11 @@ div.holidayShipping .emphasis {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-  50% {
+  21.052631578% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  57.894736842% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -11278,6 +11286,28 @@ div.holidayShipping .emphasis {
   to {
     opacity: 1;
   }
+}
+
+.total-line {
+  width: 100%;
+  height: 0.7rem;
+  background: #d2d2d2;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.total-line .progress-line {
+  width: 0;
+  height: 100%;
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  background: #b2b6e8;
+}
+
+.total-line .progress-line.animated {
+  -webkit-transition: width 60s linear;
+  transition: width 60s linear;
 }
 
 body.welcome-page {
