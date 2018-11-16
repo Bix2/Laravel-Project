@@ -26,6 +26,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/profile', 'UserController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
+Route::post('/api/addwater', 'DashboardController@AddWater');
 
 Route::get('/api/getstats', 'UserController@getStats');
 Route::get('/api/getweeksleep', 'UserController@getWeekSleepStats');
