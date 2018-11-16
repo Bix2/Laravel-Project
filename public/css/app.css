@@ -11456,3 +11456,17 @@ h1.logo_text {
   list-style: none;
   padding: 0;
 }
+
+.habit_table th:last-child {
+  background-color: #5E64B5;
+  border-color: #5E64B5;
+}
+
+.habit_table td:last-child {
+  background-color: #B2B6E8;
+  border-color: #d6d8f6;
+}
+
+.habit_nodata {
+  font-size: 1.25rem;
+}
