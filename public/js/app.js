@@ -48212,7 +48212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: ["Steps made", "Steps to go"],
                 title: {
                     align: 'center',
-                    text: 'Weekly Plan'
+                    text: 'Daily Plan'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
