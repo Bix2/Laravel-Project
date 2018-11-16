@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\CodeBreak\FitBit;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\ClientInterface;
 use Auth;
 use App\User;
 
@@ -64,7 +67,15 @@ class Habit extends Model
                 array_push($stepsweek, $steps);
             } 
 
-            return $stepsweek;
+            $stepsdata = [];
+            $stepstotal = 0;
+            foreach ($stepsweek as $st) {
+                $stepstotal = $stepstotal + $st;
+            }
+            $stepsdata['stepsweek'] = $stepsweek;
+            $stepsdata['stepstotal'] = $stepstotal;
+
+            return $stepsdata;
         }
     }
 
@@ -85,8 +96,15 @@ class Habit extends Model
                 }
                 array_push($waterweek, $amount);
             } 
+            $waterdata = [];
+            $watertotal = 0;
+            foreach ($waterweek as $w) {
+                $watertotal = $watertotal + $w;
+            }
+            $waterdata['waterweek'] = $waterweek;
+            $waterdata['watertotal'] = $watertotal;
 
-            return $waterweek;
+            return $waterdata;
         }
     }
 
@@ -107,7 +125,16 @@ class Habit extends Model
                 }
                 array_push($breathingweek, $amount);
             } 
-            return $breathingweek;
+
+            $breathingdata = [];
+            $breathingtotal = 0;
+            foreach ($breathingweek as $b) {
+                $breathingtotal = $breathingtotal + $b;
+            }
+            $breathingdata['breathingweek'] = $breathingweek;
+            $breathingdata['breathingtotal'] = $breathingtotal;
+
+            return $breathingdata;
         }
     }
 
@@ -143,8 +170,18 @@ class Habit extends Model
                 array_push($sleepweek["wake_minutes"], $wake_minutes);
             } 
         
+            $sleepdata = [];
+            $sleeptotal = 0;
+            foreach ($sleepweek as $sl) {
+                foreach ($sl as $mins) {
+                    $sleeptotal = $sleeptotal + $mins;
+                }
+            }
 
-            return $sleepweek;
+            $sleepdata['sleepweek'] = $sleepweek;
+            $sleepdata['sleeptotal'] = $sleeptotal;
+
+            return $sleepdata;
         }
     }
 
@@ -210,6 +247,29 @@ class Habit extends Model
                 'date' => date('Y-m-d'),
             ]);
         }
+    }
+
+    public static function AddWaterLog($request) {
+        $client = new Client([
+            "base_uri" => "https://api.fitbit.com/1.2/",
+        ]);
+        if (Auth::check()) {
+            $me = Auth::user();
+            $water = $client->post("user/-/foods/log/water/water.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}",
+                ],
+                "form_params" => [
+                    'amount' => '200',
+                    'date' => '2018-11-15'
+                ]
+            ]);
+        }
+        $amount = $request["amount"];
+        if($amount == null){
+            $amount = 0;
+        }
+        return $amount;
     }
 
     public function users() {
