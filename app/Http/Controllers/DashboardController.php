@@ -62,6 +62,11 @@ class DashboardController extends Controller
         }
     }
 
+    public function AddWater(Request $request){
+        $data = Habit::AddWaterLog($request);
+        return $data;
+    }
+
     // Jobs Testing
     public function doSomething()
     {

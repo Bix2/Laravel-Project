@@ -14159,6 +14159,7 @@ Vue.component('weekactivitychart', __webpack_require__(49));
 Vue.component('apexcharts', __webpack_require__(52));
 Vue.component('daybreathingchart', __webpack_require__(55));
 Vue.component('daywaterchart', __webpack_require__(58));
+// Vue.component('addwater', require('./components/AddWaterComponent.vue'));
 
 var app = new Vue({
   el: '#app'
@@ -47462,6 +47463,12 @@ $(document).ready(function () {
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
+        $('.total-line .progress-line').removeClass('animated');
+        $('.total-line .progress-line').css('width', '0');
+        setTimeout(function () {
+            $('.total-line .progress-line').addClass('animated');
+            $('.total-line .progress-line').css('width', '100%');
+        }, 1);
         setTimeout(function () {
             $('.breath__animation').removeClass('session');
             console.log('starting...');
@@ -48205,7 +48212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: ["Steps made", "Steps to go"],
                 title: {
                     align: 'center',
-                    text: 'Weekly Plan'
+                    text: 'Daily Plan'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
