@@ -52,6 +52,7 @@ class UserController extends Controller
                 'name'   => $data->name,
                 'avatar' => $data->avatar,
             ]);
+//mass assignment
             return $user;
         }
         // else store user in db
