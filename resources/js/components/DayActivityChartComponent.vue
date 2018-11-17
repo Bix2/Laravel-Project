@@ -33,7 +33,7 @@ export default {
         labels: ["Steps made", "Steps to go"],
         title: {
             align: 'center',
-            text: 'Weekly Plan'
+            text: 'Daily Plan'
         },
         fill: {
             colors: ['#E14DA5', '#EAEAEA']
