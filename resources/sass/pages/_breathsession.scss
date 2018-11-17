@@ -43,7 +43,7 @@
 
 
 .breath__animation.session {
-    animation: breathing ease-in-out 12s infinite;
+    animation: breathing cubic-bezier(.76,.01,.58,1) 6s infinite;
 }
 
 @keyframes breathing {
@@ -51,11 +51,7 @@
         transform: scale(0);
     }
 
-    21.052631578% {
-        transform: scale(1);
-    }
-
-    57.894736842% {
+    50% {
         transform: scale(1);
     }
 }
@@ -91,25 +87,4 @@
     to {
         opacity: 1;
     }
-}
-
-.total-line {
-    width: 100%;
-    height: 0.7rem;
-    background: #d2d2d2;
-    margin-bottom: 1.5rem;
-    position: relative;
-}
-
-.total-line .progress-line {
-    width: 0;
-    height: 100%;
-    max-width: 100%;
-    left: 0;
-    top: 0;
-    background: #b2b6e8;
-}
-
-.total-line .progress-line.animated {
-    transition: width 60s linear;
 }

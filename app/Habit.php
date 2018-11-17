@@ -5,9 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\CodeBreak\FitBit;
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\ClientInterface;
 use Auth;
 use App\User;
 
@@ -22,15 +19,9 @@ class Habit extends Model
             $tracked_habit = Habit::isTracked($thishabit->id, $me->id);
 
             if($tracked_habit) {
-                $data['button'] = [
-                    "text"      =>  "Remove this habit from the dashboard",
-                    "status"    =>  "danger"
-                ];
+                $data['button'] = ["text" => "Stop tracking this habit"];
             } else {
-                $data['button'] = [
-                    "text"      =>  "Add this habit to your dashboard",
-                    "status"    =>  "success"
-                ];
+                $data['button'] = ["text" => "Track this habit"];
             }
 
             $data['user'] = $me;
@@ -67,15 +58,7 @@ class Habit extends Model
                 array_push($stepsweek, $steps);
             } 
 
-            $stepsdata = [];
-            $stepstotal = 0;
-            foreach ($stepsweek as $st) {
-                $stepstotal = $stepstotal + $st;
-            }
-            $stepsdata['stepsweek'] = $stepsweek;
-            $stepsdata['stepstotal'] = $stepstotal;
-
-            return $stepsdata;
+            return $stepsweek;
         }
     }
 
@@ -96,15 +79,8 @@ class Habit extends Model
                 }
                 array_push($waterweek, $amount);
             } 
-            $waterdata = [];
-            $watertotal = 0;
-            foreach ($waterweek as $w) {
-                $watertotal = $watertotal + $w;
-            }
-            $waterdata['waterweek'] = $waterweek;
-            $waterdata['watertotal'] = $watertotal;
 
-            return $waterdata;
+            return $waterweek;
         }
     }
 
@@ -125,16 +101,7 @@ class Habit extends Model
                 }
                 array_push($breathingweek, $amount);
             } 
-
-            $breathingdata = [];
-            $breathingtotal = 0;
-            foreach ($breathingweek as $b) {
-                $breathingtotal = $breathingtotal + $b;
-            }
-            $breathingdata['breathingweek'] = $breathingweek;
-            $breathingdata['breathingtotal'] = $breathingtotal;
-
-            return $breathingdata;
+            return $breathingweek;
         }
     }
 
@@ -170,18 +137,8 @@ class Habit extends Model
                 array_push($sleepweek["wake_minutes"], $wake_minutes);
             } 
         
-            $sleepdata = [];
-            $sleeptotal = 0;
-            foreach ($sleepweek as $sl) {
-                foreach ($sl as $mins) {
-                    $sleeptotal = $sleeptotal + $mins;
-                }
-            }
 
-            $sleepdata['sleepweek'] = $sleepweek;
-            $sleepdata['sleeptotal'] = $sleeptotal;
-
-            return $sleepdata;
+            return $sleepweek;
         }
     }
 
@@ -203,10 +160,7 @@ class Habit extends Model
                     ['habit_id', '=', $thishabit->id],
                     ['user_id', '=', $me->id]
                 ])->delete();
-                $data['button'] = [
-                    "text"      =>  "Add this habit to your dashboard",
-                    "status"    =>  "success"
-                ];
+                $data['button'] = ["text" => "Track this habit"];
             } else {
                 // this can be done better but is ok like that for now
                 if($thishabit->id == 1) {
@@ -215,7 +169,7 @@ class Habit extends Model
                     $goal = FitBit::getWaterLogGoal();
                 } elseif ($thishabit->id == 2) {
                     // static data for now
-                    $goal = 5;
+                    $goal = 3;
                 } elseif ($thishabit->id == 3) {
                     $goal = FitBit::getActivityStepsGoal();
                 }
@@ -224,10 +178,7 @@ class Habit extends Model
                     'user_id' => $me->id,
                     'goal' => $goal
                 ]);
-                $data['button'] = [
-                    "text"      =>  "Remove this habit from the dashboard",
-                    "status"    =>  "danger"
-                ];
+                $data['button'] = ["text" => "Stop tracking this habit"];
             }
 
             $data['user'] = $me;
@@ -248,29 +199,7 @@ class Habit extends Model
             ]);
         }
     }
-
-    public static function AddWaterLog($request) {
-        $client = new Client([
-            "base_uri" => "https://api.fitbit.com/1.2/",
-        ]);
-        if (Auth::check()) {
-            $me = Auth::user();
-            $water = $client->post("user/-/foods/log/water/water.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}",
-                ],
-                "form_params" => [
-                    'amount' => '200',
-                    'date' => '2018-11-15'
-                ]
-            ]);
-        }
-        $amount = $request["amount"];
-        if($amount == null){
-            $amount = 0;
-        }
-        return $amount;
-    }
+    
 
     public function users() {
         return $this->belongsToMany('\App\User');

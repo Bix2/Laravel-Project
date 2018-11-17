@@ -4,8 +4,6 @@ namespace App\Console;
 
 use App\Jobs\ProcessApiCalls;
 use App\Jobs\DoSomething;
-use App\Http\CodeBreak\FitBit;
-use DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,11 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            FitBit::AutomateSteps();
-            FitBit::AutomateSleep();
-            FitBit::AutomateWater();
-        })->everyMinute();
+        $schedule->job(new DoSomething)->everyFiveMinutes();
     }
 
     /**

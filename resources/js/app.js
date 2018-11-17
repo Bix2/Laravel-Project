@@ -36,18 +36,10 @@ Vue.component('weekactivitychart', require('./components/WeekActivityChartCompon
 Vue.component('apexcharts', require('./components/DayActivityChartComponent.vue'));
 Vue.component('daybreathingchart', require('./components/DayBreathingChartComponent.vue'));
 Vue.component('daywaterchart', require('./components/DayWaterChartComponent.vue'));
-// Vue.component('addwater', require('./components/AddWaterComponent.vue'));
 
 var app = new Vue({
   el: '#app'
 })
-
-$('.alert__close').on('click', function(e) {
-  e.preventDefault();
-  $(this).parent('.alert').hide('slow');
-});
-
-$('.tooltip-items').tooltip();
 
 // $.ajaxSetup({
 //   headers: {

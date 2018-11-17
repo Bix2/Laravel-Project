@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'fitbit_id', 'remember_token', 'token', 'avatar', 'admin'
+        'name', 'email', 'password', 'fitbit_id', 'token', 'avatar', 'admin'
     ];
 
     /**
@@ -75,33 +75,31 @@ class User extends Authenticatable
                             }
                         }
                         $data['trackedHabitsInfo']['totalsleep'] = $totalsleep;
-                        $data['trackedHabitsInfo']['sleepgoal'] = $sleepgoal->goal;
-                        $data['userProgress']['sleep_progress'] = User::checkHabitProgress($totalsleep, $sleepgoal->goal);
+                        $data['trackedHabitsInfo']['sleepgoal'] = $sleepgoal;
                     }
                     if($habit->type == "water") {
                         $userwater = \DB::table('waterlogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
                         $watergoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 4]])->first();
                         $data['trackedHabitsInfo']['userwater'] = $userwater->amount;
                         $data['trackedHabitsInfo']['watergoal'] = $watergoal->goal;
-                        $data['userProgress']['water_progress'] = User::checkHabitProgress($userwater->amount, $watergoal->goal);
                     }
                     if($habit->type == "breathing") {
                         $totalbreathing = 0;
                         $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
                         $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
                         foreach ($userbreathing as $breathing) {
-                            $totalbreathing++;
+                            if($breathing->date > $totalbreathing){
+                                $totalbreathing = $breathing->date;
+                            }
                         }
                         $data['trackedHabitsInfo']['totalbreathing'] = $totalbreathing;
-                        $data['trackedHabitsInfo']['breathinggoal'] = $breathinggoal->goal;
-                        $data['userProgress']['breathing_progress'] = User::checkHabitProgress($totalbreathing, $breathinggoal->goal);
+                        $data['trackedHabitsInfo']['breathinggoal'] = $breathinggoal;
                     }
                     if($habit->type == "exercise") {
                         $usersteps = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
                         $stepsgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
                         $data['trackedHabitsInfo']['usersteps'] = $usersteps->steps;
                         $data['trackedHabitsInfo']['stepsgoal'] = $stepsgoal->goal;
-                        $data['userProgress']['steps_progress'] = User::checkHabitProgress($usersteps->steps, $stepsgoal->goal);
                     }
                 }
             }
@@ -111,6 +109,7 @@ class User extends Authenticatable
             $data['user'] = $me;
             $data['habits'] = $habits;
             $data['trackedHabitsDetails'] = $trackedHabitsDetails;
+            
             return $data;
         }
     }
@@ -300,36 +299,6 @@ class User extends Authenticatable
 
         header('Content-Type: application/json');
         echo json_encode($response);
-    }
-
-    // public static function checkIfStepsGoalCompleted() {
-    //     if (Auth::check()) { 
-    //         $me = Auth::user();
-    //         $currentdate = date("Y-m-d");
-    //         $usersteps = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
-    //         $stepsgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
-    //     }
-    // }
-
-    public static function checkHabitProgress($userProgress, $userGoal) {
-        $habitProgress = [];
-        $message;
-        $status;
-        if($userProgress == 0) {
-            $message = "It's time to start with this habit. Go for it!";
-            $status = "warning";
-        } elseif($userProgress < $userGoal) {
-            $message = "You are making progress! Keep up the great work!";
-            $status = "warning";
-        } else {
-            $message = "You did it! Sometimes the most productive thing you can do is relax";
-            $status = "success";
-        }
-        $status = [
-            'message'   =>  $message,
-            'status'    =>  $status
-        ];
-        return $status;
     }
     
 

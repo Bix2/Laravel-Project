@@ -18,9 +18,6 @@ class CreateHabitsTable extends Migration
             $table->string('type');
             $table->string('short_description');
             $table->string('long_description');
-            $table->boolean('watch');
-            $table->boolean('fitbit_app');
-            $table->boolean('codebreak');
             $table->timestamps();
         });
     }

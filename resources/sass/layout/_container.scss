@@ -22,7 +22,7 @@
   margin-bottom: 5em;
 }
 
-#dash, .top__content{
+#dash {
   margin: 1em 0 2em;
 }
 
@@ -30,12 +30,4 @@
   display: grid;
   grid-template-columns: 200px 1fr;
   min-height: 100vh;
-}
-
-.tooltip-items + .tooltip > .tooltip-inner {
-  background-color: #73AD21; 
-  color: #FFFFFF; 
-  border: 1px solid green;
-  padding: 15px;
-  font-size: 20px;
 }

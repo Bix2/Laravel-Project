@@ -14159,18 +14159,10 @@ Vue.component('weekactivitychart', __webpack_require__(49));
 Vue.component('apexcharts', __webpack_require__(52));
 Vue.component('daybreathingchart', __webpack_require__(55));
 Vue.component('daywaterchart', __webpack_require__(58));
-// Vue.component('addwater', require('./components/AddWaterComponent.vue'));
 
 var app = new Vue({
   el: '#app'
 });
-
-$('.alert__close').on('click', function (e) {
-  e.preventDefault();
-  $(this).parent('.alert').hide('slow');
-});
-
-$('.tooltip-items').tooltip();
 
 // $.ajaxSetup({
 //   headers: {
@@ -47463,12 +47455,6 @@ $(document).ready(function () {
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
-        $('.total-line .progress-line').removeClass('animated');
-        $('.total-line .progress-line').css('width', '0');
-        setTimeout(function () {
-            $('.total-line .progress-line').addClass('animated');
-            $('.total-line .progress-line').css('width', '100%');
-        }, 1);
         setTimeout(function () {
             $('.breath__animation').removeClass('session');
             console.log('starting...');
@@ -48212,7 +48198,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: ["Steps made", "Steps to go"],
                 title: {
                     align: 'center',
-                    text: 'Daily Plan'
+                    text: 'Weekly Plan'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
@@ -48349,31 +48335,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -48406,7 +48367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data[i]) {
                     if (response.data[i].amount == 1) {
                         breathingData.push({
-                            title: 'Perfect Breathing',
+                            title: 'Perfect',
                             type: 'success'
                         });
                     } else {
@@ -48437,145 +48398,70 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "chart" }, [
     _c("div", { staticClass: "chart__breathing" }, [
-      _vm.breathing.data[0].type === "nothing"
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                class: _vm.breathing.data[0].type,
-                attrs: { breathing: _vm.breathing }
-              },
-              [
-                _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
-                  _vm._v(_vm._s(_vm.breathing.data[0].title))
-                ])
-              ]
-            )
+      _c(
+        "div",
+        {
+          class: _vm.breathing.data[0].type,
+          attrs: { breathing: _vm.breathing }
+        },
+        [
+          _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
+            _vm._v(_vm._s(_vm.breathing.data[0].title))
           ])
-        : _vm.breathing.data[0].type === "success"
-          ? _c("div", [
-              _c(
-                "div",
-                {
-                  class: _vm.breathing.data[0].type,
-                  attrs: { breathing: _vm.breathing }
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.breathing.data[0].title))])]
-              )
-            ])
-          : _vm._e(),
+        ]
+      ),
       _vm._v(" "),
-      _vm.breathing.data[1].type === "nothing"
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                class: _vm.breathing.data[1].type,
-                attrs: { breathing: _vm.breathing }
-              },
-              [
-                _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
-                  _vm._v(_vm._s(_vm.breathing.data[1].title))
-                ])
-              ]
-            )
+      _c(
+        "div",
+        {
+          class: _vm.breathing.data[1].type,
+          attrs: { breathing: _vm.breathing }
+        },
+        [
+          _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
+            _vm._v(_vm._s(_vm.breathing.data[1].title))
           ])
-        : _vm.breathing.data[1].type === "success"
-          ? _c("div", [
-              _c(
-                "div",
-                {
-                  class: _vm.breathing.data[1].type,
-                  attrs: { breathing: _vm.breathing }
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.breathing.data[1].title))])]
-              )
-            ])
-          : _vm._e(),
+        ]
+      ),
       _vm._v(" "),
-      _vm.breathing.data[2].type === "nothing"
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                class: _vm.breathing.data[2].type,
-                attrs: { breathing: _vm.breathing }
-              },
-              [
-                _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
-                  _vm._v(_vm._s(_vm.breathing.data[2].title))
-                ])
-              ]
-            )
+      _c(
+        "div",
+        {
+          class: _vm.breathing.data[2].type,
+          attrs: { breathing: _vm.breathing }
+        },
+        [
+          _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
+            _vm._v(_vm._s(_vm.breathing.data[2].title))
           ])
-        : _vm.breathing.data[2].type === "success"
-          ? _c("div", [
-              _c(
-                "div",
-                {
-                  class: _vm.breathing.data[2].type,
-                  attrs: { breathing: _vm.breathing }
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.breathing.data[2].title))])]
-              )
-            ])
-          : _vm._e(),
+        ]
+      ),
       _vm._v(" "),
-      _vm.breathing.data[3].type === "nothing"
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                class: _vm.breathing.data[3].type,
-                attrs: { breathing: _vm.breathing }
-              },
-              [
-                _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
-                  _vm._v(_vm._s(_vm.breathing.data[3].title))
-                ])
-              ]
-            )
+      _c(
+        "div",
+        {
+          class: _vm.breathing.data[3].type,
+          attrs: { breathing: _vm.breathing }
+        },
+        [
+          _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
+            _vm._v(_vm._s(_vm.breathing.data[3].title))
           ])
-        : _vm.breathing.data[3].type === "success"
-          ? _c("div", [
-              _c(
-                "div",
-                {
-                  class: _vm.breathing.data[3].type,
-                  attrs: { breathing: _vm.breathing }
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.breathing.data[3].title))])]
-              )
-            ])
-          : _vm._e(),
+        ]
+      ),
       _vm._v(" "),
-      _vm.breathing.data[4].type === "nothing"
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                class: _vm.breathing.data[4].type,
-                attrs: { breathing: _vm.breathing }
-              },
-              [
-                _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
-                  _vm._v(_vm._s(_vm.breathing.data[4].title))
-                ])
-              ]
-            )
+      _c(
+        "div",
+        {
+          class: _vm.breathing.data[4].type,
+          attrs: { breathing: _vm.breathing }
+        },
+        [
+          _c("a", { attrs: { href: "/dashboard/breathing/session" } }, [
+            _vm._v(_vm._s(_vm.breathing.data[4].title))
           ])
-        : _vm.breathing.data[4].type === "success"
-          ? _c("div", [
-              _c(
-                "div",
-                {
-                  class: _vm.breathing.data[4].type,
-                  attrs: { breathing: _vm.breathing }
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.breathing.data[4].title))])]
-              )
-            ])
-          : _vm._e()
+        ]
+      )
     ])
   ])
 }

@@ -8,7 +8,7 @@
 
         <div class="col-6 profile__picture">
             <div class="profile__picture--wrapper">
-                <a href="/profile"><img alt="profile picture of {{ $user->name }}" class="" src="{{$user->avatar}}"></a>
+                <img alt="profile picture of {{ $user->name }}" class="" src="{{$user->avatar}}">
             </div>
         </div>
     </div>

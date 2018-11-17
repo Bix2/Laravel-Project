@@ -23,13 +23,13 @@ class HabitController extends Controller
         $data = Habit::getTrackedHabitInfo($habit);
         $habitId = $data["habit"]->id;
         if($habitId == 1) {
-            $data['sleepdata'] = Habit::getTrackedSleepLogsData();
+            $data['sleepweek'] = Habit::getTrackedSleepLogsData();
         } else if($habitId == 2) {
-            $data['breathingdata'] = Habit::getTrackedBreathingData();
+            $data['breathingweek'] = Habit::getTrackedBreathingData();
         } else if($habitId == 3) {
-            $data['stepsdata'] = Habit::getTrackedActivityStepsData();
+            $data['stepsweek'] = Habit::getTrackedActivityStepsData();
         } else if($habitId == 4) {
-            $data['waterdata'] = Habit::getTrackedWaterLogsData();
+            $data['waterweek'] = Habit::getTrackedWaterLogsData();
         }
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
         $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();

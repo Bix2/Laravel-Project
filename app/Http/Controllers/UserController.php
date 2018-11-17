@@ -52,11 +52,10 @@ class UserController extends Controller
                 'name'   => $data->name,
                 'avatar' => $data->avatar,
             ]);
-//mass assignment
             return $user;
         }
         // else store user in db
-        $user = User::create([
+        return $user = User::create([
             'token' => $data->token,
             'remember_token' => $data->refreshToken,
             'fitbit_id' => $data->id,
@@ -64,14 +63,6 @@ class UserController extends Controller
             'avatar' => $data->avatar,
             'admin' => 0
         ]);
-        
-        $sleep = FitBit::getSleepPatternWeek();
-        FitBit::insertSleepWeekToDB($sleep);
-        $steps = FitBit::getActivityStepsWeek();
-        FitBit::insertStepsWeekToDB($steps);
-        $water = FitBit::getWaterLogWeek();
-        FitBit::insertWaterLogWeekToDB($water);
-        return $user;
     }
 
     public static function showProfile() {
