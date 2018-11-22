@@ -13,6 +13,8 @@
 @import 'base/reset';
 
 // Components
+@import 'components/cards';
+@import 'components/alert';
 @import 'components/charts';
 
 // Layout
@@ -25,6 +27,7 @@
 @import 'pages/dashboard';
 @import 'pages/breathsession';
 @import 'pages/welcome';
+@import 'pages/habit';
 
 
 

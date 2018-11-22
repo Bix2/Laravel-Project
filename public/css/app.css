@@ -9519,6 +9519,44 @@ body {
   background-color: #ececec;
 }
 
+.card {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.card__image {
+  text-align: center;
+  width: 60px;
+  margin: 20px auto;
+}
+
+.card__text {
+  text-align: center;
+}
+
+.card__items {
+  text-align: center;
+  margin: 20px;
+}
+
+.card__items img {
+  margin: 10px;
+  width: 40px;
+}
+
+.card__items a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.alert__close {
+  position: absolute;
+  right: 20px;
+  color: gray;
+  font-weight: bold;
+}
+
 .chart {
   padding: 20px;
   background-color: #fff;
@@ -9563,7 +9601,7 @@ body {
 }
 
 .chart__water div {
-  padding: 30px;
+  padding: 30px 0;
 }
 
 .chart__sleep .apexcharts-legend rect:nth-child(2) {
@@ -9592,7 +9630,7 @@ body {
   display: grid;
 }
 
-.chart__breathing div a {
+.chart__breathing div a, .chart__breathing div p {
   justify-self: center;
   -ms-flex-item-align: center;
       align-self: center;
@@ -9681,7 +9719,7 @@ body {
   margin-bottom: 5em;
 }
 
-#dash {
+#dash, .top__content {
   margin: 1em 0 2em;
 }
 
@@ -9689,6 +9727,14 @@ body {
   display: grid;
   grid-template-columns: 200px 1fr;
   min-height: 100vh;
+}
+
+.tooltip-items + .tooltip > .tooltip-inner {
+  background-color: #73AD21;
+  color: #FFFFFF;
+  border: 1px solid green;
+  padding: 15px;
+  font-size: 20px;
 }
 
 .mainHeader {
@@ -9724,20 +9770,6 @@ body {
 
 .link-text {
   display: none;
-}
-
-.top__content {
-  padding-top: 30px;
-  padding-bottom: 20px;
-}
-
-.top__content h2 {
-  color: #555B62;
-  font-weight: bold;
-}
-
-.top__content p {
-  color: #c7c7c7;
 }
 
 .profile__picture {
@@ -9847,10 +9879,6 @@ body {
 .main__container--habit a {
   margin: 0px 0 10px 10px;
   display: block;
-}
-
-.top__content {
-  padding-top: 25px;
 }
 
 @media (max-width: 589px) {
@@ -11177,8 +11205,8 @@ div.holidayShipping .emphasis {
 }
 
 .breath__animation.session {
-  -webkit-animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
-          animation: breathing cubic-bezier(0.76, 0.01, 0.58, 1) 6s infinite;
+  -webkit-animation: breathing ease-in-out 12s infinite;
+          animation: breathing ease-in-out 12s infinite;
 }
 
 @-webkit-keyframes breathing {
@@ -11186,7 +11214,11 @@ div.holidayShipping .emphasis {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-  50% {
+  21.052631578% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  57.894736842% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -11197,7 +11229,11 @@ div.holidayShipping .emphasis {
     -webkit-transform: scale(0);
             transform: scale(0);
   }
-  50% {
+  21.052631578% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  57.894736842% {
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -11250,6 +11286,28 @@ div.holidayShipping .emphasis {
   to {
     opacity: 1;
   }
+}
+
+.total-line {
+  width: 100%;
+  height: 0.7rem;
+  background: #d2d2d2;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.total-line .progress-line {
+  width: 0;
+  height: 100%;
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  background: #b2b6e8;
+}
+
+.total-line .progress-line.animated {
+  -webkit-transition: width 60s linear;
+  transition: width 60s linear;
 }
 
 body.welcome-page {
@@ -11397,4 +11455,18 @@ h1.logo_text {
 .dailystats ul {
   list-style: none;
   padding: 0;
+}
+
+.habit_table th:last-child {
+  background-color: #5E64B5;
+  border-color: #5E64B5;
+}
+
+.habit_table td:last-child {
+  background-color: #B2B6E8;
+  border-color: #d6d8f6;
+}
+
+.habit_nodata {
+  font-size: 1.25rem;
 }

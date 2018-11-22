@@ -8,6 +8,12 @@ $(document).ready(function () {
         var amount = 1;
         event.preventDefault();
         $('.breath__animation').addClass('session');
+        $('.total-line .progress-line').removeClass('animated');
+        $('.total-line .progress-line').css('width', '0');
+        setTimeout(function () {
+        $('.total-line .progress-line').addClass('animated');
+        $('.total-line .progress-line').css('width', '100%');
+        }, 1);
         setTimeout(function () {
             $('.breath__animation').removeClass('session');
             console.log('starting...');
