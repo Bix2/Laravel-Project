@@ -48028,10 +48028,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             series: [{
                 name: 'Activity',
-                data: []
+                data: [0, 0, 0, 0, 0, 0, 0]
             }, {
                 name: 'Goal',
-                data: []
+                data: [0, 0, 0, 0, 0, 0, 0]
             }]
         };
     },
@@ -48069,8 +48069,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var _i = 0; _i < last7Days.length; _i++) {
                 if (daysActive[counter] != undefined) {
                     if (last7Days[_i] == daysActive[counter].date) {
+                        // if more steps than goal, change goal to steps number
+                        if (daysActive[counter].goal < 0) {
+                            seriesArray[1].push(0);
+                        } else {
+                            seriesArray[1].push(daysActive[counter].goal);
+                        }
                         seriesArray[0].push(daysActive[counter].steps);
-                        seriesArray[1].push(daysActive[counter].goal);
                         counter++;
                     } else {
                         seriesArray[0].push(0);
@@ -48192,7 +48197,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            chartOptions: {
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 50,
+                        type: 'radialBar'
+                    },
+                    legend: {
+                        show: false
+                    }
+                }
+            }],
+            options: {
                 chart: {
                     height: 350,
                     type: 'radialBar'
@@ -48263,10 +48280,9 @@ var render = function() {
     [
       _c("apexcharts", {
         attrs: {
-          width: "100%",
           height: "350",
           type: "donut",
-          options: _vm.chartOptions,
+          options: _vm.options,
           series: _vm.series
         }
       })

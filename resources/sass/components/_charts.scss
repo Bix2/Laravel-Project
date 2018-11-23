@@ -93,10 +93,36 @@
     background-color: #F9DA69;
   }
 
-  .chart__activity .apexcharts-legend rect:nth-child(1){
+  .chart__activity .apexcharts-legend rect:nth-child(2) {
+    fill: #E14DA5!important;
+  }
+
+  .chart__activity .apexcharts-legend rect:nth-child(4) {
+    fill: #EAEAEA;
+  }
+
+  .apexcharts-tooltip-marker {
+    display: none!important;
+  }
+
+  .chart__activity .apexcharts-legend circle:nth-child(2) {
     fill: #E14DA5;
   }
 
-  .chart__activity .apexcharts-legend rect:nth-child(10) {
+  .chart__activity .apexcharts-legend circle:nth-child(4) {
     fill: #EAEAEA;
+  }
+  .chart__activity .apexcharts-legend text:nth-child(3), .chart__activity .apexcharts-legend text:first-child {
+    fill: rgb(55, 61, 63);
+  }
+  .chart__activity .apexcharts-tooltip-series-group {
+    background-color: #fff!important;
+  }
+
+  .chart__activity .apexcharts-tooltip-text {
+    color: rgb(55, 61, 63);
+  }
+
+  .chart__activity .apexcharts-tooltip-text-label {
+    font-weight: bold;
   }
