@@ -9592,6 +9592,7 @@ body {
 
 .chart__water .chart__water--title p {
   margin: 0;
+  font-size: .8em;
 }
 
 .chart__water--title p {
@@ -9601,7 +9602,7 @@ body {
 }
 
 .chart__water div {
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .chart__sleep .apexcharts-legend rect:nth-child(2) {
@@ -9622,7 +9623,8 @@ body {
 
 .chart__breathing {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr;
+  grid-row-gap: 1em;
   grid-column-gap: 1em;
 }
 
@@ -9635,9 +9637,10 @@ body {
   -ms-flex-item-align: center;
       align-self: center;
   margin: 0;
-  padding: 20px;
   color: #212529;
   text-decoration: none;
+  font-size: .8em;
+  padding: 5px 0;
 }
 
 .nothing {
@@ -9672,7 +9675,19 @@ body {
   fill: #EAEAEA;
 }
 
+.chart__sleep .apexcharts-legend circle:nth-child(2) {
+  fill: #E14DA5;
+}
+
+.chart__sleep .apexcharts-legend circle:nth-child(4) {
+  fill: #EAEAEA;
+}
+
 .chart__activity .apexcharts-legend text:nth-child(3), .chart__activity .apexcharts-legend text:first-child {
+  fill: #373d3f;
+}
+
+.chart__sleep .apexcharts-legend text:nth-child(3), .chart__sleep .apexcharts-legend text:first-child {
   fill: #373d3f;
 }
 
@@ -9686,6 +9701,37 @@ body {
 
 .chart__activity .apexcharts-tooltip-text-label {
   font-weight: bold;
+}
+
+.chart__sleep .apexcharts-tooltip-series-group {
+  background-color: #fff !important;
+}
+
+.chart__sleep .apexcharts-tooltip-text {
+  color: #373d3f;
+}
+
+.chart__sleep .apexcharts-tooltip-text-label {
+  font-weight: bold;
+}
+
+@media (min-width: 968px) {
+  .chart__water div {
+    padding: 30px 0;
+  }
+  .chart__water .chart__water--title p {
+    font-size: 1em;
+  }
+  .chart__breathing {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .chart__breathing div a, .chart__breathing div p {
+    font-size: 1em;
+    padding: 20px;
+  }
+  .alert {
+    font-size: .8em;
+  }
 }
 
 #nav {

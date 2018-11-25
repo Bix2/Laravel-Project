@@ -14,6 +14,14 @@ export default {
   data: function() {
     return {
       chartOptions: {
+        responsive: [{
+            breakpoint: 1009,
+            options: {
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }],
         chart: {
             height: 350,
             type: 'bar',

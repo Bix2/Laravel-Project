@@ -13,19 +13,15 @@ export default {
   },
   data: function() {
     return {
+      options: {
         responsive: [{
-            breakpoint: 1000,
+            breakpoint: 1007,
             options: {
                 chart: {
-                    height: 50,
-                    type: 'radialBar',
+                    height: 200
                 },
-                legend: {
-                    show: false,
-                }
             },
         }],
-      options: {
         chart: {
             height: 350,
             type: 'radialBar',

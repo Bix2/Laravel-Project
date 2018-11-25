@@ -216,9 +216,19 @@ class User extends Authenticatable
                 ->where('date_of_sleep', $currentdate)
                 ->where('user_id', $me->id)
                 ->first();
+            
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 1)
+                ->where('user_id', $me->id)
+                ->first();
+
+            $response[] = [
+                'goal'          => $goal->goal,
+                'sleeplogs'   => $currentDateSleep
+            ];
 
             header('Content-Type: application/json');
-            echo json_encode($currentDateSleep);
+            echo json_encode($response);
         }
     }
 

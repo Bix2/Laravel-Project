@@ -28,13 +28,8 @@ export default {
     }],
     chartOptions: {
       responsive: [{
-        breakpoint: 1000,
+        breakpoint: 1007,
         options: {
-          plotOptions: {
-            bar: {
-              horizontal: false
-            }
-          },
           legend: {
             position: 'bottom'
           }
