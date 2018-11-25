@@ -23,18 +23,6 @@ class DashboardController extends Controller
     public function index() {
         if (Auth::check()) { 
             $me = Auth::user();
-            $data = FitBit::getActivitySteps();
-            // insert steps to database just for testing
-            FitBit::insertStepsToDB($data);
-
-            $data = FitBit::getSleepPattern();
-            // insert steps to database just for testing
-            FitBit::insertSleepToDB($data);
-
-            $data = FitBit::getWaterLog();
-            // insert water to database just for testing
-            FitBit::insertWaterLogToDB($data);
-            
             $data = User::getAllUserData();
             $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
             return view('dashboard', $data);

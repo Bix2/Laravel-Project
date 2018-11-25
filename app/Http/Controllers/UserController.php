@@ -42,6 +42,13 @@ class UserController extends Controller
                 FitBit::insertStepsWeekToDB($steps);
                 $water = FitBit::getWaterLogWeek();
                 FitBit::insertWaterLogWeekToDB($water);
+            } else {
+                $steps = FitBit::getActivitySteps();
+                FitBit::insertStepsToDB($steps);
+                $sleep = FitBit::getSleepPattern();
+                FitBit::insertSleepToDB($sleep);
+                $water = FitBit::getWaterLog();
+                FitBit::insertWaterLogToDB($water);
             }
         }  
         return redirect()->intended('/dashboard')->with(['user' => $user]);  
