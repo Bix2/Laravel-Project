@@ -5,9 +5,9 @@
 	<div class="col-12" id="dash">
         <h2>Dashboard</h2>
     </div>
+    @if ($userGoalsAchieved == true)
     <div class="col-12">
         <div class="card">
-            <div class="card-header">How are you feeling?</div>
             <div class="card-body">
                 <form id="moodFeedback" method="post" action="/dashboard">
                     {{ csrf_field() }}
@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    @endif
 	<div class="col-12 main__content">
             @if ($trackedHabits[0])
             <div id="app" class="row">  
