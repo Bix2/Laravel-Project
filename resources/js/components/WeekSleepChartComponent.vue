@@ -1,6 +1,6 @@
 <template>
-  <div class="chart chart__sleep">
-    <weeksleepchart width="100%" height="350" type="bar" :options="chartOptions" :series="series"></weeksleepchart>
+  <div id="chart_sleep" class="chart chart__sleep">
+    <weeksleepchart height="350" type="bar" :options="chartOptions" :series="series"></weeksleepchart>
   </div>
 </template>
 
@@ -13,67 +13,76 @@ export default {
   },
   data: function() {
     return {
-      chartOptions: {
-        chart: {
-            height: 350,
-            type: 'bar',
-            stacked: true,
-        },
-        plotOptions: {
-          bar: {
-            horizontal: true
+    series: [{
+      name: 'Light',
+      data: [0, 0, 0, 0, 0, 0, 0]
+    },{
+      name: 'REM',
+      data: [0, 0, 0, 0, 0, 0, 0]
+    },{
+      name: 'Deep',
+      data: [0, 0, 0, 0, 0, 0, 0]
+    },{
+      name: 'Awake',
+      data: [0, 0, 0, 0, 0, 0, 0]
+    }],
+    chartOptions: {
+      responsive: [{
+        breakpoint: 1007,
+        options: {
+          legend: {
+            position: 'bottom'
           }
-        },
-        xaxis: {
-          categories: []
-        },
-        yaxis: {
-          title: {
-              text: undefined
-          },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        title: {
-            align: 'center',
-            text: 'Weekly Plan'
-        },
-        tooltip: {
-            colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],
-            shared: false,
-            y: {
-                formatter: function(val) {
-                    return val + " min"
-                }
-            }
-        },
-        fill: {
-          colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7']
-        },
-        states: {
-          hover: {
-            filter: 'none'
-          }
-        },
-        legend: {
-          position: 'right',
+        }
+      }],
+      chart: {
+          // height: 350,
+          // type: 'bar',
+          stacked: true,
+          id: 'chart_sleep'
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
         }
       },
-      series: [{
-        name: 'Light',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      },{
-        name: 'REM',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      },{
-        name: 'Deep',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      },{
-        name: 'Awake',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      }]
+      xaxis: {
+        categories: []
+      },
+      yaxis: {
+        title: {
+            text: undefined
+        },
+      },
+      dataLabels: {
+          enabled: false
+      },
+      title: {
+          align: 'center',
+          text: 'Weekly Plan'
+      },
+      tooltip: {
+          colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],
+          shared: false,
+          y: {
+              formatter: function(val) {
+                  return val + " min"
+              }
+          }
+      },
+      fill: {
+        colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7']
+      },
+      states: {
+        hover: {
+          filter: 'none'
+        }
+      },
+      legend: {
+        position: 'right',
+      }
     }
+  }
   },
   created: function() {
     var self = this;

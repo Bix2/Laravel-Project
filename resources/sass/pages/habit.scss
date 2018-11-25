@@ -1,15 +1,12 @@
-.habit_table th:last-child {
-    background-color: #e14da5;
-    border-color: #e14da5; 
-}
-
-.habit_table td:last-child {
-    background-color: #eaeaea;
-    border-color: #eaeaea;
-}
-
 .habit_nodata {
     font-size: 1.25rem;
+    text-align: left;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
 }
 
 .water-add-form {
@@ -23,5 +20,91 @@
     #wateraddbutton{
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+.table-sleep {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.tbody-dark, .tbody-light, .thead-dark {
+    div {
+        padding: 10px;
+    }
+}
+
+.thead-dark div:last-child {
+    background-color: #e14da5!important;
+}
+
+.tbody-light div:last-child {
+    background-color: rgb(253, 244, 197)!important;
+}
+
+.tbody-dark div:last-child {
+    background-color: #f0df8a!important;
+}
+
+.thead-dark {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    background-color: #1F1F3D;
+    color: #fff;
+    font-weight: bold;
+}
+
+.thead-dark--sleep {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.tbody-light, .tbody-dark {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+}
+
+.tbody-light--sleep, .tbody-dark--sleep {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.tbody-light {
+    background-color: #fff;
+}
+
+@media (min-width: 968px) { 
+    .table {
+        grid-template-columns: 1fr;
+    }
+
+    .table-sleep {
+        grid-template-columns: 1fr;
+    }
+
+    .thead-dark {
+        grid-template-rows: auto;
+        grid-template-columns: repeat(7, 1fr);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        div:last-child {
+            border-top-right-radius: 10px;
+        }
+        div:first-child {
+            border-top-left-radius: 10px;
+        }
+    }
+    
+    .thead-dark--sleep {
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: auto;
+    }
+    
+    .tbody-light, .tbody-dark {
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: auto;
+    }
+    
+    .tbody-light--sleep, .tbody-dark--sleep {
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: auto;
     }
 }

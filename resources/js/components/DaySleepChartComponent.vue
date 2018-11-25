@@ -1,25 +1,33 @@
 <template>
   <div class="chart chart__sleep">
-    <daysleepchart width="100%" height="350" type="bar" :options="chartOptions" :series="series"></daysleepchart>
+    <daysleepchart height="350" type="donut" :options="chartOptions" :series="series"></daysleepchart>
   </div>
 </template>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-    name: 'BarExample',
+    name: 'DonutExample',
     components: {
         daysleepchart: VueApexCharts,
     },
     data: function() {
         return {
             chartOptions: {
+                responsive: [{
+                    breakpoint: 1007,
+                    options: {
+                        chart: {
+                            height: 200
+                        },
+                    },
+                }],
                 chart: {
                     height: 350,
-                    type: 'bar',
+                    type: 'donut',
                 },
                 plotOptions: {
-                    bar: {
+                    radialBar: {
                         horizontal: false,
                         columnWidth: '50%',
                         dataLabels: {
@@ -27,70 +35,52 @@ export default {
                         }
                     },
                 },
-                xaxis: {
-                    categories: ["Light", "REM", "Deep", "Awake"],
-                    position: 'top',
-                    labels: {
-                        offsetY: -18,
-
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        colors: ['#fff']
                     },
-                    axisBorder: {
-                        show: false
-                    },
-                    axisTicks: {
-                        show: false
-                    },
-                    tooltip: {
-                        y: {
-                            formatter: function (val) {
-                                return val + " min"
-                            }
-                        }
-                    }
+                },
+                labels: ["Minutes asleep", "Minutes to sleep "],
+                title: {
+                    align: 'center',
+                    text: 'Daily Plan'
                 },
                 fill: {
-                    colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7']
+                    colors: ['#E14DA5', '#EAEAEA']
                 },
-                title: {
-                    text: 'Daily Plan',
-                    // floating: true,
-                    // offsetY: 320,
-                    align: 'center',
-                    style: {
-                        color: '#444'
-                    }
-                },
+                legend: {
+                    show: true,
+                    showForSingleSeries: true,
+                    position: 'bottom',
+                    horizontalAlign: 'center', 
+                    verticalAlign: 'middle',
+                    labels: {
+                        color: '#E14DA5',
+                        useSeriesColors: true
+                    },
+                    markers: {
+                        size: 6,
+                        strokeColor: "#000",
+                        strokeWidth: 0,
+                        offsetX: 0,
+                        offsetY: 0,
+                        radius: 4,
+                        shape: "circle"
+                    },
+                }
             },
-            series: [{
-                name: 'Light',
-                data: [0]
-            }, {
-                name: 'REM',
-                data: [0]
-            }, {
-                name: 'Deep',
-                data: [0]
-            }, {
-                name: 'Awake',
-                data: [0]
-            }],
+            series: [0, 480],
         }
     },
     created: function() {
         var self = this;
             axios.get('/api/getdaysleep')
                 .then(function(response) {
-                    if(response.data) {
-                        self.series[0].data = [response.data.light_minutes];
-                        self.series[1].data = [response.data.rem_minutes];
-                        self.series[2].data = [response.data.deep_minutes];
-                        self.series[3].data = [response.data.wake_minutes];
-                    } else {
-                        self.series[0].data = [0];
-                        self.series[1].data = [0];
-                        self.series[2].data = [0];
-                        self.series[3].data = [0];
-                    }
+                    var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes + response.data[0].sleeplogs.wake_minutes;
+                    var goal = response.data[0].goal;
+                    // check if data from api is ok
+                    self.series = [totalSleep, goal - totalSleep];
             });
     }
 }

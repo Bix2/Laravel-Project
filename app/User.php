@@ -88,7 +88,7 @@ class User extends Authenticatable
                     }
                     if($habit->type == "breathing") {
                         $totalbreathing = 0;
-                        $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
+                        $userbreathing = \DB::table('breathing')->where([['user_id', $me->id], ['date', $currentdate]])->get();
                         $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
                         foreach ($userbreathing as $breathing) {
                             $totalbreathing++;
@@ -169,6 +169,19 @@ class User extends Authenticatable
         return true;
     }
 
+    public static function deleteAccount() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            \DB::table('activitylogs')->where('user_id', $me->id)->delete();
+            \DB::table('breathing')->where('user_id', $me->id)->delete();
+            \DB::table('sleeplogs')->where('user_id', $me->id)->delete();
+            \DB::table('waterlogs')->where('user_id', $me->id)->delete();
+            \DB::table('habit_user')->where('user_id', $me->id)->delete();
+            $user = User::find($me->id);
+            $user->delete();
+        }
+    }
+
     public static function getStatsSleepWeekly() {
         if (Auth::check()) { 
             $me = Auth::user();
@@ -216,9 +229,19 @@ class User extends Authenticatable
                 ->where('date_of_sleep', $currentdate)
                 ->where('user_id', $me->id)
                 ->first();
+            
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 1)
+                ->where('user_id', $me->id)
+                ->first();
+
+            $response[] = [
+                'goal'          => $goal->goal,
+                'sleeplogs'   => $currentDateSleep
+            ];
 
             header('Content-Type: application/json');
-            echo json_encode($currentDateSleep);
+            echo json_encode($response);
         }
     }
 
