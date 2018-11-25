@@ -11546,6 +11546,23 @@ h1.logo_text {
   text-align: center;
 }
 
+.water-add-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.water-add-form #wateradd {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.water-add-form #wateraddbutton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 .table-sleep {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -11626,21 +11643,4 @@ h1.logo_text {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto;
   }
-}
-
-.water-add-form {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.water-add-form #wateradd {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.water-add-form #wateraddbutton {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
