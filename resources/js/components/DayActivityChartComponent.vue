@@ -36,7 +36,10 @@ export default {
             },
         },
         dataLabels: {
-            enabled: false,
+            enabled: true,
+            style: {
+                colors: ['#fff']
+            },
         },
         labels: ["Steps made", "Steps to go"],
         title: {

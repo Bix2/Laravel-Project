@@ -47812,7 +47812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }],
                 chart: {
                     height: 350,
-                    type: 'radialBar'
+                    type: 'donut'
                 },
                 plotOptions: {
                     radialBar: {
@@ -47824,7 +47824,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 },
                 dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    style: {
+                        colors: ['#fff']
+                    }
                 },
                 labels: ["Minutes asleep", "Minutes to sleep "],
                 title: {
@@ -48222,7 +48225,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 },
                 dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    style: {
+                        colors: ['#fff']
+                    }
                 },
                 labels: ["Steps made", "Steps to go"],
                 title: {

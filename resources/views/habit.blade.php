@@ -10,112 +10,116 @@
             </div>
         </div>
 
-        <table class="table table-striped habit_table">
-            <thead class="thead-dark">
-                <tr>
-
-
-
-                @if ( ($habit->id) == 1 )
-                    @if ( $sleepdata['sleeptotal'] > 0 )
-                    <th>Type</th>
+        <!-- Start Table -->
+        @if ( ($habit->id) == 1 )
+        <div class="table-sleep table-striped habit_table">
+        @else
+        <div class="table table-striped habit_table">
+        @endif
+        
+        <!-- Sleep habit -->
+        @if ( ($habit->id) == 1 )
+            <div class="thead-dark thead-dark--sleep">
+            @if ( $sleepdata['sleeptotal'] > 0 )
+                    <div>Type</div>
                 @for ($d = -6; $d <= -1; $d++)
-                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                    <div>{{date('D', strtotime($d.' days'))}}</div>
                 @endfor
-                <th>Today</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Deep sleep</td>
+                <div>Today</div>
+            </div>
+            <div class="tbody-light tbody-light--sleep">
+                    <div>Deep sleep</div>
                 @foreach ($sleepdata['sleepweek']["deep_minutes"] as $sleepday)
-                    <td>{{$sleepday}}</td>
+                    <div><strong>{{$sleepday}}</strong> min</div>
                 @endforeach
-                </tr>
-                <tr>
-                    <td>Light sleep</td>
+            </div>
+            <div class="tbody-dark tbody-dark--sleep">
+                    <div>Light sleep</div>
                 @foreach ($sleepdata['sleepweek']["light_minutes"] as $sleepday)
-                    <td>{{$sleepday}}</td>
+                    <div><strong>{{$sleepday}}</strong> min</div>
                 @endforeach
-                </tr>
-                <tr>
-                    <td>REM sleep</td>
+            </div>
+            <div class="tbody-light tbody-light--sleep">
+                    <div>REM sleep</div>
                 @foreach ($sleepdata['sleepweek']["rem_minutes"] as $sleepday)
-                    <td>{{$sleepday}}</td>
+                    <div><strong>{{$sleepday}}</strong> min</div>
                 @endforeach
-                </tr>
-                <tr>
-                    <td>Awake</td>
+            </div>
+            <div class="tbody-dark tbody-dark--sleep">
+                    <div>Awake</div>
                 @foreach ($sleepdata['sleepweek']["wake_minutes"] as $sleepday)
-                    <td>{{$sleepday}}</td>
+                    <div><strong>{{$sleepday}}</strong> min</div>
                 @endforeach
-                    @else
-                    <p class="habit_nodata">You didn't track any sleep yet 😢</p>
-                    @endif
-                @endif
+            @else
+            </div>
+            <p class="habit_nodata">You didn't track any sleep yet 😢</p>
+            @endif
+        @endif
 
-
-                @if ( ($habit->id) == 4 )
-                    @if ( $waterdata['watertotal'] > 0 )
-                    @for ($d = -6; $d <= -1; $d++)
-                        <th>{{date('D', strtotime($d.' days'))}}</th>
-                    @endfor
-                    <th>Today</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    @foreach ($waterdata['waterweek'] as $waterday)
-                        <td>{{$waterday}}</td>
-                    @endforeach
-                    @else
-                    <p class="habit_nodata">You didn't add any drink yet 😢</p>
-                    @endif
-                @endif
-
-
-                
-                @if ( ($habit->id) == 2 )
-                    @if ( $breathingdata['breathingtotal'] > 0 )
+        <!-- Water habit -->
+        @if ( ($habit->id) == 4 )
+            @if ( $waterdata['watertotal'] > 0 )
+            <div class="thead-dark">
                 @for ($d = -6; $d <= -1; $d++)
-                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                    <div>{{date('D', strtotime($d.' days'))}}</div>
                 @endfor
-                <th>Today</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+                <div>Today</div>
+            </div>
+            <div class="tbody-light">
+                @foreach ($waterdata['waterweek'] as $waterday)
+                    <div><strong>{{$waterday}}</strong> ml</div>
+                @endforeach
+            </div>
+            @else
+                <p class="habit_nodata">You didn't add any drink yet 😢</p>
+            @endif
+        @endif
+                
+        <!-- Breathing habit -->
+        @if ( ($habit->id) == 2 )
+            @if ( $breathingdata['breathingtotal'] > 0 )
+            <div class="thead-dark">
+                @for ($d = -6; $d <= -1; $d++)
+                    <div>{{date('D', strtotime($d.' days'))}}</div>
+                @endfor
+                <div>Today</div>
+            </div>
+            <div class="tbody-light">
                 @foreach ($breathingdata['breathingweek'] as $breathingday)
-                    <td>{{$breathingday}}</td>
-                @endforeach
+                    @if($breathingday == 1)
+                        <div><strong>{{$breathingday}}</strong> session</div>
                     @else
-                    <p class="habit_nodata">You didn't do any breahting sessions 😢</p>
+                        <div><strong>{{$breathingday}}</strong> sessions</div>
                     @endif
-                @endif
+                @endforeach
+            </div>
+            @else
+                <p class="habit_nodata">You didn't do any breahting sessions 😢</p>
+            @endif
+        @endif
                 
-
-                @if ( ($habit->id) == 3 )
-                @if ( $stepsdata['stepstotal'] > 0 )
+        <!-- Activity habit -->
+        @if ( ($habit->id) == 3 )
+            @if ( $stepsdata['stepstotal'] > 0 )
+            <div class="thead-dark">
                 @for ($d = -6; $d <= -1; $d++)
-                    <th>{{date('D', strtotime($d.' days'))}}</th>
+                    <div>{{date('D', strtotime($d.' days'))}}</div>
                 @endfor
-                <th>Today</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+                <div>Today</div>
+            </div>
+            <div class="tbody-light">
                 @foreach ($stepsdata['stepsweek'] as $stepsday)
-                    <td>{{$stepsday}}</td>
+                    <div><strong>{{$stepsday}}</strong> steps</div>
                 @endforeach
-                    @else
-                    <p class="habit_nodata">You didn't track any steps 😢</p>
-                    @endif
-                @endif
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            @else
+                <p class="habit_nodata">You didn't track any steps 😢</p>
+            @endif
+        @endif
+        
+        <!-- End Table -->
+        </div>
 
-        <!-- {{@print_r($habit)}} -->
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <h4> You can log data to this habit by using one of the following: </h4>

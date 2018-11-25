@@ -24,7 +24,7 @@ export default {
                 }],
                 chart: {
                     height: 350,
-                    type: 'radialBar',
+                    type: 'donut',
                 },
                 plotOptions: {
                     radialBar: {
@@ -36,7 +36,10 @@ export default {
                     },
                 },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
+                    style: {
+                        colors: ['#fff']
+                    },
                 },
                 labels: ["Minutes asleep", "Minutes to sleep "],
                 title: {

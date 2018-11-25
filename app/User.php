@@ -88,7 +88,7 @@ class User extends Authenticatable
                     }
                     if($habit->type == "breathing") {
                         $totalbreathing = 0;
-                        $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
+                        $userbreathing = \DB::table('breathing')->where([['user_id', $me->id], ['date', $currentdate]])->get();
                         $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
                         foreach ($userbreathing as $breathing) {
                             $totalbreathing++;
