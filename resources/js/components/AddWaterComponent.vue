@@ -1,11 +1,11 @@
 <template>
     <div class="water-adding">
         <form @submit="formSubmit">
-            <input type="text" id="wateradd" name="wateradd" min="0" max="10000" value="0" v-model="amount">
-            <p></p>
-            <button id="wateraddbutton">Track water</button>
+            <div class="water-add-form">
+                <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="amount">
+                <button class="btn btn-primary" id="wateraddbutton">Track water</button>
+            </div>
         </form>
-        <p>{{output}}</p>
     </div>
 </template>
 
@@ -16,8 +16,7 @@ export default {
         },
         data() {
             return {
-              amount: '',
-              output: ''
+              amount: ''
             };
         },
         methods: {
@@ -27,12 +26,6 @@ export default {
                 axios.post('/api/addwater', {
                     amount: this.amount,
                 })
-                .then(function (response) {
-                    currentObj.output = response.data;
-                })
-                .catch(function (error) {
-                    currentObj.output = error;
-                });
             }
         }
     }

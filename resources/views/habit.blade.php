@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-<div class="row">
+<div class="row" id="app">
     <div class="col-12">
         <div class="row">
             <div class="top__content col-8">
@@ -71,6 +71,7 @@
                     @else
                     <p class="habit_nodata">You didn't add any drink yet 😢</p>
                     @endif
+                    <addwater></addwater>
                 @endif
 
 

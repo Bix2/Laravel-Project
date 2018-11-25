@@ -11498,3 +11498,20 @@ h1.logo_text {
 .habit_nodata {
   font-size: 1.25rem;
 }
+
+.water-add-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.water-add-form #wateradd {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.water-add-form #wateraddbutton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
