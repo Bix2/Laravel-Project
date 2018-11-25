@@ -273,7 +273,8 @@ class Habit extends Model
                 ],
                 "form_params" => [
                     'amount' => $amount,
-                    'date' => $date
+                    'date' => $date,
+                    'unit' => 'ml'
                 ]
             ]);
         }
