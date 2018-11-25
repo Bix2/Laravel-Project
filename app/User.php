@@ -169,6 +169,19 @@ class User extends Authenticatable
         return true;
     }
 
+    public static function deleteAccount() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            \DB::table('activitylogs')->where('user_id', $me->id)->delete();
+            \DB::table('breathing')->where('user_id', $me->id)->delete();
+            \DB::table('sleeplogs')->where('user_id', $me->id)->delete();
+            \DB::table('waterlogs')->where('user_id', $me->id)->delete();
+            \DB::table('habit_user')->where('user_id', $me->id)->delete();
+            $user = User::find($me->id);
+            $user->delete();
+        }
+    }
+
     public static function getStatsSleepWeekly() {
         if (Auth::check()) { 
             $me = Auth::user();

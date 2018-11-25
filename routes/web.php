@@ -20,7 +20,8 @@ Route::get('/', 'HabitController@getDaily');
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');
 Route::get('login/fitbit/callback', 'UserController@handleFitbitCallback');
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::post('/logout', 'UserController@logout');
+Route::post('/delete', 'UserController@delete');
 
 /* API calls */
 Route::get('/profile', 'UserController@showProfile');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\CodeBreak\FitBit;
+use App\Http\CodeBreak\Stats;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -32,6 +33,16 @@ class UserController extends Controller
             $user = $this->findOrCreateUser($data);
             // manually loggging in a user
             Auth::login($user);    
+
+            // if new user get full week data
+            if($user->new == true) {
+                $sleep = FitBit::getSleepPatternWeek();
+                FitBit::insertSleepWeekToDB($sleep);
+                $steps = FitBit::getActivityStepsWeek();
+                FitBit::insertStepsWeekToDB($steps);
+                $water = FitBit::getWaterLogWeek();
+                FitBit::insertWaterLogWeekToDB($water);
+            }
         }  
         return redirect()->intended('/dashboard')->with(['user' => $user]);  
     }
@@ -52,7 +63,8 @@ class UserController extends Controller
                 'name'   => $data->name,
                 'avatar' => $data->avatar,
             ]);
-//mass assignment
+            //mass assignment
+            $user->new = false;
             return $user;
         }
         // else store user in db
@@ -64,16 +76,22 @@ class UserController extends Controller
             'avatar' => $data->avatar,
             'admin' => 0
         ]);
-        
-        $sleep = FitBit::getSleepPatternWeek();
-        FitBit::insertSleepWeekToDB($sleep);
-        $steps = FitBit::getActivityStepsWeek();
-        FitBit::insertStepsWeekToDB($steps);
-        $water = FitBit::getWaterLogWeek();
-        FitBit::insertWaterLogWeekToDB($water);
+        $user->new = true;
         return $user;
     }
 
+    public function logout() {
+        Auth::logout();
+        $data = Stats::getDailyTracked();
+        return view('welcome', $data);
+    }
+
+    public function delete() {
+        User::deleteAccount();
+        $data = Stats::getDailyTracked();
+        return view('welcome', $data);
+    }
+    
     public static function showProfile() {
         $data = FitBit::getProfileInfo();
         $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
