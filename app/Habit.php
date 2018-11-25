@@ -278,7 +278,7 @@ class Habit extends Model
             ]);
         }
         
-        return true;
+        return $water;
     }
 
     public function users() {
