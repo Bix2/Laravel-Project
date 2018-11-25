@@ -9552,9 +9552,47 @@ body {
 
 .alert__close {
   position: absolute;
-  right: 20px;
-  color: gray;
+  right: 10px;
+  top: 5px;
+  color: #979797;
   font-weight: bold;
+}
+
+.alert--button {
+  margin-left: 20px;
+  font-size: .8em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: block;
+  margin: 10px 0;
+}
+
+.alert--message {
+  margin: 0;
+}
+
+.alert-success {
+  color: #347a82;
+  background-color: #b5eff5;
+  border: none;
+}
+
+.alert-warning {
+  color: #857b26;
+  background-color: #fffbdb;
+  border: none;
+}
+
+@media (min-width: 748px) {
+  .alert--button {
+    margin: 0;
+    margin-left: 20px;
+    display: inline-block;
+  }
+  .alert__close {
+    right: 20px;
+    top: 28%;
+  }
 }
 
 .chart {
@@ -9569,7 +9607,7 @@ body {
 }
 
 .chart__water .amount {
-  background-color: #58CFD7;
+  background-color: #69d7de;
   position: absolute;
   z-index: 2;
 }
@@ -9593,6 +9631,7 @@ body {
 .chart__water .chart__water--title p {
   margin: 0;
   font-size: .8em;
+  color: #207a80;
 }
 
 .chart__water--title p {
@@ -9637,10 +9676,14 @@ body {
   -ms-flex-item-align: center;
       align-self: center;
   margin: 0;
-  color: #212529;
+  color: #451f6d;
   text-decoration: none;
   font-size: .8em;
   padding: 5px 0;
+}
+
+.chart__breathing div a {
+  color: #242424;
 }
 
 .nothing {
@@ -9648,7 +9691,7 @@ body {
 }
 
 .success {
-  background-color: #58CFD7;
+  background-color: #b384e4;
 }
 
 .unsuccess {
@@ -9736,6 +9779,43 @@ body {
   .alert {
     font-size: 1em;
   }
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #e6605c;
+  border: none;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #e6605c;
+  border: none;
+}
+
+.btn-outline-dark {
+  color: #857b26;
+  background-color: transparent;
+  background-image: none;
+  border-color: #857b26;
+}
+
+.btn-outline-dark:hover {
+  color: #fff;
+  background-color: #857b26;
+  border-color: #857b26;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #5ad68f;
+  border: none;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #5ad68f;
+  border: none;
 }
 
 #nav {
@@ -11265,13 +11345,13 @@ div.holidayShipping .emphasis {
 }
 
 .breath__container {
-  background-color: #b2b6e8;
+  background-color: #c6a5f5;
   position: relative;
   margin-bottom: 2rem;
 }
 
 .breath__animation {
-  background-color: #5e64b5;
+  background-color: #9F70E2;
   position: absolute;
   top: 0;
   left: 0;
@@ -11369,7 +11449,7 @@ div.holidayShipping .emphasis {
 .total-line {
   width: 100%;
   height: 0.7rem;
-  background: #d2d2d2;
+  background: #e0e0e0;
   margin-bottom: 1.5rem;
   position: relative;
 }
@@ -11380,7 +11460,7 @@ div.holidayShipping .emphasis {
   max-width: 100%;
   left: 0;
   top: 0;
-  background: #b2b6e8;
+  background: #9F70E2;
 }
 
 .total-line .progress-line.animated {
