@@ -11,3 +11,17 @@
 .habit_nodata {
     font-size: 1.25rem;
 }
+
+.water-add-form {
+    width: 100%;
+    display: flex;
+    #wateradd {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #wateraddbutton{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

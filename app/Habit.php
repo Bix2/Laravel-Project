@@ -253,6 +253,18 @@ class Habit extends Model
         $client = new Client([
             "base_uri" => "https://api.fitbit.com/1.2/",
         ]);
+        $amount = $request["amount"];
+        if($amount == null){
+            $amount = 0;
+        }
+
+        if( is_numeric($amount) ) {
+        } else {
+            $amount = 0;
+        }
+
+        $date = date('Y-m-d');
+
         if (Auth::check()) {
             $me = Auth::user();
             $water = $client->post("user/-/foods/log/water/water.json", [
@@ -260,16 +272,13 @@ class Habit extends Model
                     "Authorization" => "Bearer {$me->token}",
                 ],
                 "form_params" => [
-                    'amount' => '200',
-                    'date' => '2018-11-15'
+                    'amount' => $amount,
+                    'date' => $date
                 ]
             ]);
         }
-        $amount = $request["amount"];
-        if($amount == null){
-            $amount = 0;
-        }
-        return $amount;
+        
+        return true;
     }
 
     public function users() {
