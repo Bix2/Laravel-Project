@@ -250,9 +250,7 @@ class Habit extends Model
     }
 
     public static function AddWaterLog($request) {
-        $client = new Client([
-            "base_uri" => "https://api.fitbit.com/1.2/",
-        ]);
+        $client = new Client();
         $amount = $request["amount"];
         if($amount == null){
             $amount = 0;
@@ -267,7 +265,7 @@ class Habit extends Model
 
         if (Auth::check()) {
             $me = Auth::user();
-            $water = $client->post("user/-/foods/log/water/water.json", [
+            $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water/water.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}",
                 ],
