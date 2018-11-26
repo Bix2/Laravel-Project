@@ -48233,7 +48233,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
-                }
+                },
+                legend: {
+                    show: true,
+                    showForSingleSeries: true,
+                    position: 'bottom',
+                    horizontalAlign: 'center',
+                    verticalAlign: 'middle',
+                    labels: {
+                        color: '#E14DA5',
+                        useSeriesColors: true
+                    },
+                    markers: {
+                        size: 6,
+                        strokeColor: "#000",
+                        strokeWidth: 0,
+                        offsetX: 0,
+                        offsetY: 0,
+                        radius: 4,
+                        shape: "circle"
+                    }
+                },
+                series: [0, 10000]
             },
             series: [0, 10000]
         };
@@ -48242,6 +48263,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var self = this;
         axios.get('/api/getdayactivity').then(function (response) {
             self.series = [response.data[0].activitylogs.steps, response.data[0].goal - response.data[0].activitylogs.steps];
+            console.log(self.series);
+            console.log(self);
         });
     }
 });
