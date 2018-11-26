@@ -48259,7 +48259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             },
-            series: [0, 10000]
+            series: []
         };
     },
     created: function created() {

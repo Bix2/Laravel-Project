@@ -70,7 +70,7 @@ export default {
             },
         }
       },
-      series: [0, 10000],
+      series: [],
     }
   },
   created: function() {
