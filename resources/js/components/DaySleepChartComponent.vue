@@ -7,13 +7,10 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-<<<<<<< HEAD
     name: 'DonutExample',
     components: {
         daysleepchart: VueApexCharts,
     },
-=======
->>>>>>> f1ede8baa6f814d819e96e33afc1281ccb0e586b
     data: function() {
         return {
             chartOptions: {
