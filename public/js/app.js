@@ -48262,7 +48262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var self = this;
         axios.get('/api/getdayactivity').then(function (response) {
-            self.series = [response.data[0].activitylogs.steps, response.data[0].goal - response.data[0].activitylogs.steps];
+            self.series = [parseInt(response.data[0].activitylogs.steps), response.data[0].goal - response.data[0].activitylogs.steps];
             console.log(self.series);
             console.log(self);
         });
