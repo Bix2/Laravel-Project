@@ -1,5 +1,5 @@
 body.welcome-page {
-    background: $dark_bg;
+    background: $white;
 }
 
 .wrapper {
@@ -14,8 +14,6 @@ body.welcome-page {
     background-position: right bottom;
     background-size: 70%;
 }
-
-
 
 .welcome_wrapper {
     display: flex;
@@ -80,42 +78,187 @@ h1.logo_text {
     border-radius: 50px;
 }
 
+.bg-img {
+    background-image: url('/images/home-bg.svg');
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    right: 0;
+    top: 0;
+}
 
-@media (min-width: 1025px) {
-    .welcome__content {
-        height: calc(100vh - 60px);
-        flex-direction: row;
-        justify-content: flex-start;
-        .welcome_login {
-            width: 66.667%;
-        }
-        .welcome_image {
-            width: 600px;
-            height: 100%;
-        }
+.bg-sec {
+    display: none;
+    background-image: url(/images/home-sec-img.svg);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    left: -70px;
+    bottom: -70px;
+}
 
-        .welcome_slant {
-            width: 0;
-            height: 0;
-            border-bottom: calc(100vh - 60px) solid #ECECEC;
-            border-left: 80px solid transparent;
-        }
+.bg-sec2 {
+    display: none;
+    background-image: url(/images/home-sec2-img.svg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    right: -70px;
+    bottom: -70px;
+}
+
+.welcome--text {    
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 5em;
+    h1 {
+        margin-top: 3em;
+    }
+    p {
+        width: 70%;
+    }
+}
+
+.heart--bg {
+    position: absolute;
+    z-index: 2;
+    width: 60px;
+    right: calc(100vh - 130%);
+    top: 60px;
+    animation: bounce 5s ease-in-out infinite;
+}
+
+.sleep--bg {
+    position: absolute;
+    z-index: 2;
+    width: 90px;
+    right: calc(100vh - 110%);
+    top: 60px;
+    animation: bounce 7s ease-in-out infinite;
+}
+
+.stats--bg {
+    position: absolute;
+    z-index: 2;
+    width: 60px;
+    right: calc(100vh - 95%);
+    top: 20%;
+    animation: sec-bounce 10s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        top: 50px;
+    }
+    50% {
+        top: 70px;
+    }
+}
+
+@keyframes sec-bounce {
+    0%, 100% {
+        top: 20%;
+    }
+    50% {
+        top: 23%;
     }
 }
 
 .dailystats {
-    margin-top: 3rem;
-    .dailytotal {
-        color: #000;
-        font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+.counter--title {
+    text-align: center;
+    padding-bottom: 4em;
+}
+
+.welcome--card {
+    text-align: center;
+}
+
+.welcome--purple {
+    background-color: $purple;
+}
+
+.welcome--pink {
+    background-color: $pink;
+}
+
+.welcome--yellow {
+    background-color: $yellow;
+}
+
+.welcome--blue {
+    background-color: $dark-bg;
+}
+
+.welcome--icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2em;
+    text-align: center;
+    border-radius: 100%;
+    img {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+.welcome--logo {
+    width: 450px;
+    margin: 0 auto;
+    img {
+        width: 120px;
+        padding-top: 30px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .heart--bg {
+        width: 80px;
+        right: calc(100vh - 90%);
     }
     
-    .dailyamount {
-        font-weight: 400;
+    .sleep--bg {
+        width: 130px;
+        right: calc(100vh - 75%);
     }
     
-    ul {
-        list-style: none;
-        padding: 0;
+    .stats--bg {
+        width: 20%;
+        right: calc(100vh - 45%);
+    }
+
+    .welcome--text {    
+        width: 450px;
+        padding-bottom: 0;
+        h1 {
+            margin-top: 7em;
+        }
+    }
+
+    .bg-sec {
+        display: block;
+    }
+
+    .bg-sec2 {
+        display: block;
+    }
+
+    .dailystats {
+        margin: 5em auto;
+        padding: 3em 0;
     }
 }
