@@ -37,7 +37,7 @@ class DashboardController extends Controller
                 "durationMillis"    =>  1800000,
                 "date"              =>  "2018-11-26",
                 "distance"          =>  2300,
-                "distanceUnit"      =>  "Steps"
+                "distanceUnit"      =>  "steps"
             ]
         ]);
         $data = json_decode($response->getBody(), true);
