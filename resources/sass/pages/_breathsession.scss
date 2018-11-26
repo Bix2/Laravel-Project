@@ -23,13 +23,13 @@
 }
 
 .breath__container {
-    background-color: #b2b6e8;
+    background-color: rgb(198, 165, 245);
     position: relative;
     margin-bottom: 2rem;
 }
 
 .breath__animation {
-    background-color: #5e64b5; 
+    background-color: #9F70E2; 
     position: absolute; 
     top: 0; 
     left: 0; 
@@ -96,7 +96,7 @@
 .total-line {
     width: 100%;
     height: 0.7rem;
-    background: #d2d2d2;
+    background: #e0e0e0;
     margin-bottom: 1.5rem;
     position: relative;
 }
@@ -107,7 +107,7 @@
     max-width: 100%;
     left: 0;
     top: 0;
-    background: #b2b6e8;
+    background: #9F70E2;
 }
 
 .total-line .progress-line.animated {

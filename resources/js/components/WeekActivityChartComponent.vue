@@ -14,6 +14,14 @@ export default {
   data: function() {
     return {
       chartOptions: {
+        responsive: [{
+            breakpoint: 1009,
+            options: {
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }],
         chart: {
             height: 350,
             type: 'bar',
@@ -62,10 +70,10 @@ export default {
       },
       series: [{
         name: 'Activity',
-        data: []
+        data: [0, 0, 0, 0, 0, 0, 0]
       },{
         name: 'Goal',
-        data: []
+        data: [0, 0, 0, 0, 0, 0, 0]
       }]
     }
   },
@@ -107,8 +115,13 @@ export default {
                 for (let i = 0; i < last7Days.length; i++) {
                     if(daysActive[counter] != undefined) {
                         if(last7Days[i] == daysActive[counter].date) {
+                            // if more steps than goal, change goal to steps number
+                            if(daysActive[counter].goal < 0) {
+                                seriesArray[1].push(0);
+                            } else {
+                                seriesArray[1].push(daysActive[counter].goal);
+                            }
                             seriesArray[0].push(daysActive[counter].steps);
-                            seriesArray[1].push(daysActive[counter].goal);
                             counter++;
                         } else {
                             seriesArray[0].push(0);

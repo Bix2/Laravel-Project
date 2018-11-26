@@ -250,26 +250,34 @@ class Habit extends Model
     }
 
     public static function AddWaterLog($request) {
-        $client = new Client([
-            "base_uri" => "https://api.fitbit.com/1.2/",
-        ]);
-        if (Auth::check()) {
-            $me = Auth::user();
-            $water = $client->post("user/-/foods/log/water/water.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}",
-                ],
-                "form_params" => [
-                    'amount' => '200',
-                    'date' => '2018-11-15'
-                ]
-            ]);
-        }
+        $client = new Client();
         $amount = $request["amount"];
         if($amount == null){
             $amount = 0;
         }
-        return $amount;
+
+        if( is_numeric($amount) ) {
+        } else {
+            $amount = 0;
+        }
+
+        $date = date('Y-m-d');
+        $formdata = [
+            'amount' => $amount,
+            'date' => $date,
+            'unit' => 'ml'
+        ];
+        if (Auth::check()) {
+            $me = Auth::user();
+            $water = $client->post("https://api.fitbit.com/1.2/user/{$me->fitbit_id}/foods/log/water/water.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}",
+                ],
+                "form_params" => $formdata
+            ]);
+        }
+        
+        return $water;
     }
 
     public function users() {

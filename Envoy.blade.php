@@ -1,4 +1,4 @@
-@servers(['web' => ['deploybot@212.111.41.86']])
+@servers(['web' => ['deploybot@172.104.251.143']])
 
 @setup
 $account = 'deploybot';
@@ -6,7 +6,7 @@ $account = 'deploybot';
 
 @task('deploy-production', ['on' => 'web'])
 
-cd /home/{{ $account }}/Laravel-Project
+cd /home/{{ $account }}/codebreak/Laravel-Project
 
 php artisan down 
 

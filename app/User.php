@@ -70,42 +70,48 @@ class User extends Authenticatable
                         $usersleep = \DB::table('sleeplogs')->where([['user_id', $me->id], ['date_of_sleep', $currentdate]])->get();
                         $sleepgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 1]])->first();
                         foreach ($usersleep as $sleep) {
+                            $totalSleepMinutes = $sleep->deep_minutes + $sleep->wake_minutes + $sleep->rem_minutes + $sleep->light_minutes;
                             if($sleep->deep_minutes > $totalsleep){
-                                $totalsleep = $sleep->deep_minutes;
+                                $totalsleep = $totalSleepMinutes;
                             }
                         }
-                        $data['trackedHabitsInfo']['totalsleep'] = $totalsleep;
-                        $data['trackedHabitsInfo']['sleepgoal'] = $sleepgoal->goal;
+                        $data['trackedHabitsInfo']['sleep']['amount'] = $totalsleep;
+                        $data['trackedHabitsInfo']['sleep']['goal'] = $sleepgoal->goal;
                         $data['userProgress']['sleep_progress'] = User::checkHabitProgress($totalsleep, $sleepgoal->goal);
                     }
                     if($habit->type == "water") {
                         $userwater = \DB::table('waterlogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
                         $watergoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 4]])->first();
-                        $data['trackedHabitsInfo']['userwater'] = $userwater->amount;
-                        $data['trackedHabitsInfo']['watergoal'] = $watergoal->goal;
+                        $data['trackedHabitsInfo']['water']['amount'] = $userwater->amount;
+                        $data['trackedHabitsInfo']['water']['goal'] = $watergoal->goal;
                         $data['userProgress']['water_progress'] = User::checkHabitProgress($userwater->amount, $watergoal->goal);
                     }
                     if($habit->type == "breathing") {
                         $totalbreathing = 0;
-                        $userbreathing = \DB::table('breathing')->where('user_id', $me->id)->get();
+                        $userbreathing = \DB::table('breathing')->where([['user_id', $me->id], ['date', $currentdate]])->get();
                         $breathinggoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
                         foreach ($userbreathing as $breathing) {
                             $totalbreathing++;
                         }
-                        $data['trackedHabitsInfo']['totalbreathing'] = $totalbreathing;
-                        $data['trackedHabitsInfo']['breathinggoal'] = $breathinggoal->goal;
+                        $data['trackedHabitsInfo']['breathing']['amount'] = $totalbreathing;
+                        $data['trackedHabitsInfo']['breathing']['goal'] = $breathinggoal->goal;
                         $data['userProgress']['breathing_progress'] = User::checkHabitProgress($totalbreathing, $breathinggoal->goal);
                     }
                     if($habit->type == "exercise") {
                         $usersteps = \DB::table('activitylogs')->where([['user_id', $me->id], ['date', $currentdate]])->first();
                         $stepsgoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->first();
-                        $data['trackedHabitsInfo']['usersteps'] = $usersteps->steps;
-                        $data['trackedHabitsInfo']['stepsgoal'] = $stepsgoal->goal;
+                        $data['trackedHabitsInfo']['steps']['amount'] = $usersteps->steps;
+                        $data['trackedHabitsInfo']['steps']['goal'] = $stepsgoal->goal;
                         $data['userProgress']['steps_progress'] = User::checkHabitProgress($usersteps->steps, $stepsgoal->goal);
                     }
                 }
             }
 
+            $data['userGoalsAchieved'] = false;
+            // if any habit is tracked
+            if(!empty($data['trackedHabitsInfo'])) {
+                $data['userGoalsAchieved'] = User::checkIfTrackedGoalsAchieved($data['trackedHabitsInfo']);
+            }
             $data['trackedHabitsArray'] = $trackedHabitsArray;
             $data['untrackedHabitsArray'] = $untrackedHabitsArray;
             $data['user'] = $me;
@@ -150,6 +156,30 @@ class User extends Authenticatable
         ];
 
         return $habitsArray;
+    }
+
+    public static function checkIfTrackedGoalsAchieved($habits) {
+        // for each tracked habit check if goal achieved
+        foreach ($habits as $habit) {
+            // if goal is not achieved return false
+            if(!($habit['amount'] >= $habit['goal'])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static function deleteAccount() {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            \DB::table('activitylogs')->where('user_id', $me->id)->delete();
+            \DB::table('breathing')->where('user_id', $me->id)->delete();
+            \DB::table('sleeplogs')->where('user_id', $me->id)->delete();
+            \DB::table('waterlogs')->where('user_id', $me->id)->delete();
+            \DB::table('habit_user')->where('user_id', $me->id)->delete();
+            $user = User::find($me->id);
+            $user->delete();
+        }
     }
 
     public static function getStatsSleepWeekly() {
@@ -199,9 +229,19 @@ class User extends Authenticatable
                 ->where('date_of_sleep', $currentdate)
                 ->where('user_id', $me->id)
                 ->first();
+            
+            $goal = \DB::table('habit_user')
+                ->where('habit_id', 1)
+                ->where('user_id', $me->id)
+                ->first();
+
+            $response[] = [
+                'goal'          => $goal->goal,
+                'sleeplogs'   => $currentDateSleep
+            ];
 
             header('Content-Type: application/json');
-            echo json_encode($currentDateSleep);
+            echo json_encode($response);
         }
     }
 
@@ -316,13 +356,13 @@ class User extends Authenticatable
         $message;
         $status;
         if($userProgress == 0) {
-            $message = "It's time to start with this habit. Go for it!";
+            $message = "You have no records registered for this habit today.";
             $status = "warning";
         } elseif($userProgress < $userGoal) {
             $message = "You are making progress! Keep up the great work!";
             $status = "warning";
         } else {
-            $message = "You did it! Sometimes the most productive thing you can do is relax";
+            $message = "Nailed it! You met your goal for today";
             $status = "success";
         }
         $status = [

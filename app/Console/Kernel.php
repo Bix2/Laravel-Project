@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
             FitBit::AutomateSteps();
             FitBit::AutomateSleep();
             FitBit::AutomateWater();
-        })->everyMinute();
+        })->hourly();
     }
 
     /**

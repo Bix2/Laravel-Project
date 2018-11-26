@@ -1,6 +1,6 @@
 <template>
   <div class="chart chart__activity">
-    <apexcharts width="100%" height="350" type="donut" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts height="350" type="donut" :options="options" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -13,7 +13,15 @@ export default {
   },
   data: function() {
     return {
-      chartOptions: {
+      options: {
+        responsive: [{
+            breakpoint: 1007,
+            options: {
+                chart: {
+                    height: 200
+                },
+            },
+        }],
         chart: {
             height: 350,
             type: 'radialBar',
@@ -28,7 +36,10 @@ export default {
             },
         },
         dataLabels: {
-            enabled: false,
+            enabled: true,
+            style: {
+                colors: ['#fff']
+            },
         },
         labels: ["Steps made", "Steps to go"],
         title: {

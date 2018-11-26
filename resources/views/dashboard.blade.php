@@ -5,9 +5,9 @@
 	<div class="col-12" id="dash">
         <h2>Dashboard</h2>
     </div>
+    @if ($userGoalsAchieved == true)
     <div class="col-12">
         <div class="card">
-            <div class="card-header">How are you feeling?</div>
             <div class="card-body">
                 <form id="moodFeedback" method="post" action="/dashboard">
                     {{ csrf_field() }}
@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    @endif
 	<div class="col-12 main__content">
             @if ($trackedHabits[0])
             <div id="app" class="row">  
@@ -53,7 +54,7 @@
                         <!-- <a href="/dashboard/{{$habit->type}}">See progress</a> -->
                         @if ($habit->type == "sleep")
                             <div class="alert alert-{{$userProgress['sleep_progress']['status']}}" role="alert">
-                                {{$userProgress['sleep_progress']['message']}}
+                                <p class="alert--message">{{$userProgress['sleep_progress']['message']}}</p>
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
@@ -66,7 +67,11 @@
                             </div>
                         @elseif ($habit->type == "breathing")
                             <div class="alert alert-{{$userProgress['breathing_progress']['status']}}" role="alert">
-                                {{$userProgress['breathing_progress']['message']}}
+                                @if($userProgress['breathing_progress']['status'] == 'warning')
+                                <p class="alert--message">{{$userProgress['breathing_progress']['message']}} <a href="/dashboard/breathing/session" class="alert--button btn btn-outline-dark">Get started</a></p>
+                                @else
+                                <p class="alert--message">{{$userProgress['breathing_progress']['message']}}</p>
+                                @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
@@ -76,7 +81,11 @@
                             </div>
                         @elseif ($habit->type == "exercise")
                             <div class="alert alert-{{$userProgress['steps_progress']['status']}}" role="alert">
-                                {{$userProgress['steps_progress']['message']}}
+                                @if($userProgress['steps_progress']['message'] == 'warning')
+                                <p class="alert--message">{{$userProgress['steps_progress']['message']}} <a href="/dashboard/exercise" class="alert--button btn btn-outline-dark">Log your progress</a></p>
+                                @else
+                                <p class="alert--message">{{$userProgress['steps_progress']['message']}}</p>
+                                @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
@@ -89,13 +98,16 @@
                             </div>
                         @elseif ($habit->type == "water")
                             <div class="alert alert-{{$userProgress['water_progress']['status']}}" role="alert">
-                                {{$userProgress['water_progress']['message']}}
+                                @if($userProgress['water_progress']['status'] == 'warning')
+                                <p class="alert--message">{{$userProgress['water_progress']['message']}} <a href="/dashboard/water" class="alert--button btn btn-outline-dark">Log water</a></p>
+                                @else
+                                <p class="alert--message">{{$userProgress['water_progress']['message']}}</p>
+                                @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <daywaterchart></daywaterchart>
-                                    <!-- <addwater></addwater> -->
                                 </div>
                             </div>
                         @endif

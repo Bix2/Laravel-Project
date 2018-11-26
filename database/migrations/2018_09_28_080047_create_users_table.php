@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->onDelete('cascade');
             $table->string('name');
             $table->text('remember_token');
             $table->string('fitbit_id');
