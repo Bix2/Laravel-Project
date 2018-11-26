@@ -65,7 +65,6 @@ export default {
                 shape: "circle"
             },
         },
-        series: [0, 10000]
       },
       series: [0, 10000],
     }
@@ -75,8 +74,6 @@ export default {
     axios.get('/api/getdayactivity')
       .then(function(response) {
         self.series = [parseInt(response.data[0].activitylogs.steps), response.data[0].goal - response.data[0].activitylogs.steps];
-        console.log(self.series);
-        console.log(self);
     });
   }
 }

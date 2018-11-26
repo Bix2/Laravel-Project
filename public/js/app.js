@@ -47683,6 +47683,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           seriesArray[3].push(0);
         }
       }
+      console.log(seriesArray[0]);
+      console.log(seriesArray[1]);
+      console.log(seriesArray[2]);
+      console.log(seriesArray[3]);
       self.series[0].data = seriesArray[0];
       self.series[1].data = seriesArray[1];
       self.series[2].data = seriesArray[2];
@@ -47867,7 +47871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes + response.data[0].sleeplogs.wake_minutes;
             var goal = response.data[0].goal;
             // check if data from api is ok
-            self.series = [totalSleep, goal - totalSleep];
+            self.series = [parseInt(totalSleep), goal - totalSleep];
         });
     }
 });
@@ -48091,6 +48095,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     seriesArray[1].push(0);
                 }
             }
+            console.log(seriesArray[0]);
+            console.log(seriesArray[1]);
             self.series[0].data = seriesArray[0];
             self.series[1].data = seriesArray[1];
         });
@@ -48253,8 +48259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         radius: 4,
                         shape: "circle"
                     }
-                },
-                series: [0, 10000]
+                }
             },
             series: [0, 10000]
         };
@@ -48263,8 +48268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var self = this;
         axios.get('/api/getdayactivity').then(function (response) {
             self.series = [parseInt(response.data[0].activitylogs.steps), response.data[0].goal - response.data[0].activitylogs.steps];
-            console.log(self.series);
-            console.log(self);
         });
     }
 });

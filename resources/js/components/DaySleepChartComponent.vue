@@ -80,7 +80,7 @@ export default {
                     var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes + response.data[0].sleeplogs.wake_minutes;
                     var goal = response.data[0].goal;
                     // check if data from api is ok
-                    self.series = [totalSleep, goal - totalSleep];
+                    self.series = [parseInt(totalSleep), goal - totalSleep];
             });
     }
 }

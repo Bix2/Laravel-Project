@@ -132,6 +132,8 @@ export default {
                         seriesArray[1].push(0);
                     }
                 }
+                console.log(seriesArray[0]);
+                console.log(seriesArray[1]);
                 self.series[0].data = seriesArray[0];
                 self.series[1].data = seriesArray[1];
         });

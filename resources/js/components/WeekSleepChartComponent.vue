@@ -144,6 +144,10 @@ export default {
                         seriesArray[3].push(0);
                     }
                 }
+                console.log(seriesArray[0]);
+                console.log(seriesArray[1]);
+                console.log(seriesArray[2]);
+                console.log(seriesArray[3]);
                 self.series[0].data = seriesArray[0];
                 self.series[1].data = seriesArray[1];
                 self.series[2].data = seriesArray[2];
