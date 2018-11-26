@@ -126,10 +126,10 @@ export default {
                 for (let i = 0; i < last7Days.length; i++) {
                     if(daysActive[counter] != undefined) {
                         if(last7Days[i] == daysActive[counter].date) {
-                            seriesArray[0].push(daysActive[counter].lightSleep);
-                            seriesArray[1].push(daysActive[counter].remSleep);
-                            seriesArray[2].push(daysActive[counter].deepSleep);
-                            seriesArray[3].push(daysActive[counter].wakeSleep);
+                            seriesArray[0].push(parseInt(daysActive[counter].lightSleep));
+                            seriesArray[1].push(parseInt(daysActive[counter].remSleep));
+                            seriesArray[2].push(parseInt(daysActive[counter].deepSleep));
+                            seriesArray[3].push(parseInt(daysActive[counter].wakeSleep));
                             counter++;
                         } else {
                             seriesArray[0].push(0);

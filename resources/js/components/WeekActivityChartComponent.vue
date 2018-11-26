@@ -121,7 +121,7 @@ export default {
                             } else {
                                 seriesArray[1].push(daysActive[counter].goal);
                             }
-                            seriesArray[0].push(daysActive[counter].steps);
+                            seriesArray[0].push(parseInt(daysActive[counter].steps));
                             counter++;
                         } else {
                             seriesArray[0].push(0);
