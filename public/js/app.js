@@ -47665,10 +47665,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       for (var _i = 0; _i < last7Days.length; _i++) {
         if (daysActive[counter] != undefined) {
           if (last7Days[_i] == daysActive[counter].date) {
-            seriesArray[0].push(daysActive[counter].lightSleep);
-            seriesArray[1].push(daysActive[counter].remSleep);
-            seriesArray[2].push(daysActive[counter].deepSleep);
-            seriesArray[3].push(daysActive[counter].wakeSleep);
+            seriesArray[0].push(parseInt(daysActive[counter].lightSleep));
+            seriesArray[1].push(parseInt(daysActive[counter].remSleep));
+            seriesArray[2].push(parseInt(daysActive[counter].deepSleep));
+            seriesArray[3].push(parseInt(daysActive[counter].wakeSleep));
             counter++;
           } else {
             seriesArray[0].push(0);
@@ -48084,7 +48084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         } else {
                             seriesArray[1].push(daysActive[counter].goal);
                         }
-                        seriesArray[0].push(daysActive[counter].steps);
+                        seriesArray[0].push(parseInt(daysActive[counter].steps));
                         counter++;
                     } else {
                         seriesArray[0].push(0);
