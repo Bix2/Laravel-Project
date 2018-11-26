@@ -31,11 +31,13 @@ class DashboardController extends Controller
                 "Authorization" => "Bearer {$me->token}"
             ],
             "form_params"  =>  [
-                "activityId"        =>  12030,
+                "activityName"      =>  "Walking",
+                "activityParentId"  =>  90013,
                 "startTime"         =>  "08:20:30",
                 "durationMillis"    =>  1800000,
                 "date"              =>  "2018-11-26",
-                "distance"          =>  3.34
+                "distance"          =>  2300,
+                "distanceUnit"      =>  "Steps"
             ]
         ]);
         $data = json_decode($response->getBody(), true);

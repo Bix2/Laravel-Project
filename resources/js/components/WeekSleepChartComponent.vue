@@ -122,9 +122,11 @@ export default {
                         }
                     }
                 }
+                console.log(daysActive);
                 var counter = 0;
                 for (let i = 0; i < last7Days.length; i++) {
                     if(daysActive[counter] != undefined) {
+                          console.log(last7Days);
                         if(last7Days[i] == daysActive[counter].date) {
                             seriesArray[0].push(parseInt(daysActive[counter].lightSleep));
                             seriesArray[1].push(parseInt(daysActive[counter].remSleep));
@@ -132,22 +134,22 @@ export default {
                             seriesArray[3].push(parseInt(daysActive[counter].wakeSleep));
                             counter++;
                         } else {
+                      console.log('hello 2');
                             seriesArray[0].push(0);
                             seriesArray[1].push(0);
                             seriesArray[2].push(0);
                             seriesArray[3].push(0);
+                            counter++;
                         }
                     } else {
+                      console.log('hello');
                         seriesArray[0].push(0);
                         seriesArray[1].push(0);
                         seriesArray[2].push(0);
                         seriesArray[3].push(0);
+                        counter++;
                     }
                 }
-                console.log(seriesArray[0]);
-                console.log(seriesArray[1]);
-                console.log(seriesArray[2]);
-                console.log(seriesArray[3]);
                 self.series[0].data = seriesArray[0];
                 self.series[1].data = seriesArray[1];
                 self.series[2].data = seriesArray[2];
