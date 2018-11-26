@@ -47795,10 +47795,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'DonutExample',
-    components: {
-        daysleepchart: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
-    },
     data: function data() {
         return {
             chartOptions: {
@@ -48196,10 +48192,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'DonutExample',
-    components: {
-        apexcharts: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
-    },
     data: function data() {
         return {
             options: {
@@ -48259,7 +48251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             },
-            series: []
+            series: [0, 10000]
         };
     },
     created: function created() {
