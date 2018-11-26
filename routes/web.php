@@ -14,6 +14,7 @@ use App\Jobs\ProcessPodcast;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', 'DashboardController@test');
 
 Route::get('/', 'HabitController@getDaily');
 
