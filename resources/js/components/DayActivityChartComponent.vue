@@ -7,6 +7,7 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
+  el: '#app',
   name: 'DonutExample',
   components: {
     apexcharts: VueApexCharts,
