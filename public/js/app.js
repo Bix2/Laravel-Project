@@ -48196,7 +48196,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    el: '#app',
     name: 'DonutExample',
     components: {
         apexcharts: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
@@ -48218,11 +48217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 plotOptions: {
                     radialBar: {
-                        horizontal: false,
-                        columnWidth: '50%',
-                        dataLabels: {
-                            position: '50%'
-                        }
+                        horizontal: false
                     }
                 },
                 dataLabels: {
@@ -48238,26 +48233,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center',
-                    verticalAlign: 'middle',
-                    labels: {
-                        color: '#E14DA5',
-                        useSeriesColors: true
-                    },
-                    markers: {
-                        size: 6,
-                        strokeColor: "#000",
-                        strokeWidth: 0,
-                        offsetX: 0,
-                        offsetY: 0,
-                        radius: 4,
-                        shape: "circle"
-                    }
                 }
             },
             series: [0, 10000]

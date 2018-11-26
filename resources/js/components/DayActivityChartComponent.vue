@@ -7,7 +7,6 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-  el: '#app',
   name: 'DonutExample',
   components: {
     apexcharts: VueApexCharts,
@@ -30,10 +29,6 @@ export default {
         plotOptions: {
             radialBar: {
                 horizontal: false,
-                columnWidth: '50%',
-                dataLabels: {
-                    position: '50%',
-                }
             },
         },
         dataLabels: {
@@ -50,26 +45,6 @@ export default {
         fill: {
             colors: ['#E14DA5', '#EAEAEA']
         },
-        legend: {
-            show: true,
-            showForSingleSeries: true,
-            position: 'bottom',
-            horizontalAlign: 'center', 
-            verticalAlign: 'middle',
-            labels: {
-                color: '#E14DA5',
-                useSeriesColors: true
-            },
-            markers: {
-                size: 6,
-                strokeColor: "#000",
-                strokeWidth: 0,
-                offsetX: 0,
-                offsetY: 0,
-                radius: 4,
-                shape: "circle"
-            },
-        }
       },
       series: [0, 10000],
     }
