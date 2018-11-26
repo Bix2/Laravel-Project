@@ -394,6 +394,34 @@ class FitBit {
     public static function AutomateSteps() {
         $users = \DB::table('users')->get();
         foreach ($users as $user) {
+
+            // base64 encode client id and secret id
+            $clientId = '22D8C4';
+            $secretId = '1af060bab766acb1396c7f43a2144c4c';
+            $base64CLientIdSecretId = base64_encode( $clientId.':'.$secretId );
+
+            // refresh token
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/oauth2/",
+            ]);
+            $response = $client->post("token", [
+                "headers" => [
+                    "Authorization" => "Basic {$base64CLientIdSecretId}",
+                    "Content-Type"  => "application/x-www-form-urlencoded"
+                ],
+                "body"  =>  "grant_type=refresh_token&refresh_token={$user->remember_token}"
+            ]);
+            $data = json_decode($response->getBody(), true);
+
+            // Update refresh user credentials
+            \DB::table('users')
+                ->where('id', $user->id)
+                ->update([
+                    'remember_token'    =>  $data['refresh_token'],
+                    'token'             =>  $data['access_token']
+                ]);
+
+            // Update Habit
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
@@ -421,6 +449,34 @@ class FitBit {
     public static function AutomateSleep() {
         $users = \DB::table('users')->get();
         foreach ($users as $user) {
+
+            // base64 encode client id and secret id
+            $clientId = '22D8C4';
+            $secretId = '1af060bab766acb1396c7f43a2144c4c';
+            $base64CLientIdSecretId = base64_encode( $clientId.':'.$secretId );
+
+            // refresh token
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/oauth2/",
+            ]);
+            $response = $client->post("token", [
+                "headers" => [
+                    "Authorization" => "Basic {$base64CLientIdSecretId}",
+                    "Content-Type"  => "application/x-www-form-urlencoded"
+                ],
+                "body"  =>  "grant_type=refresh_token&refresh_token={$user->remember_token}"
+            ]);
+            $data = json_decode($response->getBody(), true);
+
+            // Update refresh user credentials
+            \DB::table('users')
+                ->where('id', $user->id)
+                ->update([
+                    'remember_token'    =>  $data['refresh_token'],
+                    'token'             =>  $data['access_token']
+                ]);
+
+            // Update Habit
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1.2/",
             ]);
@@ -475,6 +531,34 @@ class FitBit {
     public static function AutomateWater() {
         $users = \DB::table('users')->get();
         foreach ($users as $user) {
+
+            // base64 encode client id and secret id
+            $clientId = '22D8C4';
+            $secretId = '1af060bab766acb1396c7f43a2144c4c';
+            $base64CLientIdSecretId = base64_encode( $clientId.':'.$secretId );
+
+            // refresh token
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/oauth2/",
+            ]);
+            $response = $client->post("token", [
+                "headers" => [
+                    "Authorization" => "Basic {$base64CLientIdSecretId}",
+                    "Content-Type"  => "application/x-www-form-urlencoded"
+                ],
+                "body"  =>  "grant_type=refresh_token&refresh_token={$user->remember_token}"
+            ]);
+            $data = json_decode($response->getBody(), true);
+
+            // Update refresh user credentials
+            \DB::table('users')
+                ->where('id', $user->id)
+                ->update([
+                    'remember_token'    =>  $data['refresh_token'],
+                    'token'             =>  $data['access_token']
+                ]);
+
+            // Update Habit
             $client = new Client([
                 "base_uri" => "https://api.fitbit.com/1.2/",
             ]);

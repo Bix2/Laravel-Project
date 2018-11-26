@@ -19,7 +19,8 @@ use Auth;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
-{
+{   
+
     public function index() {
         if (Auth::check()) { 
             $me = Auth::user();
