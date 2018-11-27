@@ -32,7 +32,6 @@ class DashboardController extends Controller
                 "Accept-Language"   =>  "fr_FR"
             ],
             "form_params"  =>  [
-                "activityName"      =>  "Walking",
                 "activityParentId"  =>  90013,
                 "startTime"         =>  "08:20:30",
                 "durationMillis"    =>  1800000,
