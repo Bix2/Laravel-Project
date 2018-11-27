@@ -6,27 +6,25 @@
         <h2>Dashboard</h2>
     </div>
     @if ($userGoalsAchieved == true)
-    <div class="col-12">
+    <div class="col-12 mt-5">
+        <h4>You have achieved all your goals for today. How are you feeling?</h4>
         <div class="card">
-            <div class="card-body">
-                <form id="moodFeedback" method="post" action="/dashboard">
-                    {{ csrf_field() }}
-                    <h3>How are you feeling?</h3>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="bad" name="mood" value="bad">
-                        <label class="form-check-label" for="mood">Bad &#x1F614;</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="neutral" name="mood" value="neutral">
-                        <label class="form-check-label" for="mood">Neutral &#x1F610;</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="good" name="mood" value="good">
-                        <label class="form-check-label" for="mood">Good &#x1F917;</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+            <form id="moodFeedback" method="post" action="/dashboard">
+                {{ csrf_field() }}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="bad" name="mood" value="bad">
+                    <label class="form-check-label" for="mood">Bad &#x1F614;</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="neutral" name="mood" value="neutral">
+                    <label class="form-check-label" for="mood">Neutral &#x1F610;</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="good" name="mood" value="good">
+                    <label class="form-check-label" for="mood">Good &#x1F917;</label>
+                </div>
+                <button type="submit" class="btn btn-success">Send</button>
+            </form>
         </div>
     </div>
     @endif
