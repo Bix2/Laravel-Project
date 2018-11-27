@@ -97,6 +97,7 @@ class HabitController extends Controller
             'duration'  =>  'required'
         ]);
         FitBit::logActivityToFitBit($request);
+        return redirect('/dashboard/exercise');
     }
 
     public function changeActivityGoal(Request $request) {
@@ -106,7 +107,7 @@ class HabitController extends Controller
         ]);
         $goal = FitBit::logNewGoalActivity($request);
         Habit::changeActivityGoalInDB($goal);
-        DashboardController::index();
+        return redirect('/dashboard/exercise');
     }
 
 }
