@@ -20,6 +20,7 @@ Route::get('/', 'HabitController@getDaily');
 
 /* Log data to FitBit */
 Route::post('/dashboard/exercise/log', 'HabitController@logActivity');
+Route::post('/dashboard/exercise/changegoal', 'HabitController@changeActivityGoal');
 
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');

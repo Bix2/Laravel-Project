@@ -46,7 +46,7 @@ export default {
         },
         title: {
             align: 'center',
-            text: 'Weekly Plan'
+            text: 'Weekly Activity Plan'
         },
         tooltip: {
             shared: false,

@@ -116,33 +116,6 @@
             @else
                 <p class="habit_nodata">You didn't track any steps 😢</p>
             @endif
-            <form method="post" action="/dashboard/exercise/log">
-                {{csrf_field()}}
-                <div class="form-group row">
-                    <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                    <div class="col-12">
-                        <input class="form-control" name="date" type="date" value="2011-08-19" id="example-date-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
-                    <div class="col-12">
-                        <input class="form-control" name="start" type="time" value="13:45:00" id="example-time-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-time-input" class="col-2 col-form-label">Duration</label>
-                    <div class="col-12">
-                        <input class="form-control" name="duration" type="time" value="13:45:00" id="example-time-input">
-                    </div>
-                </div><div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label">Distance (km)</label>
-                    <div class="col-12">
-                        <input class="form-control" name="distance" type="number" value="42" id="example-number-input">
-                    </div>
-                </div>
-                <button class="btn btn-success" type="submit">Log Activity</button>
-            </form>
         @endif
         
         <!-- End Table -->
@@ -175,6 +148,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row main__content">
             <div class="col-12 mt-3">
                 <form method="post" action="/dashboard/{{$habit->type}}">
@@ -187,6 +161,74 @@
                 </form>
             </div>
         </div>
+
+        <!-- Activity habit -->
+        @if ( ($habit->id) == 3 )
+
+        <!-- Log data to Activities -->
+        <div class="row">
+            <div class="col-12 mt-3">
+                <form method="post" action="/dashboard/exercise/log">
+                    {{csrf_field()}}
+                        <div class="col-6">
+                        <label for="example-date-input" class="col-12 col-form-label">Date</label>
+                        <div class="col-12">
+                            <input class="form-control" name="date" type="date" value="" id="example-date-input">
+                        </div>
+                    </div>
+                        <div class="col-6">
+                        <label for="example-time-input" class="col-12 col-form-label">Start Time</label>
+                        <div class="col-12">
+                            <input class="form-control" name="start" type="time" value="" id="example-time-input">
+                        </div>
+                    </div>
+                        <div class="col-6">
+                        <label for="example-time-input" class="col-12 col-form-label">Duration</label>
+                        <div class="col-12">
+                            <input class="form-control" name="duration" type="time" value="" id="example-time-input">
+                        </div>
+                    </div>
+                        <div class="col-6">
+                        <label for="example-number-input" class="col-12 col-form-label">Distance (km)</label>
+                        <div class="col-12">
+                            <input class="form-control" name="distance" type="number" value="" id="example-number-input">
+                        </div>
+                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p class="mb-0">{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                    <button class="btn btn-success" type="submit">Log Activity</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Change Goal -->
+        <div class="row">
+            <div class="col-12 mt-3">
+                <form method="post" action="/dashboard/exercise/changegoal">
+                    {{csrf_field()}}
+                    <div class="col-6">
+                        <label for="example-date-input" class="col-12 col-form-label">Goal</label>
+                        <div class="col-12">
+                            <input class="form-control" name="goal" type="number" value="{{$stepsgoal}}" id="goal">
+                        </div>
+                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p class="mb-0">{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                    <button class="btn btn-success" type="submit">Change Goal</button>
+                </form>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

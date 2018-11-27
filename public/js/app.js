@@ -47604,7 +47604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         title: {
           align: 'center',
-          text: 'Weekly Plan'
+          text: 'Sleep Stages - Weekly Plan'
         },
         tooltip: {
           colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],
@@ -47838,7 +47838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: ["Minutes asleep", "Minutes to sleep "],
                 title: {
                     align: 'center',
-                    text: 'Daily Plan'
+                    text: 'Daily Goal'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']
@@ -48015,7 +48015,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 title: {
                     align: 'center',
-                    text: 'Weekly Plan'
+                    text: 'Weekly Activity Plan'
                 },
                 tooltip: {
                     shared: false,
@@ -48235,7 +48235,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: ["Steps made", "Steps to go"],
                 title: {
                     align: 'center',
-                    text: 'Daily Plan'
+                    text: 'Daily Goal'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']

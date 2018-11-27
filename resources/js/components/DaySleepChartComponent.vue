@@ -44,7 +44,7 @@ export default {
                 labels: ["Minutes asleep", "Minutes to sleep "],
                 title: {
                     align: 'center',
-                    text: 'Daily Plan'
+                    text: 'Daily Goal'
                 },
                 fill: {
                     colors: ['#E14DA5', '#EAEAEA']

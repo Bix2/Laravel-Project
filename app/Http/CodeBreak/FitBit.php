@@ -616,4 +616,26 @@ class FitBit {
         }
     }
 
+    public static function logNewGoalActivity($request) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+
+            // get value from input
+            $goal = $request->input('goal');
+
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/1/user/-/",
+            ]);
+            $response = $client->post("activities/goals/daily.json", [
+                "headers" => [
+                    "Authorization"     =>  "Bearer {$me->token}",
+                    "Accept-Language"   =>  "fr_FR"
+                ],
+                "form_params"  =>  [
+                    "steps"          =>  $goal,
+                ]
+            ]);
+        }
+    }
+
 }

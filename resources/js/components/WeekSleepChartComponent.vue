@@ -59,7 +59,7 @@ export default {
       },
       title: {
           align: 'center',
-          text: 'Weekly Plan'
+          text: 'Sleep Stages - Weekly Plan'
       },
       tooltip: {
           colors: ['#E14DA5', '#F9DA69', '#AB64E1', '#58CFD7'],

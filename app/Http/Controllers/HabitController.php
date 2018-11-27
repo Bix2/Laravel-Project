@@ -25,12 +25,16 @@ class HabitController extends Controller
         $habitId = $data["habit"]->id;
         if($habitId == 1) {
             $data['sleepdata'] = Habit::getTrackedSleepLogsData();
+            $data['sleepgoal'] = FitBit::getSleepPatternGoal();
         } else if($habitId == 2) {
             $data['breathingdata'] = Habit::getTrackedBreathingData();
+            $data['breathinggoal'] = Habit::getBreathingGoal();
         } else if($habitId == 3) {
             $data['stepsdata'] = Habit::getTrackedActivityStepsData();
+            $data['stepsgoal'] = FitBit::getActivityStepsGoal();
         } else if($habitId == 4) {
             $data['waterdata'] = Habit::getTrackedWaterLogsData();
+            $data['watergoal'] = FitBit::getWaterLogGoal();
         }
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
         $data['trackedHabits'] = User::getTrackedAndUntrackedHabits();
@@ -85,7 +89,22 @@ class HabitController extends Controller
     */
 
     public function logActivity(Request $request) {
+
+        $validatedData = $request->validate([
+            'date'      =>  'required',
+            'start'     =>  'required',
+            'distance'  =>  'required',
+            'duration'  =>  'required'
+        ]);
         FitBit::logActivityToFitBit($request);
+    }
+
+    public function changeActivityGoal(Request $request) {
+
+        $validatedData = $request->validate([
+            'goal'      =>  'required'
+        ]);
+        FitBit::logNewGoalActivity($request);
     }
 
 }
