@@ -167,65 +167,70 @@
 
         <!-- Log data to Activities -->
         <div class="row">
-            <div class="col-12 mt-3">
-                <form method="post" action="/dashboard/exercise/log">
-                    {{csrf_field()}}
-                        <div class="col-6">
-                        <label for="example-date-input" class="col-12 col-form-label">Date</label>
-                        <div class="col-12">
-                            <input class="form-control" name="date" type="date" value="" id="example-date-input">
+            <div class="col-lg-6 mt-5">
+                <h4>Log activity data</h4>
+                <div class="card">
+                    <form method="post" action="/dashboard/exercise/log">
+                        {{csrf_field()}}
+                        <div>
+                            <label for="example-date-input" class="col-12 col-form-label">Date</label>
+                            <div class="col-12">
+                                <input class="form-control" name="date" type="date" value="" id="example-date-input">
+                            </div>
                         </div>
-                    </div>
-                        <div class="col-6">
-                        <label for="example-time-input" class="col-12 col-form-label">Start Time</label>
-                        <div class="col-12">
-                            <input class="form-control" name="start" type="time" value="" id="example-time-input">
+                        <div>
+                            <label for="example-time-input" class="col-12 col-form-label">Start Time</label>
+                            <div class="col-12">
+                                <input class="form-control" name="start" type="time" value="" id="example-time-input">
+                            </div>
                         </div>
-                    </div>
-                        <div class="col-6">
-                        <label for="example-time-input" class="col-12 col-form-label">Duration</label>
-                        <div class="col-12">
-                            <input class="form-control" name="duration" type="time" value="" id="example-time-input">
+                        <div>
+                            <label for="example-time-input" class="col-12 col-form-label">Duration</label>
+                            <div class="col-12">
+                                <input class="form-control" name="duration" type="time" value="" id="example-time-input">
+                            </div>
                         </div>
-                    </div>
-                        <div class="col-6">
-                        <label for="example-number-input" class="col-12 col-form-label">Distance (km)</label>
-                        <div class="col-12">
-                            <input class="form-control" name="distance" type="number" value="" id="example-number-input">
+                        <div>
+                            <label for="example-number-input" class="col-12 col-form-label">Distance (km)</label>
+                            <div class="col-12">
+                                <input class="form-control" name="distance" type="number" value="" id="example-number-input">
+                            </div>
                         </div>
-                    </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <p class="mb-0">{{ $error }}</p>
-                            @endforeach
+                        @if ($errors->any())
+                            <div class="m-3 alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <p class="mb-0">{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                        <div class="mt-3">
+                            <div class="col-12">
+                                <input type="submit" class="btn btn-success form-control" type="number" value="Log Activity">
+                            </div>
                         </div>
-                    @endif
-                    <button class="btn btn-success" type="submit">Log Activity</button>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <!-- Change Goal -->
-        <div class="row">
-            <div class="col-12 mt-3">
-                <form method="post" action="/dashboard/exercise/changegoal">
-                    {{csrf_field()}}
-                    <div class="col-6">
-                        <label for="example-date-input" class="col-12 col-form-label">Goal</label>
-                        <div class="col-12">
-                            <input class="form-control" name="goal" type="number" value="{{$stepsgoal}}" id="goal">
+            <!-- Change goal -->
+            <div class="col-lg-6 mt-5">
+                <h4>Change activity goal</h4>
+                <div class="card">
+                    <form method="post" action="/dashboard/exercise/changegoal">
+                        {{csrf_field()}}
+                        <div>
+                            <label for="example-date-input" class="col-12 col-form-label">Goal</label>
+                            <div class="col-12">
+                                <input class="form-control" name="goal" type="number" value="{{$stepsgoal}}" id="goal">
+                            </div>
                         </div>
-                    </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <p class="mb-0">{{ $error }}</p>
-                            @endforeach
+                        <div class="mt-3">
+                            <div class="col-12">
+                                <input class="btn btn-success form-control" type="submit" value="Change Goal">
+                            </div>
                         </div>
-                    @endif
-                    <button class="btn btn-success" type="submit">Change Goal</button>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
         @endif
