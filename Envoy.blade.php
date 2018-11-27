@@ -4,21 +4,21 @@
 $account = 'deploybot';
 @endsetup
 
-@task('deploy-production', ['on' => 'web'])
+@task('deploy', ['on' => 'web'])
 
-cd /home/{{ $account }}/codebreak/Laravel-Project
+    cd /home/{{ $account }}/codebreak/Laravel-Project
 
-php artisan down 
+    php artisan down 
 
-git pull origin master --force
+    git pull origin master --force
 
-composer install
+    composer install
 
-npm install
+    npm install
 
-php artisan migrate
+    php artisan migrate
 
-php artisan up
+    php artisan up
 
 @endtask
 

@@ -1,8 +1,8 @@
 <header class="main__header">
     <div class="row">
         <div class="logo__cointainer col-6">
-            <a class="logo__container__link" href="#">
-                <img class="main__logo" src="/images/logo.svg" alt="Code Break logo">
+            <a class="logo__container__link" href="/dashboard">
+                <img class="main__logo" src="/images/logo-white.svg" alt="Code Break logo">
             </a>
         </div>
 

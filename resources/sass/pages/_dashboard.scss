@@ -1,3 +1,37 @@
+.dash {
+	position: relative;
+}
+
+#container {
+	position: relative;
+    margin: 0;
+    width: auto;
+    overflow: hidden;
+    min-height: 600px;
+	padding: 2rem 0px;
+	min-width: 990px;
+	background-position: 0 0;
+	transition: background-position 0.3s ease-out;
+}
+
+#container.drawerOpen {
+	background-position: 344px 0;
+}
+
+.main-overlay {
+	margin: 0 auto;
+    color: #333;
+    font-family: "Proxima Nova Regular", arial, sans-serif;
+    font-size: 18px;
+    position: relative;
+	width: 960px;
+	transition: left 0.3s ease;
+}
+
+.main-overlay.drawerOpen {
+	left: 100px;
+}
+
 .main__content {
 
     h3 {

@@ -9718,6 +9718,171 @@ body {
   font-weight: bold;
 }
 
+.dashOverlay {
+  position: absolute;
+  top: 0;
+  background-color: #000;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  z-index: -1;
+  -webkit-transition: opacity 0.3s 0s, z-index 0s 0.3s;
+  transition: opacity 0.3s 0s, z-index 0s 0.3s;
+  width: 100%;
+}
+
+.dashOverlay.open {
+  -webkit-transition: opacity 0.3s 0s, z-index 0s 0s;
+  transition: opacity 0.3s 0s, z-index 0s 0s;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  z-index: 9;
+}
+
+.tileDrawer {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  -webkit-transition: left 0.3s;
+  transition: left 0.3s;
+  position: absolute;
+  z-index: 10;
+  width: 360px;
+  top: 0px;
+  left: -360px;
+  bottom: 0px;
+  background-color: #201F3F;
+}
+
+.open {
+  left: 0;
+}
+
+.tileDrawer .panel {
+  color: #f0f0f0;
+  background-color: #201F3F;
+  overflow-y: auto;
+  padding-top: 5rem;
+}
+
+.panel__title {
+  padding: 0 60px 0 32px;
+}
+
+.expandDrawer,
+.collapseDrawer {
+  display: block;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+
+.expandDrawer:hover,
+.collapseDrawer:hover {
+  background-color: #201F3F;
+}
+
+.expandDrawer {
+  right: -58px;
+  top: 30px;
+  -webkit-transition: opacity 0.45s ease;
+  transition: opacity 0.45s ease;
+}
+
+.collapseDrawer {
+  right: 17px;
+  top: 30px;
+}
+
+.open .expandDrawer {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.tileDrawer .title {
+  font-family: "Proxima Nova Light", "Arial", sans-serif;
+  font-size: 24px;
+  padding: 42px 60px 31px 37px;
+}
+
+.tileDrawer .tileList {
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid #475b6a;
+  margin-top: 2rem;
+}
+
+.tileList .availableTile {
+  font-family: "Proxima Nova Regular", "Arial", sans-serif;
+  font-size: 18px;
+  padding: 0 60px 0 32px;
+  border-top: 1px solid #475b6a;
+  line-height: 62px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.invisible {
+  display: none;
+  position: absolute;
+  top: -2000px;
+}
+
+.availableTile .checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #73828c;
+  border-radius: 4px;
+  float: right;
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  margin-top: -9px;
+}
+
+.availableTile .checkbox .check {
+  color: #4dbfbf;
+  top: -25px;
+  z-index: 99;
+  width: 15px;
+  position: absolute;
+}
+
+.addTiles {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.addButton {
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 40px;
+  text-align: center;
+  min-width: 100px;
+  padding: 15px 25px;
+  display: inline-block;
+  font-family: "Proxima Nova Bold", "Arial", sans-serif;
+  font-size: 13px;
+  background-color: #ff3f85;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.icon img {
+  width: 20px;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: none;
+}
+
 .container {
   max-width: 100%;
   padding: 0;
@@ -9774,6 +9939,7 @@ body {
 .main__header {
   width: 100%;
   background-color: white;
+  position: relative;
 }
 
 .main__logo {
@@ -9861,12 +10027,11 @@ body {
 
 .footer {
   background: #fff;
-  height: 60px;
   color: #212529;
 }
 
 .footer__copyright {
-  padding: 20px;
+  padding: 1rem;
   color: #212529;
   text-align: center;
   font-size: 0.9rem;
@@ -9883,6 +10048,42 @@ body {
   color: #fff;
   background-color: #838AD3;
   border-color: #838AD3;
+}
+
+.dash {
+  position: relative;
+}
+
+#container {
+  position: relative;
+  margin: 0;
+  width: auto;
+  overflow: hidden;
+  min-height: 600px;
+  padding: 2rem 0px;
+  min-width: 990px;
+  background-position: 0 0;
+  -webkit-transition: background-position 0.3s ease-out;
+  transition: background-position 0.3s ease-out;
+}
+
+#container.drawerOpen {
+  background-position: 344px 0;
+}
+
+.main-overlay {
+  margin: 0 auto;
+  color: #333;
+  font-family: "Proxima Nova Regular", arial, sans-serif;
+  font-size: 18px;
+  position: relative;
+  width: 960px;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+
+.main-overlay.drawerOpen {
+  left: 100px;
 }
 
 .main__content h3 {

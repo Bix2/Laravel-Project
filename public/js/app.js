@@ -14172,6 +14172,19 @@ $('.alert__close').on('click', function (e) {
 
 $('.tooltip-items').tooltip();
 
+$('.expandDrawer').click(function () {
+  console.log('click');
+  $('.tileDrawer').addClass('open');
+  $('#container').addClass('drawerOpen');
+  $('.main-overlay').addClass('drawerOpen');
+});
+
+$('.collapseDrawer').click(function () {
+  $('.tileDrawer').removeClass('open');
+  $('#container').removeClass('drawerOpen');
+  $('.main-overlay').removeClass('drawerOpen');
+});
+
 // $.ajaxSetup({
 //   headers: {
 //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
