@@ -35,7 +35,7 @@ class HabitsSeeder extends Seeder
             'long_description' => 'CodeBreak helps you relax after some coding hours',
             'watch'             =>  true,
             'fitbit_app'        =>  true,
-            'codebreak'         =>  false,
+            'codebreak'         =>  true,
         ]);
 
         DB::table('habits')->insert([
