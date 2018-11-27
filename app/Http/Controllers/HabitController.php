@@ -106,6 +106,7 @@ class HabitController extends Controller
         ]);
         $goal = FitBit::logNewGoalActivity($request);
         Habit::changeActivityGoalInDB($goal);
+        DashboardController::index();
     }
 
 }

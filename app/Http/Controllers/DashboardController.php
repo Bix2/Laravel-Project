@@ -41,7 +41,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function index() {
+    public static function index() {
         if (Auth::check()) { 
             $me = Auth::user();
             $data = User::getAllUserData();
