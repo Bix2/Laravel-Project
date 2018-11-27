@@ -293,9 +293,10 @@ class Habit extends Model
     public static function changeActivityGoalInDB($goal) {
         if (Auth::check()) { 
             $me = Auth::user();
-            $breathingGoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->update([
+            \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->update([
                 'goal' => $goal,
             ]);
+            dd(\DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first());
         }
     }
 
