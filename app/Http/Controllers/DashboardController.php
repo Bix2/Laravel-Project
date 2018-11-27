@@ -53,22 +53,8 @@ class DashboardController extends Controller
     }
 
     public function storeFeedback(Request $request) {
-        //dd($request->all());
-        if (Auth::check()) { 
-            $me = Auth::user();
-            $currentdate = date("Y-m-d");
-            $usergoals = \DB::table('habit_user')->where('user_id', $me->id)->get();
-            foreach ($usergoals as $usergoal) {
-                if($usergoal->habit_id == 4) {
-                    \DB::table('user_moods')->insert([
-                        'date' => $currentdate,
-                        'mood' => $request->input('mood'),
-                        'habit_id' => $usergoal->habit_id,
-                        'user_id' => $me->id,
-                    ]); 
-                }
-            }
-        }
+        User::storeMood($request);
+        return redirect('/dashboard');
     }
 
     public function AddWater(Request $request){
@@ -76,12 +62,4 @@ class DashboardController extends Controller
         return $data;
     }
 
-    // Jobs Testing
-    public function doSomething()
-    {
-        DoSomething::dispatch()
-                ->delay(now()->addSeconds(10));
-    }
-
-    
 }

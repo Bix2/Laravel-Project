@@ -110,7 +110,10 @@ class User extends Authenticatable
             $data['userGoalsAchieved'] = false;
             // if any habit is tracked
             if(!empty($data['trackedHabitsInfo'])) {
-                $data['userGoalsAchieved'] = User::checkIfTrackedGoalsAchieved($data['trackedHabitsInfo']);
+                $mood = \DB::table('user_moods')->where([['user_id', $me->id], ['date', date("Y-m-d")]])->first();
+                if($mood == null) {
+                    $data['userGoalsAchieved'] = User::checkIfTrackedGoalsAchieved($data['trackedHabitsInfo']);
+                }
             }
             $data['trackedHabitsArray'] = $trackedHabitsArray;
             $data['untrackedHabitsArray'] = $untrackedHabitsArray;
@@ -371,8 +374,19 @@ class User extends Authenticatable
         ];
         return $status;
     }
-    
 
+    public static function storeMood($request) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $currentdate = date("Y-m-d");
+            \DB::table('user_moods')->insert([
+                'date' => $currentdate,
+                'mood' => $request->input('mood'),
+                'user_id' => $me->id
+            ]); 
+        }
+    }  
+    
     public function isAdmin() {
         return $this->admin; // this looks for an admin column in your users table
     }

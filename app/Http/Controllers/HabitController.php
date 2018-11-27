@@ -28,7 +28,7 @@ class HabitController extends Controller
             $data['sleepgoal'] = FitBit::getSleepPatternGoal();
         } else if($habitId == 2) {
             $data['breathingdata'] = Habit::getTrackedBreathingData();
-            $data['breathinggoal'] = Habit::getBreathingGoal();
+            // $data['breathinggoal'] = Habit::getBreathingGoal();
         } else if($habitId == 3) {
             $data['stepsdata'] = Habit::getTrackedActivityStepsData();
             $data['stepsgoal'] = FitBit::getActivityStepsGoal();

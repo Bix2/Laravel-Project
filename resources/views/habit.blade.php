@@ -95,7 +95,7 @@
                 @endforeach
             </div>
             @else
-                <p class="habit_nodata">You didn't do any breahting sessions 😢</p>
+                <p class="habit_nodata">You didn't do any breahting sessions 😢 <a href="/dashboard/breathing/session">Get started now</a></p>
             @endif
         @endif
                 
@@ -150,15 +150,22 @@
         </div>
 
         <div class="row main__content">
-            <div class="col-12 mt-3">
-                <form method="post" action="/dashboard/{{$habit->type}}">
-                    {{csrf_field()}}
-                    @if ($button['status'] == 'success')
-                        <button class="btn btn-success" type="submit">{{ $button['text'] }}</button>
-                    @else
-                        <button class="btn btn-danger" type="submit">{{ $button['text'] }}</button>
+            <div class="col-12">
+                <div class="d-inline-block mt-3">
+                    <form method="post" action="/dashboard/{{$habit->type}}">
+                        {{csrf_field()}}
+                        @if ($button['status'] == 'success')
+                            <button class="btn btn-success" type="submit">{{ $button['text'] }}</button>
+                        @else
+                            <button class="btn btn-danger" type="submit">{{ $button['text'] }}</button>
+                        @endif
+                    </form>
+                </div>
+                <div class="d-inline-block ml-2 mt-3">
+                    @if (($habit->id) == 2)
+                        <a class="btn btn-success" href="/dashboard/breathing/session">Start breathing session</a>
                     @endif
-                </form>
+                </div>
             </div>
         </div>
 
