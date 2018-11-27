@@ -104,7 +104,8 @@ class HabitController extends Controller
         $validatedData = $request->validate([
             'goal'      =>  'required'
         ]);
-        FitBit::logNewGoalActivity($request);
+        $goal = FitBit::logNewGoalActivity($request);
+        Habit::changeActivityGoalInDB($goal);
     }
 
 }
