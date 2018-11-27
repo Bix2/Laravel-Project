@@ -32,15 +32,13 @@ class DashboardController extends Controller
                 "Accept-Language"   =>  "fr_FR"
             ],
             "form_params"  =>  [
-                "activityId"  =>  90013,
+                "activityId"        =>  90013,
                 "startTime"         =>  "08:20:30",
                 "durationMillis"    =>  1800000,
                 "date"              =>  "2018-11-26",
                 "distance"          =>  3.23,
             ]
         ]);
-        $data = json_decode($response->getBody(), true);
-        dd($data);
     }
 
     public function index() {

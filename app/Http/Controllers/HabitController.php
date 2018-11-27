@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\CodeBreak\FitBit;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -82,5 +83,9 @@ class HabitController extends Controller
     }
 
     */
+
+    public function logActivity(Request $request) {
+        FitBit::logActivityToFitBit($request);
+    }
 
 }

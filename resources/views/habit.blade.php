@@ -116,6 +116,33 @@
             @else
                 <p class="habit_nodata">You didn't track any steps 😢</p>
             @endif
+            <form method="post" action="/dashboard/exercise/log">
+                {{csrf_field()}}
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                    <div class="col-12">
+                        <input class="form-control" name="date" type="date" value="2011-08-19" id="example-date-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
+                    <div class="col-12">
+                        <input class="form-control" name="start" type="time" value="13:45:00" id="example-time-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-time-input" class="col-2 col-form-label">Duration</label>
+                    <div class="col-12">
+                        <input class="form-control" name="duration" type="time" value="13:45:00" id="example-time-input">
+                    </div>
+                </div><div class="form-group row">
+                    <label for="example-number-input" class="col-2 col-form-label">Distance (km)</label>
+                    <div class="col-12">
+                        <input class="form-control" name="distance" type="number" value="42" id="example-number-input">
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit">Log Activity</button>
+            </form>
         @endif
         
         <!-- End Table -->

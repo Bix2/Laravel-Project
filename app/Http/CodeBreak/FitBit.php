@@ -582,4 +582,38 @@ class FitBit {
         }
     }
 
+    public static function logActivityToFitBit($request) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+
+            // get value from inputs
+            $date = $request->input('date');
+            $startTime = $request->input('start');
+            $distance = $request->input('distance');
+
+            $duration = $request->input('duration');
+            $durationInMilliseconds   = explode(":", $duration);
+            $hour   = $durationInMilliseconds[0] * 60 * 60 * 1000;
+            $minute = $durationInMilliseconds[1] * 60 * 1000;
+            $durationInMilliseconds = $hour + $minute;
+
+            $client = new Client([
+                "base_uri" => "https://api.fitbit.com/",
+            ]);
+            $response = $client->post("1/user/-/activities.json", [
+                "headers" => [
+                    "Authorization"     =>  "Bearer {$me->token}",
+                    "Accept-Language"   =>  "fr_FR"
+                ],
+                "form_params"  =>  [
+                    "activityId"        =>  90013,
+                    "startTime"         =>  $startTime,
+                    "durationMillis"    =>  $durationInMilliseconds,
+                    "date"              =>  $date,
+                    "distance"          =>  $distance,
+                ]
+            ]);
+        }
+    }
+
 }

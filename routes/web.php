@@ -18,6 +18,9 @@ Route::get('/test', 'DashboardController@test');
 
 Route::get('/', 'HabitController@getDaily');
 
+/* Log data to FitBit */
+Route::post('/dashboard/exercise/log', 'HabitController@logActivity');
+
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');
 Route::get('login/fitbit/callback', 'UserController@handleFitbitCallback');
