@@ -28,7 +28,8 @@ class DashboardController extends Controller
         ]);
         $response = $client->post("1/user/-/activities.json", [
             "headers" => [
-                "Authorization" => "Bearer {$me->token}"
+                "Authorization"     =>  "Bearer {$me->token}",
+                "Accept-Language"   =>  "fr_FR"
             ],
             "form_params"  =>  [
                 "activityName"      =>  "Walking",
@@ -36,8 +37,7 @@ class DashboardController extends Controller
                 "startTime"         =>  "08:20:30",
                 "durationMillis"    =>  1800000,
                 "date"              =>  "2018-11-26",
-                "distance"          =>  2300,
-                "distanceUnit"      =>  "steps"
+                "distance"          =>  3.23,
             ]
         ]);
         $data = json_decode($response->getBody(), true);
