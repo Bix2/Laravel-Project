@@ -97,6 +97,8 @@ class HabitController extends Controller
             'duration'  =>  'required'
         ]);
         FitBit::logActivityToFitBit($request);
+        $steps = FitBit::getActivitySteps();
+        FitBit::insertStepsToDB($steps);
         return redirect('/dashboard/exercise');
     }
 
