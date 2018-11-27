@@ -636,8 +636,8 @@ class FitBit {
                 ]
             ]);
             $data = json_decode($response->getBody(), true);
-            dd($data);
-            return $data;
+
+            return $data['goals']['steps'];
         }
     }
 

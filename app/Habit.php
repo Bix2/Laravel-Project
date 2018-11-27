@@ -281,12 +281,21 @@ class Habit extends Model
     }
 
 
-    // Get the water goal of the user from FitBit API
+    // Get the breathing goal of the user
     public static function getBreathingGoal() {
         if (Auth::check()) { 
             $me = Auth::user();
             $breathingGoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->first();
             return $breathingGoal->goal;
+        }
+    }
+
+    public static function changeActivityGoalInDB($goal) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            $breathingGoal = \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 2]])->update([
+                'goal' => $goal,
+            ]);
         }
     }
 
