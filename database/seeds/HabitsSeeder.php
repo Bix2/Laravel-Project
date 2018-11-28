@@ -44,7 +44,7 @@ class HabitsSeeder extends Seeder
             'long_description' => 'CodeBreak helps you drink liquids more often',
             'watch'             =>  true,
             'fitbit_app'        =>  true,
-            'codebreak'         =>  false,
+            'codebreak'         =>  true,
         ]);
     }
 }
