@@ -4,24 +4,17 @@ window.onload = function () {
         countTo = $this.attr('data-count');
         
         $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
+            countNum: countTo
+        },{
+            duration: 1200,
+            easing:'linear',
         
-        {
-        
-        duration: 1200,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        
-        }
-        
-        });  
-        
-        
-        
-        });
+            step: function() {
+                $this.text(Math.floor(this.countNum));
+            },
+            complete: function() {
+                $this.text(this.countNum);
+            }
+        });     
+    });
 }
