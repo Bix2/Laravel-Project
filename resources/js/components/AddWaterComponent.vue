@@ -27,7 +27,7 @@
                         <div>
                             <label for="wateradd" class="col-12 col-form-label">Amount</label>
                             <div class="col-12">
-                                <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="amount">
+                                <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="goal">
                             </div>
                         </div>
                         <div class="mt-3">
@@ -48,7 +48,8 @@ export default {
         },
         data() {
             return {
-              amount: ''
+              amount: '',
+              goal: ''
             };
         },
         methods: {
@@ -63,7 +64,7 @@ export default {
                 e.preventDefault();
                 let currentObj = this;
                 axios.post('/api/watergoal', {
-                    amount: this.amount,
+                    goal: this.goal,
                 })
             }
         }

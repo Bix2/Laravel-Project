@@ -646,14 +646,14 @@ class FitBit {
 
     public static function ChangeWaterGoal($request) {
         $client = new Client();
-        $amount = $request["amount"];
-        if($amount == null){
-            $amount = 0;
+        $goal = $request["goal"];
+        if($goal == null){
+            $goal = 0;
         }
 
-        if( is_numeric($amount) ) {
+        if( is_numeric($goal) ) {
         } else {
-            $amount = 0;
+            $goal = 0;
         }
         if (Auth::check()) {
             $me = Auth::user();
@@ -663,7 +663,7 @@ class FitBit {
                     "Accept-Language"   =>  "fr_FR"
                 ],
                 "form_params" => [
-                    'target' => (int)$amount,
+                    'target' => (int)$goal,
                 ]
             ]);
         }
