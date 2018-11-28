@@ -5,14 +5,14 @@
                 <div class="card">
                     <form @submit="formSubmit">
                         <div>
-                            <label for="wateradd" class="col-12 col-form-label">Amount</label>
+                            <label for="wateradd" class="col-12 col-form-label">Amount (ml)</label>
                             <div class="col-12">
                                 <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="amount">
                             </div>
                         </div>
                         <div class="mt-3">
                             <div class="col-12">
-                                <button class="btn btn-success form-control" id="wateraddbutton">Track water</button>
+                                <button class="btn btn-success form-control" id="wateraddbutton">Log Water</button>
                             </div>
                         </div>
                     </form>
@@ -25,14 +25,14 @@
                 <div class="card">
                     <form @submit="goalSubmit">
                         <div>
-                            <label for="wateradd" class="col-12 col-form-label">Amount</label>
+                            <label for="wateradd" class="col-12 col-form-label">Amount (ml)</label>
                             <div class="col-12">
                                 <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="goal">
                             </div>
                         </div>
                         <div class="mt-3">
                             <div class="col-12">
-                                <button class="btn btn-success form-control" id="wateraddbutton">Change goal</button>
+                                <button class="btn btn-success form-control" id="wateraddbutton">Change Goal</button>
                             </div>
                         </div>
                     </form>

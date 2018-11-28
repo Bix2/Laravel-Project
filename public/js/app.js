@@ -48897,7 +48897,7 @@ var render = function() {
                 staticClass: "col-12 col-form-label",
                 attrs: { for: "wateradd" }
               },
-              [_vm._v("Amount")]
+              [_vm._v("Amount (ml)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -48949,7 +48949,7 @@ var render = function() {
                 staticClass: "col-12 col-form-label",
                 attrs: { for: "wateradd" }
               },
-              [_vm._v("Amount")]
+              [_vm._v("Amount (ml)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -49003,7 +49003,7 @@ var staticRenderFns = [
             staticClass: "btn btn-success form-control",
             attrs: { id: "wateraddbutton" }
           },
-          [_vm._v("Track water")]
+          [_vm._v("Log Water")]
         )
       ])
     ])
@@ -49020,7 +49020,7 @@ var staticRenderFns = [
             staticClass: "btn btn-success form-control",
             attrs: { id: "wateraddbutton" }
           },
-          [_vm._v("Change goal")]
+          [_vm._v("Change Goal")]
         )
       ])
     ])
