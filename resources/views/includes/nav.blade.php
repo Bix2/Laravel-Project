@@ -1,6 +1,5 @@
 <div class="sidemenu">     
 	<div class="panel">
-		@if ($trackedHabits[1])
 		<div class="panel__content">
 			<h5 class="panel__title">Dashboard</h5>
 			<ul class="panel__list">
@@ -10,6 +9,7 @@
 						<span class="link-text">Daily overview</span>
 					</a>
 				</li>
+			@if ($trackedHabits[1])
 			@foreach ($trackedHabits[1] as $habit)
 				<li class="habit-tile">
 					<a class="habit-tile__item" href="/dashboard/{{$habit->type}}">
@@ -18,17 +18,23 @@
 					</a>
 				</li>
 			@endforeach
-		@endif
+			@endif
+
+			@if ($trackedHabits[0])
+			@foreach ($trackedHabits[0] as $habit)
+					<li class="habit-tile">
+						<a class="habit-tile__item" href="/dashboard/{{$habit->type}}">
+							<span class="icon"><img src="../../images/{{$habit->type}}.svg" alt="dashboard icon"></span>
+							<span class="link-text">{{$habit->short_description}}</span>
+						</a>
+					</li>
+				@endforeach
+			@endif
+	
 			</ul>
 
 		</div>
 
-		@if ($trackedHabits[0] && !$trackedHabits[1] )
-		<div class="noTiles">
-			<h2>More coming soon!</h2>
-			<p>You have added all tiles we have available</p><span class="dismissDialog">Done</span>
-		</div>
-		@endif
 
 	</div> 
 

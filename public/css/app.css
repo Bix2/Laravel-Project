@@ -9932,7 +9932,7 @@ body {
 .toggleDrawer {
   display: block;
   position: absolute;
-  width: 30px;
+  width: 25px;
   background-repeat: no-repeat;
   cursor: pointer;
   background: transparent;
@@ -9943,9 +9943,15 @@ body {
   right: 15px;
 }
 
-.expandDrawer {
-  right: 20px;
-  width: 45px;
+@media (min-width: 968px) {
+  .toggleDrawer {
+    width: 30px;
+    right: 15px;
+  }
+  .expandDrawer {
+    right: 20px;
+    width: 45px;
+  }
 }
 
 .panel__list {
