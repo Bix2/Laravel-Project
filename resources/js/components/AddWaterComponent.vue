@@ -59,12 +59,18 @@ export default {
                 axios.post('/api/addwater', {
                     amount: this.amount,
                 })
+                .then(function (response) {
+                    location.reload();
+                })
             },
             goalSubmit(e) {
                 e.preventDefault();
                 let currentObj = this;
                 axios.post('/api/watergoal', {
                     goal: this.goal,
+                })
+                .then(function (response) {
+                    location.reload();
                 })
             }
         }
