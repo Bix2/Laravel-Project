@@ -45,7 +45,7 @@ class HabitController extends Controller
     public function track($habit) {
         $data = Habit::trackHabit($habit);
         // TESTING: add data from steps activity (it should add the data from the actual habit instead)
-        return redirect('/dashboard/'.$habit);
+        return redirect('dashboard');
     }
 
     public function showbreath($habit) {

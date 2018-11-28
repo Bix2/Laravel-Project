@@ -149,7 +149,14 @@
                                     </div>
                                     @endif
                                 </div>
-                                <a href="/dashboard/{{$habit->type}}" class="btn btn-success">Visit the habit page</a>
+                                <div class="row">
+                                    <div class="mt-2 col-12">
+                                        <form method="post" action="/dashboard/{{$habit->type}}">
+                                            {{csrf_field()}}
+                                            <button type="sumbit" class="w-100 btn btn-success">Track habit</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @endforeach
