@@ -663,7 +663,7 @@ class FitBit {
                     "Accept-Language"   =>  "fr_FR"
                 ],
                 "form_params" => [
-                    'target' => (int)$goal,
+                    'target' => 2000,
                 ]
             ]);
         }
