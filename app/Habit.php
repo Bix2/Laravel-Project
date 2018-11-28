@@ -263,6 +263,7 @@ class Habit extends Model
 
         $date = date('Y-m-d');
         $formdata = [
+            "logId" =>  154654,
             'amount' => (int)$amount,
             'date' => $date,
             'unit' => 'ml'
