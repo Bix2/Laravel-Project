@@ -1,7 +1,7 @@
 @extends('layouts.default') 
 @section('content')
 <div class="row">
-    <div class="col-12" id="dash">
+    <div class="col-12" id="profile">
 		<div class="row">
 			<div class="top__content col-12">
 				<h2>Profile</h2>
@@ -15,7 +15,7 @@
             <div class="col-12 user__profile">
                 <div class="group">
                     <label>Name</label>
-                    <h4>{{ $profile['user']['fullName'] }}</h4>
+                    <p>{{ $profile['user']['fullName'] }}</p>
                 </div>
                 <div class="group">
                     <label>Age</label>
@@ -31,14 +31,16 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="col-12 profile__buttons">
         <div class="row">
             <div class="col-12">
-                <form action="/logout" method="post">
+                <form action="/logout" method="post" class="profile__button">
                     {{ csrf_field() }}
                     <button class="btn btn-danger">Log out</button>
                 </form>
-                <form action="/delete" method="post">
+                <form action="/delete" method="post" class="profile__button">
                     {{ csrf_field() }}
                     <button class="btn btn-danger">Delete Account</button>
                 </form>
