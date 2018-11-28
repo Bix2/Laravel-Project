@@ -9932,7 +9932,7 @@ body {
 .toggleDrawer {
   display: block;
   position: absolute;
-  width: 25px;
+  width: 30px;
   background-repeat: no-repeat;
   cursor: pointer;
   background: transparent;
@@ -9940,7 +9940,7 @@ body {
   top: 30px;
   -webkit-transition: opacity 0.45s ease;
   transition: opacity 0.45s ease;
-  right: 15px;
+  right: 25px;
 }
 
 @media (min-width: 968px) {

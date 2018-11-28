@@ -106,14 +106,14 @@
 .toggleDrawer {
     display: block;
     position: absolute;
-    width: 25px;
+    width: 30px;
     background-repeat: no-repeat;
     cursor: pointer;
     background: transparent;
     border: none;
     top: 30px;
     transition: opacity 0.45s ease;
-    right: 15px;
+    right: 25px;
 }
 
 @media (min-width: 968px) { 
