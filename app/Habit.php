@@ -249,34 +249,6 @@ class Habit extends Model
         }
     }
 
-    public static function AddWaterLog($request) {
-        $client = new Client();
-        $amount = $request["amount"];
-        if($amount == null){
-            $amount = 0;
-        }
-
-        if( is_numeric($amount) ) {
-        } else {
-            $amount = 0;
-        }
-
-        $date = date('Y-m-d');
-        if (Auth::check()) {
-            $me = Auth::user();
-            $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water.json", [
-                "headers" => [
-                    "Authorization" => "Bearer {$me->token}",
-                ],
-                "form_params" => [
-                    'amount' => (int)$amount,
-                    'date' => $date,
-                    'unit' => 'ml'
-                ]
-            ]);
-        }
-    }
-
 
     // Get the breathing goal of the user
     public static function getBreathingGoal() {
@@ -291,6 +263,15 @@ class Habit extends Model
         if (Auth::check()) { 
             $me = Auth::user();
             \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 3]])->update([
+                'goal' => $goal,
+            ]);
+        }
+    }
+
+    public static function changeWaterGoalInDB($goal) {
+        if (Auth::check()) { 
+            $me = Auth::user();
+            \DB::table('habit_user')->where([['user_id', $me->id], ['habit_id', 4]])->update([
                 'goal' => $goal,
             ]);
         }

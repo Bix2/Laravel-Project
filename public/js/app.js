@@ -48810,6 +48810,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -48828,6 +48860,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/api/addwater', {
                 amount: this.amount
             });
+        },
+        goalSubmit: function goalSubmit(e) {
+            e.preventDefault();
+            var currentObj = this;
+            axios.post('/api/watergoal', {
+                amount: this.amount
+            });
         }
     }
 });
@@ -48840,48 +48879,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "water-adding" }, [
-    _c("form", { on: { submit: _vm.formSubmit } }, [
-      _c("div", { staticClass: "water-add-form" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.amount,
-              expression: "amount"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "number",
-            id: "wateradd",
-            name: "wateradd",
-            min: "0",
-            max: "10000",
-            value: "0"
-          },
-          domProps: { value: _vm.amount },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.amount = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { id: "wateraddbutton" } },
-          [_vm._v("Track water")]
-        )
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-6 mt-5" }, [
+      _c("h4", [_vm._v("Log activity data")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("form", { on: { submit: _vm.formSubmit } }, [
+          _c("div", [
+            _c(
+              "label",
+              {
+                staticClass: "col-12 col-form-label",
+                attrs: { for: "wateradd" }
+              },
+              [_vm._v("Amount")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.amount,
+                    expression: "amount"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "number",
+                  id: "wateradd",
+                  name: "wateradd",
+                  min: "0",
+                  max: "10000",
+                  value: "0"
+                },
+                domProps: { value: _vm.amount },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.amount = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-6 mt-5" }, [
+      _c("h4", [_vm._v("Change drinking goal")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("form", { on: { submit: _vm.goalSubmit } }, [
+          _c("div", [
+            _c(
+              "label",
+              {
+                staticClass: "col-12 col-form-label",
+                attrs: { for: "wateradd" }
+              },
+              [_vm._v("Amount")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.amount,
+                    expression: "amount"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "number",
+                  id: "wateradd",
+                  name: "wateradd",
+                  min: "0",
+                  max: "10000",
+                  value: "0"
+                },
+                domProps: { value: _vm.amount },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.amount = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-3" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success form-control",
+            attrs: { id: "wateraddbutton" }
+          },
+          [_vm._v("Track water")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-3" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success form-control",
+            attrs: { id: "wateraddbutton" }
+          },
+          [_vm._v("Change goal")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -616,28 +616,56 @@ class FitBit {
         }
     }
 
-    public static function logNewGoalActivity($request) {
-        if (Auth::check()) { 
+    public static function AddWaterLog($request) {
+        $client = new Client();
+        $amount = $request["amount"];
+        if($amount == null){
+            $amount = 0;
+        }
+
+        if( is_numeric($amount) ) {
+        } else {
+            $amount = 0;
+        }
+
+        $date = date('Y-m-d');
+        if (Auth::check()) {
             $me = Auth::user();
-
-            // get value from input
-            $goal = $request->input('goal');
-
-            $client = new Client([
-                "base_uri" => "https://api.fitbit.com/1/user/-/",
-            ]);
-            $response = $client->post("activities/goals/daily.json", [
+            $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water.json", [
                 "headers" => [
-                    "Authorization"     =>  "Bearer {$me->token}",
-                    "Accept-Language"   =>  "fr_FR"
+                    "Authorization" => "Bearer {$me->token}",
                 ],
-                "form_params"  =>  [
-                    "steps"          =>  $goal,
+                "form_params" => [
+                    'amount' => (int)$amount,
+                    'date' => $date,
+                    'unit' => 'ml'
                 ]
             ]);
-            $data = json_decode($response->getBody(), true);
+        }
+    }
 
-            return $data['goals']['steps'];
+    public static function ChangeWaterGoal($request) {
+        $client = new Client();
+        $amount = $request["amount"];
+        if($amount == null){
+            $amount = 0;
+        }
+
+        if( is_numeric($amount) ) {
+        } else {
+            $amount = 0;
+        }
+        if (Auth::check()) {
+            $me = Auth::user();
+            $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water/goal.json", [
+                "headers" => [
+                    "Authorization" => "Bearer {$me->token}",
+                    "Accept-Language"   =>  "fr_FR"
+                ],
+                "form_params" => [
+                    'target' => (int)$amount,
+                ]
+            ]);
         }
     }
 

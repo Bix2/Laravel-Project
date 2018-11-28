@@ -33,6 +33,7 @@ Route::get('/profile', 'UserController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
 Route::post('/api/addwater', 'DashboardController@AddWater');
+Route::post('/api/watergoal', 'DashboardController@WaterGoal');
 
 /* Inter API calls */
 Route::get('/api/getstats', 'UserController@getStats');
