@@ -48860,6 +48860,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var currentObj = this;
             axios.post('/api/addwater', {
                 amount: this.amount
+            }).then(function (response) {
+                location.reload();
             });
         },
         goalSubmit: function goalSubmit(e) {
@@ -48867,6 +48869,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var currentObj = this;
             axios.post('/api/watergoal', {
                 goal: this.goal
+            }).then(function (response) {
+                location.reload();
             });
         }
     }
