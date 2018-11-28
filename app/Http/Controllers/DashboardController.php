@@ -58,8 +58,10 @@ class DashboardController extends Controller
     }
 
     public function AddWater(Request $request){
-        $data = Habit::AddWaterLog($request);
-        return $data;
+        Habit::AddWaterLog($request);
+        $water = FitBit::getWaterLog();
+        FitBit::insertWaterLogToDB($water);
+        return redirect('/dashboard/water');
     }
 
 }
