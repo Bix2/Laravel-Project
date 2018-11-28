@@ -9825,8 +9825,9 @@ body {
 
 .nav {
   text-align: left;
-  margin-top: 50px;
-  margin-left: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nav-link {
@@ -9838,7 +9839,7 @@ body {
 }
 
 .nav-link .link-text {
-  color: white;
+  color: black;
 }
 
 .nav-item--title p {
@@ -9846,6 +9847,140 @@ body {
   margin-top: 10px;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+/* SIDEMENU */
+.dash-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0;
+  z-index: -1;
+  -webkit-transition: opacity 0.3s 0s, z-index 0s 0.3s;
+  transition: opacity 0.3s 0s, z-index 0s 0.3s;
+  width: 100%;
+}
+
+.dash-overlay.open {
+  -webkit-transition: opacity 0.3s 0s, z-index 0s 0s;
+  transition: opacity 0.3s 0s, z-index 0s 0s;
+  opacity: 0.6;
+  z-index: 9;
+}
+
+.sidemenu {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  -webkit-transition: left 0.3s;
+  transition: left 0.3s;
+  position: absolute;
+  z-index: 10;
+  width: 360px;
+  top: 0px;
+  left: -280px;
+  bottom: 0px;
+  background-color: #201F3F;
+}
+
+.panel__content {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s 0s;
+  transition: opacity 0.3s 0s;
+}
+
+.sidemenu.open {
+  left: 0;
+}
+
+.sidemenu.open .expandDrawer {
+  opacity: 0;
+  z-index: -1;
+}
+
+.sidemenu.open .panel__content {
+  opacity: 1;
+  z-index: -1;
+}
+
+.sidemenu .collapseDrawer {
+  opacity: 0;
+  z-index: -1;
+}
+
+.sidemenu.open .collapseDrawer {
+  opacity: 1;
+  z-index: 10;
+}
+
+.sidemenu .panel {
+  color: #f0f0f0;
+  background-color: #201F3F;
+  overflow-y: auto;
+  padding-top: 5rem;
+}
+
+.panel__title {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #475b6a;
+  padding-bottom: 20px;
+  margin: 0 20px;
+}
+
+.toggleDrawer {
+  display: block;
+  position: absolute;
+  width: 30px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  top: 30px;
+  -webkit-transition: opacity 0.45s ease;
+  transition: opacity 0.45s ease;
+  right: 15px;
+}
+
+.expandDrawer {
+  right: 20px;
+  width: 45px;
+}
+
+.panel__list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 2rem;
+  padding-left: 0;
+}
+
+.panel__list .habit-tile {
+  font-family: "Proxima Nova Regular", "Arial", sans-serif;
+  font-size: 18px;
+  padding: 0 20px;
+  line-height: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.habit-tile__item {
+  background-color: transparent;
+  border: none;
+}
+
+.habit-tile__item .icon img {
+  width: 20px;
+}
+
+.habit-tile__item .link-text {
+  font-size: 1rem;
+  color: #c7c7c7;
+}
+
+.habit-tile__item.active {
+  color: white;
 }
 
 .container {
@@ -9904,6 +10039,7 @@ body {
 .main__header {
   width: 100%;
   background-color: white;
+  position: relative;
 }
 
 .main__logo {
@@ -9928,10 +10064,6 @@ body {
 
 .link-text {
   display: none;
-}
-
-.profile__picture {
-  padding-right: 2em;
 }
 
 .profile__picture .profile__picture--wrapper {
@@ -9991,7 +10123,6 @@ body {
 
 .footer {
   background: #fff;
-  height: 60px;
   color: #212529;
 }
 
@@ -10013,6 +10144,51 @@ body {
   color: #fff;
   background-color: #838AD3;
   border-color: #838AD3;
+}
+
+.dash {
+  position: relative;
+}
+
+#container {
+  position: relative;
+  margin: 0;
+  width: auto;
+  overflow: hidden;
+  min-height: 600px;
+  padding: 2rem 0px;
+  min-width: 990px;
+  background-position: 0 0;
+  -webkit-transition: background-position 0.3s ease-out;
+  transition: background-position 0.3s ease-out;
+}
+
+#container.drawerOpen {
+  background-position: 344px 0;
+}
+
+.main-overlay {
+  margin: 0 auto;
+  color: #333;
+  font-family: "Proxima Nova Regular", arial, sans-serif;
+  font-size: 18px;
+  position: relative;
+  width: 960px;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+
+.main-overlay.drawerOpen {
+  left: 100px;
+}
+
+.card__text p {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.card__items p a {
+  font-size: 0.9rem;
 }
 
 .main__content h3 {
@@ -10731,4 +10907,18 @@ h1.logo_text {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto;
   }
+}
+
+.user__profile .group label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.user__profile .group p {
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.profile__button {
+  display: inline-block;
 }

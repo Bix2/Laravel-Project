@@ -5,8 +5,7 @@
 
 .nav {
     text-align: left;
-    margin-top: 50px;
-    margin-left: 30px;
+    align-items: center;
 }
 
 .nav-link {
@@ -18,7 +17,7 @@
 }
 
 .nav-link .link-text {
-    color: white;
+    color: black;
 }
 
 .nav-item--title p {
@@ -26,4 +25,133 @@
     margin-top: 10px;
     margin-bottom: 5px;
     font-weight: bold;
+}
+
+/* SIDEMENU */
+
+.dash-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s 0s, z-index 0s 0.3s;
+    width: 100%;
+}
+
+.dash-overlay.open {
+    transition: opacity 0.3s 0s, z-index 0s 0s;
+    opacity: 0.6;
+    z-index: 9;
+}
+
+.sidemenu {
+    perspective: 1000px;
+    transition: left 0.3s;
+    position: absolute;
+    z-index: 10;
+    width: 360px;
+    top: 0px;
+    left: -280px;
+    bottom: 0px;
+    background-color: #201F3F;
+}
+
+.panel__content {
+    opacity: 0;
+    transition: opacity 0.3s 0s;
+}
+
+.sidemenu.open {
+    left: 0;
+}
+
+.sidemenu.open .expandDrawer {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sidemenu.open .panel__content  {
+    opacity: 1;
+    z-index: -1;
+}
+
+.sidemenu .collapseDrawer {
+    opacity: 0;
+    z-index: -1;
+}
+
+.sidemenu.open .collapseDrawer {
+    opacity: 1;
+    z-index: 10;
+}
+
+.sidemenu .panel {
+    color: #f0f0f0;
+    background-color: #201F3F;
+    overflow-y: auto;
+    padding-top: 5rem;
+}
+
+.panel__title {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #475b6a;
+    padding-bottom: 20px;
+    margin: 0 20px;
+}
+
+.toggleDrawer {
+    display: block;
+    position: absolute;
+    width: 30px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    top: 30px;
+    transition: opacity 0.45s ease;
+    right: 15px;
+}
+
+.expandDrawer {
+    right: 20px;
+    width: 45px;
+}
+
+.panel__list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 2rem;
+    padding-left: 0;
+}
+
+.panel__list .habit-tile {
+    font-family: "Proxima Nova Regular", "Arial", sans-serif;
+    font-size: 18px;
+    padding: 0 20px;
+    line-height: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.habit-tile__item {
+    background-color: transparent;
+    border: none;
+}
+
+.habit-tile__item .icon img {
+    width: 20px;
+}
+
+.habit-tile__item .link-text {
+    font-size: 1rem;
+    color: $light_gray;
+}
+
+.habit-tile__item.active {
+    color: white;
 }

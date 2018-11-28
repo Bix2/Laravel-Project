@@ -14159,13 +14159,15 @@ $('.tooltip-items').tooltip();
 
 $('.expandDrawer').click(function () {
   console.log('click');
-  $('.tileDrawer').addClass('open');
+  $('.sidemenu').addClass('open');
+  $('.dash-overlay').addClass('open');
   $('#container').addClass('drawerOpen');
   $('.main-overlay').addClass('drawerOpen');
 });
 
 $('.collapseDrawer').click(function () {
-  $('.tileDrawer').removeClass('open');
+  $('.sidemenu').removeClass('open');
+  $('.dash-overlay').removeClass('open');
   $('#container').removeClass('drawerOpen');
   $('.main-overlay').removeClass('drawerOpen');
 });
