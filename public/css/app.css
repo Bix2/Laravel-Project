@@ -11337,10 +11337,35 @@ div.holidayShipping .emphasis {
   border-radius: 100%;
 }
 
+.breath__text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  line-height: calc(100vw - 232px);
+  text-align: center;
+  color: #fcfaff;
+  font-weight: 500;
+  font-size: 1.5rem;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 0;
+}
+
+.breath__text::after {
+  content: "Breath in...";
+}
+
 @media (min-width: 700px) {
   .breath__container, .breath__animation {
     width: 400px;
     height: 400px;
+  }
+  .breath__text {
+    line-height: 400px;
+    font-size: 2rem;
   }
 }
 
@@ -11365,6 +11390,16 @@ div.holidayShipping .emphasis {
 .breath__animation.session {
   -webkit-animation: breathing ease-in-out 12s infinite;
           animation: breathing ease-in-out 12s infinite;
+}
+
+.breath__text.session {
+  -webkit-animation: guide ease-in-out 12s infinite;
+          animation: guide ease-in-out 12s infinite;
+}
+
+.breath__text.session::after {
+  -webkit-animation: guideText ease-in-out 12s infinite;
+          animation: guideText ease-in-out 12s infinite;
 }
 
 @-webkit-keyframes breathing {
@@ -11394,6 +11429,112 @@ div.holidayShipping .emphasis {
   57.894736842% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+
+@-webkit-keyframes guide {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  10.526315789% {
+    opacity: 1;
+  }
+  21.052631578% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  39.47368421% {
+    opacity: 1;
+  }
+  57.894736842% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  78.947368421% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes guide {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  10.526315789% {
+    opacity: 1;
+  }
+  21.052631578% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  39.47368421% {
+    opacity: 1;
+  }
+  57.894736842% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  78.947368421% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@-webkit-keyframes guideText {
+  0% {
+    content: "Breath in...";
+  }
+  21.052631577% {
+    content: "Breath in...";
+  }
+  21.052631578% {
+    content: "Hold it in...";
+  }
+  57.894736841% {
+    content: "Hold it in...";
+  }
+  57.894736842% {
+    content: "Slownly blow out...";
+  }
+  100% {
+    content: "Slownly blow out...";
+  }
+}
+
+@keyframes guideText {
+  0% {
+    content: "Breath in...";
+  }
+  21.052631577% {
+    content: "Breath in...";
+  }
+  21.052631578% {
+    content: "Hold it in...";
+  }
+  57.894736841% {
+    content: "Hold it in...";
+  }
+  57.894736842% {
+    content: "Slownly blow out...";
+  }
+  100% {
+    content: "Slownly blow out...";
   }
 }
 

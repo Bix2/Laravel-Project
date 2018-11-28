@@ -10,6 +10,7 @@
             <div id="breath_session">
                 <div class="breath__container" style="">
                     <div class="breath__animation" style=""></div>
+                    <div class="breath__text"></div>
                 </div>
                 <div class="total-line">
                     <div class="progress-line"></div>

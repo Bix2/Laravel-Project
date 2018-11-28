@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#breath_session__buttton').on('click', function (event) {
         var amount = 1;
         event.preventDefault();
-        $('.breath__animation').addClass('session');
+        $('.breath__animation, .breath__text').addClass('session');
         $('.total-line .progress-line').removeClass('animated');
         $('.total-line .progress-line').css('width', '0');
         setTimeout(function () {
@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('.total-line .progress-line').css('width', '100%');
         }, 1);
         setTimeout(function () {
-            $('.breath__animation').removeClass('session');
+            $('.breath__animation, .breath__text').removeClass('session');
             console.log('starting...');
             $.ajax({
                 /* the route pointing to the post function */
