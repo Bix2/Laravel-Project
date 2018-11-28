@@ -263,17 +263,22 @@ class Habit extends Model
 
         $date = date('Y-m-d');
         $formdata = [
-            'amount' => $amount,
+            'amount' => (int)$amount,
             'date' => $date,
             'unit' => 'ml'
         ];
+        dd($formdata);
         if (Auth::check()) {
             $me = Auth::user();
             $water = $client->post("https://api.fitbit.com/1.2/user/{$me->fitbit_id}/foods/log/water/water.json", [
                 "headers" => [
                     "Authorization" => "Bearer {$me->token}",
                 ],
-                "form_params" => $formdata
+                "form_params" => [
+                    'amount' => $amount,
+                    'date' => $date,
+                    'unit' => 'ml'
+                ]
             ]);
         }
         
