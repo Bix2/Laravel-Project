@@ -48849,7 +48849,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            amount: ''
+            amount: '',
+            goal: ''
         };
     },
 
@@ -48865,7 +48866,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             e.preventDefault();
             var currentObj = this;
             axios.post('/api/watergoal', {
-                amount: this.amount
+                goal: this.goal
             });
         }
     }
@@ -48953,8 +48954,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.amount,
-                    expression: "amount"
+                    value: _vm.goal,
+                    expression: "goal"
                   }
                 ],
                 staticClass: "form-control",
@@ -48966,13 +48967,13 @@ var render = function() {
                   max: "10000",
                   value: "0"
                 },
-                domProps: { value: _vm.amount },
+                domProps: { value: _vm.goal },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.amount = $event.target.value
+                    _vm.goal = $event.target.value
                   }
                 }
               })
