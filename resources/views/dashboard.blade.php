@@ -126,7 +126,7 @@
                                     <img src="images/{{$habit->type}}-dark.svg" alt="{{$habit->type}}">
                                 </div>
                                 <div class="card__text">
-                                    <h5>Requirements</h5>
+                                    <h5>{{ $habit->short_description }}</h5>
                                     <p>You can log data to this habit by using one of the following:</p>
                                 </div>
                                 <div class="row">
