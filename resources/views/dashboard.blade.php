@@ -133,7 +133,7 @@
                                     @if($habit->watch == true)
                                     <div class="col card__items">
                                         <img src="images/fitbit-watch.svg" alt="watch">
-                                        <p>Fitbit Watch</p>
+                                        <p><a>Fitbit Watch</a></p>
                                     </div>
                                     @endif
                                     @if($habit->fitbit_app == true) 
@@ -145,11 +145,11 @@
                                     @if($habit->codebreak == true) 
                                     <div class="col card__items">
                                         <img src="images/website.svg" alt="codebreak app">
-                                        <p>Codebreak</p>
+                                        <p><a>Codebreak</a></p>
                                     </div>
                                     @endif
                                 </div>
-                                <a href="/dashboard/{{$habit->type}}" class="btn btn-success">Visit the habit page</a>
+                                <a href="/dashboard/{{$habit->type}}" class="btn btn-success">Start tracking</a>
                             </div>
                         </div>
                         @endforeach
