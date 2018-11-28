@@ -10175,9 +10175,9 @@ body {
   font-family: "Proxima Nova Regular", arial, sans-serif;
   font-size: 18px;
   position: relative;
-  width: 960px;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
+  padding: 0px 20px 0px 100px;
 }
 
 .main-overlay.drawerOpen {
