@@ -9878,7 +9878,7 @@ body {
   z-index: 10;
   width: 360px;
   top: 0px;
-  left: -280px;
+  left: -320px;
   bottom: 0px;
   background-color: #201F3F;
 }
@@ -9940,10 +9940,13 @@ body {
   top: 30px;
   -webkit-transition: opacity 0.45s ease;
   transition: opacity 0.45s ease;
-  right: 25px;
+  right: 6px;
 }
 
 @media (min-width: 968px) {
+  .sidemenu {
+    left: -280px;
+  }
   .toggleDrawer {
     width: 30px;
     right: 15px;
@@ -10016,6 +10019,18 @@ body {
   padding-bottom: 100px;
   padding: 15px;
   margin-bottom: 5em;
+  padding-left: 50px;
+}
+
+@media (min-width: 991px) {
+  #main {
+    overflow: auto;
+    min-height: 0;
+    padding-bottom: 100px;
+    padding: 15px;
+    margin-bottom: 5em;
+    padding-left: 100px;
+  }
 }
 
 #dash, .top__content {

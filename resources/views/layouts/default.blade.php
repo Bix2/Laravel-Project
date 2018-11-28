@@ -8,10 +8,8 @@
         @include('includes.header')
         <div class="container dash">
             @include('includes.nav')
-            <main id="container" class="bmd-layout-content">
-                <div class="container main-overlay">
+            <main id="main" class="bmd-layout-content">
                     @yield('content')
-                </div>
             </main> 
         </div>
 
