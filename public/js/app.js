@@ -14114,7 +14114,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(64);
+module.exports = __webpack_require__(61);
 
 
 /***/ }),
@@ -14138,28 +14138,13 @@ __webpack_require__(41);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('modal-component', require('./components/form.vue'));
-// Vue.component('form-component', require('./components/form.vue'));
-
-// const app = new Vue({
-//     el: '#main',
-//     methods: {
-//         showModal () {
-//           this.$refs.feedbackModal.show();
-//         },
-//         hideModal () {
-//           this.$refs.feedbackModal.hide();
-//         }
-//     }
-// });
-
 Vue.component('weeksleepchart', __webpack_require__(42));
 Vue.component('daysleepchart', __webpack_require__(46));
 Vue.component('weekactivitychart', __webpack_require__(49));
 Vue.component('apexcharts', __webpack_require__(52));
 Vue.component('daybreathingchart', __webpack_require__(55));
 Vue.component('daywaterchart', __webpack_require__(58));
-Vue.component('addwater', __webpack_require__(61));
+Vue.component('addwater', __webpack_require__(66));
 
 var app = new Vue({
   el: '#app'
@@ -14172,11 +14157,18 @@ $('.alert__close').on('click', function (e) {
 
 $('.tooltip-items').tooltip();
 
-// $.ajaxSetup({
-//   headers: {
-//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//   }
-// });
+$('.expandDrawer').click(function () {
+  console.log('click');
+  $('.tileDrawer').addClass('open');
+  $('#container').addClass('drawerOpen');
+  $('.main-overlay').addClass('drawerOpen');
+});
+
+$('.collapseDrawer').click(function () {
+  $('.tileDrawer').removeClass('open');
+  $('#container').removeClass('drawerOpen');
+  $('.main-overlay').removeClass('drawerOpen');
+});
 
 /***/ }),
 /* 15 */
@@ -48748,14 +48740,24 @@ if (false) {
 
 /***/ }),
 /* 61 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(62)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(63)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48794,7 +48796,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48833,7 +48835,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 63 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48890,12 +48892,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-a6190b68", module.exports)
   }
 }
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
