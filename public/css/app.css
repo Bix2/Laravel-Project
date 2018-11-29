@@ -9818,6 +9818,13 @@ body {
   border: none;
 }
 
+.btn-register {
+  margin-top: 0;
+  color: #fff;
+  background-color: #6574cd;
+  border: none;
+}
+
 #nav {
   background-color: #201F3F;
   width: 200px;
@@ -10072,7 +10079,7 @@ body {
   background-color: white;
   position: relative;
   height: 75px;
-  background-color: #8a7f9d;
+  background-color: rgba(32, 31, 63, 0.8);
 }
 
 .logo__container {
