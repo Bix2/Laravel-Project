@@ -99,8 +99,8 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid #475b6a;
-    padding-bottom: 20px;
-    margin: 0 20px;
+    padding-bottom: 15px;
+    margin: 2rem 10px 0px 10px;
 }
 
 .toggleDrawer {
@@ -134,7 +134,6 @@
 .panel__list {
     overflow-y: auto;
     overflow-x: hidden;
-    margin-top: 2rem;
     padding-left: 0;
 }
 
@@ -151,6 +150,7 @@
 .habit-tile__item {
     background-color: transparent;
     border: none;
+    padding: 0;
 }
 
 .habit-tile__item .icon img {
@@ -163,5 +163,15 @@
 }
 
 .habit-tile__item.active {
+    color: white;
+}
+
+.habit-tile__item:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.profile__welcome {
+    margin-top: 40px;
     color: white;
 }

@@ -9925,8 +9925,8 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-bottom: 1px solid #475b6a;
-  padding-bottom: 20px;
-  margin: 0 20px;
+  padding-bottom: 15px;
+  margin: 2rem 10px 0px 10px;
 }
 
 .toggleDrawer {
@@ -9960,7 +9960,6 @@ body {
 .panel__list {
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 2rem;
   padding-left: 0;
 }
 
@@ -9977,6 +9976,7 @@ body {
 .habit-tile__item {
   background-color: transparent;
   border: none;
+  padding: 0;
 }
 
 .habit-tile__item .icon img {
@@ -9992,10 +9992,19 @@ body {
   color: white;
 }
 
+.habit-tile__item:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+.profile__welcome {
+  margin-top: 40px;
+  color: white;
+}
+
 .container {
   max-width: 100%;
   padding: 0;
-  min-height: 100vh;
 }
 
 .fixed-wrapper {
@@ -10062,15 +10071,21 @@ body {
   width: 100%;
   background-color: white;
   position: relative;
+  height: 75px;
+  background-color: #8a7f9d;
+}
+
+.logo__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .main__logo {
   height: 60px;
   padding: 10px;
-}
-
-.logo__container__link {
-  padding-left: 2em;
 }
 
 .logo {
@@ -10084,12 +10099,8 @@ body {
   height: 75px;
 }
 
-.profile__picture .profile__picture--wrapper {
-  text-align: right;
-}
-
 .profile__picture img {
-  width: 60px;
+  width: 100px;
   border-radius: 100px;
   padding: 10px;
 }
@@ -10166,6 +10177,7 @@ body {
 
 .dash {
   position: relative;
+  min-height: 100vh;
 }
 
 #container {
