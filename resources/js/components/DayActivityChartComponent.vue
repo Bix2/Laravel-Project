@@ -53,15 +53,6 @@ export default {
                             show: true,
                             offsetY: 70,
                         },
-                        total: {
-                             formatter: function(val) {
-                                return (val/this.goal) * 100;                            
-                            },
-                            color: '#111',
-                            fontSize: '20px',
-                            show: true,
-                            offsetY: 70,
-                        }
                     }
                 }
             },
@@ -71,7 +62,7 @@ export default {
                 shade: 'dark',
                 type: 'horizontal',
                 shadeIntensity: 0.5,
-                gradientToColors: ['#ABE5A1'],
+                gradientToColors: ['#e32f6e'],
                 inverseColors: true,
                 opacityFrom: 1,
                 opacityTo: 1,

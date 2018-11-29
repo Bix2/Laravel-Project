@@ -54,15 +54,6 @@ export default {
                             show: true,
                             offsetY: 70,
                         },
-                        total: {
-                             formatter: function(val) {
-                                 return (val/this.goal) * 100;                           
-                            },
-                            color: '#111',
-                            fontSize: '20px',
-                            show: true,
-                            offsetY: 70,
-                        }
                     }
                 }
             },
@@ -72,7 +63,7 @@ export default {
                 shade: 'dark',
                 type: 'horizontal',
                 shadeIntensity: 0.5,
-                gradientToColors: ['#ABE5A1'],
+                gradientToColors: ['#e32f6e'],
                 inverseColors: true,
                 opacityFrom: 1,
                 opacityTo: 1,
@@ -91,10 +82,8 @@ export default {
             axios.get('/api/getdaysleep')
                 .then(function(response) {
                     var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes;
-                    var goal = response.data[0].goal;
-                    self.series = [parseInt(Math.round(totalSleep / goal * 100))];
-                    self.series = [(totalSleep / goal * 100).toFixed(2)];
-
+                    var sleepgoal = response.data[0].goal;
+                    self.series = [parseInt(totalSleep / sleepgoal * 100)];
             });
     }
 }
