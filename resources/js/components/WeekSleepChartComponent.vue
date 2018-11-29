@@ -66,7 +66,8 @@ export default {
           shared: false,
           y: {
               formatter: function(val) {
-                  return val + " min"
+                return ((Math.floor(val / 60) + "h ") + (val % 60) + "min")
+                  //return val + " min"
               }
           }
       },

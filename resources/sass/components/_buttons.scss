@@ -34,3 +34,27 @@
     background-color: #5ad68f;
     border: none;
 }
+
+.btn-register {
+    margin-top: 0;
+    color: #fff;
+    background-color: $indigo;
+    border: none;
+}
+
+.btn-register:hover {
+    margin-top: 0;
+    color: #fff;
+    background-color: $indigo;
+    border: none;
+}
+
+.btn-login {
+    background-color: #A53D79;
+    color: #fff;
+}
+
+.btn-login:hover {
+    background-color: #A53D79;
+    color: #fff;
+}

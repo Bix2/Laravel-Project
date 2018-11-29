@@ -1,6 +1,6 @@
 <template>
   <div class="chart chart__activity">
-    <apexcharts height="350" type="donut" :options="options" :series="series"></apexcharts>
+    <apexcharts height="350" type="radialBar" :options="options" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -13,69 +13,79 @@ export default {
   },
   data: function() {
     return {
-      options: {
-        responsive: [{
-            breakpoint: 1007,
-            options: {
-                chart: {
-                    height: 200
+        series: [0],
+        options: {
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            responsive: [{
+                breakpoint: 1007,
+                options: {
+                    chart: {
+                        height: 200
+                    },
                 },
+            }],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 5,
+                        size: '70%',
+                        image: '../../images/exercise-dark.svg',
+                        imageWidth: 64,
+                        imageHeight: 64,
+                        imageClipped: false
+                    },
+                    dataLabels: {
+                        name: {
+                            offsetY: 0,
+                            show: false,
+                            color: '#888',
+                            fontSize: '16px'
+                        },
+                        value: {
+                            formatter: function(val) {
+                                return Math.round((val / 100) * 10000) +  " steps";
+                            },
+                            color: '#111',
+                            fontSize: '20px',
+                            show: true,
+                            offsetY: 70,
+                        },
+                    }
+                }
             },
-        }],
-        chart: {
-            height: 350,
-            type: 'radialBar',
-        },
-        plotOptions: {
-            radialBar: {
-                horizontal: false,
+            fill: {
+                type: 'gradient',
+                gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+                }
             },
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                colors: ['#fff']
+            stroke: {
+                lineCap: 'round'
             },
-        },
-        labels: ["Steps made", "Steps to go"],
-        title: {
-            align: 'center',
-            text: 'Daily Goal'
-        },
-        fill: {
-            colors: ['#E14DA5', '#EAEAEA']
-        },
-        legend: {
-            show: true,
-            showForSingleSeries: true,
-            position: 'bottom',
-            horizontalAlign: 'center', 
-            verticalAlign: 'middle',
-            labels: {
-                color: '#E14DA5',
-                useSeriesColors: true
-            },
-            markers: {
-                size: 6,
-                strokeColor: "#000",
-                strokeWidth: 0,
-                offsetX: 0,
-                offsetY: 0,
-                radius: 4,
-                shape: "circle"
-            },
-        },
-      },
-      series: [0, 10000],
+            labels: ['Steps'],
+            }
     }
   },
   created: function() {
     var self = this;
     axios.get('/api/getdayactivity')
       .then(function(response) {
-        self.series = [parseInt(response.data[0].activitylogs.steps), response.data[0].goal - response.data[0].activitylogs.steps];
+        var totalSteps = response.data[0].activitylogs.steps;
+        var goal = response.data[0].goal;
+        //self.series = [parseInt(Math.round(totalSteps))];
+        self.series = [(totalSteps / goal * 100).toFixed(2)];
+
     });
   }
 }
 </script>
+
 

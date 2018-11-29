@@ -1,100 +1,91 @@
+<div class="sidemenu">     
+	<div class="panel">
+	
+		<div class="panel__content">
+			<div class="profile container">
+				<div class="row">
+					<div class="profile__picture col-4">
+						<a href="/profile"><img alt="profile picture of {{ $user->name }}" class="" src="{{$user->avatar}}"></a>
+					</div>
+					<div class="profile__welcome col-8">
+						<p>Hello, {{ $user->name }}</p>
+					</div>
+				</div>
+			</div>
+			
+			<h5 class="panel__title">Dashboard</h5>
+			<ul class="panel__list">
+				<li class="habit-tile">
+					<a class="habit-tile__item active" href="/dashboard">
+						<span class="icon"><img src="../../images/dashboard.svg" alt="dashboard icon"></span>
+						<span class="link-text">Daily overview</span>
+					</a>
+				</li>
 
-<ul class="nav flex-column">
-    <li class="nav-item nav-item--title">
-        <p>User Panel</p>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/dashboard">
-            <span class="icon"><img src="../../images/dashboard.svg" alt="dashboard icon"></span>
-            <span class="link-text">Dashboard</span>
-        </a>
-    </li>
-    @if($user->admin == 1)
-    <li class="nav-item">
-        <a class="nav-link" href="/admin">
-            <span class="icon"><img src="../../images/profile.svg" alt="dashboard icon"></span>
-            <span class="link-text">Admin</span>
-        </a>
-    </li>
-    @endif
-    <li class="nav-item">
-        <a class="nav-link" href="/profile">
-            <span class="icon"><img src="../../images/profile.svg" alt="dashboard icon"></span>
-            <span class="link-text">Profile</span>
-        </a>
-    </li>
-    <!-- check if habits are tracked and list them on page -->
-    @if ($trackedHabits[0])
-        <li class="nav-item nav-item--title">
-            <p>Tracked Habits</p>
-        </li>
-        @foreach ($trackedHabits[0] as $habit)
-            @if ($habit->type == "sleep")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/sleep">
-                    <span class="icon"><img src="../../images/sleep.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Sleep</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "breathing")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/breathing">
-                    <span class="icon"><img src="../../images/breathing.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Breathing</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "exercise")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/exercise">
-                    <span class="icon"><img src="../../images/steps.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Activity</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "water")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/water">
-                    <span class="icon"><img src="../../images/water.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Hydrate</span>
-                </a>
-            </li>
-            @endif
-        @endforeach
-    @endif
+			@if ($trackedHabits[1])
+			@foreach ($trackedHabits[1] as $habit)
+				<li class="habit-tile">
+					<a class="habit-tile__item" href="/dashboard/{{$habit->type}}">
+						<span class="icon"><img src="../../images/{{$habit->type}}.svg" alt="dashboard icon"></span>
+						<span class="link-text">{{$habit->short_description}}</span>
+					</a>
+				</li>
+			@endforeach
+			@endif
 
-    @if ($trackedHabits[1])
-        <li class="nav-item nav-item--title">
-            <p>Untracked Habits</p>
-        </li>
-        @foreach ($trackedHabits[1] as $habit)
-            @if ($habit->type == "sleep")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/sleep">
-                    <span class="icon"><img src="../../images/sleep.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Sleep</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "breathing")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/breathing">
-                    <span class="icon"><img src="../../images/breathing.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Breathing</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "exercise")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/exercise">
-                    <span class="icon"><img src="../../images/steps.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Activity</span>
-                </a>
-            </li>
-            @elseif ($habit->type == "water")
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/water">
-                    <span class="icon"><img src="../../images/water.svg" alt="dashboard icon"></span>
-                    <span class="link-text">Hydrate</span>
-                </a>
-            </li>
-            @endif
-        @endforeach
-    @endif
-</ul>
+			@if ($trackedHabits[0])
+			@foreach ($trackedHabits[0] as $habit)
+				<li class="habit-tile">
+					<a class="habit-tile__item" href="/dashboard/{{$habit->type}}">
+						<span class="icon"><img src="../../images/{{$habit->type}}.svg" alt="dashboard icon"></span>
+						<span class="link-text">{{$habit->short_description}}</span>
+					</a>
+				</li>
+			@endforeach
+			@endif
+			</ul>
+
+			<h5 class="panel__title">User</h5>
+			<ul class="panel__list">
+				<li class="habit-tile">
+					<a class="habit-tile__item" href="/profile">
+						<span class="icon"><img src="../../images/profile.svg" alt="dashboard icon"></span>
+						<span class="link-text">Profile</span>
+					</a>
+				</li>
+				<li class="habit-tile">
+					<form action="/logout" method="post">
+						{{ csrf_field() }}
+						<button class="habit-tile__item">
+							<span class="icon"><img src="../../images/logout.svg" alt="dashboard icon"></span>
+							<span class="link-text">Log out</span>
+						</button>
+					</form>
+				</li>
+			</ul>
+			@if($user->admin == 1)
+			<h5 class="panel__title">Admin</h5>
+			<ul class="panel__list">
+				<li class="habit-tile">
+					<a class="habit-tile__item" href="/admin">
+						<span class="icon"><img src="../../images/profile.svg" alt="dashboard icon"></span>
+						<span class="link-text">Statistics</span>
+					</a>
+				</li>
+			</ul>
+			@endif
+
+		</div>
+
+
+	</div> 
+
+	<button class="collapseDrawer toggleDrawer">
+		<img src="../../images/close.svg">
+	</button> 
+
+	<button class="expandDrawer toggleDrawer">
+		<img src="../../images/expand.svg">
+	</button>
+</div> 
+<div class="dash-overlay"></div>

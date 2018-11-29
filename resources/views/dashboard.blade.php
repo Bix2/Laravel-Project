@@ -56,11 +56,11 @@
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
+                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
+                                    <daysleepchart></daysleepchart>
+                                </a>
                                 <div class="col-lg-8 mt-3">
                                     <weeksleepchart></weeksleepchart>
-                                </div>
-                                <div class="col-lg-4 mt-3">
-                                    <daysleepchart></daysleepchart>
                                 </div>
                             </div>
                         @elseif ($habit->type == "breathing")
@@ -87,9 +87,9 @@
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 mt-3">
+                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
                                     <apexcharts></apexcharts>
-                                </div>
+                                </a>
                                 <div class="col-lg-8 mt-3">
                                     <weekactivitychart></weekactivitychart>
                                 </div>
@@ -126,14 +126,14 @@
                                     <img src="images/{{$habit->type}}-dark.svg" alt="{{$habit->type}}">
                                 </div>
                                 <div class="card__text">
-                                    <h5>Requirements</h5>
+                                    <h5>{{ $habit->short_description }}</h5>
                                     <p>You can log data to this habit by using one of the following:</p>
                                 </div>
                                 <div class="row">
                                     @if($habit->watch == true)
                                     <div class="col card__items">
                                         <img src="images/fitbit-watch.svg" alt="watch">
-                                        <p>Fitbit Watch</p>
+                                        <p><a>Fitbit Watch</a></p>
                                     </div>
                                     @endif
                                     @if($habit->fitbit_app == true) 
@@ -145,7 +145,7 @@
                                     @if($habit->codebreak == true) 
                                     <div class="col card__items">
                                         <img src="images/website.svg" alt="codebreak app">
-                                        <p>Codebreak</p>
+                                        <p><a>Codebreak</a></p>
                                     </div>
                                     @endif
                                 </div>

@@ -3,18 +3,14 @@
     <head>
         @include('includes.head')
     </head>
-    <body>
 
-        <div class="container">
-            @include('includes.header')
-            <div class="wrapper">
-                <div id="nav">
-                    @include('includes.nav')
-                </div>
-                <div id="main">
+    <body>
+        @include('includes.header')
+        <div class="container dash">
+            @include('includes.nav')
+            <main id="main" class="bmd-layout-content">
                     @yield('content')
-                </div>
-            </div>
+            </main> 
         </div>
 
         <footer class="footer">

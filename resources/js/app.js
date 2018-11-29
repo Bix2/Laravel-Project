@@ -15,21 +15,6 @@ require('./breathingsession');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('modal-component', require('./components/form.vue'));
-// Vue.component('form-component', require('./components/form.vue'));
-
-// const app = new Vue({
-//     el: '#main',
-//     methods: {
-//         showModal () {
-//           this.$refs.feedbackModal.show();
-//         },
-//         hideModal () {
-//           this.$refs.feedbackModal.hide();
-//         }
-//     }
-// });
-
 Vue.component('weeksleepchart', require('./components/WeekSleepChartComponent.vue'));
 Vue.component('daysleepchart', require('./components/DaySleepChartComponent.vue'));
 Vue.component('weekactivitychart', require('./components/WeekActivityChartComponent.vue'));
@@ -38,7 +23,7 @@ Vue.component('daybreathingchart', require('./components/DayBreathingChartCompon
 Vue.component('daywaterchart', require('./components/DayWaterChartComponent.vue'));
 Vue.component('addwater', require('./components/AddWaterComponent.vue'));
 
-var app = new Vue({
+const app = new Vue({
   el: '#app'
 })
 
@@ -49,8 +34,17 @@ $('.alert__close').on('click', function(e) {
 
 $('.tooltip-items').tooltip();
 
-// $.ajaxSetup({
-//   headers: {
-//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//   }
-// });
+$('.expandDrawer').click(function(){
+  console.log('click');
+  $('.sidemenu').addClass('open');
+  $('.dash-overlay').addClass('open');
+  $('#container').addClass('drawerOpen');
+  $('.main-overlay').addClass('drawerOpen');
+})
+
+$('.collapseDrawer').click(function(){
+  $('.sidemenu').removeClass('open');
+  $('.dash-overlay').removeClass('open');
+  $('#container').removeClass('drawerOpen');
+  $('.main-overlay').removeClass('drawerOpen');
+});

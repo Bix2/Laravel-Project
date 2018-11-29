@@ -7,15 +7,21 @@
 .main__header {
     width: 100%;
     background-color: white;
+    position: relative;
+    height: 75px;
+    background-color: rgba(32, 31, 63, 0.8)
+}
+
+.logo__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .main__logo {
     height: 60px;
     padding: 10px;
-}
-
-.logo__container__link {
-    padding-left: 2em;
 }
 
 .logo {
@@ -29,19 +35,10 @@
     height: 75px;
 }
 
-.link-text {
-    display: none;
-}
-
 .profile__picture {
-    padding-right: 2em;
-
-    .profile__picture--wrapper {
-        text-align: right;
-    }
 
     img {
-        width: 60px;
+        width: 100px;
         border-radius: 100px;
         padding: 10px;
     }
