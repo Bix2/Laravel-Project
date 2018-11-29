@@ -81,11 +81,11 @@
 	</div> 
 
 	<button class="collapseDrawer toggleDrawer">
-		<img src="../images/close.svg">
+		<img src="../../images/close.svg">
 	</button> 
 
 	<button class="expandDrawer toggleDrawer">
-		<img src="../images/expand.svg">
+		<img src="../../images/expand.svg">
 	</button>
 </div> 
 <div class="dash-overlay"></div>
