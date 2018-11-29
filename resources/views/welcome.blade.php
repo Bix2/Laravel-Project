@@ -18,7 +18,7 @@
                     </div>
                     <div class="welcome--text">
                         <p>Dont have an account yet? Sign up now for a free account!</p>
-                        <a class="btn-lg btn btn-register" href="https://www.fitbit.com/be/signup">Register</a>
+                        <a class="btn-lg btn btn-register" target="_blank" href="https://www.fitbit.com/be/signup">Register</a>
                     </div>
                     <div class="bg-sec"></div>
                 </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="welcome--card col-12 col-md-6 col-lg-3">
                     <div class="welcome--icon welcome--pink">
-                        <img src="/images/steps.svg" alt="activity habit">
+                        <img src="/images/exercise.svg" alt="activity habit">
                     </div>
                     <h3 ><span class="dailyamount" data-count="{{$dailybreathing}}"><strong>0</strong></span></h3>
                     <h6 class="dailytotal">breathing sessions done today</h6>
