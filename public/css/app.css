@@ -9825,6 +9825,23 @@ body {
   border: none;
 }
 
+.btn-register:hover {
+  margin-top: 0;
+  color: #fff;
+  background-color: #6574cd;
+  border: none;
+}
+
+.btn-login {
+  background-color: #A53D79;
+  color: #fff;
+}
+
+.btn-login:hover {
+  background-color: #A53D79;
+  color: #fff;
+}
+
 #nav {
   background-color: #201F3F;
   width: 200px;
@@ -10814,8 +10831,8 @@ h1.logo_text {
     right: calc(100vh - 75%);
   }
   .stats--bg {
-    width: 20%;
-    right: calc(100vh - 45%);
+    width: 15%;
+    right: calc(100vh - 55%);
   }
   .welcome--text {
     width: 450px;
@@ -10833,6 +10850,13 @@ h1.logo_text {
   .dailystats {
     margin: 5em auto;
     padding: 3em 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .stats--bg {
+    width: 20%;
+    right: calc(100vh - 45%);
   }
 }
 

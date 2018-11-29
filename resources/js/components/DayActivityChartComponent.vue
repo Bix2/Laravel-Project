@@ -62,8 +62,6 @@ export default {
                 shade: 'dark',
                 type: 'horizontal',
                 shadeIntensity: 0.5,
-                gradientToColors: ['#e32f6e'],
-                inverseColors: true,
                 opacityFrom: 1,
                 opacityTo: 1,
                 stops: [0, 100]

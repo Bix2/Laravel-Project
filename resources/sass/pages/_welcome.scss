@@ -237,8 +237,8 @@ h1.logo_text {
     }
     
     .stats--bg {
-        width: 20%;
-        right: calc(100vh - 45%);
+        width: 15%;
+        right: calc(100vh - 55%);
     }
 
     .welcome--text {    
@@ -263,3 +263,9 @@ h1.logo_text {
     }
 }
 
+@media (min-width: 1200px) {
+    .stats--bg {
+        width: 20%;
+        right: calc(100vh - 45%);
+    }
+}
