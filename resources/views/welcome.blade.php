@@ -14,7 +14,7 @@
                     <div class="welcome--text">
                         <h1 class="mb-5">Mindfulness for developers</h1>
                         <h5>Boost your concentration through habit tracking. All you need is a FitBit account</h5>
-                        <a class="mt-3 mb-5 btn-lg btn btn-success btn-login" href="{{ url('login/fitbit') }}">Login with Fitbit</a>
+                        <a class="mt-3 mb-5 btn-lg btn btn-login" href="{{ url('login/fitbit') }}">Login with Fitbit</a>
                     </div>
                     <div class="welcome--text">
                         <p>Dont have an account yet? Sign up now for a free account!</p>
