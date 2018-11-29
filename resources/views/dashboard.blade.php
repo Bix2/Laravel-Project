@@ -56,11 +56,11 @@
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
+                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
+                                    <daysleepchart></daysleepchart>
+                                </a>
                                 <div class="col-lg-8 mt-3">
                                     <weeksleepchart></weeksleepchart>
-                                </div>
-                                <div class="col-lg-4 mt-3">
-                                    <daysleepchart></daysleepchart>
                                 </div>
                             </div>
                         @elseif ($habit->type == "breathing")
@@ -87,9 +87,9 @@
                                 <a href="#" class="alert__close">x</a>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 mt-3">
+                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
                                     <apexcharts></apexcharts>
-                                </div>
+                                </a>
                                 <div class="col-lg-8 mt-3">
                                     <weekactivitychart></weekactivitychart>
                                 </div>
