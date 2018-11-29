@@ -1,6 +1,6 @@
 <template>
   <div class="chart chart__sleep">
-    <daysleepchart height="350" type="donut" :options="chartOptions" :series="series"></daysleepchart>
+    <daysleepchart height="350" type="radialBar" :options="options" :series="series"></daysleepchart>
   </div>
 </template>
 
@@ -11,76 +11,90 @@ export default {
     components: {
         daysleepchart: VueApexCharts,
     },
-    data: function() {
-        return {
-            chartOptions: {
-                responsive: [{
-                    breakpoint: 1007,
-                    options: {
-                        chart: {
-                            height: 200
+     data: function() {
+    return {
+        series: [0],
+        options: {
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            responsive: [{
+                breakpoint: 1007,
+                options: {
+                    chart: {
+                        height: 200
+                    },
+                },
+            }],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 5,
+                        size: '70%',
+                        image: '../../images/sleep-dark.svg',
+                        imageWidth: 64,
+                        imageHeight: 64,
+                        imageClipped: false
+                    },
+                    dataLabels: {
+                        name: {
+                            offsetY: 0,
+                            show: false,
+                            color: '#888',
+                            fontSize: '16px'
                         },
-                    },
-                }],
-                chart: {
-                    height: 350,
-                    type: 'donut',
-                },
-                plotOptions: {
-                    radialBar: {
-                        horizontal: false,
-                        columnWidth: '50%',
-                        dataLabels: {
-                            position: '50%',
+                        value: {
+                            formatter: function(val) {
+                                var val1 = (val / 100) * 390;
+                                return (Math.floor(val1 / 60) + "h ") + Math.floor(val1 % 60) + "min";
+                            },
+                            color: '#111',
+                            fontSize: '20px',
+                            show: true,
+                            offsetY: 70,
+                        },
+                        total: {
+                             formatter: function(val) {
+                                 return (val/this.goal) * 100;                           
+                            },
+                            color: '#111',
+                            fontSize: '20px',
+                            show: true,
+                            offsetY: 70,
                         }
-                    },
-                },
-                dataLabels: {
-                    enabled: true,
-                    style: {
-                        colors: ['#fff']
-                    },
-                },
-                labels: ["Minutes asleep", "Minutes to sleep "],
-                title: {
-                    align: 'center',
-                    text: 'Daily Goal'
-                },
-                fill: {
-                    colors: ['#E14DA5', '#EAEAEA']
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center', 
-                    verticalAlign: 'middle',
-                    labels: {
-                        color: '#E14DA5',
-                        useSeriesColors: true
-                    },
-                    markers: {
-                        size: 6,
-                        strokeColor: "#000",
-                        strokeWidth: 0,
-                        offsetX: 0,
-                        offsetY: 0,
-                        radius: 4,
-                        shape: "circle"
-                    },
+                    }
                 }
             },
-            series: [0, 480],
-        }
-    },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#ABE5A1'],
+                inverseColors: true,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+                }
+            },
+            stroke: {
+                lineCap: 'round'
+            },
+            labels: ['Hours'],
+            }
+    }
+  },
     created: function() {
         var self = this;
             axios.get('/api/getdaysleep')
                 .then(function(response) {
-                    var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes + response.data[0].sleeplogs.wake_minutes;
+                    var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes;
                     var goal = response.data[0].goal;
-                    // check if data from api is ok
-                    self.series = [parseInt(totalSleep), goal - totalSleep];
+                    self.series = [parseInt(Math.round(totalSleep / goal * 100))];
+                    self.series = [(totalSleep / goal * 100).toFixed(2)];
+
             });
     }
 }

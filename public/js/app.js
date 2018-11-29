@@ -47605,7 +47605,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           shared: false,
           y: {
             formatter: function formatter(val) {
-              return val + " min";
+              return Math.floor(val / 60) + "h " + val % 60 + "min";
+              //return val + " min"
             }
           }
         },
@@ -47801,7 +47802,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            chartOptions: {
+            series: [0],
+            options: {
+                chart: {
+                    height: 350,
+                    type: 'radialBar'
+                },
                 responsive: [{
                     breakpoint: 1007,
                     options: {
@@ -47810,64 +47816,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     }
                 }],
-                chart: {
-                    height: 350,
-                    type: 'donut'
-                },
                 plotOptions: {
                     radialBar: {
-                        horizontal: false,
-                        columnWidth: '50%',
+                        hollow: {
+                            margin: 5,
+                            size: '70%',
+                            image: '../../images/sleep-dark.svg',
+                            imageWidth: 64,
+                            imageHeight: 64,
+                            imageClipped: false
+                        },
                         dataLabels: {
-                            position: '50%'
+                            name: {
+                                offsetY: 0,
+                                show: false,
+                                color: '#888',
+                                fontSize: '16px'
+                            },
+                            value: {
+                                formatter: function formatter(val) {
+                                    var val1 = val / 100 * 390;
+                                    return Math.floor(val1 / 60) + "h " + Math.floor(val1 % 60) + "min";
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            },
+                            total: {
+                                formatter: function formatter(val) {
+                                    return val / this.goal * 100;
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            }
                         }
                     }
                 },
-                dataLabels: {
-                    enabled: true,
-                    style: {
-                        colors: ['#fff']
-                    }
-                },
-                labels: ["Minutes asleep", "Minutes to sleep "],
-                title: {
-                    align: 'center',
-                    text: 'Daily Goal'
-                },
                 fill: {
-                    colors: ['#E14DA5', '#EAEAEA']
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center',
-                    verticalAlign: 'middle',
-                    labels: {
-                        color: '#E14DA5',
-                        useSeriesColors: true
-                    },
-                    markers: {
-                        size: 6,
-                        strokeColor: "#000",
-                        strokeWidth: 0,
-                        offsetX: 0,
-                        offsetY: 0,
-                        radius: 4,
-                        shape: "circle"
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#ABE5A1'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
                     }
-                }
-            },
-            series: [0, 480]
+                },
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['Hours']
+            }
         };
     },
     created: function created() {
         var self = this;
         axios.get('/api/getdaysleep').then(function (response) {
-            var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes + response.data[0].sleeplogs.wake_minutes;
+            var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes;
             var goal = response.data[0].goal;
-            // check if data from api is ok
-            self.series = [parseInt(totalSleep), goal - totalSleep];
+            self.series = [parseInt(Math.round(totalSleep / goal * 100))];
+            self.series = [(totalSleep / goal * 100).toFixed(2)];
         });
     }
 });
@@ -47887,8 +47901,8 @@ var render = function() {
       _c("daysleepchart", {
         attrs: {
           height: "350",
-          type: "donut",
-          options: _vm.chartOptions,
+          type: "radialBar",
+          options: _vm.options,
           series: _vm.series
         }
       })
@@ -48202,7 +48216,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            series: [0],
             options: {
+                chart: {
+                    height: 350,
+                    type: 'radialBar'
+                },
                 responsive: [{
                     breakpoint: 1007,
                     options: {
@@ -48211,57 +48230,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     }
                 }],
-                chart: {
-                    height: 350,
-                    type: 'radialBar'
-                },
                 plotOptions: {
                     radialBar: {
-                        horizontal: false
+                        hollow: {
+                            margin: 5,
+                            size: '70%',
+                            image: '../../images/exercise-dark.svg',
+                            imageWidth: 64,
+                            imageHeight: 64,
+                            imageClipped: false
+                        },
+                        dataLabels: {
+                            name: {
+                                offsetY: 0,
+                                show: false,
+                                color: '#888',
+                                fontSize: '16px'
+                            },
+                            value: {
+                                formatter: function formatter(val) {
+                                    return Math.round(val / 100 * 10000) + " steps";
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            },
+                            total: {
+                                formatter: function formatter(val) {
+                                    return val / this.goal * 100;
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            }
+                        }
                     }
-                },
-                dataLabels: {
-                    enabled: true,
-                    style: {
-                        colors: ['#fff']
-                    }
-                },
-                labels: ["Steps made", "Steps to go"],
-                title: {
-                    align: 'center',
-                    text: 'Daily Goal'
                 },
                 fill: {
-                    colors: ['#E14DA5', '#EAEAEA']
-                },
-                legend: {
-                    show: true,
-                    showForSingleSeries: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center',
-                    verticalAlign: 'middle',
-                    labels: {
-                        color: '#E14DA5',
-                        useSeriesColors: true
-                    },
-                    markers: {
-                        size: 6,
-                        strokeColor: "#000",
-                        strokeWidth: 0,
-                        offsetX: 0,
-                        offsetY: 0,
-                        radius: 4,
-                        shape: "circle"
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#ABE5A1'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
                     }
-                }
-            },
-            series: [0, 10000]
+                },
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['Steps']
+            }
         };
     },
     created: function created() {
         var self = this;
         axios.get('/api/getdayactivity').then(function (response) {
-            self.series = [parseInt(response.data[0].activitylogs.steps), response.data[0].goal - response.data[0].activitylogs.steps];
+            var totalSteps = response.data[0].activitylogs.steps;
+            var goal = response.data[0].goal;
+            //self.series = [parseInt(Math.round(totalSteps))];
+            self.series = [(totalSteps / goal * 100).toFixed(2)];
         });
     }
 });
@@ -48281,7 +48314,7 @@ var render = function() {
       _c("apexcharts", {
         attrs: {
           height: "350",
-          type: "donut",
+          type: "radialBar",
           options: _vm.options,
           series: _vm.series
         }
