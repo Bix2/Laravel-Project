@@ -9940,7 +9940,7 @@ body {
 .sidemenu .panel {
   color: #f0f0f0;
   background-color: #201F3F;
-  verflow: hidden;
+  overflow: hidden;
   padding-top: 5rem;
 }
 
