@@ -49,13 +49,13 @@
 .sidemenu {
     perspective: 1000px;
     transition: left 0.3s;
-    position: absolute;
     z-index: 10;
     width: 360px;
     top: 0px;
     left: -320px;
     bottom: 0px;
     background-color: #201F3F;
+    position: fixed;
 }
 
 .panel__content {
@@ -90,7 +90,7 @@
 .sidemenu .panel {
     color: #f0f0f0;
     background-color: #201F3F;
-    overflow-y: auto;
+    verflow: hidden;
     padding-top: 5rem;
 }
 
