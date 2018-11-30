@@ -6,6 +6,7 @@ use Laravel\Telescope\Telescope;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
+use Auth;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 {
@@ -61,9 +62,10 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     protected function gate()
     {
-        Gate::define('viewTelescope', function ($user) {
-            return in_array($user->email, [
-                //
+        $me = Auth::user();
+        Gate::define('viewTelescope', function ($me) {
+            return in_array($me->fitbit_id, [
+                "6WCPLJ",
             ]);
         });
     }
