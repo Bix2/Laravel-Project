@@ -10,13 +10,15 @@ cd /home/{{ $account }}/codebreak/Laravel-Project
 
 php artisan down 
 
+git reset --hard HEAD
+
 git pull origin master --force
 
 composer install
 
 npm install
 
-php artisan migrate
+php artisan migrate --force
 
 php artisan up
 
