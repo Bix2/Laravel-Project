@@ -64,9 +64,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         $me = Auth::user();
         Gate::define('viewTelescope', function ($me) {
-            return in_array($me->fitbit_id, [
-                "6WCPLJ",
-            ]);
+            $me->fitbit_id == "6WCPLJ";
         });
     }
 }
