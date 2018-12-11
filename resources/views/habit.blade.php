@@ -3,6 +3,10 @@
 
 <div class="row" id="app">
     <div class="col-12">
+        <a class="btn btn-success" href="/dashboard"><i class="fa fa-arrow-left"></i>
+            Back</a>
+    </div>
+    <div class="col-12">
         <div class="row">
             <div class="top__content col-8">
                 <h2>{{ $habit->short_description }}</h2>
