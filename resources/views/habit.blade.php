@@ -54,6 +54,7 @@
             </div>
             <p class="habit_nodata">You didn't track any sleep yet 😢</p>
             @endif
+            </div>
         @endif
 
         <!-- Water habit -->
@@ -121,6 +122,42 @@
         <!-- End Table -->
         </div>
 
+        @if (($habit->id == 1))
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <h4> Your weekly sleep pattern </h4>
+                <weeksleepchart></weeksleepchart>
+            </div>
+        </div>
+        @endif
+
+        @if (($habit->id == 3))
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <h4> Your weekly activity </h4>
+                <weekactivitychart></weekactivitychart>
+            </div>
+        </div>
+        @endif
+
+        @if (($habit->id == 2))
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <h4> Your daily progress </h4>
+                <daybreathingchart></daybreathingchart>
+            </div>
+        </div>
+        @endif
+
+        @if (($habit->id == 4))
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <h4> Your daily progress </h4>
+                <daywaterchart></daywaterchart>
+            </div>
+        </div>
+        @endif
+                                
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <h4> You can log data to this habit by using one of the following: </h4>

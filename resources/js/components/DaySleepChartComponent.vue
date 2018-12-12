@@ -33,8 +33,8 @@ export default {
                         margin: 5,
                         size: '70%',
                         image: '../../images/sleep-dark.svg',
-                        imageWidth: 64,
-                        imageHeight: 64,
+                        imageWidth: 40,
+                        imageHeight: 40,
                         imageClipped: false
                     },
                     dataLabels: {
@@ -56,6 +56,10 @@ export default {
                         },
                     }
                 }
+            },
+            title: {
+                align: 'center',
+                text: 'Daily Progress'
             },
             fill: {
                 type: 'gradient',

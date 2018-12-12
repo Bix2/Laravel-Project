@@ -9561,8 +9561,8 @@ body {
 .alert--button {
   margin-left: 20px;
   font-size: .8em;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 0;
+  padding-bottom: 0;
   display: block;
   margin: 10px 0;
 }
@@ -9821,24 +9821,24 @@ body {
 .btn-register {
   margin-top: 0;
   color: #fff;
-  background-color: #6574cd;
+  background-color: #A86AE9;
   border: none;
 }
 
 .btn-register:hover {
   margin-top: 0;
   color: #fff;
-  background-color: #6574cd;
+  background-color: #A86AE9;
   border: none;
 }
 
 .btn-login {
-  background-color: #A53D79;
+  background-color: #EC65B7;
   color: #fff;
 }
 
 .btn-login:hover {
-  background-color: #A53D79;
+  background-color: #EC65B7;
   color: #fff;
 }
 
@@ -10093,10 +10093,9 @@ body {
 
 .main__header {
   width: 100%;
-  background-color: white;
+  background-color: #201F3F;
   position: relative;
   height: 75px;
-  background-color: rgba(32, 31, 63, 0.8);
 }
 
 .logo__container {
@@ -10175,6 +10174,7 @@ body {
 }
 
 .footer {
+  margin-top: 3em;
   background: #fff;
   color: #212529;
 }

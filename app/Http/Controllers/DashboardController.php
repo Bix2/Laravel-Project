@@ -20,27 +20,6 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {   
-        
-    public function test() {
-        $me = Auth::user();
-        $client = new Client([
-            "base_uri" => "https://api.fitbit.com/",
-        ]);
-        $response = $client->post("1/user/-/activities.json", [
-            "headers" => [
-                "Authorization"     =>  "Bearer {$me->token}",
-                "Accept-Language"   =>  "fr_FR"
-            ],
-            "form_params"  =>  [
-                "activityId"        =>  90013,
-                "startTime"         =>  "08:20:30",
-                "durationMillis"    =>  1800000,
-                "date"              =>  "2018-11-26",
-                "distance"          =>  3.23,
-            ]
-        ]);
-    }
-
     public static function index() {
         if (Auth::check()) { 
             $me = Auth::user();

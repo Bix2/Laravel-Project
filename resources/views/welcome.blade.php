@@ -4,7 +4,7 @@
     @include('includes.head')
 </head>
 <body class="welcome-page">
-
+    
         <div class="container-fluid">
             <div class="row">
                 <div class="container--bottom col-md-6">

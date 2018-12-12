@@ -484,33 +484,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
@@ -633,6 +606,33 @@ module.exports = g;
   return VueApexCharts;
 
 })));
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -3278,7 +3278,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 6 */
@@ -14114,7 +14114,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(64);
+module.exports = __webpack_require__(70);
 
 
 /***/ }),
@@ -14143,8 +14143,10 @@ Vue.component('daysleepchart', __webpack_require__(46));
 Vue.component('weekactivitychart', __webpack_require__(49));
 Vue.component('apexcharts', __webpack_require__(52));
 Vue.component('daybreathingchart', __webpack_require__(55));
-Vue.component('daywaterchart', __webpack_require__(58));
-Vue.component('addwater', __webpack_require__(61));
+Vue.component('daydonutbreathingchart', __webpack_require__(58));
+Vue.component('daywaterchart', __webpack_require__(61));
+Vue.component('daydonutwaterchart', __webpack_require__(64));
+Vue.component('addwater', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app'
@@ -31346,7 +31348,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(17)(module)))
 
 /***/ }),
 /* 17 */
@@ -47178,7 +47180,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(39).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(39).setImmediate))
 
 /***/ }),
 /* 39 */
@@ -47248,7 +47250,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 40 */
@@ -47441,7 +47443,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(8)))
 
 /***/ }),
 /* 41 */
@@ -47535,7 +47537,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -47656,11 +47658,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
       }
-      console.log(daysActive);
+
       var counter = 0;
       for (var _i = 0; _i < last7Days.length; _i++) {
         if (daysActive[counter] != undefined) {
-          console.log(last7Days);
           if (last7Days[_i] == daysActive[counter].date) {
             seriesArray[0].push(parseInt(daysActive[counter].lightSleep));
             seriesArray[1].push(parseInt(daysActive[counter].remSleep));
@@ -47668,15 +47669,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             seriesArray[3].push(parseInt(daysActive[counter].wakeSleep));
             counter++;
           } else {
-            console.log('hello 2');
             seriesArray[0].push(0);
             seriesArray[1].push(0);
             seriesArray[2].push(0);
             seriesArray[3].push(0);
-            counter++;
           }
         } else {
-          console.log('hello');
           seriesArray[0].push(0);
           seriesArray[1].push(0);
           seriesArray[2].push(0);
@@ -47785,7 +47783,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -47822,8 +47820,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             margin: 5,
                             size: '70%',
                             image: '../../images/sleep-dark.svg',
-                            imageWidth: 64,
-                            imageHeight: 64,
+                            imageWidth: 40,
+                            imageHeight: 40,
                             imageClipped: false
                         },
                         dataLabels: {
@@ -47845,6 +47843,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             }
                         }
                     }
+                },
+                title: {
+                    align: 'center',
+                    text: 'Daily Progress'
                 },
                 fill: {
                     type: 'gradient',
@@ -47963,7 +47965,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -48189,7 +48191,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
 //
 //
@@ -48226,8 +48228,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             margin: 5,
                             size: '70%',
                             image: '../../images/exercise-dark.svg',
-                            imageWidth: 64,
-                            imageHeight: 64,
+                            imageWidth: 40,
+                            imageHeight: 40,
                             imageClipped: false
                         },
                         dataLabels: {
@@ -48248,6 +48250,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             }
                         }
                     }
+                },
+                title: {
+                    align: 'center',
+                    text: 'Daily Progress'
                 },
                 fill: {
                     type: 'gradient',
@@ -48643,6 +48649,189 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/js/components/DayDonutBreathingChartComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cd15d000", Component.options)
+  } else {
+    hotAPI.reload("data-v-cd15d000", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'DonutExample',
+    components: {
+        daydonutbreathingchart: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
+    },
+    data: function data() {
+        return {
+            series: [0],
+            options: {
+                chart: {
+                    height: 350,
+                    type: 'radialBar'
+                },
+                responsive: [{
+                    breakpoint: 1007,
+                    options: {
+                        chart: {
+                            height: 200
+                        }
+                    }
+                }],
+                plotOptions: {
+                    radialBar: {
+                        hollow: {
+                            margin: 5,
+                            size: '70%',
+                            image: '../../images/breathing-dark.svg',
+                            imageWidth: 40,
+                            imageHeight: 40,
+                            imageClipped: false
+                        },
+                        dataLabels: {
+                            name: {
+                                offsetY: 0,
+                                show: false,
+                                color: '#888',
+                                fontSize: '16px'
+                            },
+                            value: {
+                                formatter: function formatter(val) {
+                                    var val1 = val / 100 * 5 + " sessions";
+                                    return val1;
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            }
+                        }
+                    }
+                },
+                title: {
+                    align: 'center',
+                    text: 'Daily Progress'
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#e32f6e'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['Liters']
+            }
+        };
+    },
+    created: function created() {
+        var self = this;
+        axios.get('/api/getdaybreathing').then(function (response) {
+            console.log(response);
+            var totalBreathing = response.data.length;
+            var breathingGoal = 5;
+            self.series = [parseInt(totalBreathing / breathingGoal * 100)];
+        });
+    }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "chart chart__water--donut" },
+    [
+      _c("daydonutbreathingchart", {
+        attrs: {
+          height: "350",
+          type: "radialBar",
+          options: _vm.options,
+          series: _vm.series
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cd15d000", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(63)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/js/components/DayWaterChartComponent.vue"
 
 /* hot reload */
@@ -48665,7 +48854,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48718,7 +48907,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48753,15 +48942,198 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(62)
+var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(63)
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DayDonutWaterChartComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-74b4ac56", Component.options)
+  } else {
+    hotAPI.reload("data-v-74b4ac56", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_apexcharts__);
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'DonutExample',
+    components: {
+        daydonutwaterchart: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
+    },
+    data: function data() {
+        return {
+            series: [0],
+            options: {
+                chart: {
+                    height: 350,
+                    type: 'radialBar'
+                },
+                responsive: [{
+                    breakpoint: 1007,
+                    options: {
+                        chart: {
+                            height: 200
+                        }
+                    }
+                }],
+                plotOptions: {
+                    radialBar: {
+                        hollow: {
+                            margin: 5,
+                            size: '70%',
+                            image: '../../images/water-dark.svg',
+                            imageWidth: 40,
+                            imageHeight: 40,
+                            imageClipped: false
+                        },
+                        dataLabels: {
+                            name: {
+                                offsetY: 0,
+                                show: false,
+                                color: '#888',
+                                fontSize: '16px'
+                            },
+                            value: {
+                                goal: 2000,
+                                formatter: function formatter(val) {
+                                    var val1 = val + " liters";
+                                    return val1;
+                                },
+                                color: '#111',
+                                fontSize: '20px',
+                                show: true,
+                                offsetY: 70
+                            }
+                        }
+                    }
+                },
+                title: {
+                    align: 'center',
+                    text: 'Daily Progress'
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#e32f6e'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['Liters']
+            }
+        };
+    },
+    created: function created() {
+        var self = this;
+        axios.get('/api/getdaywater').then(function (response) {
+            var totalWater = response.data[0].waterlogs.amount;
+            var waterGoal = response.data[0].goal;
+            self.series = [parseInt(totalWater / waterGoal * 100)];
+        });
+    }
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "chart chart__water--donut" },
+    [
+      _c("daydonutwaterchart", {
+        attrs: {
+          height: "350",
+          type: "radialBar",
+          options: _vm.options,
+          series: _vm.series
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-74b4ac56", module.exports)
+  }
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48800,7 +49172,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48883,7 +49255,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 63 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49042,7 +49414,7 @@ if (false) {
 }
 
 /***/ }),
-/* 64 */
+/* 70 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

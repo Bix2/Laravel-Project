@@ -20,7 +20,9 @@ Vue.component('daysleepchart', require('./components/DaySleepChartComponent.vue'
 Vue.component('weekactivitychart', require('./components/WeekActivityChartComponent.vue'));
 Vue.component('apexcharts', require('./components/DayActivityChartComponent.vue'));
 Vue.component('daybreathingchart', require('./components/DayBreathingChartComponent.vue'));
+Vue.component('daydonutbreathingchart', require('./components/DayDonutBreathingChartComponent.vue'));
 Vue.component('daywaterchart', require('./components/DayWaterChartComponent.vue'));
+Vue.component('daydonutwaterchart', require('./components/DayDonutWaterChartComponent.vue'));
 Vue.component('addwater', require('./components/AddWaterComponent.vue'));
 
 const app = new Vue({

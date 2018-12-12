@@ -32,7 +32,7 @@
             @if ($trackedHabits[0])
             <div id="app" class="row">  
                 @foreach ($trackedHabits[0] as $habit)
-                    <div class="col-12">
+                    <div class="col-lg-6 mt-3">
                         <h4 class="d-inline-block"> {{ $habit->short_description }} - </h4>
                         @if($habit->watch == true)
                         <div style="width: 20px" class="tooltip-items d-inline-block" data-toggle="tooltip" data-placement="top" title="Log data by using the Fitbit watch">
@@ -55,14 +55,9 @@
                                 <p class="alert--message">{{$userProgress['sleep_progress']['message']}}</p>
                                 <a href="#" class="alert__close">x</a>
                             </div>
-                            <div class="row">
-                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
-                                    <daysleepchart></daysleepchart>
-                                </a>
-                                <div class="col-lg-8 mt-3">
-                                    <weeksleepchart></weeksleepchart>
-                                </div>
-                            </div>
+                            <a href="/dashboard/{{$habit->type}}">
+                                <daysleepchart></daysleepchart>
+                            </a>
                         @elseif ($habit->type == "breathing")
                             <div class="alert alert-{{$userProgress['breathing_progress']['status']}}" role="alert">
                                 @if($userProgress['breathing_progress']['status'] == 'warning')
@@ -72,11 +67,9 @@
                                 @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
-                            <div class="row">
-                                <div class="col-12 mt-3">
-                                    <daybreathingchart></daybreathingchart>
-                                </div>
-                            </div>
+                            <a href="/dashboard/{{$habit->type}}">
+                                <daydonutbreathingchart></daydonutbreathingchart>
+                            </a>
                         @elseif ($habit->type == "exercise")
                             <div class="alert alert-{{$userProgress['steps_progress']['status']}}" role="alert">
                                 @if($userProgress['steps_progress']['message'] == 'warning')
@@ -86,14 +79,9 @@
                                 @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
-                            <div class="row">
-                                <a href="/dashboard/{{$habit->type}}" class="col-lg-4 mt-3">
-                                    <apexcharts></apexcharts>
-                                </a>
-                                <div class="col-lg-8 mt-3">
-                                    <weekactivitychart></weekactivitychart>
-                                </div>
-                            </div>
+                            <a href="/dashboard/{{$habit->type}}">
+                                <apexcharts></apexcharts>
+                            </a>
                         @elseif ($habit->type == "water")
                             <div class="alert alert-{{$userProgress['water_progress']['status']}}" role="alert">
                                 @if($userProgress['water_progress']['status'] == 'warning')
@@ -103,11 +91,9 @@
                                 @endif
                                 <a href="#" class="alert__close">x</a>
                             </div>
-                            <div class="row">
-                                <div class="col-12 mt-3">
-                                    <daywaterchart></daywaterchart>
-                                </div>
-                            </div>
+                            <a href="/dashboard/{{$habit->type}}">
+                                <daydonutwaterchart></daydonutwaterchart>
+                            </a>
                         @endif
                     </div>
                 @endforeach

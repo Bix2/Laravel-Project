@@ -1,17 +1,17 @@
 <template>
-  <div class="chart chart__activity">
-    <apexcharts height="350" type="radialBar" :options="options" :series="series"></apexcharts>
+  <div class="chart chart__water--donut">
+    <daydonutbreathingchart height="350" type="radialBar" :options="options" :series="series"></daydonutbreathingchart>
   </div>
 </template>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-  name: 'DonutExample',
-  components: {
-    apexcharts: VueApexCharts,
-  },
-  data: function() {
+    name: 'DonutExample',
+    components: {
+        daydonutbreathingchart: VueApexCharts,
+    },
+     data: function() {
     return {
         series: [0],
         options: {
@@ -32,7 +32,7 @@ export default {
                     hollow: {
                         margin: 5,
                         size: '70%',
-                        image: '../../images/exercise-dark.svg',
+                        image: '../../images/breathing-dark.svg',
                         imageWidth: 40,
                         imageHeight: 40,
                         imageClipped: false
@@ -46,7 +46,8 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                return Math.round((val / 100) * 10000) +  " steps";
+                                var val1 = (val/100*5) + " sessions";
+                                return val1;
                             },
                             color: '#111',
                             fontSize: '20px',
@@ -66,6 +67,8 @@ export default {
                 shade: 'dark',
                 type: 'horizontal',
                 shadeIntensity: 0.5,
+                gradientToColors: ['#e32f6e'],
+                inverseColors: true,
                 opacityFrom: 1,
                 opacityTo: 1,
                 stops: [0, 100]
@@ -74,22 +77,21 @@ export default {
             stroke: {
                 lineCap: 'round'
             },
-            labels: ['Steps'],
+            labels: ['Liters'],
             }
     }
   },
-  created: function() {
-    var self = this;
-    axios.get('/api/getdayactivity')
-      .then(function(response) {
-        var totalSteps = response.data[0].activitylogs.steps;
-        var goal = response.data[0].goal;
-        //self.series = [parseInt(Math.round(totalSteps))];
-        self.series = [(totalSteps / goal * 100).toFixed(2)];
-
-    });
-  }
+    created: function() {
+        var self = this;
+            axios.get('/api/getdaybreathing')
+                .then(function(response) {
+                    console.log(response);
+                    var totalBreathing = response.data.length;
+                    var breathingGoal = 5;
+                    self.series = [parseInt(totalBreathing / breathingGoal * 100)];
+            });
+    }
 }
-</script>
 
+</script>
 
