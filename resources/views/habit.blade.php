@@ -239,7 +239,7 @@
                         <form method="post" action="/dashboard/water/changegoal">
                         {{csrf_field()}}
                             <div>
-                                <label for="goaladd" class="col-12 col-form-label">Change Goal (ml)</label>
+                                <label for="goaladd" class="col-12 col-form-label">Change Goal (liter)</label>
                                 <div class="col-12">
                                     <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="0.00" value="{{$watergoal}}">
                                 </div>

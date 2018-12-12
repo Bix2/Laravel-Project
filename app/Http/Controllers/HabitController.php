@@ -114,7 +114,7 @@ class HabitController extends Controller
 
 
     public function logWater(Request $request){
-        $request["amount"] = $request["amount"]*1000;
+        $request["wateradd"] = $request["wateradd"]*1000;
         FitBit::AddWaterLog($request);
         $water = FitBit::getWaterLog();
         FitBit::insertWaterLogToDB($water);
@@ -122,7 +122,7 @@ class HabitController extends Controller
     }
 
     public function changeWaterGoal(Request $request){
-        $request["goal"] = $request["goal"]*1000;
+        $request["goaladd"] = $request["goaladd"]*1000;
         FitBit::ChangeWaterGoal($request);
         $goal = FitBit::getWaterLogGoal();
         Habit::changeWaterGoalInDB($goal);
