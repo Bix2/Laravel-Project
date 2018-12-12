@@ -72,7 +72,7 @@
             </div>
             <div class="tbody-light">
                 @foreach ($waterdata['waterweek'] as $waterday)
-                    <div><strong>{{$waterday}}</strong> ml</div>
+                    <div><strong>{{$waterday/1000}}</strong> liter</div>
                 @endforeach
             </div>
             @else

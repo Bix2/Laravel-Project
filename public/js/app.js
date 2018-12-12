@@ -48911,7 +48911,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/api/getdaywater').then(function (response) {
             if (!(response.data[0].waterlogs.amount >= response.data[0].goal)) {
                 waterData = [{
-                    title: response.data[0].waterlogs.amount + "/" + response.data[0].goal + " - " + (response.data[0].goal - response.data[0].waterlogs.amount) + ' ml still to drink',
+                    title: response.data[0].waterlogs.amount / 1000 + "/" + response.data[0].goal / 1000 + " - " + (response.data[0].goal / 1000 - response.data[0].waterlogs.amount / 1000) + ' liter still to drink',
                     amount: response.data[0].waterlogs.amount / response.data[0].goal * 100,
                     goal: 100 - response.data[0].waterlogs.amount / response.data[0].goal * 100
                 }];
@@ -49304,7 +49304,7 @@ var render = function() {
                 staticClass: "col-12 col-form-label",
                 attrs: { for: "wateradd" }
               },
-              [_vm._v("Amount (ml)")]
+              [_vm._v("Amount (liters)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -49323,8 +49323,9 @@ var render = function() {
                   id: "wateradd",
                   name: "wateradd",
                   min: "0",
-                  max: "10000",
-                  value: "0"
+                  max: "100",
+                  step: "0.01",
+                  value: "0.000"
                 },
                 domProps: { value: _vm.amount },
                 on: {
@@ -49354,9 +49355,9 @@ var render = function() {
               "label",
               {
                 staticClass: "col-12 col-form-label",
-                attrs: { for: "wateradd" }
+                attrs: { for: "goaladd" }
               },
-              [_vm._v("Amount (ml)")]
+              [_vm._v("Amount (liters)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -49372,11 +49373,12 @@ var render = function() {
                 staticClass: "form-control",
                 attrs: {
                   type: "number",
-                  id: "wateradd",
-                  name: "wateradd",
+                  id: "goaladd",
+                  name: "goaladd",
                   min: "0",
-                  max: "10000",
-                  value: "0"
+                  max: "100",
+                  step: "0.01",
+                  value: "0.000"
                 },
                 domProps: { value: _vm.goal },
                 on: {

@@ -30,7 +30,7 @@ export default {
         .then(function(response) {
             if(!(response.data[0].waterlogs.amount >= response.data[0].goal)) {
                 waterData = [{
-                    title: response.data[0].waterlogs.amount + "/" + response.data[0].goal + " - " + (response.data[0].goal - response.data[0].waterlogs.amount) + ' ml still to drink',
+                    title: response.data[0].waterlogs.amount/1000 + "/" + response.data[0].goal/1000 + " - " + (response.data[0].goal/1000 - response.data[0].waterlogs.amount/1000) + ' liter still to drink',
                     amount: response.data[0].waterlogs.amount / response.data[0].goal * 100,
                     goal: 100 - (response.data[0].waterlogs.amount / response.data[0].goal * 100)
                 }]

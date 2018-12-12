@@ -37,6 +37,7 @@ class DashboardController extends Controller
     }
 
     public function AddWater(Request $request){
+        $request["amount"] = $request["amount"]*1000;
         FitBit::AddWaterLog($request);
         $water = FitBit::getWaterLog();
         FitBit::insertWaterLogToDB($water);
