@@ -644,7 +644,7 @@ class FitBit {
         }
     }
 
-    public static function ChangchangeWaterGoaleWaterGoal($request) {
+    public static function ChangeWaterGoal($request) {
         $client = new Client();
         $goal = $request->goaladd;
         if (Auth::check()) {
