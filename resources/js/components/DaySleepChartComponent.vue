@@ -63,15 +63,16 @@ export default {
             },
             fill: {
                 type: 'gradient',
+                colors: ['#F3E07C', '#F3E07C'],
                 gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#e32f6e'],
-                inverseColors: true,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100]
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.2,
+                    gradientToColors: ['#F3E07C', '#F3E07C'],
+                    inverseColors: false,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100]
                 }
             },
             stroke: {
@@ -87,7 +88,11 @@ export default {
                 .then(function(response) {
                     var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes;
                     var sleepgoal = response.data[0].goal;
-                    self.series = [parseInt(totalSleep / sleepgoal * 100)];
+                    var totalPercent = parseInt(totalSleep / sleepgoal * 100);
+                    if(totalPercent > 100) {
+                        totalPercent = 100;
+                    }
+                    self.series = [totalPercent];
             });
     }
 }

@@ -47850,12 +47850,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     type: 'gradient',
+                    colors: ['#F3E07C', '#F3E07C'],
                     gradient: {
-                        shade: 'dark',
+                        shade: 'light',
                         type: 'horizontal',
-                        shadeIntensity: 0.5,
-                        gradientToColors: ['#e32f6e'],
-                        inverseColors: true,
+                        shadeIntensity: 0.2,
+                        gradientToColors: ['#F3E07C', '#F3E07C'],
+                        inverseColors: false,
                         opacityFrom: 1,
                         opacityTo: 1,
                         stops: [0, 100]
@@ -47873,7 +47874,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/api/getdaysleep').then(function (response) {
             var totalSleep = response.data[0].sleeplogs.light_minutes + response.data[0].sleeplogs.rem_minutes + response.data[0].sleeplogs.deep_minutes;
             var sleepgoal = response.data[0].goal;
-            self.series = [parseInt(totalSleep / sleepgoal * 100)];
+            var totalPercent = parseInt(totalSleep / sleepgoal * 100);
+            if (totalPercent > 100) {
+                totalPercent = 100;
+            }
+            self.series = [totalPercent];
         });
     }
 });
@@ -48241,7 +48246,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    return Math.round(val / 100 * 10000) + " steps";
+                                    return parseInt(val) + " %";
                                 },
                                 color: '#111',
                                 fontSize: '20px',
@@ -48257,10 +48262,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     type: 'gradient',
+                    colors: ['#EC65B7', '#EC65B7'],
                     gradient: {
-                        shade: 'dark',
+                        shade: 'light',
                         type: 'horizontal',
-                        shadeIntensity: 0.5,
+                        shadeIntensity: 0.2,
+                        gradientToColors: ['#EC65B7', '#EC65B7'],
                         opacityFrom: 1,
                         opacityTo: 1,
                         stops: [0, 100]
@@ -48279,7 +48286,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var totalSteps = response.data[0].activitylogs.steps;
             var goal = response.data[0].goal;
             //self.series = [parseInt(Math.round(totalSteps))];
-            self.series = [(totalSteps / goal * 100).toFixed(2)];
+            var totalPercent = (totalSteps / goal * 100).toFixed(2);
+            if (totalPercent > 100) {
+                totalPercent = 100;
+            }
+            self.series = [totalPercent];
         });
     }
 });
@@ -48742,13 +48753,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     text: 'Daily Progress'
                 },
                 fill: {
+                    colors: ['#A86AE9', '#EC65B7'],
                     type: 'gradient',
                     gradient: {
-                        shade: 'dark',
+                        shade: 'light',
                         type: 'horizontal',
-                        shadeIntensity: 0.5,
-                        gradientToColors: ['#e32f6e'],
-                        inverseColors: true,
+                        shadeIntensity: 0.2,
+                        gradientToColors: ['#A86AE9', '#EC65B7'],
+                        inverseColors: false,
                         opacityFrom: 1,
                         opacityTo: 1,
                         stops: [0, 100]
@@ -48764,10 +48776,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var self = this;
         axios.get('/api/getdaybreathing').then(function (response) {
-            console.log(response);
             var totalBreathing = response.data.length;
             var breathingGoal = 5;
-            self.series = [parseInt(totalBreathing / breathingGoal * 100)];
+            var totalPercent = parseInt(totalBreathing / breathingGoal * 100);
+            if (totalPercent > 100) {
+                totalPercent = 100;
+            }
+            self.series = [totalPercent];
         });
     }
 });
@@ -49062,12 +49077,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     type: 'gradient',
+                    colors: ['#3B66F2', '#3B66F2'],
                     gradient: {
-                        shade: 'dark',
+                        shade: 'light',
                         type: 'horizontal',
-                        shadeIntensity: 0.5,
-                        gradientToColors: ['#e32f6e'],
-                        inverseColors: true,
+                        shadeIntensity: 0.2,
+                        gradientToColors: ['#3B66F2', '#3B66F2'],
+                        inverseColors: false,
                         opacityFrom: 1,
                         opacityTo: 1,
                         stops: [0, 100]
@@ -49085,7 +49101,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/api/getdaywater').then(function (response) {
             var totalWater = response.data[0].waterlogs.amount;
             var waterGoal = response.data[0].goal;
-            self.series = [parseInt(totalWater / waterGoal * 100)];
+            var totalPercent = parseInt(totalWater / waterGoal * 100);
+            if (totalPercent > 100) {
+                totalPercent = 100;
+            }
+            self.options.plotOptions.radialBar.dataLabels.value.formatter = function (totalPercent) {
+                var val1 = totalPercent + " coco";
+                return val1;
+            };
+            self.series = [totalPercent];
         });
     }
 });

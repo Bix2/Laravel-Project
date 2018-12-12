@@ -64,15 +64,16 @@ export default {
             },
             fill: {
                 type: 'gradient',
+                colors: ['#76D4DB', '#76D4DB'],
                 gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#e32f6e'],
-                inverseColors: true,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100]
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.2,
+                    gradientToColors: ['#76D4DB', '#76D4DB'],
+                    inverseColors: false,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100]
                 }
             },
             stroke: {
@@ -88,7 +89,15 @@ export default {
                 .then(function(response) {
                     var totalWater = response.data[0].waterlogs.amount;
                     var waterGoal = response.data[0].goal;
-                    self.series = [parseInt(totalWater / waterGoal * 100)];
+                    var totalPercent = parseInt(totalWater / waterGoal * 100);
+                    if(totalPercent > 100) {
+                        totalPercent = 100;
+                    }
+                    self.options.plotOptions.radialBar.dataLabels.value.formatter = function(totalPercent) {
+                                var val1 = totalPercent + " coco";
+                                return val1;
+                            };
+                    self.series = [totalPercent];
             });
     }
 }

@@ -62,16 +62,17 @@ export default {
                 text: 'Daily Progress'
             },
             fill: {
+                colors: ['#A86AE9', '#EC65B7'],
                 type: 'gradient',
                 gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#e32f6e'],
-                inverseColors: true,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100]
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.2,
+                    gradientToColors: ['#A86AE9', '#EC65B7'],
+                    inverseColors: false,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100]
                 }
             },
             stroke: {
@@ -85,10 +86,13 @@ export default {
         var self = this;
             axios.get('/api/getdaybreathing')
                 .then(function(response) {
-                    console.log(response);
                     var totalBreathing = response.data.length;
                     var breathingGoal = 5;
-                    self.series = [parseInt(totalBreathing / breathingGoal * 100)];
+                    var totalPercent = parseInt(totalBreathing / breathingGoal * 100);
+                    if(totalPercent > 100) {
+                        totalPercent = 100;
+                    }
+                    self.series = [totalPercent];
             });
     }
 }

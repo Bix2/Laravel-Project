@@ -46,7 +46,7 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                return Math.round((val / 100) * 10000) +  " steps";
+                                return parseInt(val) + " %";
                             },
                             color: '#111',
                             fontSize: '20px',
@@ -62,13 +62,15 @@ export default {
             },
             fill: {
                 type: 'gradient',
+                colors: ['#EC65B7', '#EC65B7'],
                 gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100]
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.2,
+                    gradientToColors: ['#EC65B7', '#EC65B7'],
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100]
                 }
             },
             stroke: {
@@ -85,7 +87,11 @@ export default {
         var totalSteps = response.data[0].activitylogs.steps;
         var goal = response.data[0].goal;
         //self.series = [parseInt(Math.round(totalSteps))];
-        self.series = [(totalSteps / goal * 100).toFixed(2)];
+        var totalPercent = (totalSteps / goal * 100).toFixed(2);
+        if(totalPercent > 100) {
+            totalPercent = 100;
+        }
+        self.series = [totalPercent];
 
     });
   }
