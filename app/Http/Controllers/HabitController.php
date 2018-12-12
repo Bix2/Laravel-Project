@@ -21,6 +21,7 @@ class HabitController extends Controller
     // }
 
     public function show($habit) {
+        dd($changed);
         $data = Habit::getTrackedHabitInfo($habit);
         $habitId = $data["habit"]->id;
         if($habitId == 1) {
@@ -109,7 +110,8 @@ class HabitController extends Controller
         ]);
         $goal = FitBit::logNewGoalActivity($request);
         Habit::changeActivityGoalInDB($goal);
-        return redirect('/dashboard/exercise');
+        $changed = "Hello";
+        return redirect('/dashboard/exercise', $changed);
     }
 
     public function logWater(Request $request) {

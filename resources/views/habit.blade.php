@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-
+{{dd($changed)}}
 <div class="row" id="app">
     <div class="col-12">
         <a class="btn btn-success" href="/dashboard"><i class="fa fa-arrow-left"></i>
