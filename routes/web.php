@@ -21,6 +21,8 @@ Route::get('/', 'HabitController@getDaily');
 /* Log data to FitBit */
 Route::post('/dashboard/exercise/log', 'HabitController@logActivity');
 Route::post('/dashboard/exercise/changegoal', 'HabitController@changeActivityGoal');
+Route::post('/dashboard/water/log', 'DashboardController@AddWater');
+Route::post('/dashboard/water/changegoal', 'DashboardController@WaterGoal');
 
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');
@@ -32,8 +34,6 @@ Route::post('/delete', 'UserController@delete');
 Route::get('/profile', 'UserController@showProfile');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard', 'DashboardController@storeFeedback');
-Route::post('/api/addwater', 'DashboardController@AddWater');
-Route::post('/api/watergoal', 'DashboardController@WaterGoal');
 
 /* Inter API calls */
 Route::get('/api/getstats', 'UserController@getStats');

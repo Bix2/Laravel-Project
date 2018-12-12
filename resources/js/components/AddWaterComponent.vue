@@ -5,7 +5,7 @@
                 <div class="card">
                     <form @submit="formSubmit">
                         <div>
-                            <label for="wateradd" class="col-12 col-form-label">Amount (ml)</label>
+                            <label for="wateradd" class="col-12 col-form-label">Amount to add (ml)</label>
                             <div class="col-12">
                                 <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="amount">
                             </div>
@@ -25,7 +25,7 @@
                 <div class="card">
                     <form @submit="goalSubmit">
                         <div>
-                            <label for="wateradd" class="col-12 col-form-label">Amount (ml)</label>
+                            <label for="wateradd" class="col-12 col-form-label">Change Goal (ml)</label>
                             <div class="col-12">
                                 <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0" v-model="goal">
                             </div>

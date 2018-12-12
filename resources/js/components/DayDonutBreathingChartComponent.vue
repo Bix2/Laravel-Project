@@ -46,12 +46,12 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                var value = (val/100*5);
-                                if(value == 1) {
-                                    value = value + " session";
-                                } else {
-                                    value = value + " sessions";
-                                }
+                                var value = val + "%";
+                                // if(value == 1) {
+                                //     value = value + " session";
+                                // } else {
+                                //     value = value + " sessions";
+                                // }
                                 return value;
                             },
                             color: '#111',

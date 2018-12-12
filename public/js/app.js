@@ -47660,8 +47660,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       var counter = 0;
-      console.log(daysActive);
-      console.log(last7Days);
       for (var _i = 0; _i < last7Days.length; _i++) {
         if (daysActive[counter] != undefined) {
           if (last7Days[_i] == daysActive[counter].date) {
@@ -48740,12 +48738,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    var value = val / 100 * 5;
-                                    if (value == 1) {
-                                        value = value + " session";
-                                    } else {
-                                        value = value + " sessions";
-                                    }
+                                    var value = val + "%";
+                                    // if(value == 1) {
+                                    //     value = value + " session";
+                                    // } else {
+                                    //     value = value + " sessions";
+                                    // }
                                     return value;
                                 },
                                 color: '#111',
@@ -49306,7 +49304,7 @@ var render = function() {
                 staticClass: "col-12 col-form-label",
                 attrs: { for: "wateradd" }
               },
-              [_vm._v("Amount (ml)")]
+              [_vm._v("Amount to add (ml)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -49358,7 +49356,7 @@ var render = function() {
                 staticClass: "col-12 col-form-label",
                 attrs: { for: "wateradd" }
               },
-              [_vm._v("Amount (ml)")]
+              [_vm._v("Change Goal (ml)")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [

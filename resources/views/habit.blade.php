@@ -78,7 +78,6 @@
             @else
                 <p class="habit_nodata">You didn't add any drink yet 😢</p>
             @endif
-            <addwater></addwater>
         @endif
                 
         <!-- Breathing habit -->
@@ -197,6 +196,55 @@
                 @endif
             </div>
         </div>
+
+        <!-- Water habit -->
+        @if ( ($habit->id) == 4 )
+
+            <!-- Log data to Water -->
+            <div class="row">
+                <div class="col-lg-6 mt-5">
+                    <h4>Log activity data</h4>
+                    <div class="card">
+                        <form method="post" action="/dashboard/water/log">
+                        {{csrf_field()}}
+                            <div>
+                                <label for="wateradd" class="col-12 col-form-label">Amount to add (ml)</label>
+                                <div class="col-12">
+                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="col-12">
+                                    <button class="btn btn-success form-control" id="wateraddbutton">Log Water</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Change goal -->
+                <div class="col-lg-6 mt-5">
+                    <h4>Change drinking goal</h4>
+                    <div class="card">
+                        <form method="post" action="/dashboard/water/changegoal">
+                        {{csrf_field()}}
+                            <div>
+                                <label for="wateradd" class="col-12 col-form-label">Change Goal (ml)</label>
+                                <div class="col-12">
+                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="{{$watergoal}}">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="col-12">
+                                    <button class="btn btn-success form-control" id="wateraddbutton">Change Goal</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+
 
         <!-- Activity habit -->
         @if ( ($habit->id) == 3 )
