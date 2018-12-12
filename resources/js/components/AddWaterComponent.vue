@@ -7,7 +7,7 @@
                         <div>
                             <label for="wateradd" class="col-12 col-form-label">Amount (liters)</label>
                             <div class="col-12">
-                                <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="100" step="0.01" value="0.000" v-model="amount">
+                                <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="100" step="0.01" value="0.00" v-model="amount">
                             </div>
                         </div>
                         <div class="mt-3">
@@ -27,7 +27,7 @@
                         <div>
                             <label for="goaladd" class="col-12 col-form-label">Amount (liters)</label>
                             <div class="col-12">
-                                <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="0.000" v-model="goal">
+                                <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="0.00" v-model="goal">
                             </div>
                         </div>
                         <div class="mt-3">

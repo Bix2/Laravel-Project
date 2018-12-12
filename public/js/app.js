@@ -49325,7 +49325,7 @@ var render = function() {
                   min: "0",
                   max: "100",
                   step: "0.01",
-                  value: "0.000"
+                  value: "0.00"
                 },
                 domProps: { value: _vm.amount },
                 on: {
@@ -49378,7 +49378,7 @@ var render = function() {
                   min: "0",
                   max: "100",
                   step: "0.01",
-                  value: "0.000"
+                  value: "0.00"
                 },
                 domProps: { value: _vm.goal },
                 on: {

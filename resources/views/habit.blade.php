@@ -218,9 +218,9 @@
                         <form method="post" action="/dashboard/water/log">
                         {{csrf_field()}}
                             <div>
-                                <label for="wateradd" class="col-12 col-form-label">Amount to add (ml)</label>
+                                <label for="wateradd" class="col-12 col-form-label">Amount to add (liter)</label>
                                 <div class="col-12">
-                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="0">
+                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="100" step="0.01" value="0.00" value="0">
                                 </div>
                             </div>
                             <div class="mt-3">
@@ -239,14 +239,14 @@
                         <form method="post" action="/dashboard/water/changegoal">
                         {{csrf_field()}}
                             <div>
-                                <label for="wateradd" class="col-12 col-form-label">Change Goal (ml)</label>
+                                <label for="goaladd" class="col-12 col-form-label">Change Goal (ml)</label>
                                 <div class="col-12">
-                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="10000" value="{{$watergoal}}">
+                                    <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="0.00" value="{{$watergoal}}">
                                 </div>
                             </div>
                             <div class="mt-3">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-success form-control" id="wateraddbutton">Change Goal</button>
+                                    <button type="submit" class="btn btn-success form-control" id="goaladdbutton">Change Goal</button>
                                 </div>
                             </div>
                         </form>

@@ -35,18 +35,4 @@ class DashboardController extends Controller
         User::storeMood($request);
         return redirect('/dashboard');
     }
-    
-    public function AddWater(Request $request){
-        $request["amount"] = $request["amount"]*1000;
-        FitBit::AddWaterLog($request);
-        $water = FitBit::getWaterLog();
-        FitBit::insertWaterLogToDB($water);
-    }
-
-    public function WaterGoal(Request $request){
-        FitBit::ChangeWaterGoal($request);
-        $goal = FitBit::getWaterLogGoal();
-        FitBit::changeWaterGoalInDB($goal);
-    }
-
 }
