@@ -215,7 +215,7 @@
                             </div>
                             <div class="mt-3">
                                 <div class="col-12">
-                                    <button class="btn btn-success form-control" id="wateraddbutton">Log Water</button>
+                                    <button type="submit" class="btn btn-success form-control" id="wateraddbutton">Log Water</button>
                                 </div>
                             </div>
                         </form>
@@ -236,7 +236,7 @@
                             </div>
                             <div class="mt-3">
                                 <div class="col-12">
-                                    <button class="btn btn-success form-control" id="wateraddbutton">Change Goal</button>
+                                    <button type="submit" class="btn btn-success form-control" id="wateraddbutton">Change Goal</button>
                                 </div>
                             </div>
                         </form>

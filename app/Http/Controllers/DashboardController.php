@@ -45,7 +45,7 @@ class DashboardController extends Controller
     public function WaterGoal(Request $request){
         FitBit::ChangeWaterGoal($request);
         $goal = FitBit::getWaterLogGoal();
-        FitBit::changeWaterGoalInDB($goal);
+        Habit::changeWaterGoalInDB($goal);
     }
 
 }
