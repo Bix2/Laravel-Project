@@ -289,7 +289,7 @@
                         @endif
                         <div class="mt-3">
                             <div class="col-12">
-                                <input type="submit" class="btn btn-success form-control" type="number" value="Log Activity">
+                                <input type="submit" class="btn btn-success form-control" value="Log Activity">
                             </div>
                         </div>
                     </form>

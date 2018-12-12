@@ -618,7 +618,7 @@ class FitBit {
 
     public static function AddWaterLog($request) {
         $client = new Client();
-        $amount = $request["amount"];
+        $amount = $request->wateradd;
         if($amount == null){
             $amount = 0;
         }
