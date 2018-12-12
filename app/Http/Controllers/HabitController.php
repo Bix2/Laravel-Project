@@ -99,7 +99,7 @@ class HabitController extends Controller
         FitBit::logActivityToFitBit($request);
         $steps = FitBit::getActivitySteps();
         FitBit::insertStepsToDB($steps);
-        return redirect('/dashboard/exercise');
+        return redirect('/dashboard/exercise')->with('status', 'You have successfully logged steps!');
     }
 
     public function changeActivityGoal(Request $request) {
@@ -109,7 +109,21 @@ class HabitController extends Controller
         ]);
         $goal = FitBit::logNewGoalActivity($request);
         Habit::changeActivityGoalInDB($goal);
-        return redirect('/dashboard/exercise');
+        return redirect('/dashboard/exercise')->with('status', 'Activity goal has been updated!');
+    }
+
+    public function logWater(Request $request) {
+        FitBit::AddWaterLog($request);
+        $water = FitBit::getWaterLog();
+        FitBit::insertWaterLogToDB($water);
+        return redirect('/dashboard/water')->with('status', 'You have successfully logged water!');
+    }
+
+    public function changeWaterGoal(Request $request) {
+        FitBit::ChangeWaterGoal($request);
+        $goal = FitBit::getWaterLogGoal();
+        Habit::changeWaterGoalInDB($goal);
+        return redirect('/dashboard/water')->with('status', 'Water goal has been updated!');
     }
 
 }

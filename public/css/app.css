@@ -11009,7 +11009,7 @@ h1.logo_text {
 .table {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  text-align: center;
+  text-align: left;
 }
 
 .water-add-form {
@@ -11032,7 +11032,7 @@ h1.logo_text {
 .table-sleep {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  text-align: center;
+  text-align: left;
 }
 
 .tbody-dark div, .tbody-light div, .thead-dark div {

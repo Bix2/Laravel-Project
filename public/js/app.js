@@ -48738,12 +48738,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    var value = val / 100 * 5;
-                                    if (value == 1) {
-                                        value = value + " session";
-                                    } else {
-                                        value = value + " sessions";
-                                    }
+                                    var value = val + "%";
+                                    // if(value == 1) {
+                                    //     value = value + " session";
+                                    // } else {
+                                    //     value = value + " sessions";
+                                    // }
                                     return value;
                                 },
                                 color: '#111',

@@ -618,7 +618,7 @@ class FitBit {
 
     public static function AddWaterLog($request) {
         $client = new Client();
-        $amount = $request["amount"];
+        $amount = $request->wateradd;
         if($amount == null){
             $amount = 0;
         }
@@ -646,15 +646,7 @@ class FitBit {
 
     public static function ChangeWaterGoal($request) {
         $client = new Client();
-        $goal = $request["goal"];
-        if($goal == null){
-            $goal = 0;
-        }
-
-        if( is_numeric($goal) ) {
-        } else {
-            $goal = 0;
-        }
+        $goal = $request->wateradd;
         if (Auth::check()) {
             $me = Auth::user();
             $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water/goal.json", [
