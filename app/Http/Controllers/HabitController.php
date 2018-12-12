@@ -112,4 +112,18 @@ class HabitController extends Controller
         return redirect('/dashboard/exercise');
     }
 
+    public function logWater(Request $request) {
+        FitBit::AddWaterLog($request);
+        $water = FitBit::getWaterLog();
+        FitBit::insertWaterLogToDB($water);
+        return redirect('/dashboard/water');
+    }
+
+    public function changeWaterGoal(Request $request) {
+        FitBit::ChangeWaterGoal($request);
+        $goal = FitBit::getWaterLogGoal();
+        Habit::changeWaterGoalInDB($goal);
+        return redirect('/dashboard/water');
+    }
+
 }

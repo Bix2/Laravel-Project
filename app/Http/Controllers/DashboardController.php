@@ -36,16 +36,4 @@ class DashboardController extends Controller
         return redirect('/dashboard');
     }
 
-    public function AddWater(Request $request){
-        FitBit::AddWaterLog($request);
-        $water = FitBit::getWaterLog();
-        FitBit::insertWaterLogToDB($water);
-    }
-
-    public function WaterGoal(Request $request){
-        FitBit::ChangeWaterGoal($request);
-        $goal = FitBit::getWaterLogGoal();
-        Habit::changeWaterGoalInDB($goal);
-    }
-
 }

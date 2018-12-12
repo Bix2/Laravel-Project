@@ -21,8 +21,8 @@ Route::get('/', 'HabitController@getDaily');
 /* Log data to FitBit */
 Route::post('/dashboard/exercise/log', 'HabitController@logActivity');
 Route::post('/dashboard/exercise/changegoal', 'HabitController@changeActivityGoal');
-Route::post('/dashboard/water/log', 'DashboardController@AddWater');
-Route::post('/dashboard/water/changegoal', 'DashboardController@WaterGoal');
+Route::post('/dashboard/water/log', 'HabitController@logWater');
+Route::post('/dashboard/water/changegoal', 'HabitController@changeWaterGoal');
 
 /* Fitbit Authentication */
 Route::get('login/fitbit', 'UserController@redirectToFitbit');
