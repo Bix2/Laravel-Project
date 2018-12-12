@@ -6,6 +6,7 @@
 /.idea
 /.vscode
 /.vagrant
+/xdebug-*
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -15,3 +16,5 @@ yarn-error.log
 composer.lock
 Envoy.blade.php
 Envoy.blade.php
+
+package.xml
