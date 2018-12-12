@@ -127,86 +127,74 @@
         </div>
 
         @if (($habit->id == 1))
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-                <h4> Your weekly sleep pattern </h4>
-                <weeksleepchart></weeksleepchart>
-            </div>
+        <div class="col-12 mt-5">
+            <h4> Your weekly sleep pattern </h4>
+            <weeksleepchart></weeksleepchart>
         </div>
         @endif
 
         @if (($habit->id == 3))
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-                <h4> Your weekly activity </h4>
-                <weekactivitychart></weekactivitychart>
-            </div>
+        <div class="mt-5">
+            <h4> Your weekly activity </h4>
+            <weekactivitychart></weekactivitychart>
         </div>
         @endif
 
         @if (($habit->id == 2))
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-                <h4> Your daily progress </h4>
-                <daybreathingchart></daybreathingchart>
-            </div>
+        <div class="mt-5">
+            <h4> Your daily progress </h4>
+            <daybreathingchart></daybreathingchart>
         </div>
         @endif
 
         @if (($habit->id == 4))
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-                <h4> Your daily progress </h4>
-                <daywaterchart></daywaterchart>
-            </div>
+        <div class="mt-5">
+            <h4> Your daily progress </h4>
+            <daywaterchart></daywaterchart>
         </div>
         @endif
                                 
-        <div class="row">
-            <div class="col-lg-12 mt-3">
-                <h4> You can log data to this habit by using one of the following: </h4>
-                <div class="card">
-                    <div class="row">
-                        @if($habit->watch == true)
-                        <div class="col card__items">
-                            <img src="../images/fitbit-watch.svg" alt="watch">
-                            <p>Fitbit Watch</p>
-                        </div>
-                        @endif
-                        @if($habit->fitbit_app == true) 
-                        <div class="col card__items">
-                            <img src="../images/smartphone.svg" alt="fitbit app">
-                            <p><a href="https://www.fitbit.com/">Fitbit App</a></p>
-                        </div>
-                        @endif
-                        @if($habit->codebreak == true) 
-                        <div class="col card__items">
-                            <img src="../images/website.svg" alt="codebreak app">
-                            <p>Codebreak</p>
-                        </div>
-                        @endif
+        <div class="col-12 mt-3">
+            <h4> You can log data to this habit by using one of the following: </h4>
+            <div class="card">
+                <div class="row">
+                    @if($habit->watch == true)
+                    <div class="col card__items">
+                        <img src="../images/fitbit-watch.svg" alt="watch">
+                        <p>Fitbit Watch</p>
                     </div>
+                    @endif
+                    @if($habit->fitbit_app == true) 
+                    <div class="col card__items">
+                        <img src="../images/smartphone.svg" alt="fitbit app">
+                        <p><a href="https://www.fitbit.com/">Fitbit App</a></p>
+                    </div>
+                    @endif
+                    @if($habit->codebreak == true) 
+                    <div class="col card__items">
+                        <img src="../images/website.svg" alt="codebreak app">
+                        <p>Codebreak</p>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <div class="row main__content">
-            <div class="col-12">
-                <div class="d-inline-block mt-3">
-                    <form method="post" action="/dashboard/{{$habit->type}}">
-                        {{csrf_field()}}
-                        @if ($button['status'] == 'success')
-                            <button class="btn btn-success" type="submit">{{ $button['text'] }}</button>
-                        @else
-                            <button class="btn btn-danger" type="submit">{{ $button['text'] }}</button>
-                        @endif
-                    </form>
-                </div>
-                <div class="d-inline-block ml-2 mt-3">
-                    @if (($habit->id) == 2)
-                        <a class="btn btn-success" href="/dashboard/breathing/session">Start breathing session</a>
+        <div class="col-12 main__content">
+            <div class="d-inline-block mt-3">
+                <form method="post" action="/dashboard/{{$habit->type}}">
+                    {{csrf_field()}}
+                    @if ($button['status'] == 'success')
+                        <button class="btn btn-success" type="submit">{{ $button['text'] }}</button>
+                    @else
+                        <button class="btn btn-danger" type="submit">{{ $button['text'] }}</button>
                     @endif
-                </div>
+                </form>
+            </div>
+            <div class="d-inline-block ml-2 mt-3">
+                @if (($habit->id) == 2)
+                    <a class="btn btn-success" href="/dashboard/breathing/session">Start breathing session</a>
+                @endif
             </div>
         </div>
 

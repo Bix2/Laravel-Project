@@ -11,6 +11,10 @@ export default {
     components: {
         daydonutwaterchart: VueApexCharts,
     },
+    methods: {
+        valueFormatter: function() {
+        },
+    },
      data: function() {
     return {
         series: [0],
@@ -47,7 +51,7 @@ export default {
                         value: {
                             goal: 2000,
                             formatter: function(val) {
-                                var val1 = val + " liters";
+                                var val1 = val + "%";
                                 return val1;
                             },
                             color: '#111',
@@ -93,11 +97,8 @@ export default {
                     if(totalPercent > 100) {
                         totalPercent = 100;
                     }
-                    self.options.plotOptions.radialBar.dataLabels.value.formatter = function(totalPercent) {
-                                var val1 = totalPercent + " coco";
-                                return val1;
-                            };
                     self.series = [totalPercent];
+
             });
     }
 }

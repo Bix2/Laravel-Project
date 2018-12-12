@@ -46,7 +46,7 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                return parseInt(val) + " %";
+                                return parseInt(val) + "%";
                             },
                             color: '#111',
                             fontSize: '20px',

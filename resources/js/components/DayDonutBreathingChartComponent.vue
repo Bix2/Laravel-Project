@@ -46,8 +46,13 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                var val1 = (val/100*5) + " sessions";
-                                return val1;
+                                var value = (val/100*5);
+                                if(value == 1) {
+                                    value = value + " session";
+                                } else {
+                                    value = value + " sessions";
+                                }
+                                return value;
                             },
                             color: '#111',
                             fontSize: '20px',

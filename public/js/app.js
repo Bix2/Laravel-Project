@@ -47660,6 +47660,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       var counter = 0;
+      console.log(daysActive);
+      console.log(last7Days);
       for (var _i = 0; _i < last7Days.length; _i++) {
         if (daysActive[counter] != undefined) {
           if (last7Days[_i] == daysActive[counter].date) {
@@ -47833,8 +47835,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    var val1 = val / 100 * 390;
-                                    return Math.floor(val1 / 60) + "h " + Math.floor(val1 % 60) + "min";
+                                    var value = val + "%";
+                                    // return (Math.floor(val1 / 60) + "h ") + Math.floor(val1 % 60) + "min";
+                                    return value;
                                 },
                                 color: '#111',
                                 fontSize: '20px',
@@ -48246,7 +48249,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    return parseInt(val) + " %";
+                                    return parseInt(val) + "%";
                                 },
                                 color: '#111',
                                 fontSize: '20px',
@@ -48737,8 +48740,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             },
                             value: {
                                 formatter: function formatter(val) {
-                                    var val1 = val / 100 * 5 + " sessions";
-                                    return val1;
+                                    var value = val / 100 * 5;
+                                    if (value == 1) {
+                                        value = value + " session";
+                                    } else {
+                                        value = value + " sessions";
+                                    }
+                                    return value;
                                 },
                                 color: '#111',
                                 fontSize: '20px',
@@ -49024,6 +49032,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         daydonutwaterchart: __WEBPACK_IMPORTED_MODULE_0_vue_apexcharts___default.a
     },
+    methods: {
+        valueFormatter: function valueFormatter() {}
+    },
     data: function data() {
         return {
             series: [0],
@@ -49060,7 +49071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             value: {
                                 goal: 2000,
                                 formatter: function formatter(val) {
-                                    var val1 = val + " liters";
+                                    var val1 = val + "%";
                                     return val1;
                                 },
                                 color: '#111',
@@ -49077,12 +49088,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 fill: {
                     type: 'gradient',
-                    colors: ['#3B66F2', '#3B66F2'],
+                    colors: ['#76D4DB', '#76D4DB'],
                     gradient: {
                         shade: 'light',
                         type: 'horizontal',
                         shadeIntensity: 0.2,
-                        gradientToColors: ['#3B66F2', '#3B66F2'],
+                        gradientToColors: ['#76D4DB', '#76D4DB'],
                         inverseColors: false,
                         opacityFrom: 1,
                         opacityTo: 1,
@@ -49105,10 +49116,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (totalPercent > 100) {
                 totalPercent = 100;
             }
-            self.options.plotOptions.radialBar.dataLabels.value.formatter = function (totalPercent) {
-                var val1 = totalPercent + " coco";
-                return val1;
-            };
             self.series = [totalPercent];
         });
     }

@@ -46,8 +46,9 @@ export default {
                         },
                         value: {
                             formatter: function(val) {
-                                var val1 = (val / 100) * 390;
-                                return (Math.floor(val1 / 60) + "h ") + Math.floor(val1 % 60) + "min";
+                                var value = val + "%";
+                                // return (Math.floor(val1 / 60) + "h ") + Math.floor(val1 % 60) + "min";
+                                return value;
                             },
                             color: '#111',
                             fontSize: '20px',
