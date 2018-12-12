@@ -47660,8 +47660,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       var counter = 0;
-      console.log(daysActive);
-      console.log(last7Days);
       for (var _i = 0; _i < last7Days.length; _i++) {
         if (daysActive[counter] != undefined) {
           if (last7Days[_i] == daysActive[counter].date) {
