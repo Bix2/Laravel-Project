@@ -17,8 +17,8 @@
                 </div>
                 <form>
                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <button class="btn btn-success" id="breath_session__buttton">Start a breathing session</button>
                 </form>
+                <button class="btn btn-success" id="breath_session__buttton">Start a breathing session</button>
                 <div id="breathingdone">
                     <p>✔️ Session complete!</p>
                     <a class="btn btn-success" href="/dashboard">Back to dashboard</a>

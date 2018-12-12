@@ -65,7 +65,9 @@
     transform: scale(0);
 }
 
-
+#breath_session__buttton.hidden {
+    display: none;
+}
 
 
 .breath__animation.session {
