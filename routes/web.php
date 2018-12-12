@@ -15,6 +15,7 @@ use App\Jobs\ProcessPodcast;
 |
 */
 Route::get('/test', 'DashboardController@test');
+Route::get('/test/show', 'DashboardController@testShow');
 
 Route::get('/', 'HabitController@getDaily');
 
