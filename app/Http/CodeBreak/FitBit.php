@@ -644,9 +644,9 @@ class FitBit {
         }
     }
 
-    public static function ChangeWaterGoal($request) {
+    public static function ChangchangeWaterGoaleWaterGoal($request) {
         $client = new Client();
-        $goal = $request->wateradd;
+        $goal = $request->goaladd;
         if (Auth::check()) {
             $me = Auth::user();
             $water = $client->post("https://api.fitbit.com/1/user/-/foods/log/water/goal.json", [
