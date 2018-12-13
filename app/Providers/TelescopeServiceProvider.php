@@ -62,7 +62,9 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewTelescope', function ($user) {
-            if($user->fitbit_id == "6WCPLJ") {
+            $allowedUsers = array("6Z6M46", "6WCPLJ");
+
+            if( in_array($user->fitbit_id, $allowedUsers) ) {
                 return true;
             } else {
                 return false;
