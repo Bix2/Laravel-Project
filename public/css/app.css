@@ -10694,6 +10694,7 @@ body {
 
 body.welcome-page {
   background: #fff;
+  overflow-x: hidden;
 }
 
 .wrapper {
