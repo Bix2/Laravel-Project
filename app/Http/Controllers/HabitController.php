@@ -128,4 +128,14 @@ class HabitController extends Controller
         return redirect('/dashboard/water')->with('status', 'Water goal has been updated!');
     }
 
+    public function getWaterAdd(){
+        if (Auth::check()) {
+            $me = Auth::user();
+            return view('chrome/addwater');
+        } else {
+            return view('chrome/login');
+        }
+
+    }
+
 }

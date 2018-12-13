@@ -51,5 +51,8 @@ Route::post('/dashboard/{habit}/session', 'HabitController@trackbreath');
 Route::get('/dashboard/{habit}', 'HabitController@show');
 Route::post('/dashboard/{habit}', 'HabitController@track');
 
+/* Chrome Extension */
+Route::get('/api/chrome/wateradd', 'HabitController@getWaterAdd');
+
 /* Admin page */
 Route::get('/admin', 'AdminController@index')->middleware('auth', 'admin');
