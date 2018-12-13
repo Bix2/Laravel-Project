@@ -4,7 +4,7 @@
 <!-- Styles -->
 <div class="container">
         <div class="card">
-            <form method="post" action="http://homestead.test/dashboard/water/log">
+            <form method="post" action="https://codebreak.weareimd.be/dashboard/water/log">
                 {{csrf_field()}}
                 <div>
                     <label for="wateradd" class="col-12 col-form-label">Amount to add (liter)</label>
