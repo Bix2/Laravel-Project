@@ -220,7 +220,7 @@
                             <div>
                                 <label for="wateradd" class="col-12 col-form-label">Amount to add (liter)</label>
                                 <div class="col-12">
-                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="100" step="0.01" value="0.00" value="0">
+                                    <input type="number" id="wateradd" class="form-control" name="wateradd" min="0" max="100" step="0.01" value="0.00">
                                 </div>
                             </div>
                             <div class="mt-3">
@@ -241,7 +241,7 @@
                             <div>
                                 <label for="goaladd" class="col-12 col-form-label">Change Goal (liter)</label>
                                 <div class="col-12">
-                                    <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="0.00" value="{{$watergoal}}">
+                                    <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="{{$watergoal}}">
                                 </div>
                             </div>
                             <div class="mt-3">
