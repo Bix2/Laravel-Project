@@ -241,7 +241,7 @@
                             <div>
                                 <label for="goaladd" class="col-12 col-form-label">Change Goal (liter)</label>
                                 <div class="col-12">
-                                    <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="{{$watergoal}}">
+                                    <input type="number" id="goaladd" class="form-control" name="goaladd" min="0" max="100" step="0.01" value="{{$watergoal/1000}}">
                                 </div>
                             </div>
                             <div class="mt-3">
