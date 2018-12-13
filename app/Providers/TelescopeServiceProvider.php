@@ -20,16 +20,16 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
         $this->hideSensitiveRequestDetails();
 
-//        Telescope::filter(function (IncomingEntry $entry) {
-//            if ($this->app->isLocal()) {
-//                return true;
-//            }
-//
-//            return $entry->isReportableException() ||
-//                   $entry->isFailedJob() ||
-//                   $entry->isScheduledTask() ||
-//                   $entry->hasMonitoredTag();
-//        });
+        Telescope::filter(function (IncomingEntry $entry) {
+            if ($this->app->isLocal()) {
+                return true;
+            }
+
+            return $entry->isReportableException() ||
+                   $entry->isFailedJob() ||
+                   $entry->isScheduledTask() ||
+                   $entry->hasMonitoredTag();
+        });
     }
 
     /**
@@ -62,7 +62,11 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewTelescope', function ($user) {
-            return true;
+            if($user->fitbit_id == "6WCPLJ") {
+                return true;
+            } else {
+                return false;
+            }
         });
     }
 }

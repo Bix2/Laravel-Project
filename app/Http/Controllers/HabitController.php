@@ -19,7 +19,6 @@ class HabitController extends Controller
 
     //     return view('habit', $data);
     // }
-
     public function show($habit) {
         $data = Habit::getTrackedHabitInfo($habit);
         $habitId = $data["habit"]->id;
