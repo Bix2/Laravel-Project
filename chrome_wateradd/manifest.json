@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Codebreak water tracker",
+  "version": "1.0.0",
+  "description": "Track water for codebreak.",
+  "icons": {
+      "128": "images/logo128.png",
+      "32": "images/logo32.png",
+      "48": "images/logo48.png"
+  },
+  "browser_action": {
+          "default_icon": {
+          "16": "images/logo16.png",
+          "32": "images/logo32.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "Track water to codebreak."
+  },
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+  } ]
+}
